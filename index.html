@@ -2,17 +2,126 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=3.0">
-<title>计算专项训练 · 九阶分阶</title>
-<link rel="stylesheet" href="assets/styles.css">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>豆豆数学专项训练</title>
+<style>
+:root {
+  --bg: #f5f7fa;
+  --text: #2c3e50;
+  --text2: #7f8c8d;
+  --card: #fff;
+  --shadow: 0 2px 16px rgba(0,0,0,.06);
+  --radius: 16px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  background: var(--bg); color: var(--text); min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center;
+}
+.container { max-width: 720px; width: 100%; padding: 32px 20px 0; flex: 1; }
+
+/* Header */
+.header { text-align: center; margin-bottom: 36px; }
+.header h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: .04em; margin-bottom: 6px; }
+.header .sub { font-size: .85rem; color: var(--text2); font-weight: 400; }
+.header .brand { font-size: .78rem; color: var(--text2); margin-top: 2px; }
+
+/* 六宫格 3×2 */
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+.grid a {
+  text-decoration: none; display: block;
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px 16px; text-align: center; transition: transform .15s, box-shadow .15s;
+  border: 2px solid transparent; cursor: pointer;
+}
+.grid a:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,.1); }
+.grid a:active { transform: scale(.97); }
+.grid .card-icon { font-size: 2.4rem; margin-bottom: 10px; }
+.grid .card-title { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.grid .card-desc { font-size: .7rem; color: var(--text2); line-height: 1.5; }
+
+/* 各格子的强调色 */
+.calc { border-color: #3b82f6; }
+.calc .card-icon { color: #3b82f6; }
+.calc:hover { border-color: #2563eb; }
+
+.determine { border-color: #22c55e; }
+.determine .card-icon { color: #22c55e; }
+.determine:hover { border-color: #16a34a; }
+
+.thoughts { border-color: #f59e0b; }
+.thoughts .card-icon { color: #f59e0b; }
+.thoughts:hover { border-color: #d97706; }
+
+.model { border-color: #a855f7; }
+.model .card-icon { color: #a855f7; }
+.model:hover { border-color: #9333ea; }
+
+.classic { border-color: #ec4899; }
+.classic .card-icon { color: #ec4899; }
+.classic:hover { border-color: #db2777; }
+
+.diagnose { border-color: #14b8a6; }
+.diagnose .card-icon { color: #14b8a6; }
+.diagnose:hover { border-color: #0d9488; }
+
+/* Footer */
+.site-footer {
+  text-align: center; padding: 16px 0 20px;
+  color: var(--text2); font-size: .75rem;
+  border-top: 1px solid #e2e8f0; margin-top: auto;
+}
+
+/* 移动端 2 列 */
+@media (max-width: 520px) {
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .header h1 { font-size: 1.35rem; }
+}
+</style>
 </head>
 <body>
-<div class="container" id="app"></div>
-<footer class="site-footer">© 两英豆豆教练</footer>
+<div class="container">
+  <div class="header">
+    <h1>豆豆数学特训中心</h1>
+    <div class="sub">体系化计算与思维训练</div>
+  </div>
 
-<script src="assets/math.js"></script>
-<script src="assets/generators.js"></script>
-<script src="assets/generators2.js"></script>
-<script src="assets/app.js"></script>
+  <div class="grid">
+    <a href="#" class="determine">
+      <div class="card-icon">🎯</div>
+      <div class="card-title">三定一性</div>
+      <div class="card-desc">定点·定值·定形·存在性</div>
+    </a>
+    <a href="计算专项训练-九阶/index.html" class="calc">
+      <div class="card-icon">🧮</div>
+      <div class="card-title">计算专项</div>
+      <div class="card-desc">九阶分阶训练 · 填空作答</div>
+    </a>
+    <a href="#" class="thoughts">
+      <div class="card-icon">💡</div>
+      <div class="card-title">十大思想</div>
+      <div class="card-desc">分类讨论·数形结合·方程函数</div>
+    </a>
+    <a href="#" class="model">
+      <div class="card-icon">🧩</div>
+      <div class="card-title">模型思维</div>
+      <div class="card-desc">几何模型·代数结构·解题套路</div>
+    </a>
+    <a href="#" class="classic">
+      <div class="card-icon">📐</div>
+      <div class="card-title">经典题型</div>
+      <div class="card-desc">真题精选·高频考点·一题多解</div>
+    </a>
+    <a href="#" class="diagnose">
+      <div class="card-icon">📊</div>
+      <div class="card-title">学期诊断</div>
+      <div class="card-desc">知识点扫雷·薄弱项定位</div>
+    </a>
+  </div>
+</div>
+
+<footer class="site-footer">&copy; 两英豆豆教练</footer>
 </body>
 </html>
