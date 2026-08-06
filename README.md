@@ -1,2 +1,0 @@
-# learn-maths
-study maths
