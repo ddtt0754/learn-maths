@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>九年级下册 · 数学知识总结</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#2ebd85; --b:#2f9df0; --t:#33434b; --l:#8aa09a;
+  --c-concept:#6366f1;   /* 基本概念 紫 */
+  --c-formula:#059669;   /* 基本公式 绿 */
+  --c-theorem:#dc2626;   /* 基本定理 红 */
+  --c-law:#ea580c;       /* 基本定律 橙 */
+  --c-property:#0891b2;  /* 相关性质 青 */
+  --c-formula-bg:#ecfdf5; --c-theorem-bg:#fef2f2; --c-law-bg:#fff7ed; --c-property-bg:#ecfeff;
+  --r:14px;
+}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+  color:var(--t);padding:20px 14px 60px;min-height:100vh;
+  display:flex;justify-content:center;font-size:15px;line-height:1.7}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;
+  overflow:hidden;box-shadow:0 10px 28px rgba(47,157,240,.22);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:100px;height:100px;top:-30px;right:-20px}
+.hdr::after{width:60px;height:60px;bottom:-16px;left:-10px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12.5px;opacity:.95}
+
+.grade-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;
+  padding:10px;background:#fff;border-radius:14px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.gtab{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+  text-decoration:none;color:var(--t);background:#f1f5f9;transition:all .2s}
+.gtab.current{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+.gtab:hover{transform:translateY(-1px)}
+
+.ch{display:flex;flex-direction:column;gap:10px}
+.cd{background:#fff;border-radius:var(--r);box-shadow:0 4px 12px rgba(47,157,240,.06);overflow:hidden;
+  border-left:4px solid var(--b)}
+.cd.open{border-left-color:var(--g)}
+.cdt{padding:12px 16px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer}
+.cdt .ch-num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.cdt .ar{font-size:.8rem;color:var(--l);margin-left:auto;transition:transform .25s}
+.cd.open .ar{transform:rotate(180deg)}
+.cdb{max-height:0;overflow:hidden;transition:max-height .35s}
+.cd.open .cdb{max-height:6000px;padding:4px 16px 16px}
+
+.it{margin-bottom:10px;line-height:1.75}
+.it.lb-concept .lb{background:#eef2ff;color:var(--c-concept);border-left-color:#a5b4fc}
+.it.lb-formula .lb{background:var(--c-formula-bg);color:var(--c-formula);border-left-color:#34d399}
+.it.lb-theorem .lb{background:var(--c-theorem-bg);color:var(--c-theorem);border-left-color:#fca5a5}
+.it.lb-law .lb{background:var(--c-law-bg);color:var(--c-law);border-left-color:#fdba74}
+.it.lb-property .lb{background:var(--c-property-bg);color:var(--c-property);border-left-color:#67e8f9}
+.it .lb{
+  display:inline-block;font-weight:700;font-size:.85rem;
+  padding:3px 10px;border-radius:6px;margin-bottom:4px;border-left:3px solid;
+  letter-spacing:.5px;
+}
+.it .ct{font-size:.92rem;color:#1f2937;padding-left:2px}
+.it .ct .hl{background:linear-gradient(180deg,transparent 60%,#fef08a 60%);
+  font-weight:700;padding:0 2px}
+.it .ct .form{background:var(--c-formula-bg);color:#047857;padding:2px 6px;
+  border-radius:6px;font-weight:700;font-family:Georgia,serif;
+  border:1px solid #a7f3d0}
+.it .ct .fr{color:var(--c-theorem);font-weight:700}
+.it ul{margin:4px 0 4px 20px;padding:0}
+.it ul li{margin-bottom:2px}
+
+.bt{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt:hover{transform:translateY(-1px)}
+.ft{width:100%;margin-top:14px;text-align:center;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+<header class="hdr"><h1>九年级下册 · 数学知识总结</h1><p class="sub">人教版 · 2024修订新课标 · 基本概念 · 公式 · 定理 · 定律 · 性质</p></header>
+<div class="ch"><div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">1</span>反比例函数（双曲线）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">反比例函数：<span class="hl">形如 <span class="hl">y = k/x（k ≠ 0）</span> 的函数，k 叫比例系数。</div></div><div class="it"><div class="ct"><span class="hl">双曲线：<span class="hl">反比例函数的图像是双曲线，由两支组成，永不与坐标轴相交。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>图像分布（k 决定位置）</b>：① k&gt;0 一三象限；② k&lt;0 二四象限。每支曲线在每个象限内 y 随 x 增大而减小（或反向）。</div></div><div class="it"><div class="ct"><b>对称性：</b>双曲线关于<span class="hl">原点中心对称</span>，且关于 y = ±x 轴对称。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>几何意义：</b>双曲线上任一点 P，过 P 作 x、y 轴垂线围成长方形，其面积 = <span class="hl">|k|（恒定）</span>。</div></div><div class="it"><div class="ct">★ 例：y = 6/x，过点 (2, 3) → 矩形面积 2×3 = 6 = |k|。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【求解析式】代入一个点 (x₀, y₀)，k = x₀ × y₀（k 不变）。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>反比例与正比例的对比：</b>正比例 xy = k（k 不变，是反比例的特例即 k = xy）。反比例实际是 xy = k 的双支曲线。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">2</span>相似三角形（核心几何）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">相似三角形</span>：形状相同，大小不一定相同（对应角相等、对应边成比例）。</div></div><div class="it"><div class="ct"><span class="hl">相似比：<span class="hl">相似三角形对应边的比（用 k 表示）。</div></div><div class="it"><div class="ct"><span class="hl">相似符号「∽」</span>：△ABC ∽ △A'B'C' 表示对应角相等，对应边成比例。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>相似判定 1（AA）</b>：两角分别相等的两个三角形相似。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>相似判定 2（SAS）</b>：两边成比例且夹角相等的两个三角形相似。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>相似判定 3（SSS）</b>：三边成比例的两个三角形相似。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>直角三角形相似判定（HL）</b>：斜边和一直角边对应成比例。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>相似三角形重要性质：<b>① 对应角相等；② 对应边成比例；③ 对应高的比 = 相似比；④ 对应角平分线、中线的比 = 相似比；⑤ 周长比 = 相似比；⑥ 面积比 = 相似比的<span class="hl">平方</span>。</div></div><div class="it"><div class="ct">★ 例：若相似比 1:2，则周长比 1:2，面积比 1:4。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【应用】① 测物体高度（影子比例法）；② 地图比例尺；③ 几何证明（找中间比过渡）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">3</span>锐角三角函数（sin cos tan）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">三角函数</span>：锐角三角形的边与边之比。</div></div><div class="it"><div class="ct"><span class="hl">对边、邻边、斜边：<span class="hl">在直角 △ABC 中，∠A 的对边 = a，邻边 = b，斜边 = c。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>三种三角函数定义（核心）</b>：</div></div><div class="it"><div class="ct"><span class="form">sin A = ∠A 的对边 / 斜边 = a/c</span></div></div><div class="it"><div class="ct"><span class="form">cos A = ∠A 的邻边 / 斜边 = b/c</span></div></div><div class="it"><div class="ct"><span class="form">tan A = ∠A 的对边 / 邻边 = a/b</span></div></div><div class="it"><div class="ct"><b>勾股定理关联：<b><span class="form">sin²A + cos²A = 1　　tan A = sin A / cos A</span></div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>特殊角三角函数值（必背）</b>：</div></div><div class="it"><div class="ct">★ <span class="hl">sin 30° = 1/2，cos 30° = √3/2，tan 30° = √3/3 = 1/√3</span></div></div><div class="it"><div class="ct">★ <span class="hl">sin 45° = √2/2，cos 45° = √2/2，tan 45° = 1</span></div></div><div class="it"><div class="ct">★ <span class="hl">sin 60° = √3/2，cos 60° = 1/2，tan 60° = √3</span></div></div><div class="it"><div class="ct">★ <span class="hl">sin 0° = 0，cos 0° = 1，tan 0° = 0；sin 90° = 1，cos 90° = 0，tan 90° 不存在</span></div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【解直角三角形】已知两边一角或两角一边，用 sin/cos/tan 列方程求未知边。例：斜边 c=10, ∠A=30°, a = 10·sin30° = 5。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">4</span>投影与视图<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">投影：<span class="hl">光线照射物体在平面上的影子。</div></div><div class="it"><div class="ct"><span class="hl">三视图：<span class="hl">① 主视图（前面观察，正面投影）；② 左视图（左面观察）；③ 俯视图（上面观察）。</div></div><div class="it"><div class="ct"><span class="hl">左视图与俯视图反方向</span>。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>三视图规律：<b>① 长对正（主视图与俯视图长度相等）；② 高平齐（主视图与左视图高度相等）；③ 宽相等（左视图与俯视图宽度相等）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【由三视图还原立体】① 看俯视图分层；② 看主视图看每层列数；③ 看左视图看每层行数；④ 综合判定。</div></div><div class="it"><div class="ct">★ 例：主视图是「田」、左视图是「日」、俯视图是「┬」→ 立体由 4 个小正方体上下两层组成。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">5</span>总复习：中考综合核心公式<span class="ar">▾</span></div><div class="cdb"><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>核心公式速查表：<b></div></div><div class="it"><div class="ct">★ 二次函数顶点：<span class="hl">x = -b/(2a), y = (4ac-b²)/(4a)</span></div></div><div class="it"><div class="ct">★ 韦达定理：<span class="hl">x₁+x₂ = -b/a, x₁·x₂ = c/a</span></div></div><div class="it"><div class="ct">★ 勾股定理：<span class="hl">a²+b²=c²</span></div></div><div class="it"><div class="ct">★ 圆周长/面积：<span class="hl">C=2πr, S=πr²</span></div></div><div class="it"><div class="ct">★ 三角形面积：<span class="hl">S = (1/2)·底·高</span></div></div><div class="it"><div class="ct">★ 三角函数：<span class="hl">sin²+cos²=1, tan=sin/cos</span></div></div><div class="it"><div class="ct">★ 一次函数：<span class="hl">y = kx + b（k≠0）</span>；平行 k 相同；垂直 k₁·k₂=-1</div></div><div class="it"><div class="ct">★ 反比例函数：<span class="hl">y = k/x（k≠0）</span>；面积 = |k|</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>中考核心思想：<b>① 转化思想；② 数形结合；③ 分类讨论；④ 函数方程；⑤ 整体代入；⑥ 方程思想。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【压轴题策略】① 读题标注关键量；② 找模型（相似/动点/函数）；③ 设未知量；④ 分类讨论；⑤ 验算取舍。</div></div></div></div></div>
+<a class="bt" href="index.html">🏠 返回知识导航</a>
+<footer class="ft">© 两英豆豆教练</footer>
+</div></body></html>

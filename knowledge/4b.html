@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>四年级下册 · 数学知识总结</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#2ebd85; --b:#2f9df0; --t:#33434b; --l:#8aa09a;
+  --c-concept:#6366f1;   /* 基本概念 紫 */
+  --c-formula:#059669;   /* 基本公式 绿 */
+  --c-theorem:#dc2626;   /* 基本定理 红 */
+  --c-law:#ea580c;       /* 基本定律 橙 */
+  --c-property:#0891b2;  /* 相关性质 青 */
+  --c-formula-bg:#ecfdf5; --c-theorem-bg:#fef2f2; --c-law-bg:#fff7ed; --c-property-bg:#ecfeff;
+  --r:14px;
+}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+  color:var(--t);padding:20px 14px 60px;min-height:100vh;
+  display:flex;justify-content:center;font-size:15px;line-height:1.7}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;
+  overflow:hidden;box-shadow:0 10px 28px rgba(47,157,240,.22);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:100px;height:100px;top:-30px;right:-20px}
+.hdr::after{width:60px;height:60px;bottom:-16px;left:-10px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12.5px;opacity:.95}
+
+.grade-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;
+  padding:10px;background:#fff;border-radius:14px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.gtab{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+  text-decoration:none;color:var(--t);background:#f1f5f9;transition:all .2s}
+.gtab.current{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+.gtab:hover{transform:translateY(-1px)}
+
+.ch{display:flex;flex-direction:column;gap:10px}
+.cd{background:#fff;border-radius:var(--r);box-shadow:0 4px 12px rgba(47,157,240,.06);overflow:hidden;
+  border-left:4px solid var(--b)}
+.cd.open{border-left-color:var(--g)}
+.cdt{padding:12px 16px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer}
+.cdt .ch-num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.cdt .ar{font-size:.8rem;color:var(--l);margin-left:auto;transition:transform .25s}
+.cd.open .ar{transform:rotate(180deg)}
+.cdb{max-height:0;overflow:hidden;transition:max-height .35s}
+.cd.open .cdb{max-height:6000px;padding:4px 16px 16px}
+
+.it{margin-bottom:10px;line-height:1.75}
+.it.lb-concept .lb{background:#eef2ff;color:var(--c-concept);border-left-color:#a5b4fc}
+.it.lb-formula .lb{background:var(--c-formula-bg);color:var(--c-formula);border-left-color:#34d399}
+.it.lb-theorem .lb{background:var(--c-theorem-bg);color:var(--c-theorem);border-left-color:#fca5a5}
+.it.lb-law .lb{background:var(--c-law-bg);color:var(--c-law);border-left-color:#fdba74}
+.it.lb-property .lb{background:var(--c-property-bg);color:var(--c-property);border-left-color:#67e8f9}
+.it .lb{
+  display:inline-block;font-weight:700;font-size:.85rem;
+  padding:3px 10px;border-radius:6px;margin-bottom:4px;border-left:3px solid;
+  letter-spacing:.5px;
+}
+.it .ct{font-size:.92rem;color:#1f2937;padding-left:2px}
+.it .ct .hl{background:linear-gradient(180deg,transparent 60%,#fef08a 60%);
+  font-weight:700;padding:0 2px}
+.it .ct .form{background:var(--c-formula-bg);color:#047857;padding:2px 6px;
+  border-radius:6px;font-weight:700;font-family:Georgia,serif;
+  border:1px solid #a7f3d0}
+.it .ct .fr{color:var(--c-theorem);font-weight:700}
+.it ul{margin:4px 0 4px 20px;padding:0}
+.it ul li{margin-bottom:2px}
+
+.bt{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt:hover{transform:translateY(-1px)}
+.ft{width:100%;margin-top:14px;text-align:center;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+<header class="hdr"><h1>四年级下册 · 数学知识总结</h1><p class="sub">人教版 · 2024修订新课标 · 基本概念 · 公式 · 定理 · 定律 · 性质</p></header>
+<div class="ch"><div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">1</span>四则运算（运算顺序与括号）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">四则运算</span>：加、减、乘、除四种运算总称。</div></div><div class="it"><div class="ct"><span class="hl">加与减是同级；乘与除是同级；加减与乘除是不同级。</span></div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>运算顺序铁律：</b>① 括号最优先；② 乘除优先于加减；③ 同级从左到右。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>0 与 1 的运算性质</b>：</div></div><div class="it"><div class="ct">① <span class="hl">a + 0 = a，a - 0 = a，a - a = 0。</span></div></div><div class="it"><div class="ct">② <span class="hl">a × 0 = 0（任何数乘 0 = 0），0 × a = 0。</span></div></div><div class="it"><div class="ct">③ <span class="hl">0 ÷ a = 0（a ≠ 0）；a ÷ 1 = a；a ÷ a = 1（a ≠ 0）。0 不能作除数。</span></div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">带括号的两级运算</span>：先算括号内（小括号 → 中括号 → 大括号，逐层进行）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【简便运算思路】① 找运算律应用点（分配律凑整数）；② 凑整；③ 拆补；④ 注意顺序。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">2</span>观察物体（二）：三视图还原<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">三视图：<span class="hl">主视图（前面看）、左视图（左面看）、俯视图（上面看）。</span></div></div><div class="it"><div class="ct"><span class="hl">视图对比关系：</span>主视图与左视图<span class="hl">高平齐</span>；主视图与俯视图<span class="hl">长对正</span>；左视图与俯视图<span class="hl">宽相等</span>（「长对正、高平齐、宽相等」）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">还原立体图形：由三视图推出物体的形状（小学要求针对简单积木组合）。</span></div></div><div class="it"><div class="ct">★ 例：主视图是 3 列、左视图 2 行、俯视图 L 形 → 立体由若干小正方体堆成的 L 形。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">同一立体不同方向观察，看到的形状可能不同；不同立体可能看到相同图形（歧义性）。</span></div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">3</span>运算定律（加减乘综合）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>加法两大定律：</b></div></div><div class="it"><div class="ct">① <b>加法交换律：</b>　<span class="hl">a + b = b + a</span>（两加数位置交换，和不变）。</div></div><div class="it"><div class="ct">② <b>加法结合律：</b>　<span class="hl">(a + b) + c = a + (b + c)</span>（三个数先算哪两个，结合方式不变）。</div></div><div class="it"><div class="ct"><b>乘法三大定律：</b></div></div><div class="it"><div class="ct">③ <b>乘法交换律：</b>　<span class="hl">a × b = b × a</span>（两因数位置交换，积不变）。</div></div><div class="it"><div class="ct">④ <b>乘法结合律：</b>　<span class="hl">(a × b) × c = a × (b × c)</span>。</div></div><div class="it"><div class="ct">⑤ <b>乘法分配律：</b>　<span class="hl">a × (b + c) = a × b + a × c</span>（也可逆用：(a+b)×c=a×c+b×c）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>减法性质</b>（连续减）：<span class="hl">a - b - c = a - (b + c)</span>　（如 65 - 23 - 17 = 65 - 40 = 25）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>除法性质</b>（连续除）：<span class="hl">a ÷ b ÷ c = a ÷ (b × c)</span>（当 b,c 整除 a 时）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【简便运算】① 凑整数（看到 5、25、125×8 的倍数对）；② 拆补法（如 99=100-1）；③ 找规律数（如 25×4=100）。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">25×44=25×4×11=100×11=1100</span>（分配律逆用）；<span class="hl">99×25=(100-1)×25=2500-25=2475</span>。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">4</span>小数的意义和性质<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">小数的意义</span>：分母为 10/100/1000...的分数可用小数表示。</div></div><div class="it"><div class="ct"><span class="hl">数位名称</span>：十分位、百分位、千分位、万分位...每相邻两位的值是 10 倍关系。</div></div><div class="it"><div class="ct"><span class="hl">小数性质</span>：小数的末尾添 0 或去 0，小数的<span class="hl">大小不变</span>（中间添 0 会变小）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>小数点移动规律：</b></div></div><div class="it"><div class="ct">① 小数点向左移动：缩小（÷10, ÷100, ÷1000...）。</div></div><div class="it"><div class="ct">② 小数点向右移动：扩大（×10, ×100, ×1000...）。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">3.45 × 100=345（小数点右移 2 位）；45.6 ÷ 100=0.456（左移 2 位）。</span></div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>大小比较法则：</b>① 先看整数部分；② 整数部分相同，比小数部分（从高位到低位依次比）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">化简与改写</span>：保留小数部分不变，按需要保留位数（如 3.4500 = 3.45）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">5</span>三角形（性质与分类）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">三角形定义</span>：由三条线段首尾相连组成的封闭图形。</div></div><div class="it"><div class="ct"><span class="hl">三要素：<span class="hl">三条边、三个顶点、三个角</span>（共 6 个要素）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>按角分类：<b>① 锐角三角形（三个锐角）；② 直角三角形（一个直角）；③ 钝角三角形（一个钝角）。</b></div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>按边分类：<b>① 等边三角形（三边相等）；② 等腰三角形（两腰相等）；③ 不等边三角形（三边都不同）。</b></div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>三角形内角和定理（核心定理）</b>：三角形的内角之和<span class="hl">= 180°</span>（与形状大小无关）。</div></div><div class="it"><div class="ct">★ 应用：已知两角求第三角 → 用 180° 减去两角。如：1 角 70°，另 1 角 50°，第 3 角 = 180-70-50=60°。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>三角形三边关系定理：<b>任意两边之和<span class="hl">&gt;第三边</span>；任意两边之差<span class="hl">&lt;第三边</span>。</div></div><div class="it"><div class="ct">★ 应用：三条线段 3cm、4cm、5cm → 3+4&gt;5 ✓（可组成三角形）；3+3&lt;7（不能）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>三角形的稳定性：<b>三边确定后形状唯一确定、不易变形（如桥梁、起重机架）。</span></div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【三角形外角】外角 = 两不相邻内角和 = 180° - 相邻内角。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">6</span>小数的加法和减法<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">小数加减法（小数点对齐）</span>：竖式计算时，将两个数的小数点对齐，相同数位上的数相加减。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>计算步骤：</b>① 小数点对齐；② 按整数加减法计算；③ 结果末位点小数点。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">7.45 + 2.8 = 10.25</span>（对齐 7.45 与 2.80，个位对齐个位）。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">10 - 3.62 = 6.38</span>（10 看作 10.00）。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>整数加减法定律（交换律、结合律）小数同样适用：</b>如 7.8+2.5+1.2=7.8+1.2+2.5=11.5。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">位数不同的加减：如 3.7+0.45，将 3.7 看作 3.70，对齐十分位。</span></div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">7</span>图形的运动（二）：轴对称与平移<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">轴对称补全</span>：按对称轴画出图形的对称部分，对应点距对称轴等距。</div></div><div class="it"><div class="ct"><span class="hl">平移性质</span>：图形平移后，形状、大小、方向不变；只是位置改变。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>对应点连线特征（轴对称）：<span class="hl">对称轴是对应点连线的垂直平分线。</b></div></div><div class="it"><div class="ct"><b>平移特征：<span class="hl">对应点连成的线段平行且相等。</b></div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">画平移后的图形：① 找一组对应点；② 从每点按箭头方向、距离移动；③ 连线。</span></div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>平移距离 = 对应点之间线段的长度。</b></div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">8</span>平均数（统计量）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">平均数</span>：一组数据的总和除以数据的个数，反映数据「平均水平」。</div></div><div class="it"><div class="ct"><span class="hl">平均数是「虚拟数」</span>：不等于任何原始数据，可能不在原数据集中。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">平均数 = 总数 ÷ 个数　（总数 = 平均数 × 个数）</span></div></div><div class="it"><div class="ct">★ 例：小组 5 人体重 25、28、27、26、24 kg，平均<span class="hl">=(25+28+27+26+24)÷5=130÷5=26 kg</span>。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>平均数性质：<b>① 移多补少（取差额重新分配）；② 数据求和不变可推平均数；③ 平均数受极端值影响。</b></div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">求平均数：① 求总和；② 数个数；③ 总和÷个数。</span></div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">平均数 vs 中位数 vs 众数：平均数受极端值影响最大；中位数对极端值不敏感；众数是出现最多的数。</span></div></div></div></div></div>
+<a class="bt" href="index.html">🏠 返回知识导航</a>
+<footer class="ft">© 两英豆豆教练</footer>
+</div></body></html>

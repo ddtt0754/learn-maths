@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>二年级上册 · 数学知识总结</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#2ebd85; --b:#2f9df0; --t:#33434b; --l:#8aa09a;
+  --c-concept:#6366f1;   /* 基本概念 紫 */
+  --c-formula:#059669;   /* 基本公式 绿 */
+  --c-theorem:#dc2626;   /* 基本定理 红 */
+  --c-law:#ea580c;       /* 基本定律 橙 */
+  --c-property:#0891b2;  /* 相关性质 青 */
+  --c-formula-bg:#ecfdf5; --c-theorem-bg:#fef2f2; --c-law-bg:#fff7ed; --c-property-bg:#ecfeff;
+  --r:14px;
+}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+  color:var(--t);padding:20px 14px 60px;min-height:100vh;
+  display:flex;justify-content:center;font-size:15px;line-height:1.7}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;
+  overflow:hidden;box-shadow:0 10px 28px rgba(47,157,240,.22);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:100px;height:100px;top:-30px;right:-20px}
+.hdr::after{width:60px;height:60px;bottom:-16px;left:-10px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12.5px;opacity:.95}
+
+.grade-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;
+  padding:10px;background:#fff;border-radius:14px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.gtab{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+  text-decoration:none;color:var(--t);background:#f1f5f9;transition:all .2s}
+.gtab.current{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+.gtab:hover{transform:translateY(-1px)}
+
+.ch{display:flex;flex-direction:column;gap:10px}
+.cd{background:#fff;border-radius:var(--r);box-shadow:0 4px 12px rgba(47,157,240,.06);overflow:hidden;
+  border-left:4px solid var(--b)}
+.cd.open{border-left-color:var(--g)}
+.cdt{padding:12px 16px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer}
+.cdt .ch-num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.cdt .ar{font-size:.8rem;color:var(--l);margin-left:auto;transition:transform .25s}
+.cd.open .ar{transform:rotate(180deg)}
+.cdb{max-height:0;overflow:hidden;transition:max-height .35s}
+.cd.open .cdb{max-height:6000px;padding:4px 16px 16px}
+
+.it{margin-bottom:10px;line-height:1.75}
+.it.lb-concept .lb{background:#eef2ff;color:var(--c-concept);border-left-color:#a5b4fc}
+.it.lb-formula .lb{background:var(--c-formula-bg);color:var(--c-formula);border-left-color:#34d399}
+.it.lb-theorem .lb{background:var(--c-theorem-bg);color:var(--c-theorem);border-left-color:#fca5a5}
+.it.lb-law .lb{background:var(--c-law-bg);color:var(--c-law);border-left-color:#fdba74}
+.it.lb-property .lb{background:var(--c-property-bg);color:var(--c-property);border-left-color:#67e8f9}
+.it .lb{
+  display:inline-block;font-weight:700;font-size:.85rem;
+  padding:3px 10px;border-radius:6px;margin-bottom:4px;border-left:3px solid;
+  letter-spacing:.5px;
+}
+.it .ct{font-size:.92rem;color:#1f2937;padding-left:2px}
+.it .ct .hl{background:linear-gradient(180deg,transparent 60%,#fef08a 60%);
+  font-weight:700;padding:0 2px}
+.it .ct .form{background:var(--c-formula-bg);color:#047857;padding:2px 6px;
+  border-radius:6px;font-weight:700;font-family:Georgia,serif;
+  border:1px solid #a7f3d0}
+.it .ct .fr{color:var(--c-theorem);font-weight:700}
+.it ul{margin:4px 0 4px 20px;padding:0}
+.it ul li{margin-bottom:2px}
+
+.bt{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt:hover{transform:translateY(-1px)}
+.ft{width:100%;margin-top:14px;text-align:center;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+<header class="hdr"><h1>二年级上册 · 数学知识总结</h1><p class="sub">人教版 · 2024修订新课标 · 基本概念 · 公式 · 定律 · 性质</p></header>
+<div class="ch"><div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">1</span>长度单位：厘米与米<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">统一度量</span>的必要性：古人用身体部位（拃、步）测量，长短不一，<span class="hl">产生混乱</span>，于是规定统一的单位。</div></div><div class="it"><div class="ct"><span class="hl">厘米（cm）</span>：量比较短的物体或距离。1 cm ≈ <span class="hl">食指指甲宽</span>。</div></div><div class="it"><div class="ct"><span class="hl">米（m）</span>：量比较长的物体或距离。1 m ≈ <span class="hl">大人一臂张开长</span>，约等于 7 个拃。</div></div><div class="it"><div class="ct"><span class="hl">线段</span>：直线上两点之间的一段，有 2 个端点，可以<span class="hl">测量长度</span>；曲线不是线段。</div></div><div class="it"><div class="ct"><span class="hl">刻度尺读法</span>：① 看零刻度；② 对准物体一端；③ 物体另一端靠近哪条刻度，就是几。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">1 米 = 100 厘米（1 m = 100 cm）</span></div></div><div class="it"><div class="ct"><span class="hl">米化厘米乘 100：3 m = 3×100 = 300 cm。</span></div></div><div class="it"><div class="ct"><span class="hl">厘米化米除 100：500 cm = 500÷100 = 5 m。</span></div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>线段的两大特征</b>：① 有 2 个端点；② 有长度可测量。</div></div><div class="it"><div class="ct"><b>两点间线段最短</b>：两点之间所有连线中，<span class="hl">线段最短</span>。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">2</span>100 以内加减法（二）：竖式与连加连减<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">竖式计算</span>：把两个数按<span class="hl">数位对齐</span>，从<span class="hl">个位算起</span>，加/减写在下方。</div></div><div class="it"><div class="ct"><span class="hl">进位加法竖式</span>：个位相加满十向十位进 1（写小「1」在十位上方）。</div></div><div class="it"><div class="ct"><span class="hl">退位减法竖式</span>：个位不够减，从十位退 1（标「·」），十位减 1，个位加 10。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>竖式对齐原则</b>：个位对个位，十位对十位。加号/减号写横中线对齐。</div></div><div class="it"><div class="ct">★ 进位例：<span class="hl">34 + 28 = 62</span>　个位 4+8=12 写 2 进 1；十位 3+2+1=6。</div></div><div class="it"><div class="ct">★ 退位例：<span class="hl">52 - 27 = 25</span>　个位 2 减 7 不够，从十位退 1：12-7=5；十位 5-1-2=2。</div></div><div class="it"><div class="ct"><b>连加从左到右</b>：(a+b)+c。例：<span class="hl">23+19+17=42+17=59</span>。</div></div><div class="it"><div class="ct"><b>连减从左到右</b>：(a-b)-c。例：<span class="hl">65-23-17=42-17=25</span>。</div></div><div class="it"><div class="ct"><b>加减混合从左到右</b>：例：<span class="hl">54+27-38=81-38=43</span>。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>加法结合律</b>：(a+b)+c = a+(b+c)。例：23+19+17=(23+17)+19=40+19=59。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">凑整简算：见到接近整十/整百的数先加（或减）。例 38+25=38+22+3=60+3=63。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">3</span>角的初步认识（直锐钝角）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">角</span>：一个<span class="hl">顶点</span> + 两条<span class="hl">边（射线）</span>。角的大小与边的长短<span class="hl">无关</span>，与两边张开程度有关。</div></div><div class="it"><div class="ct"><span class="hl">直角</span>：等于 1 个标准角（90°），用<span class="hl">三角板上的小方格</span>检验。</div></div><div class="it"><div class="ct"><span class="hl">锐角</span>：比直角<span class="hl">小</span>的角（小于 90°）。</div></div><div class="it"><div class="ct"><span class="hl">钝角</span>：比直角<span class="hl">大</span>的角（大于 90°，小于 180°）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="hl">比较角的大小：把两个角的顶点和一边重合，看另一边张开程度。</span></div></div><div class="it"><div class="ct"><b>角的大小与边的长短无关：张开越大角越大，张开越小角越小。</b></div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">做角方法：① 用两根硬纸条钉在一起可作活动角；② 用三角板画直角；③ 用量角器测量角度（认识工具）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct">所有直角都<span class="hl">相等</span>；锐角&lt;直角&lt;钝角（在同一比较中可同时出现）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">1 直角 = 90°（1 周角 = 4 直角 = 360°；1 平角 = 2 直角 = 180°）</span>（初步认识）</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">4</span>表内乘法（一）：1~6 乘法口诀<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">乘法意义</span>：求<span class="hl">几个相同加数的和</span>的简便运算。表示：相同加数 × 相同个数 = 积。如 <span class="hl">4×3=12</span> 表示 3 个 4 相加。</div></div><div class="it"><div class="ct"><span class="hl">乘法各部分名称</span>：因数 × 因数 = 积。前后都是因数，结果是积。</div></div><div class="it"><div class="ct"><span class="hl">乘法口诀</span>：每句口诀对应一个乘法算式，前半句是因数，后半句是积。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>1~6 乘法口诀（必须背诵）</b></div></div><div class="it"><div class="ct">★ 1×1=1　1×2=2 2×2=4　1×3=3 2×3=6 3×3=9　1×4=4 2×4=8 3×4=12 4×4=16</div></div><div class="it"><div class="ct">★ 1×5=5 2×5=10 3×5=15 4×5=20 5×5=25　1×6=6 2×6=12 3×6=18 4×6=24 5×6=30 6×6=36</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>乘法交换律</b>：<span class="hl">a×b=b×a</span>（积不变）。例：<span class="hl">3×4=4×3=12</span>。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">口诀规律</span>：每句口诀，第一数从小到大，第二数从大到小积相同（如二三得六 和 三二得六）。</div></div><div class="it"><div class="ct"><span class="hl">任意一个数×0=0；任意一个数×1=它本身。</span></div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><b>编制口诀的规律</b>：上句+1→下一句，积增加「后一因数」。例 1+5=6，2+5=7，积从 6 增到 11（加 5）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">5</span>观察物体（一）：从不同方向看立体<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">观察物体</span>：从前面、上面、侧面等不同位置观察同一个立体图形，看到的形状<span class="hl">可能不同</span>。</div></div><div class="it"><div class="ct"><span class="hl">正视图（前面看到的图形）</span>、<span class="hl">侧视图（侧面看到的图形）</span>、<span class="hl">俯视图（上面看到的图形）</span>。</div></div><div class="it"><div class="ct"><span class="hl">同一物体从不同角度观察，看到的图形取决于观察方向，不是物体真的变了。</span></div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">判断小正方体组合</span>：根据从三个方向看到的图形（主视图/左视图/俯视图），还原立体图形（初步感觉）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct">正方体无论从哪个角度看，都是<span class="hl">正方形</span>；球无论从哪个角度看，都是<span class="hl">圆</span>。</div></div><div class="it"><div class="ct">长方体从不同方向看可能是<span class="hl">长方形或正方形</span>（取决于面的大小）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">辨识立体图形组合</span>：能辨认各种简单组合及其形状对应。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">6</span>表内乘法（二）：7~9 乘法口诀<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">7~9 乘法口诀</span>：每句口诀对应 7、8、9 与 1~9 的乘积。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>7 的乘法口诀（必须背诵）</b></div></div><div class="it"><div class="ct">★ 一七得七，二七十四，三七二十一，四七二十八，五七三十五，六七四十二，七七四十九。</div></div><div class="it"><div class="ct"><b>8 的乘法口诀</b>：一八得八，二八十六，三八二十四，四八三十二，五八四十，六八四十八，七八五十六，八八六十四。</div></div><div class="it"><div class="ct"><b>9 的乘法口诀</b>：一九得九，二九十八，三九二十七，四九三十六，五九四十五，六九五十四，七九六十三，八九七十二，九九八十一。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>乘法交换律适用</b>：4×8=32=8×4；7×9=63=9×7。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">积的变化</span>：一个因数不变，另一个因数越大，积越大。</div></div><div class="it"><div class="ct"><span class="hl">9 的口诀积规律：</span> 十位数字从 0 增到 8，个位数字从 9 减到 1，和都是 9（除九九八十一）。</div></div><div class="it"><div class="ct"><span class="hl">8 的口诀积规律：</span> 积都是双数（偶数）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">遗忘时用交换律还原：忘了七九，想 9×7=63。</span></div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">7</span>认识时间（时与分）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">时间单位</span>：时（h）、分（min）、秒（s）。</div></div><div class="it"><div class="ct"><span class="hl">钟面结构</span>：时针（短）走一格=1 时；分针（长）走一格=1 分，走一圈=60 分=1 时。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">1 时 = 60 分（1 h = 60 min）</span></div></div><div class="it"><div class="ct"><span class="hl">几时几分读法</span>：时针过几就是几时多；分针指几就是几分。时与分之间用「:」分隔（如 8:30）。</div></div><div class="it"><div class="ct"><span class="hl">半小时 = 30 分。</span> 例如：8:30 是 8 时 30 分（8 时半）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【步骤】① 看分针判断分钟数；② 看时针判断小时数（时针过几就是几时多）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct">时与分的进率是 60（大化小乘 60，小化大除 60）；分与秒的进率也是 60。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="hl">经过时间 = 结束时间 - 开始时间。</span> 例：从 8:15 到 9:00，经过 45 分钟。</div></div></div></div></div>
+<a class="bt" href="index.html">🏠 返回知识导航</a>
+<footer class="ft">© 两英豆豆教练</footer>
+</div></body></html>

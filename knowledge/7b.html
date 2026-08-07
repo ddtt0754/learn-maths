@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>七年级下册 · 数学知识总结</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#2ebd85; --b:#2f9df0; --t:#33434b; --l:#8aa09a;
+  --c-concept:#6366f1;   /* 基本概念 紫 */
+  --c-formula:#059669;   /* 基本公式 绿 */
+  --c-theorem:#dc2626;   /* 基本定理 红 */
+  --c-law:#ea580c;       /* 基本定律 橙 */
+  --c-property:#0891b2;  /* 相关性质 青 */
+  --c-formula-bg:#ecfdf5; --c-theorem-bg:#fef2f2; --c-law-bg:#fff7ed; --c-property-bg:#ecfeff;
+  --r:14px;
+}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+  color:var(--t);padding:20px 14px 60px;min-height:100vh;
+  display:flex;justify-content:center;font-size:15px;line-height:1.7}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;
+  overflow:hidden;box-shadow:0 10px 28px rgba(47,157,240,.22);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:100px;height:100px;top:-30px;right:-20px}
+.hdr::after{width:60px;height:60px;bottom:-16px;left:-10px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12.5px;opacity:.95}
+
+.grade-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;
+  padding:10px;background:#fff;border-radius:14px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.gtab{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+  text-decoration:none;color:var(--t);background:#f1f5f9;transition:all .2s}
+.gtab.current{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+.gtab:hover{transform:translateY(-1px)}
+
+.ch{display:flex;flex-direction:column;gap:10px}
+.cd{background:#fff;border-radius:var(--r);box-shadow:0 4px 12px rgba(47,157,240,.06);overflow:hidden;
+  border-left:4px solid var(--b)}
+.cd.open{border-left-color:var(--g)}
+.cdt{padding:12px 16px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer}
+.cdt .ch-num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.cdt .ar{font-size:.8rem;color:var(--l);margin-left:auto;transition:transform .25s}
+.cd.open .ar{transform:rotate(180deg)}
+.cdb{max-height:0;overflow:hidden;transition:max-height .35s}
+.cd.open .cdb{max-height:6000px;padding:4px 16px 16px}
+
+.it{margin-bottom:10px;line-height:1.75}
+.it.lb-concept .lb{background:#eef2ff;color:var(--c-concept);border-left-color:#a5b4fc}
+.it.lb-formula .lb{background:var(--c-formula-bg);color:var(--c-formula);border-left-color:#34d399}
+.it.lb-theorem .lb{background:var(--c-theorem-bg);color:var(--c-theorem);border-left-color:#fca5a5}
+.it.lb-law .lb{background:var(--c-law-bg);color:var(--c-law);border-left-color:#fdba74}
+.it.lb-property .lb{background:var(--c-property-bg);color:var(--c-property);border-left-color:#67e8f9}
+.it .lb{
+  display:inline-block;font-weight:700;font-size:.85rem;
+  padding:3px 10px;border-radius:6px;margin-bottom:4px;border-left:3px solid;
+  letter-spacing:.5px;
+}
+.it .ct{font-size:.92rem;color:#1f2937;padding-left:2px}
+.it .ct .hl{background:linear-gradient(180deg,transparent 60%,#fef08a 60%);
+  font-weight:700;padding:0 2px}
+.it .ct .form{background:var(--c-formula-bg);color:#047857;padding:2px 6px;
+  border-radius:6px;font-weight:700;font-family:Georgia,serif;
+  border:1px solid #a7f3d0}
+.it .ct .fr{color:var(--c-theorem);font-weight:700}
+.it ul{margin:4px 0 4px 20px;padding:0}
+.it ul li{margin-bottom:2px}
+
+.bt{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt:hover{transform:translateY(-1px)}
+.ft{width:100%;margin-top:14px;text-align:center;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+<header class="hdr"><h1>七年级下册 · 数学知识总结</h1><p class="sub">人教版 · 2024修订新课标 · 基本概念 · 公式 · 定理 · 定律 · 性质</p></header>
+<div class="ch"><div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">1</span>相交线与平行线（核心几何）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">对顶角</span>：两条直线相交形成的四个角中，相邻不等、相对相等。</div></div><div class="it"><div class="ct"><span class="hl">邻补角</span>：一条直线在顶点处分出的两个角，它们有一条公共边且另一边互为反向延长线。</div></div><div class="it"><div class="ct"><span class="hl">三线八角</span>：两条直线被第三条（截线）所截形成的八个角（4 对同位角、2 对内错角、2 对同旁内角）。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>对顶角定理：<b>对顶角<span class="hl">相等</span>（∠1 = ∠3）。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>邻补角互补：<b>两邻补角之和 = 180°（是一条直线）。</div></div><div class="it"><div class="ct"><b>平行公理：<b>过直线外一点有且只有一条直线与已知直线平行。</div></div><div class="it"><div class="ct"><b>平行线判定定理（三种）</b>：① 同位角相等→两直线平行；② 内错角相等→两直线平行；③ 同旁内角互补→两直线平行。</div></div><div class="it"><div class="ct"><b>平行线性质定理（三种）</b>：① 两直线平行→同位角相等；② 两直线平行→内错角相等；③ 两直线平行→同旁内角互补。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">垂线：<span class="hl">两直线相交成直角。垂线段最短（点到直线距离 = 垂线段长）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">2</span>实数（平方根与立方根）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">平方根</span>：x² = a，x 是 a 的平方根，记 x = ±√a。</div></div><div class="it"><div class="ct"><span class="hl">算术平方根</span>：a 的非负平方根，记 √a，要求 √a ≥ 0。</div></div><div class="it"><div class="ct"><span class="hl">立方根</span>：x³ = a，x 是 a 的立方根，记 x = ∛a（任何数都有唯一立方根）。</div></div><div class="it"><div class="ct"><span class="hl">无理数</span>：无限不循环小数（如 π、√2、∛5）。</div></div><div class="it"><div class="ct"><span class="hl">实数</span> = 有理数 + 无理数。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">√a（a≥0）满足 x² = a 且 x≥0；√a² = |a|（非负）</span></div></div><div class="it"><div class="ct"><span class="form">∛a 满足 x³ = a，∛(-a) = -∛a（负立方根为负）</span></div></div><div class="it"><div class="ct">★ 例：<span class="hl">√9 = ±3 → 算术平方根 3；∛8 = 2；∛(-8) = -2；√16 = 4。</span></div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>开方运算：<b>正数开偶次方结果非负；负数开偶次方无意义（实数范围）；负数开奇次方为负。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【根式化简】将被开方数分解为完全平方 × 余数，提取平方根到外层。例：√12=√(4×3)=2√3；√18=√(9×2)=3√2。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">实数与数轴一一对应：<span class="hl">实数都能在数轴上找到点；数轴上每个点都对应实数。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">3</span>平面直角坐标系（坐标定位）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">平面直角坐标系</span>：两条互相垂直的数轴（横轴 x、纵轴 y），交点为原点。</div></div><div class="it"><div class="ct"><span class="hl">坐标表示：<span class="hl">(x, y)：x 是横坐标（横轴上的数），y 是纵坐标（纵轴上的数）。</div></div><div class="it"><div class="ct"><span class="hl">四个象限</span>：① ( +, + )；② ( -, + )；③ ( -, - )；④ ( +, - )。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>坐标轴上点不属于任何象限</b>（点在坐标轴上时横坐标或纵坐标为 0）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【找坐标点】① 从原点出发，沿 x 轴正方向为「右」、负为「左」；② 再沿 y 轴「上」「下」；③ 描点。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">对称点的坐标特征：<span class="hl">关于 x 轴对称：(x, y) ↔ (x, -y)；关于 y 轴对称：(x, y) ↔ (-x, y)；关于原点对称：(x, y) ↔ (-x, -y)。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">点到坐标轴距离</span>：点 P(x, y) 到 x 轴距离 = |y|；到 y 轴距离 = |x|。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">4</span>二元一次方程组（消元法）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">二元一次方程</span>：含两个未知数且次数为 1 的方程。一般形式 ax+by+c=0。</div></div><div class="it"><div class="ct"><span class="hl">二元一次方程组</span>：两个（或多个）二元一次方程的组合。</div></div><div class="it"><div class="ct"><span class="hl">方程组的解</span>：使所有方程同时成立的一对 (x, y)。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><b>代入消元法</b>：① 从一个方程解出一个未知数；② 代入另一方程；③ 求出该未知数；④ 回代求另一未知数。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><b>加减消元法</b>：① 两方程同乘合适系数使某未知数系数相同或相反；② 相加或相减消去该未知数；③ 解一元方程。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">x+y=5, x-y=1 → 加：(2x=6, x=3)→(y=2)</span>；<span class="hl">2x+y=7, x+y=4 → 代入 y=4-x 入 2x+(4-x)=7 → x=3, y=1</span>。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">应用题建模：<span class="hl">行程、利润、工程问题，找等量关系列方程组。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">5</span>不等式与不等式组<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">不等式</span>：用≠、&lt;、&gt;、≤、≥ 表示不等关系的式子。</div></div><div class="it"><div class="ct"><span class="hl">不等式解集</span>：使不等式成立的未知数的取值集合。</div></div><div class="it"><div class="ct"><span class="hl">不等式组</span>：几个不等式的组合，解集是各不等式解集的交集。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>不等式基本性质 1：<b>不等式两边同加（或减）同一个数（或整式），不等号<span class="hl">方向不变</span>。</div></div><div class="it"><div class="ct"><b>不等式基本性质 2：<b>不等式两边同乘（或除）同一个<span class="hl">正数</span>，不等号方向不变。</div></div><div class="it"><div class="ct"><b>不等式基本性质 3：<b>不等式两边同乘（或除）同一个<span class="hl">负数</span>，不等号方向<span class="hl">改变</span>。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><b>解一元一次不等式五步：<b>① 去分母；② 去括号；③ 移项；④ 合并同类项；⑤ 系数化为 1。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">3x+2&lt;14 → 3x&lt;12 → x&lt;4</span>（注意不等号方向每步检查）。</div></div><div class="it"><div class="ct">★ 含负系数例：<span class="hl">-2x&gt;6 → x&lt;-3（两边除 -2 不等号变方向）</span>。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">不等式组解集取交集（如「x&gt;1 且 x&lt;5」解集 1&lt;x&lt;5）。多个不等式解的范围取公共部分。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">6</span>数据的收集与整理（统计初步）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">数据收集方式：<span class="hl">① 全面调查（普查）；② 抽样调查（只查部分）。</div></div><div class="it"><div class="ct"><span class="hl">总体与个体</span>：考察对象的全体是总体；每个具体对象是个体。</div></div><div class="it"><div class="ct"><span class="hl">样本与样本容量</span>：从总体中抽取的部分是样本；样本中个体的数目是样本容量。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">抽样原则：<span class="hl">随机性、代表性、独立性（保证数据可靠）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">频数与频率</span>：某数据出现的次数为频数；频数÷总数 = 频率（频率之和=1）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">统计图表选择</span>：① 展示变化趋势用折线图；② 比较大小用条形图；③ 显示比例用扇形图。</div></div></div></div></div>
+<a class="bt" href="index.html">🏠 返回知识导航</a>
+<footer class="ft">© 两英豆豆教练</footer>
+</div></body></html>

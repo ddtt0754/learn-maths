@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>八年级下册 · 数学知识总结</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#2ebd85; --b:#2f9df0; --t:#33434b; --l:#8aa09a;
+  --c-concept:#6366f1;   /* 基本概念 紫 */
+  --c-formula:#059669;   /* 基本公式 绿 */
+  --c-theorem:#dc2626;   /* 基本定理 红 */
+  --c-law:#ea580c;       /* 基本定律 橙 */
+  --c-property:#0891b2;  /* 相关性质 青 */
+  --c-formula-bg:#ecfdf5; --c-theorem-bg:#fef2f2; --c-law-bg:#fff7ed; --c-property-bg:#ecfeff;
+  --r:14px;
+}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+  color:var(--t);padding:20px 14px 60px;min-height:100vh;
+  display:flex;justify-content:center;font-size:15px;line-height:1.7}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;
+  overflow:hidden;box-shadow:0 10px 28px rgba(47,157,240,.22);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:100px;height:100px;top:-30px;right:-20px}
+.hdr::after{width:60px;height:60px;bottom:-16px;left:-10px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12.5px;opacity:.95}
+
+.grade-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;
+  padding:10px;background:#fff;border-radius:14px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.gtab{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+  text-decoration:none;color:var(--t);background:#f1f5f9;transition:all .2s}
+.gtab.current{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+.gtab:hover{transform:translateY(-1px)}
+
+.ch{display:flex;flex-direction:column;gap:10px}
+.cd{background:#fff;border-radius:var(--r);box-shadow:0 4px 12px rgba(47,157,240,.06);overflow:hidden;
+  border-left:4px solid var(--b)}
+.cd.open{border-left-color:var(--g)}
+.cdt{padding:12px 16px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer}
+.cdt .ch-num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.cdt .ar{font-size:.8rem;color:var(--l);margin-left:auto;transition:transform .25s}
+.cd.open .ar{transform:rotate(180deg)}
+.cdb{max-height:0;overflow:hidden;transition:max-height .35s}
+.cd.open .cdb{max-height:6000px;padding:4px 16px 16px}
+
+.it{margin-bottom:10px;line-height:1.75}
+.it.lb-concept .lb{background:#eef2ff;color:var(--c-concept);border-left-color:#a5b4fc}
+.it.lb-formula .lb{background:var(--c-formula-bg);color:var(--c-formula);border-left-color:#34d399}
+.it.lb-theorem .lb{background:var(--c-theorem-bg);color:var(--c-theorem);border-left-color:#fca5a5}
+.it.lb-law .lb{background:var(--c-law-bg);color:var(--c-law);border-left-color:#fdba74}
+.it.lb-property .lb{background:var(--c-property-bg);color:var(--c-property);border-left-color:#67e8f9}
+.it .lb{
+  display:inline-block;font-weight:700;font-size:.85rem;
+  padding:3px 10px;border-radius:6px;margin-bottom:4px;border-left:3px solid;
+  letter-spacing:.5px;
+}
+.it .ct{font-size:.92rem;color:#1f2937;padding-left:2px}
+.it .ct .hl{background:linear-gradient(180deg,transparent 60%,#fef08a 60%);
+  font-weight:700;padding:0 2px}
+.it .ct .form{background:var(--c-formula-bg);color:#047857;padding:2px 6px;
+  border-radius:6px;font-weight:700;font-family:Georgia,serif;
+  border:1px solid #a7f3d0}
+.it .ct .fr{color:var(--c-theorem);font-weight:700}
+.it ul{margin:4px 0 4px 20px;padding:0}
+.it ul li{margin-bottom:2px}
+
+.bt{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt:hover{transform:translateY(-1px)}
+.ft{width:100%;margin-top:14px;text-align:center;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+<header class="hdr"><h1>八年级下册 · 数学知识总结</h1><p class="sub">人教版 · 2024修订新课标 · 基本概念 · 公式 · 定理 · 定律 · 性质</p></header>
+<div class="ch"><div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">1</span>二次根式（含运算法则）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">二次根式</span>：形如 √a（a≥0）的代数式。最简根式：被开方数无平方因数，分母无根号。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>二次根式性质（核心）</b>：</div></div><div class="it"><div class="ct">① <span class="hl">(√a)² = a（a≥0）</span>　（开方与平方互逆）</div></div><div class="it"><div class="ct">② <span class="hl">√(a²) = |a|（非负性）</span>　　（注意是 |a| 不是 a）</div></div><div class="it"><div class="ct">③ <span class="hl">√(ab) = √a × √b（a≥0, b≥0）</span>　（积的算术根）</div></div><div class="it"><div class="ct">④ <span class="hl">√(a/b) = √a / √b（a≥0, b&gt;0）</span>　（商的算术根）</div></div><div class="it"><div class="ct">★ 例：<span class="hl">√18=√(9×2)=3√2；√(1/3)=√3/3</span>。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><b>最简二次根式判定</b>：① 被开方数不含能开方的因数；② 分母不含根号；③ 系数已最简。</div></div><div class="it"><div class="ct">【分母有理化】分子分母同乘合适因式，使分母变为有理数。如 <span class="hl">1/√2 = √2/2</span>（乘 √2/√2）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>同类二次根式：<b>被开方数相同的根式是同类根式，可合并。例：<span class="hl">3√2 + 5√2 = 8√2</span>。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">2</span>勾股定理（直角三角形核心）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">勾股定理</span>：直角三角形两直角边的平方和等于斜边的平方。</div></div><div class="it"><div class="ct"><span class="hl">勾、股、弦：<span class="hl">中国古称两直角边为「勾 a」「股 b」，斜边为「弦 c」。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">a² + b² = c²（a、b 是直角边，c 是斜边）</span></div></div><div class="it"><div class="ct">★ 应用：<span class="hl">3² + 4² = 9+16 = 25 = 5²，3-4-5 是勾股数。</span></div></div><div class="it"><div class="ct">★ 常见勾股数组：<span class="hl">3,4,5　5,12,13　6,8,10　7,24,25　8,15,17　9,40,41。</span></div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>勾股定理逆定理（判定直角）</b>：若三角形三边满足 a²+b²=c²，则为<span class="hl">直角三角形</span>（c 为斜边）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【应用】① 求直角边：b = √(c²-a²)；② 求斜边：c = √(a²+b²)；③ 求面积：直接 = (1/2)ab；④ 解坐标几何两点距离。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">勾股定理的适用范围</span>：仅直角三角形（且 c 是斜边，即 c² 等于两边平方和）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">3</span>平行四边形（矩形菱形正方形）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">平行四边形</span>：两组对边分别平行的四边形。</div></div><div class="it"><div class="ct"><span class="hl">矩形</span>：四个角都是直角的平行四边形。</div></div><div class="it"><div class="ct"><span class="hl">菱形</span>：邻边相等的平行四边形。</div></div><div class="it"><div class="ct"><span class="hl">正方形</span>：四边相等四角都是直角（既是矩形又是菱形）。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>平行四边形性质（核心）</b>：① 对边平行且相等；② 对角相等；③ 邻角互补；④ 对角线互相平分。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>矩形性质：<b>四直角；对角线<span class="hl">相等</span>且互相平分（特殊平行四边形）。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>菱形性质：<b>四边相等；对角线<span class="hl">互相垂直且平分对角</span>。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>正方形性质：<b>四边相等四角都是直角；对角线<span class="hl">相等且互相垂直平分。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><b>平行四边形判定（任一即可）</b>：① 两组对边分别平行；② 两组对边分别相等；③ 一组对边平行且相等；④ 对角线互相平分。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>特殊四边形关系图：<b>正方形 ⊆ 矩形 ⊆ 平行四边形；正方形 ⊆ 菱形 ⊆ 平行四边形。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">4</span>一次函数（含正比例）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">函数定义</span>：两个变量 x、y，对于 x 的每个值，y 都有唯一确定值，称 y 是 x 的函数。</div></div><div class="it"><div class="ct"><span class="hl">正比例函数</span>：形如 y = kx（k ≠ 0），k 叫比例系数。</div></div><div class="it"><div class="ct"><span class="hl">一次函数一般式：<span class="hl">y = kx + b（k ≠ 0），b 是 y 轴截距。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>图像与性质：<b>① 直线的斜率由 k 决定；② k&gt;0 上升；k&lt;0 下降；③ b 是直线与 y 轴交点的纵坐标。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">y = 2x + 3 过 (0, 3)，斜率 2，y 随 x 增大而增大。</span></div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>两条直线位置关系：<b>① k 相等 → 平行（无交点）；② k₁ × k₂ = -1 → 垂直（交成直角）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【用待定系数法求解析式】① 代入两组 (x, y)；② 得方程组；③ 解出 k、b。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">交点坐标意义：<span class="hl">一次函数与一次函数交点 = 方程组的解。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">5</span>数据的分析（含中位数方差）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">平均数</span>：反映数据集中趋势的统计量。</div></div><div class="it"><div class="ct"><span class="hl">加权平均数</span>：各数据按权重（重要程度）影响平均数。</div></div><div class="it"><div class="ct"><span class="hl">中位数</span>：将数据从小到大排列后处在中间位置的数（偶数取中间两数平均）。</div></div><div class="it"><div class="ct"><span class="hl">众数</span>：一组数据中出现次数最多的数。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">平均数 x̄ = (x₁ + x₂ + ... + xₙ) ÷ n = 总和 ÷ 个数</span></div></div><div class="it"><div class="ct"><span class="form">加权平均数 x̄ = (x₁f₁ + x₂f₂ + ... + xₙfₙ) ÷ (f₁+f₂+...+fₙ)</span></div></div><div class="it"><div class="ct"><span class="form">方差 s² = [(x₁-x̄)² + (x₂-x̄)² + ... + (xₙ-x̄)²] ÷ n（度量波动大小）</span></div></div><div class="it"><div class="ct"><span class="form">标准差 = √方差（与原数据同单位）</span></div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>平均/中位/众数对比：<b>平均数受极端值影响最大；中位数对极端值不敏感；众数反映最常出现值。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>方差大小反映：<b>方差越大数据越分散；方差越小数据越集中。</div></div></div></div></div>
+<a class="bt" href="index.html">🏠 返回知识导航</a>
+<footer class="ft">© 两英豆豆教练</footer>
+</div></body></html>

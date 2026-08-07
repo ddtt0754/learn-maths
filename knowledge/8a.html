@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>八年级上册 · 数学知识总结</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#2ebd85; --b:#2f9df0; --t:#33434b; --l:#8aa09a;
+  --c-concept:#6366f1;   /* 基本概念 紫 */
+  --c-formula:#059669;   /* 基本公式 绿 */
+  --c-theorem:#dc2626;   /* 基本定理 红 */
+  --c-law:#ea580c;       /* 基本定律 橙 */
+  --c-property:#0891b2;  /* 相关性质 青 */
+  --c-formula-bg:#ecfdf5; --c-theorem-bg:#fef2f2; --c-law-bg:#fff7ed; --c-property-bg:#ecfeff;
+  --r:14px;
+}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+  color:var(--t);padding:20px 14px 60px;min-height:100vh;
+  display:flex;justify-content:center;font-size:15px;line-height:1.7}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;
+  overflow:hidden;box-shadow:0 10px 28px rgba(47,157,240,.22);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:100px;height:100px;top:-30px;right:-20px}
+.hdr::after{width:60px;height:60px;bottom:-16px;left:-10px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12.5px;opacity:.95}
+
+.grade-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;
+  padding:10px;background:#fff;border-radius:14px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.gtab{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+  text-decoration:none;color:var(--t);background:#f1f5f9;transition:all .2s}
+.gtab.current{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+.gtab:hover{transform:translateY(-1px)}
+
+.ch{display:flex;flex-direction:column;gap:10px}
+.cd{background:#fff;border-radius:var(--r);box-shadow:0 4px 12px rgba(47,157,240,.06);overflow:hidden;
+  border-left:4px solid var(--b)}
+.cd.open{border-left-color:var(--g)}
+.cdt{padding:12px 16px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer}
+.cdt .ch-num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.cdt .ar{font-size:.8rem;color:var(--l);margin-left:auto;transition:transform .25s}
+.cd.open .ar{transform:rotate(180deg)}
+.cdb{max-height:0;overflow:hidden;transition:max-height .35s}
+.cd.open .cdb{max-height:6000px;padding:4px 16px 16px}
+
+.it{margin-bottom:10px;line-height:1.75}
+.it.lb-concept .lb{background:#eef2ff;color:var(--c-concept);border-left-color:#a5b4fc}
+.it.lb-formula .lb{background:var(--c-formula-bg);color:var(--c-formula);border-left-color:#34d399}
+.it.lb-theorem .lb{background:var(--c-theorem-bg);color:var(--c-theorem);border-left-color:#fca5a5}
+.it.lb-law .lb{background:var(--c-law-bg);color:var(--c-law);border-left-color:#fdba74}
+.it.lb-property .lb{background:var(--c-property-bg);color:var(--c-property);border-left-color:#67e8f9}
+.it .lb{
+  display:inline-block;font-weight:700;font-size:.85rem;
+  padding:3px 10px;border-radius:6px;margin-bottom:4px;border-left:3px solid;
+  letter-spacing:.5px;
+}
+.it .ct{font-size:.92rem;color:#1f2937;padding-left:2px}
+.it .ct .hl{background:linear-gradient(180deg,transparent 60%,#fef08a 60%);
+  font-weight:700;padding:0 2px}
+.it .ct .form{background:var(--c-formula-bg);color:#047857;padding:2px 6px;
+  border-radius:6px;font-weight:700;font-family:Georgia,serif;
+  border:1px solid #a7f3d0}
+.it .ct .fr{color:var(--c-theorem);font-weight:700}
+.it ul{margin:4px 0 4px 20px;padding:0}
+.it ul li{margin-bottom:2px}
+
+.bt{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt:hover{transform:translateY(-1px)}
+.ft{width:100%;margin-top:14px;text-align:center;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+<header class="hdr"><h1>八年级上册 · 数学知识总结</h1><p class="sub">人教版 · 2024修订新课标 · 基本概念 · 公式 · 定理 · 定律 · 性质</p></header>
+<div class="ch"><div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">1</span>三角形（边角关系）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">三角形三要素：<span class="hl">三条边、三个内角、三个顶点。</div></div><div class="it"><div class="ct"><span class="hl">三角形分类：<span class="hl">① 按角分：锐角/直角/钝角三角形；② 按边分：等边/等腰/不等边三角形。</div></div><div class="it"><div class="ct"><span class="hl">三角形的高：<span class="hl">从顶点向对边作垂线，顶点与垂足间的线段（任何三角形有 3 条高）。</div></div><div class="it"><div class="ct"><span class="hl">三角形的中线：<span class="hl">连接顶点与对边中点的线段（中线分对边为两等份）。</div></div><div class="it"><div class="ct"><span class="hl">三角形的角平分线：<span class="hl">平分一个内角的射线（从一个顶点引出）。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>三角形内角和定理（核心）</b>：三角形的内角之和<span class="hl">= 180°</span>（任意三角形，恒成立）。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>三角形外角定理：<b>三角形的一个外角等于与它不相邻的两内角之和；外角大于任一不相邻内角。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>三角形三边关系定理：<b>任意两边之和<span class="hl">&gt;第三边</span>；任意两边之差<span class="hl">&lt;第三边</span>（构成三角形必要且充分）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>三角形的稳定性：<b>三边确定后形状唯一，且不易变形（如建筑钢架）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【求第三角】已知两角，第三角 = 180° - 已知两角之和。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">2</span>全等三角形<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">全等三角形</span>：两个三角形能完全重合（形状、大小相同）。</div></div><div class="it"><div class="ct"><span class="hl">对应边、对应角：<span class="hl">重合时的对应元素。</div></div><div class="it"><div class="ct"><span class="hl">全等符号「≌」</span>：△ABC ≌ △A'B'C' 表示 A↔A', B↔B', C↔C'。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>全等三角形判定 1（SSS）</b>：三边对应相等。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>全等三角形判定 2（SAS）</b>：两边及其夹角对应相等。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>全等三角形判定 3（ASA）</b>：两角及其夹边对应相等。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>全等三角形判定 4（AAS）</b>：两角及其中一角的对边对应相等。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>全等三角形判定 5（HL 直角专用）</b>：斜边和一直角边对应相等。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>全等三角形性质（SSS 全等后）</b>：对应角相等、对应边相等。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【证全等步骤】① 找已知条件（边或角）；② 选判定定理；③ 按定理顺序证明；④ 得出结论。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">3</span>轴对称（含垂直平分线）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">轴对称图形</span>：沿一条直线对折，两部分完全重合。直线叫对称轴。</div></div><div class="it"><div class="ct"><span class="hl">垂直平分线</span>：垂直于一条线段且平分这条线段的直线。</div></div><div class="it"><div class="ct"><span class="hl">对称点</span>：关于对称轴对称的两点。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>线段垂直平分线定理：<b>线段垂直平分线上的点到线段两端的距离<span class="hl">相等</span>。逆定理：到线段两端距离相等的点在线段的垂直平分线上。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>等腰三角形三线合一（核心）</b>：等腰三角形底边上的中线、高、顶角平分线<span class="hl">三线合一</span>（同一条直线）。</div></div><div class="it"><div class="ct"><b>等腰三角形性质：<b>两腰相等；两底角相等；顶角+2×底角=180°。</div></div><div class="it"><div class="ct"><b>等边三角形性质：<b>三边相等三角均 60°；具有稳定性。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【画对称轴】找出对称的两点（或两点组），从中点作垂线即对称轴。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">4</span>整式乘法与因式分解<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">整式乘法</span>：单项式×单项式、单项式×多项式、多项式×多项式。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>幂的运算</b>：</div></div><div class="it"><div class="ct">① <span class="hl">aᵐ × aⁿ = a^(m+n)</span>　（同底数幂相乘，指数相加）</div></div><div class="it"><div class="ct">② <span class="hl">aᵐ ÷ aⁿ = a^(m-n)（a≠0，m&gt;n）</span>　（同底数幂相除，指数相减）</div></div><div class="it"><div class="ct">③ <span class="hl">(aᵐ)ⁿ = a^(m·n)</span>　（幂的乘方，指数相乘）</div></div><div class="it"><div class="ct">④ <span class="hl">a⁰ = 1（a≠0）</span>　（任何非零数的零次幂等于 1）</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>乘法公式（核心）</b>：</div></div><div class="it"><div class="ct">① <span class="hl">平方差公式：(a+b)(a-b) = a² - b²</span></div></div><div class="it"><div class="ct">② <span class="hl">完全平方公式：(a+b)² = a² + 2ab + b²</span>　　<span class="hl">(a-b)² = a² - 2ab + b²</span></div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><b>因式分解四方法</b>：① 提公因式；② 公式法（平方差/完全平方）；③ 十字相乘（二次三项式）；④ 分组分解。</div></div><div class="it"><div class="ct">★ 例：x² - 9 = (x+3)(x-3)；x² + 6x + 9 = (x+3)²；ab + a + b + 1 = (a+1)(b+1)（分组）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">因式分解与整式乘法互逆：<span class="hl">整式乘法是展开，因式分解是逆变形（结果要分解到不能为止）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">5</span>分式（分式方程入门）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">分式</span>：形如 A/B（A、B 是整式，B 含字母，B≠0）的式子。</div></div><div class="it"><div class="ct"><span class="hl">分式有意义条件</span>：分母 ≠ 0（关键）。</div></div><div class="it"><div class="ct"><span class="hl">分式值为 0</span>：分子 = 0 且分母 ≠ 0。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>分式基本性质：<b>分式的分子与分母同 ×（或 ÷）一个<span class="hl">非 0</span>的整式，分式值不变。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">2x/(4x²)=1/(2x)（同 ÷ 2x）</span>。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>分式乘除：<b>乘法 <span class="hl">(a/b) × (c/d) = ac/bd</span>；除法 <span class="hl">(a/b) ÷ (c/d) = (a/b) × (d/c)</span>。</div></div><div class="it"><div class="ct"><b>分式加减：<b>① 同分母：分子相加减；② 异分母：先通分化为同分母，再加减。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【分式方程解法】① 去分母（方程两边同 × 最简公分母）；② 解整式方程；③ 检验（增根使分母=0，必须舍去）。</div></div></div></div></div>
+<a class="bt" href="index.html">🏠 返回知识导航</a>
+<footer class="ft">© 两英豆豆教练</footer>
+</div></body></html>

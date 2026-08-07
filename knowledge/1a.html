@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>一年级上册 · 数学知识总结</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#2ebd85; --b:#2f9df0; --t:#33434b; --l:#8aa09a;
+  --c-concept:#6366f1;   /* 基本概念 紫 */
+  --c-formula:#059669;   /* 基本公式 绿 */
+  --c-theorem:#dc2626;   /* 基本定理 红 */
+  --c-law:#ea580c;       /* 基本定律 橙 */
+  --c-property:#0891b2;  /* 相关性质 青 */
+  --c-formula-bg:#ecfdf5; --c-theorem-bg:#fef2f2; --c-law-bg:#fff7ed; --c-property-bg:#ecfeff;
+  --r:14px;
+}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+  color:var(--t);padding:20px 14px 60px;min-height:100vh;
+  display:flex;justify-content:center;font-size:15px;line-height:1.7}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;
+  overflow:hidden;box-shadow:0 10px 28px rgba(47,157,240,.22);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:100px;height:100px;top:-30px;right:-20px}
+.hdr::after{width:60px;height:60px;bottom:-16px;left:-10px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12.5px;opacity:.95}
+
+.grade-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;
+  padding:10px;background:#fff;border-radius:14px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.gtab{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+  text-decoration:none;color:var(--t);background:#f1f5f9;transition:all .2s}
+.gtab.current{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+.gtab:hover{transform:translateY(-1px)}
+
+.ch{display:flex;flex-direction:column;gap:10px}
+.cd{background:#fff;border-radius:var(--r);box-shadow:0 4px 12px rgba(47,157,240,.06);overflow:hidden;
+  border-left:4px solid var(--b)}
+.cd.open{border-left-color:var(--g)}
+.cdt{padding:12px 16px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer}
+.cdt .ch-num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.cdt .ar{font-size:.8rem;color:var(--l);margin-left:auto;transition:transform .25s}
+.cd.open .ar{transform:rotate(180deg)}
+.cdb{max-height:0;overflow:hidden;transition:max-height .35s}
+.cd.open .cdb{max-height:6000px;padding:4px 16px 16px}
+
+.it{margin-bottom:10px;line-height:1.75}
+.it.lb-concept .lb{background:#eef2ff;color:var(--c-concept);border-left-color:#a5b4fc}
+.it.lb-formula .lb{background:var(--c-formula-bg);color:var(--c-formula);border-left-color:#34d399}
+.it.lb-theorem .lb{background:var(--c-theorem-bg);color:var(--c-theorem);border-left-color:#fca5a5}
+.it.lb-law .lb{background:var(--c-law-bg);color:var(--c-law);border-left-color:#fdba74}
+.it.lb-property .lb{background:var(--c-property-bg);color:var(--c-property);border-left-color:#67e8f9}
+.it .lb{
+  display:inline-block;font-weight:700;font-size:.85rem;
+  padding:3px 10px;border-radius:6px;margin-bottom:4px;border-left:3px solid;
+  letter-spacing:.5px;
+}
+.it .ct{font-size:.92rem;color:#1f2937;padding-left:2px}
+.it .ct .hl{background:linear-gradient(180deg,transparent 60%,#fef08a 60%);
+  font-weight:700;padding:0 2px}
+.it .ct .form{background:var(--c-formula-bg);color:#047857;padding:2px 6px;
+  border-radius:6px;font-weight:700;font-family:Georgia,serif;
+  border:1px solid #a7f3d0}
+.it .ct .fr{color:var(--c-theorem);font-weight:700}
+.it ul{margin:4px 0 4px 20px;padding:0}
+.it ul li{margin-bottom:2px}
+
+.bt{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt:hover{transform:translateY(-1px)}
+.ft{width:100%;margin-top:14px;text-align:center;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+<header class="hdr"><h1>一年级上册 · 数学知识总结</h1><p class="sub">人教版 · 2024修订新课标 · 基本概念 · 公式 · 定律 · 性质</p></header>
+<div class="ch"><div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">1</span>准备课：数一数 · 比一比<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">数与数量：用<span class="hl">1、2、3...10</span>表示物体的个数，数数时按顺序一个一个地数，不漏不重。</div></div><div class="it"><div class="ct">比多少：把两类物体<span class="hl">一一对应</span>比较，没有剩余的<span class="hl">多</span>，有剩余的<span class="hl">少</span>。</div></div><div class="it"><div class="ct">比大小：两个数比大小，大的在<span class="hl">前面</span>，小的在后面。</div></div><div class="it"><div class="ct">比长短：高矮胖瘦：直接比较或<span class="hl">一端对齐</span>比较，另一端长的就长。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>一一对应原理</b>：两组物体能一一配对无剩余，则两群同样多；有多余则有多的那群多。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct">数的顺序性：自然数从 1 开始，后面的数总比前面的数<span class="hl">多 1</span>。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">2</span>1~5 的认识（1~5的含义与读写）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">1~5 的含义：<span class="hl">1</span>表示 1 个物体，<span class="hl">2</span>表示 2 个... 以此类推，数的多少由物体的个数决定。</div></div><div class="it"><div class="ct">数序：从 <span class="hl">1 到 5</span>，后一个数比前一个数多 1；从 5 到 1 倒数。</div></div><div class="it"><div class="ct">比大小：<span class="hl">2&lt;3&lt;4&lt;5</span>，两个数比较大小，用<span class="hl">&gt;</span>或<span class="hl">&lt;</span>号表示，开口朝大的数。</div></div><div class="it"><div class="ct">第几与几：从左边起数，第几个表示位置（1、2、3...），几表示数量。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct">1~5 各数的书写规范：每个数占半格位置，从上至下书写，笔顺正确（1 一笔，2 拐弯，3 半圆+横，4 折+竖，5 横折+横）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">0</span> 的含义：一个也没有就用 0 表示，0 也是自然数，<span class="hl">最小的自然数</span>。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">3</span>1~5 的加减法（比大小与加减意义）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">加法意义</span>：把两部分合在一起，求一共是多少，用<span class="hl">+</span>（加号）连接，结果叫<span class="hl">和</span>。如 2+3=5 读作 2 加 3 等于 5。</div></div><div class="it"><div class="ct"><span class="hl">减法意义</span>：从总数中去掉一部分，求剩下多少，用<span class="hl">-</span>（减号）连接，结果叫<span class="hl">差</span>。如 5-2=3 读作 5 减 2 等于 3。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="hl">1+0=1 2+0=2 3+0=3 4+0=4 5+0=5</span>：任何数加 0 仍等于这个数。</div></div><div class="it"><div class="ct"><span class="hl">a-0=a</span>：任何数减 0 仍等于任何数。如 5-0=5。</div></div><div class="it"><div class="ct"><span class="hl">a-a=0</span>：相同的两个数相减等于 0。如 3-3=0。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>加法交换律（初步感知）</b>：交换两个加数的位置，<span class="hl">和不变</span>。如 <span class="hl">2+3=3+2</span>。</div></div><div class="it"><div class="ct"><b>加减互逆关系（初步感知）</b>：加法与减法互为逆运算。a+b=c 则 <span class="hl">c-a=b</span>，<span class="hl">c-b=a</span>。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">4</span>认识图形（一）：长方体·正方体·圆柱·球<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">长方体</span>：有 6 个面，每个面是长方形，相对的两个面<span class="hl">完全相同</span>。长方体只能<span class="hl">前后左右滚动，不能随意滚动</span>。</div></div><div class="it"><div class="ct"><span class="hl">正方体</span>：有 6 个面，6 个面<span class="hl">完全相同</span>（都是正方形）。有 12 条棱，每条棱一样长。</div></div><div class="it"><div class="ct"><span class="hl">圆柱</span>：上下两个面是大小相同的圆，侧面是光滑的曲面。圆柱可以<span class="hl">前后滚动</span>。</div></div><div class="it"><div class="ct"><span class="hl">球</span>：表面是曲面，从任何方向看都是圆的。球可以<span class="hl">向任意方向滚动</span>。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct">长方体与正方体的关系：<b>正方体是特殊的长方体</b>（长宽高都相等的长方体）。</div></div><div class="it"><div class="ct">圆柱的侧面展开是长方形；当底面周长等于高时，展开为正方形。</div></div><div class="it"><div class="ct"><b>稳定性</b>：长方体和正方体不易滚动；圆柱和球易滚动——这与组合堆放稳定性有关。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">数学上把 <span class="hl">长方体、正方体、圆柱、球</span> 称为立体图形（即三维图形，有长、宽、高/厚度）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">5</span>6~10 的认识与加减法<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">6~10 的数序：<span class="hl">1→2→3→4→5→6→7→8→9→10</span>，后数比前数多 1。</div></div><div class="it"><div class="ct">10 以内数的组成：<span class="hl">6=1+5=2+4=3+3</span>、<span class="hl">7=1+6=2+5=3+4</span>、<span class="hl">8=1+7=2+6=3+5=4+4</span>、<span class="hl">9=1+8=2+7=3+6=4+5</span>、<span class="hl">10=1+9=2+8=3+7=4+6=5+5</span>。</div></div><div class="it"><div class="ct"><span class="hl">10</span> 的特殊性：由两个 5 组成，10 比所有 1 位数都大，是 1 位数与两位数的分界。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="hl">凑十法（加法核心）</span>：当较小加数 ≥ 5 时，把较小加数拆成（凑十数）+（余数）两部分。如 <span class="hl">8+5=8+2+3=13</span>。</div></div><div class="it"><div class="ct"><span class="hl">破十法（减法核心）</span>：被减数个位不够减时，把被减数拆成 10+几。如 <span class="hl">13-7=10-7+3=6</span>。</div></div><div class="it"><div class="ct"><span class="hl">想加算减法</span>：求 a-b=? 想 b+(?)=a 则 ?=a-b。例：求 11-6，想 6+(?)=11，?=5。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>加减互逆定理（完整版）</b>：a+b=c ⇔ c-a=b ⇔ c-b=a。三式互相等价、可以互验。</div></div><div class="it"><div class="ct"><b>0 与加减法</b>：a+0=a / a-0=a / a-a=0 / 0+a=a / a-0=a。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct">10 以内加法表的规律：每行 <span class="hl">递增 1</span>（如 1+1=2，1+2=3...），每列也递增 1。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">6</span>11~20 各数的认识与加减<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">十位与个位</span>：11~20 各数中，左边的 1 在<span class="hl">十位</span>表示 1 个十，右边的几在<span class="hl">个位</span>表示几个一。</div></div><div class="it"><div class="ct">数位顺序表：从右往左<span class="hl">个位→十位→百位...</span>。</div></div><div class="it"><div class="ct"><span class="hl">位值原则</span>：同一个数字在不同数位表示不同的值。如 <span class="hl">15</span> 中，1 表示十，5 表示一。</div></div><div class="it"><div class="ct"><span class="hl">读数与写数</span>：读作「十几」（如 13 读作 13），写作阿拉伯数字。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="hl">十几=10+几</span>。如 16 = 10 + 6。</div></div><div class="it"><div class="ct"><span class="hl">减法分成两段算</span>：十几-几=（10-几）+10。如 <span class="hl">15-7=（10-7）+10=3+10=13</span>。</div></div><div class="it"><div class="ct"><span class="hl">进位加法（凑十法扩展）</span>：一个加数拆成「凑十数」+「余数」，先凑十再加余。如 <span class="hl">7+5=7+3+2=12</span>。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>十进制计数法基础</b>：相邻两个计数单位间的进率是<span class="hl">10</span>。10 个一是<span class="hl">十</span>，10 个十是<span class="hl">百</span>。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">比一比（11~20）</span>：位数相同比十位，十位大的数大；十位相同比个位。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">最大的一位数是 9，最小的两位数是 10</span>。两者相差 1（10 = 9 + 1）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">7</span>认识钟表（整时与半时）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">钟面结构</span>：12 个大格，每格是 1 小时；钟面上有 12 个数字，时针短粗，分针细长。</div></div><div class="it"><div class="ct"><span class="hl">时针与分针</span>：时针走 1 大格是 1 小时；分针走 1 小格是 1 分钟，走一圈（12 大格）是 1 小时。</div></div><div class="it"><div class="ct"><span class="hl">整时</span>：分针指向 12，时针指向几就是几时。写法：电子表「数字:00」，文字「几时」。</div></div><div class="it"><div class="ct"><span class="hl">半时（初步）</span>：分针指向 6，时针过几就是几时半（如时针过 3 即 3 时半）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">1 时 = 60 分</span></div></div><div class="it"><div class="ct"><span class="form">半小时 = 30 分</span></div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct">钟面上时针与分针运动规律：<span class="hl">时针走 1 小时，分针同时走一圈</span>（即分针速度是时针的 12 倍）。</div></div><div class="it"><div class="ct">钟表读法：<span class="hl">先看分针</span>判定整时/半时/几时几分，再看时针确定小时数。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">8</span>20 以内的进位加法（重点）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">进位</span>：个位相加满十时，向十位<span class="hl">进 1</span>，个位保留余数。</div></div><div class="it"><div class="ct"><span class="hl">20 以内进位加法</span>：被加数常为 9、8、7、6，加数为 4、5、6、7、8、9 的和超过 10。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>凑十法（标准步骤）</span>：① 看大数；② 拆小数；③ 凑十；④ 加余数。</b></div></div><div class="it"><div class="ct">★ 例：<span class="hl">9+6=9+1+5=10+5=15</span> ；<span class="hl">8+5=8+2+3=10+3=13</span> ；<span class="hl">7+4=7+3+1=10+1=11</span>。</div></div><div class="it"><div class="ct"><b>交换加数再算（凑整十）</b>：如 <span class="hl">9+5=5+9=14</span>，把大数加 9 换成 9+几。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>加法交换律（20 以内适用）</b>：<span class="hl">a+b=b+a</span>（和不变）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct">凑十法口诀：「<span class="hl">拆小数，凑大数</span>」；遇到 9 加几，把几变 10 的补数 1+（几-1）。</div></div><div class="it"><div class="ct"><b>规律总结：</b>9+几=10+(几-1)；8+几=10+(几-2)；7+几=10+(几-3)；... 即 a+几=10+(几-(10-a))。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">9</span>总复习：加减法综合<span class="ar">▾</span></div><div class="cdb"><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>20 以内加法口诀表</b>（必须背诵）：</div></div><div class="it"><div class="ct">★ 1+1=2；1+2=3, 2+1=3；1+3=4, 2+2=4, 3+1=4；1+4=5, 2+3=5, 3+2=5, 4+1=5；</div></div><div class="it"><div class="ct">★ 1+5=6...5+1=6；1+6=7...6+1=7；...1+9=10...9+1=10；</div></div><div class="it"><div class="ct">★ 2+8=10=9+1=...（10 的所有拆分要记牢：1+9, 2+8, 3+7, 4+6, 5+5, 6+4, 7+3, 8+2, 9+1）</div></div><div class="it"><div class="ct"><b>20 以内减法 = 加法逆运算</b>：可由加法口诀直接推出。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>加减法互为逆运算</b>：见加想减，见减想加。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct">20 以内加减法是后续多位数计算基础，必须<span class="hl">脱口而出</span>，每天朗读 5 分钟。</div></div></div></div></div>
+<a class="bt" href="index.html">🏠 返回知识导航</a>
+<footer class="ft">© 两英豆豆教练</footer>
+</div></body></html>

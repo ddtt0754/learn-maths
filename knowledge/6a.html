@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>六年级上册 · 数学知识总结</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#2ebd85; --b:#2f9df0; --t:#33434b; --l:#8aa09a;
+  --c-concept:#6366f1;   /* 基本概念 紫 */
+  --c-formula:#059669;   /* 基本公式 绿 */
+  --c-theorem:#dc2626;   /* 基本定理 红 */
+  --c-law:#ea580c;       /* 基本定律 橙 */
+  --c-property:#0891b2;  /* 相关性质 青 */
+  --c-formula-bg:#ecfdf5; --c-theorem-bg:#fef2f2; --c-law-bg:#fff7ed; --c-property-bg:#ecfeff;
+  --r:14px;
+}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+  color:var(--t);padding:20px 14px 60px;min-height:100vh;
+  display:flex;justify-content:center;font-size:15px;line-height:1.7}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;
+  overflow:hidden;box-shadow:0 10px 28px rgba(47,157,240,.22);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:100px;height:100px;top:-30px;right:-20px}
+.hdr::after{width:60px;height:60px;bottom:-16px;left:-10px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12.5px;opacity:.95}
+
+.grade-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;
+  padding:10px;background:#fff;border-radius:14px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.gtab{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+  text-decoration:none;color:var(--t);background:#f1f5f9;transition:all .2s}
+.gtab.current{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+.gtab:hover{transform:translateY(-1px)}
+
+.ch{display:flex;flex-direction:column;gap:10px}
+.cd{background:#fff;border-radius:var(--r);box-shadow:0 4px 12px rgba(47,157,240,.06);overflow:hidden;
+  border-left:4px solid var(--b)}
+.cd.open{border-left-color:var(--g)}
+.cdt{padding:12px 16px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer}
+.cdt .ch-num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.cdt .ar{font-size:.8rem;color:var(--l);margin-left:auto;transition:transform .25s}
+.cd.open .ar{transform:rotate(180deg)}
+.cdb{max-height:0;overflow:hidden;transition:max-height .35s}
+.cd.open .cdb{max-height:6000px;padding:4px 16px 16px}
+
+.it{margin-bottom:10px;line-height:1.75}
+.it.lb-concept .lb{background:#eef2ff;color:var(--c-concept);border-left-color:#a5b4fc}
+.it.lb-formula .lb{background:var(--c-formula-bg);color:var(--c-formula);border-left-color:#34d399}
+.it.lb-theorem .lb{background:var(--c-theorem-bg);color:var(--c-theorem);border-left-color:#fca5a5}
+.it.lb-law .lb{background:var(--c-law-bg);color:var(--c-law);border-left-color:#fdba74}
+.it.lb-property .lb{background:var(--c-property-bg);color:var(--c-property);border-left-color:#67e8f9}
+.it .lb{
+  display:inline-block;font-weight:700;font-size:.85rem;
+  padding:3px 10px;border-radius:6px;margin-bottom:4px;border-left:3px solid;
+  letter-spacing:.5px;
+}
+.it .ct{font-size:.92rem;color:#1f2937;padding-left:2px}
+.it .ct .hl{background:linear-gradient(180deg,transparent 60%,#fef08a 60%);
+  font-weight:700;padding:0 2px}
+.it .ct .form{background:var(--c-formula-bg);color:#047857;padding:2px 6px;
+  border-radius:6px;font-weight:700;font-family:Georgia,serif;
+  border:1px solid #a7f3d0}
+.it .ct .fr{color:var(--c-theorem);font-weight:700}
+.it ul{margin:4px 0 4px 20px;padding:0}
+.it ul li{margin-bottom:2px}
+
+.bt{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt:hover{transform:translateY(-1px)}
+.ft{width:100%;margin-top:14px;text-align:center;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+<header class="hdr"><h1>六年级上册 · 数学知识总结</h1><p class="sub">人教版 · 2024修订新课标 · 基本概念 · 公式 · 定理 · 定律 · 性质</p></header>
+<div class="ch"><div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">1</span>分数乘法（含分数×分数）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">分数意义扩展</span>：一个数的几分之几——抽象比例运算。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>分数×整数：<b>分母不变，分子乘整数。如 <span class="hl">2/3×4=8/3=2 2/3</span>。</div></div><div class="it"><div class="ct"><b>分数×分数：<b>分子乘分子、分母乘分母，可先约分再乘。如 <span class="hl">2/3×4/5=8/15</span>。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">3/4×1/2=3/8（求 3/4 的一半）</span>。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>分数乘法交换律：<b>a/b × c/d = c/d × a/b（积不变）。</div></div><div class="it"><div class="ct"><b>分数乘法结合律：<b>(a/b × c/d) × e/f = a/b × (c/d × e/f)。</div></div><div class="it"><div class="ct"><b>分数乘法分配律：<b>a/b × (c/d + e/f) = a/b × c/d + a/b × e/f。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">积与因数大小关系：<span class="hl">真分数相乘，结果比任一因数都小；带分数要注意是否&gt;1。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【应用】求一个数的几分之几用乘法（如 30 的 2/3 = 30×2/3 = 20）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">2</span>位置与方向（二）：精确定位<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">方向三要素：<span class="hl">方向、角度、距离</span>（「在北偏东 30°方向 500m 处」）。</div></div><div class="it"><div class="ct"><span class="hl">北偏东/西</span>：以正北方向为基准，偏向东边的角度（如北偏东 30°）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">绘制路线图：<b>① 选比例尺；② 标方向（北）；③ 量角度和距离；④ 标记关键点。</div></div><div class="it"><div class="ct">★ 例：从灯塔 A 向南偏西 45°距离 3 海里 → 在与北对称的西南方向画 3 个单位距离。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">方向是相对的：<span class="hl">我从 A 看 B 在「北偏东 30°」；从 B 看 A 在「南偏西 30°」。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">3</span>分数除法（除以分数=乘倒数）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">分数除法意义</span>：已知两个因数的积和其中一个因数，求另一个因数（分数版本）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>分数除法（核心公式）</b>：除以一个不等于 0 的数，等于<span class="hl">乘这个数的倒数</span>。</div></div><div class="it"><div class="ct"><span class="form">a/b ÷ c/d = a/b × d/c (c/d ≠ 0)</span></div></div><div class="it"><div class="ct">★ 例：<span class="hl">3/4 ÷ 1/2 = 3/4 × 2/1 = 6/4 = 3/2 = 1 1/2</span>；<span class="hl">5/6 ÷ 5/3 = 5/6 × 3/5 = 1/2</span>。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>分数除法无交换律：<b>a/b ÷ c/d ≠ c/d ÷ a/b（结果不同）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【化带分数为假分数】带分数 ÷ 整数：先化为假分数再除。如 <span class="hl">1 1/2 ÷ 3 = 3/2 × 1/3 = 1/2</span>。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">分数除法应用：<span class="hl">求一个数是另一数的几倍 → 用除法（如 4/5 ÷ 1/5 = 4 倍）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">4</span>比（比例与化简）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">比的意义</span>：两个数相除，又叫做两个数的比。a : b = a ÷ b。</div></div><div class="it"><div class="ct"><span class="hl">比各部分名称：<span class="hl">前项 : 后项，比值 = 前项 ÷ 后项。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>比的基本性质：<b>比的前项和后项同时乘或除以同一个<span class="hl">非 0</span>数，<span class="hl">比值不变</span>。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">6:8 = 3:4（最简比，同除 2）</span>；<span class="hl">0.6:1.2 = 1:2（同 ×10）</span>。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【化简比步骤】① 都化为整数；② 同除最大公因数；③ 比号前小后大（如 4:5 不是 5:4）。</div></div><div class="it"><div class="ct">★ 化简分数比：<span class="hl">2/3 : 1/4 = 8/12 : 3/12 = 8:3</span>（同 ×12 化为整数比）。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>比、分数、除法关系：<b>a:b = a/b = a÷b，三者形式不同，本质相同。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">按比例分配：<span class="hl">总量按各部分份数分配，每份 = 总量 ÷ 份数总数。各部分 = 每份 × 份数。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">5</span>圆（周长与面积）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">圆心、半径、直径：圆中心一点 O；圆内任一点到圆心距离 r（半径）；过圆心两端距离 d=2r（直径）。</div></div><div class="it"><div class="ct"><span class="hl">圆周率 π：<span class="hl">圆的周长与直径的比值，是无限不循环小数 ≈ 3.14159265... 取近似 3.14。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">C = πd = 2πr（圆周长）</span>　　<span class="form">S = πr²（圆面积）</span></div></div><div class="it"><div class="ct">★ 例：半径 3 的圆，周长 <span class="hl">= 2×3.14×3 = 18.84</span>，面积 <span class="hl">= 3.14×9 = 28.26</span>。</div></div><div class="it"><div class="ct"><span class="form">环形面积 S = π(R² - r²)</span>（外圆半径 R，内圆半径 r）。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>圆的对称性：<b>圆有<span class="hl">无数条对称轴</span>（每条直径），是平面最对称图形。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【画圆】圆规两脚分开为半径，中心固定，转动一周。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">扇形：<span class="hl">圆的一部分，由两条半径和一段弧围成。圆心角决定扇形大小，扇形面积 = (n/360) × πr²（n 为圆心角度数）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">6</span>百分数（一）：意义与读写<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">百分数意义</span>：表示一个数是另一数的百分之几（分母为 100 的特殊分数）。</div></div><div class="it"><div class="ct"><span class="hl">百分数与分数区别</span>：百分数表示比例（不能带单位）；分数可表示比例也可表示具体数量。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>百分数读写：<b>读「百分之几」，写「百分之几」。如 35% 读作「百分之三十五」。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">25% = 25/100 = 1/4（小数化简 = 0.25）</span>。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">百分数化小数：去掉 % 号，小数点左移两位（÷100）；小数化百分数：加 %，小数点右移两位（×100）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>百分数化分数：<b>写成分母 100 的分数，再约分。例：75% = 75/100 = 3/4。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">7</span>扇形统计图（百分比可视化）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">扇形统计图</span>：用整个圆代表总量（100%），用各扇形大小表示各部分占总量的百分数。</div></div><div class="it"><div class="ct"><span class="hl">圆心角计算：<span class="hl">部分扇形的圆心角 = 360° × (部分 ÷ 总量)。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【绘制步骤】① 求部分百分比；② 算各扇形圆心角；③ 按角度分割圆；④ 标百分比。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>优势与局限：<b>扇形图直观显示比例，但不能表示精确数据；数据集中在百分比时首选。</div></div></div></div></div>
+<a class="bt" href="index.html">🏠 返回知识导航</a>
+<footer class="ft">© 两英豆豆教练</footer>
+</div></body></html>

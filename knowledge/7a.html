@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>七年级上册 · 数学知识总结</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#2ebd85; --b:#2f9df0; --t:#33434b; --l:#8aa09a;
+  --c-concept:#6366f1;   /* 基本概念 紫 */
+  --c-formula:#059669;   /* 基本公式 绿 */
+  --c-theorem:#dc2626;   /* 基本定理 红 */
+  --c-law:#ea580c;       /* 基本定律 橙 */
+  --c-property:#0891b2;  /* 相关性质 青 */
+  --c-formula-bg:#ecfdf5; --c-theorem-bg:#fef2f2; --c-law-bg:#fff7ed; --c-property-bg:#ecfeff;
+  --r:14px;
+}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+  color:var(--t);padding:20px 14px 60px;min-height:100vh;
+  display:flex;justify-content:center;font-size:15px;line-height:1.7}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;
+  overflow:hidden;box-shadow:0 10px 28px rgba(47,157,240,.22);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:100px;height:100px;top:-30px;right:-20px}
+.hdr::after{width:60px;height:60px;bottom:-16px;left:-10px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12.5px;opacity:.95}
+
+.grade-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;
+  padding:10px;background:#fff;border-radius:14px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.gtab{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+  text-decoration:none;color:var(--t);background:#f1f5f9;transition:all .2s}
+.gtab.current{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+.gtab:hover{transform:translateY(-1px)}
+
+.ch{display:flex;flex-direction:column;gap:10px}
+.cd{background:#fff;border-radius:var(--r);box-shadow:0 4px 12px rgba(47,157,240,.06);overflow:hidden;
+  border-left:4px solid var(--b)}
+.cd.open{border-left-color:var(--g)}
+.cdt{padding:12px 16px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer}
+.cdt .ch-num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.cdt .ar{font-size:.8rem;color:var(--l);margin-left:auto;transition:transform .25s}
+.cd.open .ar{transform:rotate(180deg)}
+.cdb{max-height:0;overflow:hidden;transition:max-height .35s}
+.cd.open .cdb{max-height:6000px;padding:4px 16px 16px}
+
+.it{margin-bottom:10px;line-height:1.75}
+.it.lb-concept .lb{background:#eef2ff;color:var(--c-concept);border-left-color:#a5b4fc}
+.it.lb-formula .lb{background:var(--c-formula-bg);color:var(--c-formula);border-left-color:#34d399}
+.it.lb-theorem .lb{background:var(--c-theorem-bg);color:var(--c-theorem);border-left-color:#fca5a5}
+.it.lb-law .lb{background:var(--c-law-bg);color:var(--c-law);border-left-color:#fdba74}
+.it.lb-property .lb{background:var(--c-property-bg);color:var(--c-property);border-left-color:#67e8f9}
+.it .lb{
+  display:inline-block;font-weight:700;font-size:.85rem;
+  padding:3px 10px;border-radius:6px;margin-bottom:4px;border-left:3px solid;
+  letter-spacing:.5px;
+}
+.it .ct{font-size:.92rem;color:#1f2937;padding-left:2px}
+.it .ct .hl{background:linear-gradient(180deg,transparent 60%,#fef08a 60%);
+  font-weight:700;padding:0 2px}
+.it .ct .form{background:var(--c-formula-bg);color:#047857;padding:2px 6px;
+  border-radius:6px;font-weight:700;font-family:Georgia,serif;
+  border:1px solid #a7f3d0}
+.it .ct .fr{color:var(--c-theorem);font-weight:700}
+.it ul{margin:4px 0 4px 20px;padding:0}
+.it ul li{margin-bottom:2px}
+
+.bt{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt:hover{transform:translateY(-1px)}
+.ft{width:100%;margin-top:14px;text-align:center;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+<header class="hdr"><h1>七年级上册 · 数学知识总结</h1><p class="sub">人教版 · 2024修订新课标 · 基本概念 · 公式 · 定理 · 定律 · 性质</p></header>
+<div class="ch"><div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">1</span>有理数（正负数与数轴）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">有理数定义</span>：能写成 p/q 形式（p、q 为整数，q≠0）的数。</div></div><div class="it"><div class="ct"><span class="hl">有理数分类：<span class="hl">① 整数（正整数、0、负整数）；② 分数（正分数、负分数）。</div></div><div class="it"><div class="ct"><span class="hl">数轴三要素</span>：原点、正方向、单位长度。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">相反数</span>：只有符号不同的两个数（0 的相反数是 0）。在数轴上关于原点对称。</div></div><div class="it"><div class="ct"><span class="hl">绝对值</span>：数轴上数对应的点到原点的距离，记 |a|。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">|a| = { a（a≥0时）；-a（a&lt;0时） }</span> 　<span class="hl">任何实数的绝对值≥0</span>。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">|+5| = 5；|-3| = 3；|0| = 0。</span></div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>绝对值性质：<b>① |a| ≥ 0；② |a| = |-a|（对称性）；③ |ab| = |a||b|；④ |a/b| = |a|/|b|（b≠0）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">比较有理数大小：<b>① 数轴上右&gt;左；② 正数&gt;0&gt;负数；③ 两个负数比，绝对值大的反而小。</span></div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">2</span>有理数的运算（加减乘除乘方）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">有理数加法法则：<span class="hl">同号取同号绝对值加；异号取绝对值大的减，符号取绝对值大的。</div></div><div class="it"><div class="ct"><span class="hl">有理数减法法则：<span class="hl">减去一个数等于加上它的相反数：a - b = a + (-b)。</div></div><div class="it"><div class="ct"><span class="hl">有理数乘法法则：<span class="hl">同号得正，异号得负，结果的绝对值是各因数绝对值的积。</div></div><div class="it"><div class="ct"><span class="hl">有理数除法法则：<span class="hl">同号得正，异号得负，结果的绝对值是各因数绝对值的商；除以非 0 数等于乘倒数。</div></div><div class="it"><div class="ct"><span class="hl">有理数乘方：<span class="hl">aⁿ（n 个 a 相乘）。正数任何次幂为正；负数偶次幂为正、奇次幂为负。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>交换律、结合律、分配律在有理数范围全部适用（与小学定律相同）。</b></div></div><div class="it"><div class="ct">★ 例：<span class="hl">-2³ = -8（负号不在内）；<span class="hl">(-2)³ = -8（负号在内）；<span class="hl">(-2)⁴ = 16（偶次幂负数也得正）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【运算顺序】① 括号 → ② 乘方 → ③ 乘除 → ④ 加减 → 同级从左到右。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">科学记数法：<span class="hl">绝对值≥10 的数写为 a×10ⁿ（1≤|a|&lt;10，n 为整数）。例：360000 = 3.6×10⁵。</div></div><div class="it"><div class="ct"><span class="hl">近似数取位：<span class="hl">精确到某位用四舍五入，看保留位的下一位。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">3</span>整式的加减（含合并同类项）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">单项式</span>：数与字母的积（不含加减），如 3x、-2a²b、5。</div></div><div class="it"><div class="ct"><span class="hl">系数</span>：单项式中的数字因数；<span class="hl">次数</span>：所有字母指数之和。</div></div><div class="it"><div class="ct"><span class="hl">多项式</span>：几个单项式的和，如 3x²-2x+5（按次数从高到低排列）。</div></div><div class="it"><div class="ct"><span class="hl">同类项</span>：所含字母相同、相同字母的指数也相同的项（系数可不同）。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>合并同类项法则：<b>把同类项的系数相加，字母及指数<span class="hl">不变</span>。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">3x + 5x = 8x；<span class="hl">7xy - 3xy = 4xy；<span class="hl">5x²y + 3xy²（不同类，无法合并）</span>。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>去括号法则：<b>括号前是 +：去掉括号和 +；括号前是 -：去掉括号和 -，括号内各项<span class="hl">变号</span>。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">3x-(2x-5) = 3x-2x+5 = x+5</span>；<span class="hl">5x+(2x-3) = 5x+2x-3 = 7x-3</span>。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【整式加减步骤】① 去括号；② 合并同类项；③ 按某一字母升幂/降幂排列。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">4</span>一元一次方程（核心方程）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">一元一次方程</span>：含一个未知数且未知数次数是 1 的方程。一般形式 ax+b=0（a≠0）。</div></div><div class="it"><div class="ct"><span class="hl">方程的解</span>：使方程左右两边相等的未知数的值。</div></div><div class="it"><div class="ct"><span class="hl">解方程</span>：求方程的解的过程。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>等式性质 1：<b>等式两边同时加（或减）同一个数（或整式），等式仍成立。</div></div><div class="it"><div class="ct"><b>等式性质 2：<b>等式两边同时乘（或除）同一个<span class="hl">非 0</span>数，等式仍成立。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><b>解一元一次方程五步：<b>① 去分母；② 去括号；③ 移项（变号）；④ 合并同类项；⑤ 系数化为 1。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">2(x+3)=10 → 2x+6=10 → 2x=4 → x=2</span>。</div></div><div class="it"><div class="ct">★ 例（含分数）：<span class="hl">x/2 + 1 = x/3 → 3x + 6 = 2x → x = -6</span>（先去分母×6，再移项）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><b>列方程解应用题一般步骤</b>：① 审题找等量；② 设未知数；③ 列方程；④ 解方程；⑤ 检验写答。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">5</span>几何图形初步（点线面体）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">几何图形分类：<span class="hl">① 立体图形（长方体、圆柱等）；② 平面图形（长方形、圆等）。</div></div><div class="it"><div class="ct"><span class="hl">点、线、面、体：<span class="hl">点动成线，线动成面，面动成体。</div></div><div class="it"><div class="ct"><span class="hl">直线、射线、线段</span>：直线无端点无限延伸；射线一个端点；线段两个端点有长度。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>两点间线段最短</b>：过两点的所有连线中，<span class="hl">线段最短</span>。</div></div><div class="it"><div class="ct"><b>点的轨迹：<span class="hl">过一点可画无数条直线；两点确定一直线。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">角：由一个顶点 + 两条射线（边）组成。角的大小与边长短无关，与张开程度有关。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>余角与补角定理：<b>① 同角（或等角）的余角相等；② 同角（或等角）的补角相等。</div></div><div class="it"><div class="ct"><b>余角定义：<b>两角和 = 90°（互余）；补角定义：两角和 = 180°（互补）。</div></div></div></div></div>
+<a class="bt" href="index.html">🏠 返回知识导航</a>
+<footer class="ft">© 两英豆豆教练</footer>
+</div></body></html>

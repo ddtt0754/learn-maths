@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>一年级下册 · 数学知识总结</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#2ebd85; --b:#2f9df0; --t:#33434b; --l:#8aa09a;
+  --c-concept:#6366f1;   /* 基本概念 紫 */
+  --c-formula:#059669;   /* 基本公式 绿 */
+  --c-theorem:#dc2626;   /* 基本定理 红 */
+  --c-law:#ea580c;       /* 基本定律 橙 */
+  --c-property:#0891b2;  /* 相关性质 青 */
+  --c-formula-bg:#ecfdf5; --c-theorem-bg:#fef2f2; --c-law-bg:#fff7ed; --c-property-bg:#ecfeff;
+  --r:14px;
+}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+  color:var(--t);padding:20px 14px 60px;min-height:100vh;
+  display:flex;justify-content:center;font-size:15px;line-height:1.7}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;
+  overflow:hidden;box-shadow:0 10px 28px rgba(47,157,240,.22);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:100px;height:100px;top:-30px;right:-20px}
+.hdr::after{width:60px;height:60px;bottom:-16px;left:-10px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12.5px;opacity:.95}
+
+.grade-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;
+  padding:10px;background:#fff;border-radius:14px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.gtab{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+  text-decoration:none;color:var(--t);background:#f1f5f9;transition:all .2s}
+.gtab.current{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+.gtab:hover{transform:translateY(-1px)}
+
+.ch{display:flex;flex-direction:column;gap:10px}
+.cd{background:#fff;border-radius:var(--r);box-shadow:0 4px 12px rgba(47,157,240,.06);overflow:hidden;
+  border-left:4px solid var(--b)}
+.cd.open{border-left-color:var(--g)}
+.cdt{padding:12px 16px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer}
+.cdt .ch-num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.cdt .ar{font-size:.8rem;color:var(--l);margin-left:auto;transition:transform .25s}
+.cd.open .ar{transform:rotate(180deg)}
+.cdb{max-height:0;overflow:hidden;transition:max-height .35s}
+.cd.open .cdb{max-height:6000px;padding:4px 16px 16px}
+
+.it{margin-bottom:10px;line-height:1.75}
+.it.lb-concept .lb{background:#eef2ff;color:var(--c-concept);border-left-color:#a5b4fc}
+.it.lb-formula .lb{background:var(--c-formula-bg);color:var(--c-formula);border-left-color:#34d399}
+.it.lb-theorem .lb{background:var(--c-theorem-bg);color:var(--c-theorem);border-left-color:#fca5a5}
+.it.lb-law .lb{background:var(--c-law-bg);color:var(--c-law);border-left-color:#fdba74}
+.it.lb-property .lb{background:var(--c-property-bg);color:var(--c-property);border-left-color:#67e8f9}
+.it .lb{
+  display:inline-block;font-weight:700;font-size:.85rem;
+  padding:3px 10px;border-radius:6px;margin-bottom:4px;border-left:3px solid;
+  letter-spacing:.5px;
+}
+.it .ct{font-size:.92rem;color:#1f2937;padding-left:2px}
+.it .ct .hl{background:linear-gradient(180deg,transparent 60%,#fef08a 60%);
+  font-weight:700;padding:0 2px}
+.it .ct .form{background:var(--c-formula-bg);color:#047857;padding:2px 6px;
+  border-radius:6px;font-weight:700;font-family:Georgia,serif;
+  border:1px solid #a7f3d0}
+.it .ct .fr{color:var(--c-theorem);font-weight:700}
+.it ul{margin:4px 0 4px 20px;padding:0}
+.it ul li{margin-bottom:2px}
+
+.bt{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt:hover{transform:translateY(-1px)}
+.ft{width:100%;margin-top:14px;text-align:center;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+<header class="hdr"><h1>一年级下册 · 数学知识总结</h1><p class="sub">人教版 · 2024修订新课标 · 基本概念 · 公式 · 定理 · 定律 · 性质</p></header>
+<div class="ch"><div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">1</span>认识图形（二）：长方形·正方形·三角形·圆<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">长方形</span>：有 <span class="hl">4 条边</span>，<span class="hl">对边相等</span>，<span class="hl">4 个角都是直角</span>。</div></div><div class="it"><div class="ct"><span class="hl">正方形</span>：有 4 条边，<span class="hl">4 条边都相等</span>，4 个角都是直角。</div></div><div class="it"><div class="ct"><span class="hl">三角形</span>：有 <span class="hl">3 条边、3 个角</span>。按角分：锐角三角形、直角三角形、钝角三角形。</div></div><div class="it"><div class="ct"><span class="hl">圆</span>：圆是没有角的封闭曲线，圆上任意一点到圆心距离相等。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>正方形是特殊的长方形</b>（长宽相等）。</div></div><div class="it"><div class="ct"><b>长方形、正方形都有稳定性</b>（不易变形）；三角形也有<span class="hl">稳定性</span>（不易变形）；平行四边形容易变形（<span class="hl">不稳定性</span>）。</div></div><div class="it"><div class="ct">圆是平面内<span class="hl">最对称的图形</span>（任意一条直径都是对称轴）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">立体图形与平面图形的关系：长方体的面是长方形，正方体的面是正方形，圆柱的底面是圆——<span class="hl">面来自体</span>。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="hl">长方形对边相等；正方形四边都相等</span>——这是测量和计算面积的基础。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">2</span>20 以内的退位减法<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">退位减法</span>：被减数个位不够减时，从十位<span class="hl">借 1 当 10</span>（这一步叫「退位」）。</div></div><div class="it"><div class="ct">20 以内退位减法涉及被减数 11~13，减数 2~9。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>破十法（三步）</b>：① 把十几拆成 10 + 几；② 先算 10 - 减数；③ 再加剩余几。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">13-7=10-7+3=3+3=6</span>；<span class="hl">15-8=10-8+5=2+5=7</span>；<span class="hl">14-6=10-6+4=4+4=8</span>。</div></div><div class="it"><div class="ct"><b>想加算减法</b>：求 a-b=? 想 b+(?)=a。例：求 11-9，想 9+(?)=11，?=2。</div></div><div class="it"><div class="ct"><b>平十法（连续减可合并）</b>：当减数能凑成 10 时，把减数拆成与被减数末位相同的部分+余数。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>加减互逆定理</b>：a+b=c ↔ c-a=b ↔ c-b=a，可互验算。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">20 以内减法是加法的逆运算</span>：见减想加——11-8，想 8+?=11，?=3。</div></div><div class="it"><div class="ct"><span class="hl">速算技巧：连减 = 加减法合算。a-b-c=a-(b+c)。如 15-6-4=15-10=5。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">3</span>分类与整理（按不同标准分类）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">分类</span>：把一组事物按<span class="hl">一定的标准</span>进行区分、归类，使同类事物具有相同特征。</div></div><div class="it"><div class="ct">分类标准：可按<span class="hl">颜色、形状、大小、用途</span>等不同标准分，结果不同——分类标准决定了分类结果。</div></div><div class="it"><div class="ct"><span class="hl">统计</span>：用一定方法记录分类结果（表格/图示），反映某类事物的多少。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><b>正字法（统计符号）</b>：用一个「正」字代表 5 个，用「一」代表 1。便于总数计算。</div></div><div class="it"><div class="ct">★ 例：班级有男生 18 人，可用「正正正一」（15+3）记录；简单直接，便于求和。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct">分类思想的<span class="hl">核心原则</span>：① 每次分类标准必须<span class="hl">统一</span>；② 不遗漏、不重复（<span class="hl">互斥且穷尽</span>）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">象形统计图</span>：用实物图或符号图表示数量的多少，直观易懂。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">4</span>100 以内数的认识（数位与读写）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">数位顺序：从右往左依次是个位、十位、百位</span>，位数不同数值不同。</div></div><div class="it"><div class="ct"><span class="hl">计数单位：一（个）、十、百</span>。每相邻两个单位进率是 10。</div></div><div class="it"><div class="ct"><span class="hl">位值原则</span>：数字所在位置决定其代表的值。同一个 5，在个位=5，在十位=50，在百位=500。</div></div><div class="it"><div class="ct">读数：从<span class="hl">最高位</span>起依次读出每个数位上的数，中间不管几个 0 只读一个零，末位 0 不读。</div></div><div class="it"><div class="ct">写数：从<span class="hl">最高位</span>起，哪一位上一个计数单位也没有，就在该位写 <span class="hl">0</span> 占位（不可省略）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">100 = 10 个十 = 100 个一</span></div></div><div class="it"><div class="ct"><span class="hl">比较数的大小</span>：先看位数，位数多的大；位数相同看最高位，最高位大的大；相同则比下一位。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>十进制计数法</b>：每相邻两个计数单位间的进率都是 <span class="hl">10</span>。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">最大两位数是 99，最小三位数是 100</span>，差 1（100 = 99 + 1）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">5</span>认识人民币（元角分）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">人民币单位</span>：<span class="hl">元、角、分</span>。人民币有纸币、硬币两种形式。</div></div><div class="it"><div class="ct"><span class="hl">元（yuan）角（jiao）分（fen）</span>：1 元=10 角，1 角=10 分。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">1 元 = 10 角</span>　　<span class="form">1 角 = 10 分</span>　　<span class="form">1 元 = 100 分</span></div></div><div class="it"><div class="ct"><span class="hl">大化小乘进率</span>：3 元 = 3×10=30 角 = 3×100=300 分。</div></div><div class="it"><div class="ct"><span class="hl">小化大除进率</span>：30 角 = 30÷10=3 元；50 分 = 50÷10=5 角。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">付钱方法：根据物品价格，凑出<span class="hl">等于或略大于</span>价格的金额；售货员<span class="hl">找零</span>。</div></div><div class="it"><div class="ct">简单计算：1 元 - 3 角 = 7 角；2 元 + 5 角 = 2 元 5 角 = 25 角 = 2.5 元（认识小数意义）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct">换钱练习：5 张 2 角 = 10 角 = 1 元；1 张 5 元可换 50 张 1 角。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">6</span>100 以内加减法（一）：整十数加减与不进位<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">整十数加减</span>：10、20、30...90、100 之间相加减。</div></div><div class="it"><div class="ct"><span class="hl">不进位加法</span>：两位数加一位数（不进位）或两位数加整十数。</div></div><div class="it"><div class="ct"><span class="hl">不退位减法</span>：两位数减一位数（不退位）或两位数减整十数。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="hl">整十数加减整十数</span>：把十位上的数相加减，个位不变。如 30+40=70；80-50=30。</div></div><div class="it"><div class="ct"><b>两位数+整十数</b>：十位加十位，个位不变。如 <span class="hl">35+20=55</span>；<span class="hl">46+30=76</span>。</div></div><div class="it"><div class="ct"><b>两位数-整十数</b>：十位减十位，个位不变。如 <span class="hl">56-30=26</span>；<span class="hl">78-50=28</span>。</div></div><div class="it"><div class="ct"><b>两位数+一位数（不进位）</b>：个位加个位，十位不变。如 <span class="hl">23+4=27</span>；<span class="hl">51+6=57</span>。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>加法交换律</b>：<span class="hl">a+b=b+a</span>（加数位置交换，和不变）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct">整十数相加减的口诀：「十位相加减，末尾 0 不变」。
+      　　★ 例：30+50=（3+5）×10=80；90-40=（9-4）×10=50。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">7</span>100 以内加减法（二）：进位与退位<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">进位加法（笔算雏形）</span>：个位满十向十位进 1。</div></div><div class="it"><div class="ct"><span class="hl">退位减法（笔算雏形）</span>：个位不够减，从十位退 1 当 10。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>两位数+一位数（进位）</b>：① 个位相加；② 满十向十位进 1。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">27+5=27+3+2=30+2=32</span>；<span class="hl">38+4=38+2+2=40+2=42</span>。</div></div><div class="it"><div class="ct"><b>两位数-一位数（退位）</b>：① 个位减个位；② 不够减从十位退 1，个位加 10 再减。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">32-5=32-2-3=30-3=27</span>；<span class="hl">43-7=43-3-4=40-4=36</span>。</div></div><div class="it"><div class="ct"><b>两位数+两位数（不进位）</b>：个位加个位作个位，十位加十位作十位。如 <span class="hl">34+23=57</span>。</div></div><div class="it"><div class="ct"><b>两位数-两位数（不退位）</b>：个位减个位作个位，十位减十位作十位。如 <span class="hl">58-23=35</span>。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>加减法验算</b>：加法用「交换加数」或「和-加数」验算；减法用「差+减数=被减数」或「被减数-差=减数」验算。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">连续加减法从左往右依次计算</span>：a+b-c = (a+b)-c；a-b+c = (a-b)+c。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">8</span>找规律（图形与数列规律）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">规律</span>：事物重复出现的次序或变化趋势。可以是<span class="hl">形状、颜色、数量</span>等的循环或递增。</div></div><div class="it"><div class="ct"><span class="hl">图形规律</span>：颜色或形状按固定模式排列（如红黄蓝红黄蓝...）。</div></div><div class="it"><div class="ct"><span class="hl">数列规律</span>：后一个数比前一个数 <span class="hl">+相同数（递增）、-相同数（递减）、×同数（倍增）</span>。</div></div><div class="it"><div class="ct"><span class="hl">等差数列基础</span>：相邻两项差相同的数列。如 1、3、5、7、9（差 2）；20、18、16、14（差-2）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="hl">第 n 项 = 第 1 项 + (n-1)×公差</span>（初步认识，不要求严格公式）。</div></div><div class="it"><div class="ct">★ 例：数列 5、8、11、14、(?)，公差=3，?=14+3=17。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct">规律的类型：① 周期规律；② 等差规律；③ 等比规律；④ 对称规律；⑤ 复合规律（多个规律叠加）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">找规律步骤：观察→比较→归纳→验证→应用。</span>从局部到整体，关键是找到「重复的单元」。</div></div></div></div></div>
+<a class="bt" href="index.html">🏠 返回知识导航</a>
+<footer class="ft">© 两英豆豆教练</footer>
+</div></body></html>

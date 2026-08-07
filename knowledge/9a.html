@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>九年级上册 · 数学知识总结</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#2ebd85; --b:#2f9df0; --t:#33434b; --l:#8aa09a;
+  --c-concept:#6366f1;   /* 基本概念 紫 */
+  --c-formula:#059669;   /* 基本公式 绿 */
+  --c-theorem:#dc2626;   /* 基本定理 红 */
+  --c-law:#ea580c;       /* 基本定律 橙 */
+  --c-property:#0891b2;  /* 相关性质 青 */
+  --c-formula-bg:#ecfdf5; --c-theorem-bg:#fef2f2; --c-law-bg:#fff7ed; --c-property-bg:#ecfeff;
+  --r:14px;
+}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+  color:var(--t);padding:20px 14px 60px;min-height:100vh;
+  display:flex;justify-content:center;font-size:15px;line-height:1.7}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;
+  overflow:hidden;box-shadow:0 10px 28px rgba(47,157,240,.22);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:100px;height:100px;top:-30px;right:-20px}
+.hdr::after{width:60px;height:60px;bottom:-16px;left:-10px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12.5px;opacity:.95}
+
+.grade-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;
+  padding:10px;background:#fff;border-radius:14px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.gtab{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+  text-decoration:none;color:var(--t);background:#f1f5f9;transition:all .2s}
+.gtab.current{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+.gtab:hover{transform:translateY(-1px)}
+
+.ch{display:flex;flex-direction:column;gap:10px}
+.cd{background:#fff;border-radius:var(--r);box-shadow:0 4px 12px rgba(47,157,240,.06);overflow:hidden;
+  border-left:4px solid var(--b)}
+.cd.open{border-left-color:var(--g)}
+.cdt{padding:12px 16px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer}
+.cdt .ch-num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.cdt .ar{font-size:.8rem;color:var(--l);margin-left:auto;transition:transform .25s}
+.cd.open .ar{transform:rotate(180deg)}
+.cdb{max-height:0;overflow:hidden;transition:max-height .35s}
+.cd.open .cdb{max-height:6000px;padding:4px 16px 16px}
+
+.it{margin-bottom:10px;line-height:1.75}
+.it.lb-concept .lb{background:#eef2ff;color:var(--c-concept);border-left-color:#a5b4fc}
+.it.lb-formula .lb{background:var(--c-formula-bg);color:var(--c-formula);border-left-color:#34d399}
+.it.lb-theorem .lb{background:var(--c-theorem-bg);color:var(--c-theorem);border-left-color:#fca5a5}
+.it.lb-law .lb{background:var(--c-law-bg);color:var(--c-law);border-left-color:#fdba74}
+.it.lb-property .lb{background:var(--c-property-bg);color:var(--c-property);border-left-color:#67e8f9}
+.it .lb{
+  display:inline-block;font-weight:700;font-size:.85rem;
+  padding:3px 10px;border-radius:6px;margin-bottom:4px;border-left:3px solid;
+  letter-spacing:.5px;
+}
+.it .ct{font-size:.92rem;color:#1f2937;padding-left:2px}
+.it .ct .hl{background:linear-gradient(180deg,transparent 60%,#fef08a 60%);
+  font-weight:700;padding:0 2px}
+.it .ct .form{background:var(--c-formula-bg);color:#047857;padding:2px 6px;
+  border-radius:6px;font-weight:700;font-family:Georgia,serif;
+  border:1px solid #a7f3d0}
+.it .ct .fr{color:var(--c-theorem);font-weight:700}
+.it ul{margin:4px 0 4px 20px;padding:0}
+.it ul li{margin-bottom:2px}
+
+.bt{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt:hover{transform:translateY(-1px)}
+.ft{width:100%;margin-top:14px;text-align:center;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+<header class="hdr"><h1>九年级上册 · 数学知识总结</h1><p class="sub">人教版 · 2024修订新课标 · 基本概念 · 公式 · 定理 · 定律 · 性质</p></header>
+<div class="ch"><div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">1</span>一元二次方程（关键方程）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">一元二次方程</span>：含一个未知数且未知数次数最高是 2 的方程。一般式 <span class="hl">ax² + bx + c = 0</span>（a≠0）。</div></div><div class="it"><div class="ct"><span class="hl">方程根</span>：使方程成立的未知数值。</div></div><div class="it"><div class="ct"><span class="hl">完全平方方程：<span class="hl">(mx+n)² = k 型。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>求根公式（核心公式）</b>：</div></div><div class="it"><div class="ct"><span class="form">x = [-b ± √(b² - 4ac)] / 2a</span>　（Δ = b² - 4ac 必须在 ≥0）</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>根的判别式 Δ = b² - 4ac（核心定理）</b>：</div></div><div class="it"><div class="ct">① Δ &gt; 0 → 方程有<span class="hl">两个不相等实数根</span>；</div></div><div class="it"><div class="ct">② Δ = 0 → 方程有<span class="hl">两个相等实数根（重根）</span>；</div></div><div class="it"><div class="ct">③ Δ &lt; 0 → 方程<span class="hl">无实数根</span>。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><b>解一元二次方程四法：<b>① 直接开平方法（适用于 (x+a)² = k）；② 配方法；③ 公式法；④ 因式分解法（ax²+bx+c 分解）。</div></div><div class="it"><div class="ct">★ 公式法例：<span class="hl">2x² - 7x + 3 = 0；a=2, b=-7, c=3；Δ=49-24=25&gt;0；x=(7±5)/4；x=3 或 x=1/2。</span></div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>韦达定理（根与系数关系）</b>：若 x₁、x₂ 是 ax²+bx+c=0（a≠0）的两根：</div></div><div class="it"><div class="ct">① <span class="hl">x₁ + x₂ = -b/a</span>　（根之和 = -b/a）</div></div><div class="it"><div class="ct">② <span class="hl">x₁ × x₂ = c/a</span>　（根之积 = c/a）</div></div><div class="it"><div class="ct">★ 应用：已知一根代入；判根的符号、大小关系。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">根的几何意义：<span class="hl">y = ax²+bx+c 的图像与 x 轴交点的横坐标就是方程的实根。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">2</span>二次函数（图像与性质）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">二次函数</span>：形如 <span class="hl">y = ax² + bx + c（a≠0）</span> 的函数。</div></div><div class="it"><div class="ct"><span class="hl">抛物线：<span class="hl">二次函数的图像叫抛物线，a 决定开口方向。</div></div><div class="it"><div class="ct"><span class="hl">顶点与对称轴：<span class="hl">对称轴 x = -b/(2a)，顶点 (-b/(2a), (4ac-b²)/(4a))。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>三种形式：<b></div></div><div class="it"><div class="ct">① 一般式 <span class="form">y = ax² + bx + c</span></div></div><div class="it"><div class="ct">② 顶点式 <span class="form">y = a(x - h)² + k</span>　顶点 (h, k)</div></div><div class="it"><div class="ct">③ 交点式 <span class="form">y = a(x - x₁)(x - x₂)</span>　x₁, x₂ 是 x 轴交点（方程根）</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>开口与 a 的关系：<b>a &gt; 0 开口向上（y 有最小值在顶点）；a &lt; 0 开口向下（y 有最大值在顶点）。</div></div><div class="it"><div class="ct"><b>对称性：<b>关于对称轴对称，对称轴左右等距的两点 y 值相等。</div></div><div class="it"><div class="ct"><b>值域：<b>a&gt;0 时 y ≥ 顶点 y 值；a&lt;0 时 y ≤ 顶点 y 值。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【应用】最值问题（把条件代入得二次函数，再求顶点）；二次函数与 x 轴交点 = 对应方程的根。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">3</span>旋转（图形变换）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">旋转：<span class="hl">一个图形绕某点 O 转一定角度的运动。</div></div><div class="it"><div class="ct"><span class="hl">旋转三要素：<span class="hl">旋转中心、旋转方向（顺/逆时针）、旋转角度。</div></div><div class="it"><div class="ct"><span class="hl">旋转不变性：<span class="hl">图形的形状、大小、对应线段长度、对应角大小均不变。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>旋转性质</b>：① 对应点到旋转中心距离相等；② 对应点连线与旋转中心所成的角 = 旋转角。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><b>作旋转图形步骤：<b>① 标旋转中心与方向角度；② 用量角器转每个顶点；③ 平移距离 = 各点到中心的距离（保持不变）；④ 连线。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">中心对称：<span class="hl">旋转 180° 后能重合的图形（中心对称图形）。如平行四边形、圆。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">4</span>圆（圆心圆周角定理）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">弧、弦、圆心角、圆周角：<span class="hl">圆上两点间的一段叫弧；连接两点的线段叫弦；圆心向弧所张角叫圆心角；顶点在圆上的角叫圆周角。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>垂径定理</b>：垂直于弦的直径<span class="hl">平分弦</span>，且<span class="hl">平分弦所对的两条弧</span>。</div></div><div class="it"><div class="ct">推论：平分弦（不是直径）的直径垂直于弦。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>圆心角定理（核心）</b>：同弧（或等弧）所对的圆心角 = 圆周角的 <span class="hl">2 倍</span>。</div></div><div class="it"><div class="ct"><b>圆周角定理：<b>同弧所对的圆周角相等；直径所对的圆周角 = 90°（90°角看直径）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>圆内接四边形</b>：对角互补（两对角之和 = 180°）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>切线判定</b>：① 直线过圆心且垂直于半径；② 直线与圆只一个交点且过圆心；③ 圆心到直线距离 = 半径。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">切线性质：</span>① 切线垂直于过切点的半径；② 切线长相等（从外点引两条切线）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">5</span>概率初步<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">事件：<span class="hl">在一定条件下可能发生也可能不发生的事情。</div></div><div class="it"><div class="ct"><span class="hl">事件类型：<span class="hl">必然事件（一定发生）、不可能事件（一定不发生）、随机事件（可能发生）。</div></div><div class="it"><div class="ct"><span class="hl">概率</span>：一个事件发生的可能性大小的数值，记 P(A)。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">0 ≤ P(A) ≤ 1　（确定事件 P=0 或 P=1；不可能事件 P=0）</span></div></div><div class="it"><div class="ct"><b>古典概率公式（核心）</b>：<span class="form">P(A) = 事件 A 可能结果数 ÷ 所有等可能结果总数</span></div></div><div class="it"><div class="ct">★ 例：抛硬币正面 P=1/2；掷骰子 6 的 P=1/6；从 52 张扑克抽 A P=4/52=1/13。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>概率加法（互斥事件）</b>：P(A∪B) = P(A) + P(B)（A、B 不同时发生）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【频率与概率】频率（试验值）→ 概率（理论值）；试验次数越多，频率越接近概率。</div></div></div></div></div>
+<a class="bt" href="index.html">🏠 返回知识导航</a>
+<footer class="ft">© 两英豆豆教练</footer>
+</div></body></html>

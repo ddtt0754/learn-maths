@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>五年级上册 · 数学知识总结</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#2ebd85; --b:#2f9df0; --t:#33434b; --l:#8aa09a;
+  --c-concept:#6366f1;   /* 基本概念 紫 */
+  --c-formula:#059669;   /* 基本公式 绿 */
+  --c-theorem:#dc2626;   /* 基本定理 红 */
+  --c-law:#ea580c;       /* 基本定律 橙 */
+  --c-property:#0891b2;  /* 相关性质 青 */
+  --c-formula-bg:#ecfdf5; --c-theorem-bg:#fef2f2; --c-law-bg:#fff7ed; --c-property-bg:#ecfeff;
+  --r:14px;
+}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+  color:var(--t);padding:20px 14px 60px;min-height:100vh;
+  display:flex;justify-content:center;font-size:15px;line-height:1.7}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;
+  overflow:hidden;box-shadow:0 10px 28px rgba(47,157,240,.22);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:100px;height:100px;top:-30px;right:-20px}
+.hdr::after{width:60px;height:60px;bottom:-16px;left:-10px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12.5px;opacity:.95}
+
+.grade-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;
+  padding:10px;background:#fff;border-radius:14px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.gtab{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+  text-decoration:none;color:var(--t);background:#f1f5f9;transition:all .2s}
+.gtab.current{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+.gtab:hover{transform:translateY(-1px)}
+
+.ch{display:flex;flex-direction:column;gap:10px}
+.cd{background:#fff;border-radius:var(--r);box-shadow:0 4px 12px rgba(47,157,240,.06);overflow:hidden;
+  border-left:4px solid var(--b)}
+.cd.open{border-left-color:var(--g)}
+.cdt{padding:12px 16px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer}
+.cdt .ch-num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.cdt .ar{font-size:.8rem;color:var(--l);margin-left:auto;transition:transform .25s}
+.cd.open .ar{transform:rotate(180deg)}
+.cdb{max-height:0;overflow:hidden;transition:max-height .35s}
+.cd.open .cdb{max-height:6000px;padding:4px 16px 16px}
+
+.it{margin-bottom:10px;line-height:1.75}
+.it.lb-concept .lb{background:#eef2ff;color:var(--c-concept);border-left-color:#a5b4fc}
+.it.lb-formula .lb{background:var(--c-formula-bg);color:var(--c-formula);border-left-color:#34d399}
+.it.lb-theorem .lb{background:var(--c-theorem-bg);color:var(--c-theorem);border-left-color:#fca5a5}
+.it.lb-law .lb{background:var(--c-law-bg);color:var(--c-law);border-left-color:#fdba74}
+.it.lb-property .lb{background:var(--c-property-bg);color:var(--c-property);border-left-color:#67e8f9}
+.it .lb{
+  display:inline-block;font-weight:700;font-size:.85rem;
+  padding:3px 10px;border-radius:6px;margin-bottom:4px;border-left:3px solid;
+  letter-spacing:.5px;
+}
+.it .ct{font-size:.92rem;color:#1f2937;padding-left:2px}
+.it .ct .hl{background:linear-gradient(180deg,transparent 60%,#fef08a 60%);
+  font-weight:700;padding:0 2px}
+.it .ct .form{background:var(--c-formula-bg);color:#047857;padding:2px 6px;
+  border-radius:6px;font-weight:700;font-family:Georgia,serif;
+  border:1px solid #a7f3d0}
+.it .ct .fr{color:var(--c-theorem);font-weight:700}
+.it ul{margin:4px 0 4px 20px;padding:0}
+.it ul li{margin-bottom:2px}
+
+.bt{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt:hover{transform:translateY(-1px)}
+.ft{width:100%;margin-top:14px;text-align:center;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+<header class="hdr"><h1>五年级上册 · 数学知识总结</h1><p class="sub">人教版 · 2024修订新课标 · 基本概念 · 公式 · 定理 · 定律 · 性质</p></header>
+<div class="ch"><div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">1</span>小数乘法（积与小数位数）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">小数乘法意义</span>：求几个相同加数的和（已知一个小数和整数），或求积（如商品总价=单价×数量）。</div></div><div class="it"><div class="ct"><span class="hl">小数点位置</span>：因数中共几位小数，积就有几位小数（先按整数算，再点小数点）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>小数乘法步骤</b>：① 按整数乘法算出积；② 数因数共有几位小数；③ 从积右边起数同样位数，点小数点。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">0.45×3=1.35</span>（45×3=135，因数共 2 位小数，积 2 位小数）。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">1.2×0.8=0.96</span>（12×8=96，因数共 2 位小数，积 2 位，前面补 0）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>积与因数大小关系：</b>① 一个因数&gt;1，积&gt;另一个因数；② 一个因数&lt;1，积&lt;另一个因数；③ 一个因数=1，积=另一因数。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【积取近似数】先算积，按「四舍五入」取近似；带 <span class="hl">0 末尾可化简</span>（如 1.200 = 1.2）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">2</span>位置（数对与方向）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">数对</span>：用两个数表示位置，写法 (列, 行)，先列后行。</div></div><div class="it"><div class="ct"><span class="hl">列与行</span>：从左到右为列（起点 1），从下到上为行（起点 1）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>数对读法：<b>先读列再读行，如 (3, 2) = 第 3 列第 2 行。</div></div><div class="it"><div class="ct">★ 例：座位图 (A, 4) 表示 A 列第 4 行（前面看戏台）；棋盘 (5, 3) 表示第 5 列第 3 行。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>数对唯一性原则：<b>同一位置上不同物体的数对不同，但位置相同的数对必须一致。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">3</span>小数除法（除数 1位与多位）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">除数是整数的小数除法</span>：商的小数点与被除数小数点对齐。</div></div><div class="it"><div class="ct"><span class="hl">除数是小数的小数除法</span>：除数化为整数，同时被除数扩大同样倍数。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>小数除法步骤</b>：① 商的小数点对齐被除数；② 按整数除法算；③ 除到余数为 0 或达到精度要求。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">10.8 ÷ 12 = 0.9</span>（108÷120 = ? 用商不变规律化为 10.8÷1.2 = 9 → 0.9）。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>商不变规律（核心定理）</b>：<span class="hl">被除数与除数同 ×/÷ 非 0 数，商不变。</span></div></div><div class="it"><div class="ct">★ 应用：<span class="hl">1.5÷0.25=(1.5×4)÷(0.25×4)=6÷1=6</span>（化除数成整数）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">循环小数</span>：当除不尽时，商的小数部分从某位开始重复的数。如 10÷3=3.333... 写作 <span class="hl">3.\dot3</span>。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【精确到指定位】保留位数后一位「四舍五入」：如 5.687 保留两位 = 5.69。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">4</span>可能性（事件分类）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">事件类型</span>：确定事件（一定会发生/一定不会发生）；不确定事件（可能发生）。</div></div><div class="it"><div class="ct"><span class="hl">可能性大小</span>：在数据充足的情况下，事件 A 发生次数占总数的比例越大，A 发生可能性越大。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【判断可能性】① 看事件是否必然 → 确定事件；② 比较可能性大小 → 计算频率（次数÷总次数）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>必然事件、不可能事件、随机事件</b>：① 太阳从东方升起（必然）；② 明天是星期一（不一定，可能）；③ 抛硬币正反（随机 50%）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">5</span>简易方程（一元一次方程入门）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">方程</span>：含有未知数的等式（如 2x+5=11）。</div></div><div class="it"><div class="ct"><span class="hl">方程的解</span>：使方程左右相等的未知数的值。</div></div><div class="it"><div class="ct"><span class="hl">解方程</span>：求方程的解的过程。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>等式性质 1（加/减）</b>：等式两边同时加（或减）同一个数，等式仍成立。</div></div><div class="it"><div class="ct"><b>等式性质 2（乘/除）</b>：等式两边同时乘（或除）同一个<span class="hl">非 0</span>数，等式仍成立。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【解方程三步】① 移项（带 x 移一边，常数移另一边，符号改变）；② 化简（合并同类项）；③ 两边同除以系数。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">3x+7=22 → 3x=15 → x=5</span>。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>方程与等式的区别：<b>方程必含未知数；等式不一定。等式不一定有解；方程若成立必有解（高次方程可无解）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">6</span>多边形面积（平行四边形、三角形、梯形）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">面积定义</span>：物体表面的大小，常用单位 cm²、dm²、m²。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">平行四边形面积 = 底 × 高（记 S = a·h）</span></div></div><div class="it"><div class="ct"><span class="form">三角形面积 = 底 × 高 ÷ 2（记 S = a·h ÷ 2）</span></div></div><div class="it"><div class="ct"><span class="form">梯形面积 = (上底 + 下底) × 高 ÷ 2（记 S = (a+b)·h ÷ 2）</span></div></div><div class="it"><div class="ct">★ 例：平行四边形底 8、高 5，面积 <span class="hl">= 8×5 = 40 cm²</span>；三角形底 8 高 5，面积 <span class="hl">= 8×5÷2 = 20</span>；梯形上 4 下 6 高 5，面积 <span class="hl">=(4+6)×5÷2 = 25</span>。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>等积变形规律：<b>把平行四边形沿高剪开拼接为长方形，面积不变；高不变，底 = 长方形的长。</b></div></div><div class="it"><div class="ct"><b>三角形与平行四边形关系：<b>等底等高的三角形面积是平行四边形的一半。</b></div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【找高技巧】在组合图形中，从「垂直距离」识别每个图形的高；钝角三角形画外高线。</div></div></div></div></div>
+<a class="bt" href="index.html">🏠 返回知识导航</a>
+<footer class="ft">© 两英豆豆教练</footer>
+</div></body></html>

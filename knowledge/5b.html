@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>五年级下册 · 数学知识总结</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#2ebd85; --b:#2f9df0; --t:#33434b; --l:#8aa09a;
+  --c-concept:#6366f1;   /* 基本概念 紫 */
+  --c-formula:#059669;   /* 基本公式 绿 */
+  --c-theorem:#dc2626;   /* 基本定理 红 */
+  --c-law:#ea580c;       /* 基本定律 橙 */
+  --c-property:#0891b2;  /* 相关性质 青 */
+  --c-formula-bg:#ecfdf5; --c-theorem-bg:#fef2f2; --c-law-bg:#fff7ed; --c-property-bg:#ecfeff;
+  --r:14px;
+}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+  color:var(--t);padding:20px 14px 60px;min-height:100vh;
+  display:flex;justify-content:center;font-size:15px;line-height:1.7}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;
+  overflow:hidden;box-shadow:0 10px 28px rgba(47,157,240,.22);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:100px;height:100px;top:-30px;right:-20px}
+.hdr::after{width:60px;height:60px;bottom:-16px;left:-10px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12.5px;opacity:.95}
+
+.grade-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;
+  padding:10px;background:#fff;border-radius:14px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.gtab{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+  text-decoration:none;color:var(--t);background:#f1f5f9;transition:all .2s}
+.gtab.current{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+.gtab:hover{transform:translateY(-1px)}
+
+.ch{display:flex;flex-direction:column;gap:10px}
+.cd{background:#fff;border-radius:var(--r);box-shadow:0 4px 12px rgba(47,157,240,.06);overflow:hidden;
+  border-left:4px solid var(--b)}
+.cd.open{border-left-color:var(--g)}
+.cdt{padding:12px 16px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer}
+.cdt .ch-num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.cdt .ar{font-size:.8rem;color:var(--l);margin-left:auto;transition:transform .25s}
+.cd.open .ar{transform:rotate(180deg)}
+.cdb{max-height:0;overflow:hidden;transition:max-height .35s}
+.cd.open .cdb{max-height:6000px;padding:4px 16px 16px}
+
+.it{margin-bottom:10px;line-height:1.75}
+.it.lb-concept .lb{background:#eef2ff;color:var(--c-concept);border-left-color:#a5b4fc}
+.it.lb-formula .lb{background:var(--c-formula-bg);color:var(--c-formula);border-left-color:#34d399}
+.it.lb-theorem .lb{background:var(--c-theorem-bg);color:var(--c-theorem);border-left-color:#fca5a5}
+.it.lb-law .lb{background:var(--c-law-bg);color:var(--c-law);border-left-color:#fdba74}
+.it.lb-property .lb{background:var(--c-property-bg);color:var(--c-property);border-left-color:#67e8f9}
+.it .lb{
+  display:inline-block;font-weight:700;font-size:.85rem;
+  padding:3px 10px;border-radius:6px;margin-bottom:4px;border-left:3px solid;
+  letter-spacing:.5px;
+}
+.it .ct{font-size:.92rem;color:#1f2937;padding-left:2px}
+.it .ct .hl{background:linear-gradient(180deg,transparent 60%,#fef08a 60%);
+  font-weight:700;padding:0 2px}
+.it .ct .form{background:var(--c-formula-bg);color:#047857;padding:2px 6px;
+  border-radius:6px;font-weight:700;font-family:Georgia,serif;
+  border:1px solid #a7f3d0}
+.it .ct .fr{color:var(--c-theorem);font-weight:700}
+.it ul{margin:4px 0 4px 20px;padding:0}
+.it ul li{margin-bottom:2px}
+
+.bt{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt:hover{transform:translateY(-1px)}
+.ft{width:100%;margin-top:14px;text-align:center;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+<header class="hdr"><h1>五年级下册 · 数学知识总结</h1><p class="sub">人教版 · 2024修订新课标 · 基本概念 · 公式 · 定理 · 定律 · 性质</p></header>
+<div class="ch"><div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">1</span>观察物体（三）：根据视图还原立体<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">由三视图推出立体形状</span>：根据主视图（前面）、左视图（左面）、俯视图（上面）的形状，反推立体组成。</div></div><div class="it"><div class="ct"><span class="hl">同视图不同立体</span>：三视图都相同的立体可能有多种——堆叠方式或层数不同。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">拼搭还原四步：</span>① 看俯视图（图层结构）；② 看主视图（图层列数）；③ 看左视图（图层行数）；④ 综合还原。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>正方体组合三视图规律：<b>主视图与左视图层数 == 主视图与俯视图列数（满足高平齐、长对正、宽相等）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">2</span>因数与倍数（数论基础）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">因数与倍数</span>：a÷b=c（a、b、c 均为非 0 整数），则 b 是 a 的因数，a 是 b 的倍数。</div></div><div class="it"><div class="ct"><span class="hl">质数（素数）</span>：只有 1 和它本身两个因数的数（最小质数是 2）。</div></div><div class="it"><div class="ct"><span class="hl">合数</span>：除了 1 和本身还有别的因数的数（最小合数是 4）。</div></div><div class="it"><div class="ct"><span class="hl">1 既不是质数也不是合数</span>。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>2 的倍数特征：</b>个位是 0、2、4、6、8 的数。</div></div><div class="it"><div class="ct"><b>5 的倍数特征：</b>个位是 0 或 5 的数。</div></div><div class="it"><div class="ct"><b>3 的倍数特征：</b>各位数字之和能被 3 整除（也适用于 9 倍数：各位和能被 9 整除）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>偶数与奇数：</b>能被 2 整除是<span class="hl">偶数</span>（0 也是偶数），不能被 2 整除是<span class="hl">奇数</span>。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">找因数：按序 1→a/2 检查整除性；找倍数：在自然数范围内，从 1 倍乘起。</span></div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">互质数</span>：两个数公因数只有 1（例 8 与 9，最大公因数=1）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">3</span>长方体和正方体（体积表面积）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">长方体要素：<span class="hl">长、宽、高</span>。正方体要素：<span class="hl">棱长</span>。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">长方体表面积 S = 2(ab + ah + bh) = 2(a·b + a·h + b·h)</span></div></div><div class="it"><div class="ct"><span class="form">正方体表面积 S = 6a²（6 × 棱长²）</span></div></div><div class="it"><div class="ct"><span class="form">长方体体积 V = a × b × h（长 × 宽 × 高）</span>　<span class="form">正方体体积 V = a³（棱长³）</span></div></div><div class="it"><div class="ct"><b>通用体积公式：<b><span class="hl">V = 底面积 × 高</span>（任何柱体适用）。</div></div><div class="it"><div class="ct">★ 长方体长 5、宽 4、高 3：表面积 <span class="hl">=2(5×4+5×3+4×3)=94 cm²</span>，体积 <span class="hl">=5×4×3=60 cm³</span>。</div></div><div class="it"><div class="ct">★ 正方体棱长 5：表面积 <span class="hl">=6×25=150 cm²</span>，体积 <span class="hl">=5³=125 cm³</span>。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>体积单位进率：<b>1 m³ = 1000 dm³ = 1000000 cm³　1 dm³ = 1000 cm³。</div></div><div class="it"><div class="ct"><b>容积单位：<b>1 L = 1 dm³；1 mL = 1 cm³；1 L = 1000 mL。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>表面积用面积单位（cm²/dm²/m²），体积用体积单位（cm³/dm³/m³），单位不同不可直接比较。</b></div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">4</span>分数的意义和性质<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">分数单位</span>：把单位「1」平均分成若干份，取其中一份叫做分数单位（分母决定分数单位大小）。</div></div><div class="it"><div class="ct"><span class="hl">真分数与假分数</span>：分子&lt;分母是真分数（值&lt;1）；分子≥分母是假分数（值≥1）。</div></div><div class="it"><div class="ct"><span class="hl">带分数</span>：整数与真分数合成的数（如 1¾）。</div></div><div class="it"><div class="ct"><span class="hl">分数与除法关系</span>：a÷b = a/b（b≠0）。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>分数基本性质（核心定理）</b>：分子与分母<span class="hl">同 × 或同 ÷ 非 0 整数</span>，分数大小不变。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">2/3=4/6=6/9；3/12=1/4（≈分后）</span>。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【约分步骤】① 找分子分母最大公因数；② 同除以它；③ 化为最简分数。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【通分步骤】① 找最小公分母（分母最小公倍数）；② 化为同分母分数。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>分数比较大小：<b>① 同分母比分子；② 同分子比分母；③ 化为小数或同分母比；④ 交叉相乘（a/b ? c/d，看 a·d ? b·c）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">最大公因数 × 最小公倍数 = 两数之积（特殊：两数互质时，最大公因数=1，最小公倍数=两数之积）。</span></div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">5</span>图形的运动（三）：旋转<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">旋转三要素：<span class="hl">旋转中心、旋转方向（顺/逆时针）、旋转角度。</span></div></div><div class="it"><div class="ct"><span class="hl">旋转后图形性质</span>：形状、大小不变；位置、方向可变。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>旋转对应点连线特征：<b>每对对应点与旋转中心距离相等，连成的角等于旋转角度。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【画旋转图形】① 标旋转中心；② 用三角板量角度；③ 描点描线；④ 连图形。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">轴对称、平移、旋转三运动对比：<span class="hl">① 轴对称 = 关于直线折叠；② 平移 = 沿直线移动；③ 旋转 = 绕中心转动。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">6</span>分数的加法和减法<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">分数加减法前提</span>：必须分母相同（同分母）或先化为同分母（通分）。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>同分母加减：<b>分母不变，分子相加减。例：<span class="hl">3/7+2/7=5/7</span>；<span class="hl">5/9-2/9=3/9=1/3</span>。</div></div><div class="it"><div class="ct"><b>异分母加减：<b>① 通分化为同分母；② 分子相加减；③ 化为最简。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">1/2+1/3=3/6+2/6=5/6</span>。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>分数加法交换律：<b>a/b + c/d = c/d + a/b（结果不变）。</div></div><div class="it"><div class="ct"><b>分数加法结合律：<b>(a/b + c/d) + e/f = a/b + (c/d + e/f)。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">结果处理：能约分的要约成最简（带分数可保持）；分数加减的中间结果不影响结果。</span></div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">7</span>折线统计图（趋势分析）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">折线统计图</span>：用点表示数据，用线段连接，反映数据<span class="hl">变化趋势</span>。</div></div><div class="it"><div class="ct"><span class="hl">横轴：<span class="hl">时间或类别（如月份）；纵轴：数据量。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【绘制步骤】① 确定横纵标题；② 标尺与刻度；③ 描点连折线；④ 标注数据（如峰值、谷值）。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>折线图优势：<b>① 反映增减变化快慢；② 便于预测；③ 与条形图结合使用（条形+折线）。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">8</span>数学广角：找次品（推理初步）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">找次品问题</span>：若干外观相同物品中有一个质量不同的（更轻或更重），用天平找出最少的称量次数。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><b>三等分称量法（最优策略）</b>：每次把物品尽量均分为 3 份。</div></div><div class="it"><div class="ct">★ 例：9 个零件找次品（1 个轻），最优 <span class="hl">2 次</span>：① 分 3、3、3；取两组比，次品在轻组；② 把 3 个再分 1、1、1；两个比，第三次单独称。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>找次品定理（核心）</b>：n 个物品找次品的最少次数 = k，满足 3^(k-1) &lt; n ≤ 3^k。</div></div><div class="it"><div class="ct">★ 关系：3 个 1 次，4~9 个 2 次，10~27 个 3 次，28~81 个 4 次。</div></div></div></div></div>
+<a class="bt" href="index.html">🏠 返回知识导航</a>
+<footer class="ft">© 两英豆豆教练</footer>
+</div></body></html>

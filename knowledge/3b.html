@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>三年级下册 · 数学知识总结</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#2ebd85; --b:#2f9df0; --t:#33434b; --l:#8aa09a;
+  --c-concept:#6366f1;   /* 基本概念 紫 */
+  --c-formula:#059669;   /* 基本公式 绿 */
+  --c-theorem:#dc2626;   /* 基本定理 红 */
+  --c-law:#ea580c;       /* 基本定律 橙 */
+  --c-property:#0891b2;  /* 相关性质 青 */
+  --c-formula-bg:#ecfdf5; --c-theorem-bg:#fef2f2; --c-law-bg:#fff7ed; --c-property-bg:#ecfeff;
+  --r:14px;
+}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+  color:var(--t);padding:20px 14px 60px;min-height:100vh;
+  display:flex;justify-content:center;font-size:15px;line-height:1.7}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;
+  overflow:hidden;box-shadow:0 10px 28px rgba(47,157,240,.22);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:100px;height:100px;top:-30px;right:-20px}
+.hdr::after{width:60px;height:60px;bottom:-16px;left:-10px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12.5px;opacity:.95}
+
+.grade-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;
+  padding:10px;background:#fff;border-radius:14px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.gtab{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+  text-decoration:none;color:var(--t);background:#f1f5f9;transition:all .2s}
+.gtab.current{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+.gtab:hover{transform:translateY(-1px)}
+
+.ch{display:flex;flex-direction:column;gap:10px}
+.cd{background:#fff;border-radius:var(--r);box-shadow:0 4px 12px rgba(47,157,240,.06);overflow:hidden;
+  border-left:4px solid var(--b)}
+.cd.open{border-left-color:var(--g)}
+.cdt{padding:12px 16px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer}
+.cdt .ch-num{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.cdt .ar{font-size:.8rem;color:var(--l);margin-left:auto;transition:transform .25s}
+.cd.open .ar{transform:rotate(180deg)}
+.cdb{max-height:0;overflow:hidden;transition:max-height .35s}
+.cd.open .cdb{max-height:6000px;padding:4px 16px 16px}
+
+.it{margin-bottom:10px;line-height:1.75}
+.it.lb-concept .lb{background:#eef2ff;color:var(--c-concept);border-left-color:#a5b4fc}
+.it.lb-formula .lb{background:var(--c-formula-bg);color:var(--c-formula);border-left-color:#34d399}
+.it.lb-theorem .lb{background:var(--c-theorem-bg);color:var(--c-theorem);border-left-color:#fca5a5}
+.it.lb-law .lb{background:var(--c-law-bg);color:var(--c-law);border-left-color:#fdba74}
+.it.lb-property .lb{background:var(--c-property-bg);color:var(--c-property);border-left-color:#67e8f9}
+.it .lb{
+  display:inline-block;font-weight:700;font-size:.85rem;
+  padding:3px 10px;border-radius:6px;margin-bottom:4px;border-left:3px solid;
+  letter-spacing:.5px;
+}
+.it .ct{font-size:.92rem;color:#1f2937;padding-left:2px}
+.it .ct .hl{background:linear-gradient(180deg,transparent 60%,#fef08a 60%);
+  font-weight:700;padding:0 2px}
+.it .ct .form{background:var(--c-formula-bg);color:#047857;padding:2px 6px;
+  border-radius:6px;font-weight:700;font-family:Georgia,serif;
+  border:1px solid #a7f3d0}
+.it .ct .fr{color:var(--c-theorem);font-weight:700}
+.it ul{margin:4px 0 4px 20px;padding:0}
+.it ul li{margin-bottom:2px}
+
+.bt{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt:hover{transform:translateY(-1px)}
+.ft{width:100%;margin-top:14px;text-align:center;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+<header class="hdr"><h1>三年级下册 · 数学知识总结</h1><p class="sub">人教版 · 2024修订新课标 · 基本概念 · 公式 · 定理 · 定律 · 性质</p></header>
+<div class="ch"><div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">1</span>位置与方向（一）：认识八个方向<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">方向</span>：东、南、西、北是四个基本方向。</div></div><div class="it"><div class="ct"><span class="hl">八个方向</span>：在四基本方向间加入东北、东南、西北、西南四个方向。</div></div><div class="it"><div class="ct"><span class="hl">地图方向</span>：「上北下南，左西右东」是地图的默认方向。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">指南针：红色指针指北，白色指针指南。阳光下影子方向：北半球影子指向北、南半球指向南。</span></div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">方向的相对性</span>：东南与西北相反，东北与西南相反，东与西相对，南与北相对。</div></div><div class="it"><div class="ct">【方向判定步骤】① 找对照点（出发点）；② 找目标点；③ 描述目标点在参照点的「东南西北」方向。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">2</span>除数是一位数的除法（口算与笔算）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">口算整百数十位为 0 的除法</span>：如 400÷2，把百位看作十位算（4÷2=2，2 个百=200）。</div></div><div class="it"><div class="ct"><span class="hl">笔算除法顺序：</span>从最高位除起，每次取一位除，商写在该位上；余数接下面。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>笔算除法四步：</b>① 一商；② 二乘；③ 三减；④ 四比（看余数与除数）。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">256÷4=64</span>　256 百位 2 不够除，看前两位 25÷4 商 6 → 6×4=24 → 25-24=1；落 6：16÷4 商 4 → 4×4=16 → 16-16=0。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>乘除互逆定律</b>：a÷b=c ↔ b×c=a。可验算。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>0 除任何非 0 数 = 0；任何数除以 1 = 本身。0 不能作除数（无意义）。</b></div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">估算与精算结合：先用估算判断商的位数，再用笔算精算。例：256÷4 在 60 附近，验算 4×60=240，剩 16 是 4×4=16，即商 64。</span></div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">除法竖式中，余数必须比除数小，否则商小了，要补商。</span></div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">3</span>复式统计表（多变量统计）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">复式统计表</span>：把两个或多个统计项目合并在一张表，便于<span class="hl">横向纵向对比</span>。</div></div><div class="it"><div class="ct"><span class="hl">表头</span>：左上角的格子，告诉阅读者行列含义。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【复式统计表制作】① 确定要统计的项目；② 设计行列表头；③ 收集数据填入；④ 求合计分析。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">统计观察双角度</span>：横向比较查看同一项目不同对象差异，纵向比较不同项目同一对象强弱。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">数据分析三步</span>：收集→整理→分析，最终得出结论或建议。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">4</span>两位数乘两位数（含进位）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">笔算顺序：个位×两位数 → 十位×两位数（积末位对齐十位）→ 两个部分积相加。</span></div></div><div class="it"><div class="ct"><span class="hl">积的位数</span>：因数都是两位数，积可能是三位或四位。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><b>两位数×两位数笔算：</b>① 第二个因数个位×第一个；② 十位×第一个（结果末位对十位）；③ 加起来。</div></div><div class="it"><div class="ct">★ 例：<span class="hl">24×13=312</span>　个位 24×3=72 写 72；十位 24×1=24 写 240；72+240=312。</div></div><div class="it"><div class="ct">★ 例（进位）：<span class="hl">28×35=980</span>　28×5=140 写 40 进 1；28×3+1=85 写 85 → 850+140=990...等等。</div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>乘法分配律</b>：<span class="hl">a×(b+c) = a×b + a×c</span>。例：<span class="hl">13×24=13×(20+4)=260+52=312</span>。</div></div><div class="it"><div class="ct"><b>乘法交换律与结合律在多位数中仍成立</b>，可凑整简算。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">估算求积范围（验算）</b>：一个因数在范围 a1-a2，另一个在 b1-b2，则积在 (a1×b1)-(a2×b2) 范围。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">5</span>面积（长方形正方形面积）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">面积</span>：物体表面或平面图形的大小。</div></div><div class="it"><div class="ct"><span class="hl">面积单位</span>：cm²、dm²、m²，每相邻两单位进率 100。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">长方形面积 = 长 × 宽（记 S=ab）</span></div></div><div class="it"><div class="ct"><span class="form">正方形面积 = 边长 × 边长（记 S=a²）</span></div></div><div class="it"><div class="ct">★ 例：长方形长 8 宽 5，<span class="hl">面积=8×5=40 cm²</span>；边长 7 的正方形，<span class="hl">面积=7×7=49 cm²</span>。</div></div><div class="it"><div class="ct"><span class="form">面积单位换算：1 m² = 100 dm² = 10000 cm²（大化小乘进率，小化大除进率）。</span></div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>周长与面积的区别（核心）</b>：周长是「外圈长度」、面积是「内部大小」；二者用不同单位衡量。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">剪拼法推导面积公式：把长方形分成小方格，每行几个、有几行，用行×列算面积</span>。</div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">6</span>年、月、日（时间与历法）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">年、月、日</span>：时间单位，分别对应地球绕日公转、月球绕地球周期、地球自转周期。</div></div><div class="it"><div class="ct"><span class="hl">大月（31 天）</span>：1、3、5、7、8、10、12 月，共 7 个。</div></div><div class="it"><div class="ct"><span class="hl">小月（30 天）</span>：4、6、9、11 月，共 4 个。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">平年 2 月 = 28 天，闰年 2 月 = 29 天；平年全年 365 天，闰年 366 天。</span></div></div><div class="it"><div class="ct"><b>闰年判定法则：</b>① 普通年份能被 4 整除；② 世纪年（末尾 00）能被 400 整除。</div></div><div class="it"><div class="ct">★ 例：2024÷4=506 → <span class="hl">闰年</span>；1900÷400=4 剩 300 → <span class="hl">不是闰年（世纪年需被 400 整除）</span>；2000÷400=5 → <span class="hl">闰年。</span></div></div><div class="it lb-law"><div class="lb">【基本定律】</div><div class="ct"><b>拳记大小月：一三五七八十腊，三十一天永不差；四六九冬三十整，平年二月 28。</b></div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct">【求经过天数】① 算头不算尾（或算尾不算头）；② 跨月分段求和。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">补充：1 季度=3 月，约 91 天（平）/92 天（闰）；1 年=12 月，约 52 周=365/366 天。</span></div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">7</span>小数的初步认识（含义与读写）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">小数</span>：像 0.5、3.14 这样带小数点的数。</div></div><div class="it"><div class="ct"><span class="hl">小数结构</span>：整数部分 + 小数点 + 小数部分。</div></div><div class="it"><div class="ct"><span class="hl">与分数的关系</span>：一位小数表示十分之几，如 0.7 = 7/10。</div></div><div class="it lb-formula"><div class="lb">【基本公式】</div><div class="ct"><span class="form">一位小数 = 十分之几（分母是 10 的分数）；两位小数 = 百分之几（分母是 100）。</span></div></div><div class="it"><div class="ct">★ 例：0.5 元 = 5 角 = 50 分；0.07 元 = 7 分。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><b>小数大小比较：</b>① 先看整数部分，整数部分大的大；② 整数部分相同，比较小数部分（从十分位起逐位比）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">元角分与小数的对应：1 元 = 10 角 = 1.0 元；3 角 5 分 = 0.35 元。</span></div></div></div></div>
+<div class="cd open" onclick="this.classList.toggle('open')"><div class="cdt"><span class="ch-num">8</span>综合实践（数学广角：搭配与集合）<span class="ar">▾</span></div><div class="cdb"><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">搭配问题</span>：从若干元素中，按规则选取若干元素组成一组的方案数。</div></div><div class="it"><div class="ct"><span class="hl">组合与排列</span>：组合不考虑顺序（如握手），排列考虑顺序（如排队）。</div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">搭配方法：① 列表法（穷举）；② 连线法（图示）；③ 乘法原理。</span></div></div><div class="it"><div class="ct">★ 例：上装 3 件下装 4 件，搭配总数：3×4=12 种（乘法原理：每件上装可配 4 件下装）。</div></div><div class="it lb-theorem"><div class="lb">【基本定理】</div><div class="ct"><b>乘法原理（核心定理）</b>：完成一件事分步骤 k 步，每步有 n₁, n₂, ..., nₖ 种方法，则方案总数 = <span class="hl">n₁ × n₂ × ... × nₖ</span>。</div></div><div class="it"><div class="ct"><b>加法原理</b>：完成一件事有 k 类方案，每类方法数相加。</div></div><div class="it lb-property"><div class="lb">【相关性质】</div><div class="ct"><span class="hl">组合 vs 排列：先选后排，称「排列」（如 5 队排名次有 5!=120 种）；只选不排称「组合」。</span></div></div><div class="it lb-concept"><div class="lb">【基本概念】</div><div class="ct"><span class="hl">集合</span>：把具有相同特征的事物归为一组。三种关系：① 全集与子集；② 相交；③ 互斥。</div></div></div></div></div>
+<a class="bt" href="index.html">🏠 返回知识导航</a>
+<footer class="ft">© 两英豆豆教练</footer>
+</div></body></html>
