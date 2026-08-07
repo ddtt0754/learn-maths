@@ -1,1 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=3.0">
+<title>数学思维导图 · 人教版新课标</title>
+<style>
+:root{
+  --b:#2f9df0; --g:#2ebd85; --t:#33434b; --l:#8aa09a;
+  --border:#e1eeea; --card:#fff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4,#eef4fb);
+  color:var(--t); font-size:15px;
+  min-height:100vh; display:flex; flex-direction:column; align-items:center;
+}
+.wrap{width:100%;max-width:800px; padding:14px 14px 0; flex:1}
 
+/* ====== 页头 ====== */
+.hdr{
+  position:relative;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px; padding:22px 18px 20px;
+  text-align:center; color:#fff; overflow:hidden;
+  box-shadow:0 14px 30px rgba(47,157,240,.25); margin-bottom:10px;
+}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:8px;font-size:13px;opacity:.95; line-height:1.5}
+
+/* ====== 学段 tab ====== */
+.seg-bar{
+  display:flex; gap:8px; margin-bottom:10px;
+}
+.seg-tab{
+  flex:1; text-align:center; padding:10px 0;
+  border-radius:14px; cursor:pointer; font-weight:700; font-size:14px;
+  background:var(--card); color:var(--t); border:1.5px solid var(--border);
+  transition:all .2s;
+}
+.seg-tab.on{
+  background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff; border-color:transparent;
+}
+.seg-tab:hover:not(.on){border-color:var(--b);color:var(--b)}
+
+/* ====== 快捷导航 ====== */
+.quick-bar{
+  display:flex; gap:5px; overflow-x:auto; padding:0 0 8px;
+  margin-bottom:8px;
+}
+.quick-bar::-webkit-scrollbar{display:none}
+.quick-chip{
+  flex:0 0 auto; padding:6px 12px; border-radius:999px;
+  font-size:12px; font-weight:600; cursor:pointer;
+  background:var(--card); color:var(--t); border:1.5px solid var(--border);
+  transition:all .2s; white-space:nowrap;
+}
+.quick-chip:hover,.quick-chip.on{border-color:var(--b);color:var(--b);background:#eff6ff}
+
+/* ====== 统计条 ====== */
+.stats-bar{
+  display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;
+}
+.stat-chip{
+  font-size:11.5px; padding:4px 10px; border-radius:10px;
+  background:var(--card); color:var(--l); border:1px solid var(--border);
+}
+
+/* ====== 分支组 ====== */
+.mm-root{display:flex; flex-direction:column; gap:8px; padding:2px 0}
+.branch-group{
+  background:var(--card); border-radius:16px;
+  box-shadow:0 4px 14px rgba(47,157,240,.06); overflow:hidden;
+}
+.branch-header{
+  display:flex; align-items:center; gap:10px;
+  padding:14px 16px; cursor:pointer; user-select:none;
+  font-weight:700; font-size:15px; color:#fff;
+  transition:filter .2s;
+}
+.branch-header:hover{filter:brightness(1.05)}
+.branch-header .bh-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.55);flex-shrink:0}
+.branch-header .bh-arw{margin-left:auto;font-size:11px;opacity:.7;transition:transform .25s}
+.branch-group.open .bh-arw{transform:rotate(180deg)}
+.branch-body{max-height:0;overflow:hidden;transition:max-height .4s}
+.branch-group.open .branch-body{max-height:8000px}
+
+/* ====== 二级主题卡 ====== */
+.topic-card{padding:12px 16px; border-top:1px solid #f0f5f3}
+.topic-header{
+  display:flex; align-items:center; gap:8px;
+  font-weight:700; font-size:13.5px; color:var(--t);
+  cursor:pointer; padding:2px 0; transition:color .15s;
+}
+.topic-header:hover{color:var(--b)}
+.topic-header .th-icon{font-size:16px}
+.topic-header .th-arw{color:var(--l);font-size:10px;transition:transform .25s}
+.topic-card.open .th-arw{transform:rotate(180deg)}
+.topic-detail{max-height:0;overflow:hidden;transition:max-height .35s}
+.topic-card.open .topic-detail{max-height:3000px;padding-top:10px}
+
+/* ====== 知识点行 ====== */
+.kp-row{
+  display:flex; align-items:flex-start; gap:8px; padding:4px 0 4px 24px;
+  font-size:13px; line-height:1.65; position:relative;
+}
+.kp-row::before{
+  content:""; position:absolute; left:10px; top:12px;
+  width:5px; height:5px; border-radius:50%; background:var(--l);
+}
+.kp-grade{
+  flex-shrink:0; font-size:10px; font-weight:700;
+  padding:1px 6px; border-radius:5px; min-width:28px; text-align:center;
+  margin-top:1px;
+}
+.kp-text{flex:1; color:var(--t)}
+
+/* 年级色标 */
+.g7{background:#e0f2fe;color:#0369a1}
+.g8{background:#ede9fe;color:#6d28d9}
+.g9{background:#fce4ec;color:#c62828}
+.g79{background:#e0f2fe;color:#0369a1}
+
+/* ====== 页脚 ====== */
+.bt-home{
+  display:block; width:fit-content;
+  margin:20px auto 8px; padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff; border:none; border-radius:999px;
+  font-size:14px; font-weight:600; cursor:pointer;
+  text-decoration:none;
+  box-shadow:0 4px 14px rgba(47,157,240,.22);
+  transition:transform .15s, box-shadow .25s;
+}
+.bt-home:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(47,157,240,.32)}
+.bt-home:active{transform:scale(.97)}
+.site-footer{
+  text-align:center; padding:12px 0 22px;
+  color:var(--l); font-size:.78rem;
+  border-top:1px solid var(--border); margin-top:6px; width:100%;
+}
+
+@media(max-width:400px){
+  .hdr h1{font-size:17px}
+  .branch-header{font-size:14px;padding:12px 14px}
+  .topic-card{padding:10px 12px}
+  .kp-row{padding:4px 0 4px 20px;font-size:12px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hdr">
+    <h1>🧭 数学知识体系 · 思维导图</h1>
+    <p class="sub">人教版新课标 · 1~6年级小学 + 7~9年级初中</p>
+  </header>
+
+  <div class="seg-bar" id="segBar"></div>
+  <div class="quick-bar" id="quickBar"></div>
+  <div class="stats-bar" id="statsBar"></div>
+  <div class="mm-root" id="mmRoot"></div>
+
+  <a class="bt-home" href="../index.html">🏠 返回主页</a>
+  <footer class="site-footer">&copy; 两英豆豆教练</footer>
+</div>
+
+<script>
+/* ============================================================
+ * 数学思维导图 —— 小学 1~6 + 初中 7~9
+ * ============================================================ */
+(function(){
+'use strict';
+
+const DATA = {
+  primary: [
+    {
+      id:'p-num', name:'数与代数', color:'#2f9df0', icon:'🔢',
+      topics:[
+        { id:'pn1', name:'数的认识', icon:'📐', items:[
+          {grade:1,text:'1~20的认识与读写，十位、个位（位值原则）'},
+          {grade:1,text:'100以内数的认识，数位顺序表（个十百），读写法'},
+          {grade:2,text:'万以内数的认识，计数单位进率10，分级（个级万级）'},
+          {grade:3,text:'分数初步：分子/分母，同分母比大小'},
+          {grade:3,text:'小数初步：小数部分/小数点，0.1=1/10'},
+          {grade:4,text:'大数的认识：亿级，四舍五入法，近似数'},
+          {grade:4,text:'小数意义与性质：分母10/100/1000化小数，小数点移动引起大小变化'},
+          {grade:5,text:'分数意义与性质：真分数/假分数/带分数，约分与通分'},
+          {grade:5,text:'因数和倍数：2/3/5的倍数特征，质数与合数，最大公因数与最小公倍数'},
+          {grade:6,text:'百分数：%号/百分数化小数分数，折扣/成数/税率/利率'},
+          {grade:6,text:'负数：正数>0，负数<0，数轴左侧，0非正非负'},
+        ]},
+        { id:'pn2', name:'数的运算', icon:'➕', items:[
+          {grade:1,text:'20以内加减法：凑十法、破十法、想加算减法'},
+          {grade:2,text:'100以内加减法竖式：数位对齐，个位满十进1，退1当10'},
+          {grade:2,text:'表内乘法口诀（1~9）：因数×因数=积'},
+          {grade:2,text:'表内除法：等分除与包含除，有余数除法（余数<除数）'},
+          {grade:3,text:'万以内加减法：进位加/退位减/验算'},
+          {grade:3,text:'多位数×一位数竖式；除数是一位数的除法'},
+          {grade:4,text:'三位数×两位数：速×时=路程，单×数=总价'},
+          {grade:4,text:'除数是两位数的除法：试商与调商，商不变规律'},
+          {grade:4,text:'运算定律：交换律/结合律/分配律；连减/连除性质；四则运算顺序'},
+          {grade:5,text:'小数乘法：先按整数乘再看小数位数点小数点'},
+          {grade:5,text:'小数除法：商小数点对齐，除数化整数'},
+          {grade:6,text:'分数乘法：分子×分子/分母×分母，先约分再乘'},
+          {grade:6,text:'分数除法：除以非0数=乘它的倒数'},
+          {grade:6,text:'混合运算：分数小数百分数四则混合简便运算'},
+        ]},
+        { id:'pn3', name:'常见的量', icon:'📏', items:[
+          {grade:1,text:'元角分：1元=10角，1角=10分，1元=100分'},
+          {grade:1,text:'钟表：时针大格=1时，分针一圈=1时，1时=60分'},
+          {grade:2,text:'长度：cm量短物，m量长物，1m=100cm'},
+          {grade:3,text:'时分秒：1时=60分，1分=60秒，计算经过时间'},
+          {grade:3,text:'测量：mm/cm/dm/m/km，克/千克/吨；相邻进率10/100/1000'},
+          {grade:3,text:'年月日：大月31/小月30/2月28或29；闰年判断'},
+          {grade:4,text:'公顷与平方千米：1ha=10000m²，1km²=100ha'},
+          {grade:5,text:'体积容积：1m³=1000dm³，1dm³=1000cm³；1L=1dm³，1mL=1cm³'},
+        ]},
+        { id:'pn4', name:'式与方程', icon:'📈', items:[
+          {grade:5,text:'简易方程：方程式含未知数等式，等式性质，解方程步骤'},
+        ]},
+        { id:'pn5', name:'比和比例', icon:'⚖️', items:[
+          {grade:6,text:'比的意义：a:b=a÷b；比例基本性质：a×d=b×c'},
+          {grade:6,text:'正比例：y/x=k；反比例：x×y=k'},
+        ]}
+      ]
+    },
+    {
+      id:'p-geo', name:'图形与几何', color:'#2ebd85', icon:'📐',
+      topics:[
+        { id:'pg1', name:'图形的认识', icon:'🔺', items:[
+          {grade:1,text:'立体图形：长方体/正方体/圆柱/球（按能否滚动分）'},
+          {grade:1,text:'平面图形：长方形/正方形/三角形/圆'},
+          {grade:2,text:'角：直角=90°，锐角<90°，钝角>90°'},
+          {grade:3,text:'长方形正方形特征：对边等/四边等/四角直角；正方形特殊长方形'},
+          {grade:4,text:'三角形分类：锐角/直角/钝角；等边/等腰/不等边；内角和=180°'},
+          {grade:4,text:'平行四边形与梯形：平行四边对边平行等/对角等；梯形一组对边平行'},
+          {grade:5,text:'长方体与正方体：6面12棱8顶点，展开图与还原'},
+          {grade:6,text:'圆：圆心/半径(r)/直径(d=2r)，π≈3.14'},
+          {grade:6,text:'圆柱与圆锥：底面/侧面/高，展开图，等底等高的圆锥体积=1/3圆柱'},
+        ]},
+        { id:'pg2', name:'测量计算', icon:'📏', items:[
+          {grade:3,text:'周长：长方形=(长+宽)×2，正方形=边长×4'},
+          {grade:3,text:'面积：长方形=长×宽，正方形=边长²；面积进率100'},
+          {grade:4,text:'角度度量：度(°)，平角180°/周角360°，量角器量角画角'},
+          {grade:5,text:'多边形面积：平行四边形=底×高；三角形=底×高÷2；梯形=(上底+下底)×高÷2'},
+          {grade:5,text:'长方体表面积=2(长宽+宽高+长高)；正方体=6a²'},
+          {grade:5,text:'体积：长方体=长×宽×高；正方体=a³；通用公式=底面积×高'},
+          {grade:6,text:'圆周长C=πd=2πr；圆面积S=πr²；环形=π(R²-r²)'},
+          {grade:6,text:'圆柱侧面积=2πrh，表面积=2πrh+2πr²，体积=πr²h；圆锥体积=1/3πr²h'},
+        ]},
+        { id:'pg3', name:'图形运动', icon:'🔄', items:[
+          {grade:2,text:'轴对称：沿直线对折重合，对称轴两侧对应点距轴等'},
+          {grade:2,text:'平移：沿直线移动形状大小不变'},
+          {grade:4,text:'旋转：绕一点转动，形状大小不变；补全对称图形'},
+          {grade:5,text:'旋转三要素：中心/方向(顺逆时针)/角度(90°/180°)'},
+        ]},
+        { id:'pg4', name:'位置与方向', icon:'🧭', items:[
+          {grade:1,text:'上下/前后/左右：用方位词描述物位置'},
+          {grade:3,text:'八个方向：东西南北东北东南西南西北；上北下南左西右东'},
+          {grade:5,text:'数对(列,行)：第几列第几行'},
+          {grade:6,text:'方向+角度+距离三要素精确定位'},
+        ]}
+      ]
+    },
+    {
+      id:'p-sta', name:'统计与概率', color:'#f59e0b', icon:'📊',
+      topics:[
+        { id:'ps1', name:'数据与统计图', icon:'📋', items:[
+          {grade:2,text:'分类与整理：按标准分类，正字记录，简单统计表'},
+          {grade:3,text:'复式统计表：多表合并比较'},
+          {grade:4,text:'条形统计图：直条长短表数量，横轴类别纵轴数量；平均数=总数÷个数'},
+          {grade:5,text:'折线统计图：点连线段反映增减趋势'},
+          {grade:6,text:'扇形统计图：整圆表总数，扇形表百分比'},
+        ]},
+        { id:'ps2', name:'可能性', icon:'🎲', items:[
+          {grade:5,text:'确定不确定事件：一定/不可能/可能；数量多可能性大'},
+          {grade:6,text:'概率=符合条件结果数/等可能结果总数，0≤P≤1'},
+        ]}
+      ]
+    },
+    {
+      id:'p-app', name:'综合与实践', color:'#a855f7', icon:'🧩',
+      topics:[
+        { id:'pa1', name:'找规律', icon:'🔁', items:[
+          {grade:1,text:'图形/颜色按规律排列'},
+          {grade:2,text:'数字规律：依次±×÷固定数'},
+          {grade:5,text:'数列求和：等差求和，数字规律探求'},
+        ]},
+        { id:'pa2', name:'典型应用题', icon:'📝', items:[
+          {grade:3,text:'倍数问题：求几倍×，求是几倍÷'},
+          {grade:3,text:'植树问题：两端栽/一端栽/两端不栽；间隔与棵数关系'},
+          {grade:4,text:'鸡兔同笼：假设法/列表法'},
+          {grade:4,text:'优化问题：沏茶/烙饼（统筹），田忌赛马（策略）'},
+          {grade:5,text:'工程问题：总工作量1，效率1/时间；行程：相遇/追及'},
+          {grade:6,text:'百分数应用题：折扣/成数/税率/利率/利润/浓度'},
+          {grade:6,text:'鸽巢原理：n+1物体放入n抽屉至少1个≥2'},
+        ]},
+        { id:'pa3', name:'思想方法', icon:'💡', items:[
+          {grade:1,text:'一一对应比较数量'},
+          {grade:2,text:'分类讨论按特征分组'},
+          {grade:3,text:'数形结合画图/线段图'},
+          {grade:4,text:'转化化归变已知模型'},
+          {grade:5,text:'方程思想设未知数列等式'},
+          {grade:6,text:'模型思想实际问题抽象化'},
+        ]}
+      ]
+    }
+  ],
+
+  middle: [
+    {
+      id:'m1', name:'数与式', color:'#2f9df0', icon:'🔢',
+      topics:[
+        { id:'m1a', name:'有理数与实数', icon:'📐', items:[
+          {grade:7,text:'有理数=整数+分数；数轴（原点/正方向/单位长度）；相反数/绝对值（≥0）'},
+          {grade:7,text:'正负数加减乘除乘方法则：同号得正异号得负，乘方先定符号再算值'},
+          {grade:7,text:'科学记数法 a×10ⁿ（1≤|a|<10），近似数与有效数字'},
+          {grade:7,text:'平方根与算术平方根：x²=a→x=±√a（a≥0时）；√a²=|a|'},
+          {grade:7,text:'立方根∛a；无理数=无限不循环小数；实数=有理数+无理数'},
+          {grade:8,text:'二次根式：√a≥0，(√a)²=a；√a·√b=√(ab)；√a/√b=√(a/b)'},
+          {grade:8,text:'最简二次根式：被开方数不含分母、无开的尽方因子；同类二次根式可加减'},
+        ]},
+        { id:'m1b', name:'整式与因式分解', icon:'📈', items:[
+          {grade:7,text:'单项式（系数×字母幂积）与多项式（几个单项式和）'},
+          {grade:7,text:'同类项合并：系数相加字母不变；去括号：加号直接去、减号各项变号'},
+          {grade:8,text:'幂运算：aᵐ·aⁿ=aᵐ⁺ⁿ;(aᵐ)ⁿ=aᵐⁿ;(ab)ⁿ=aⁿbⁿ;aᵐ÷aⁿ=aᵐ⁻ⁿ(a≠0)'},
+          {grade:8,text:'平方差公式：a²−b²=(a+b)(a−b)；完全平方：a²±2ab+b²=(a±b)²'},
+          {grade:8,text:'因式分解四法：提公因式→公式法→分组分解→十字相乘法'},
+        ]},
+        { id:'m1c', name:'分式', icon:'📊', items:[
+          {grade:8,text:'分式意义：分母≠0；分式约分（分子分母同除以公因式，值不变）'},
+          {grade:8,text:'分式通分（化为同分母）；四则运算与整数运算一致'},
+          {grade:8,text:'分式方程：去分母化为整式方程，注意检验增根（分母为0的根舍去）'},
+        ]},
+      ]
+    },
+    {
+      id:'m2', name:'方程与不等式', color:'#2ebd85', icon:'⚖️',
+      topics:[
+        { id:'m2a', name:'一元一次方程', icon:'✏️', items:[
+          {grade:7,text:'解方程5步骤：去分母→去括号→移项→合并同类项→系数化1'},
+          {grade:7,text:'应用：工程/行程/利润/数字问题，找等量列等式'},
+        ]},
+        { id:'m2b', name:'二元一次方程组', icon:'🔗', items:[
+          {grade:7,text:'代入消元法：从一个方程解出未知数代入另一方程'},
+          {grade:7,text:'加减消元法：两个方程相加或相减消去一个未知数'},
+          {grade:7,text:'实际应用：分配/运输/成本/配套问题'},
+        ]},
+        { id:'m2c', name:'不等式与不等式组', icon:'📉', items:[
+          {grade:7,text:'不等式解集；解不等式：同加/减不改变方向；同乘/除负数改变方向'},
+          {grade:7,text:'不等式组：数轴表示，取公共部分为解集'},
+          {grade:8,text:'一元一次不等式的实际应用：方案选择/最大盈利/最优配置'},
+        ]},
+        { id:'m2d', name:'一元二次方程', icon:'🔺', items:[
+          {grade:9,text:'一般式ax²+bx+c=0(a≠0)；解法：直接开平方法/因式分解法/公式法/配方法'},
+          {grade:9,text:'求根公式：x=[-b±√(b²-4ac)]/2a；判别式Δ=b²-4ac'},
+          {grade:9,text:'Δ>0→两不等实根；Δ=0→两相等实根；Δ<0→无实根'},
+          {grade:9,text:'韦达定理：x₁+x₂=-b/a，x₁·x₂=c/a'},
+          {grade:9,text:'应用：面积/增长率/利润优化/实际数量关系'},
+        ]},
+      ]
+    },
+    {
+      id:'m3', name:'函数', color:'#f59e0b', icon:'📈',
+      topics:[
+        { id:'m3a', name:'平面直角坐标系', icon:'🧭', items:[
+          {grade:7,text:'坐标轴x轴(横) y轴(纵) 原点O(0,0)；坐标(x,y)'},
+          {grade:7,text:'四象限：一(+,+) 二(-,+) 三(-,-) 四(+,-)；坐标轴上点不属于任何象限'},
+          {grade:7,text:'对称：关于x轴(x,-y)、y轴(-x,y)、原点(-x,-y)'},
+        ]},
+        { id:'m3b', name:'一次函数', icon:'📊', items:[
+          {grade:8,text:'y=kx+b(k≠0)：k斜率(>0上升,<0下降)，b截距(与y轴交点)'},
+          {grade:8,text:'正比例函数 y=kx(k≠0)：过原点的直线'},
+          {grade:8,text:'平行k₁=k₂；垂直k₁·k₂=-1；待定系数法求表达式'},
+          {grade:8,text:'应用：一次函数与方程不等式的关系；实际问题最佳方案'},
+        ]},
+        { id:'m3c', name:'反比例函数', icon:'🔀', items:[
+          {grade:9,text:'y=k/x(k≠0)：双曲线(k>0在一三象限，k<0在二四象限)'},
+          {grade:9,text:'关于原点对称；k的几何意义（矩形面积=|k|）'},
+          {grade:9,text:'增减性：在每个象限内y随x变化（与k符号相关）'},
+        ]},
+        { id:'m3d', name:'二次函数', icon:'📈', items:[
+          {grade:9,text:'y=ax²+bx+c(a≠0)；对称轴x=-b/2a；顶点(-b/2a, (4ac-b²)/4a)'},
+          {grade:9,text:'a>0开口向上有最低点；a<0开口向下有最高点'},
+          {grade:9,text:'顶点式 y=a(x-h)²+k；交点式 y=a(x-x₁)(x-x₂)'},
+          {grade:9,text:'实际应用：最大利润/最大面积/桥洞抛物线/抛体运动'},
+        ]},
+      ]
+    },
+    {
+      id:'m4', name:'三角形与全等', color:'#e94d4d', icon:'🔺',
+      topics:[
+        { id:'m4a', name:'三角形基础与全等', icon:'📐', items:[
+          {grade:7,text:'三角形三边关系：任意两边之和>第三边（三角不等式）'},
+          {grade:7,text:'三角形内角和=180°；外角=不相邻两内角和（外角定理）'},
+          {grade:8,text:'全等判定5法：SSS/SAS/ASA/AAS/HL（Rt△专用）'},
+          {grade:8,text:'全等性质：对应边相等/对应角相等/周长面积相等'},
+          {grade:8,text:'角平分线性质定理与判定定理'},
+        ]},
+        { id:'m4b', name:'等腰三角形', icon:'🔻', items:[
+          {grade:8,text:'等腰三角形：等边对等角；底边三线合一（顶角平分线=底边中线=底边高）'},
+          {grade:8,text:'等边三角形：三边相等，三角各60°，也是等腰三角形的特例'},
+          {grade:8,text:'直角三角形：30°对边=斜边一半；勾股定理a²+b²=c²'},
+        ]},
+      ]
+    },
+    {
+      id:'m5', name:'几何进阶', color:'#8b5cf6', icon:'📐',
+      topics:[
+        { id:'m5a', name:'四边形', icon:'▬', items:[
+          {grade:8,text:'平行四边形：对边平行且相等、对角相等、对角线互相平分'},
+          {grade:8,text:'矩形：平行四边形+一个直角→对角线等；菱形：平行四边形+邻边相等→对角线垂直'},
+          {grade:8,text:'正方形：矩形∩菱形，四边等四角直角，对角线相互垂直平分且相等'},
+          {grade:8,text:'梯形：一组对边平行；等腰梯形同底上的两底角等、对角线等'},
+          {grade:8,text:'任意四边形内角和=360°；正多边形内角和=(n-2)·180°'},
+        ]},
+        { id:'m5b', name:'圆', icon:'⭕', items:[
+          {grade:9,text:'垂径定理：垂直于弦的直径平分弦；切线垂直于过切点的半径'},
+          {grade:9,text:'圆周角定理：同弧圆周角=圆心角的一半；直径对的圆周角=90°'},
+          {grade:9,text:'圆内接四边形对角互补；弦切角定理'},
+          {grade:9,text:'圆周长C=2πr，弧长l=nπr/180；扇形面积=nπr²/360=lr/2'},
+          {grade:9,text:'点和圆/直线和圆/圆和圆的位置关系（相交/相切/相离）'},
+        ]},
+        { id:'m5c', name:'相似', icon:'🔳', items:[
+          {grade:9,text:'相似判定3法：AA（两角等）/SAS（两边成比例夹角等）/SSS（三边成比例）'},
+          {grade:9,text:'相似三角形对应边成比例，面积比=相似比的平方'},
+          {grade:9,text:'平行线分线段成比例；对应高/中线/角平分线比=相似比'},
+        ]},
+        { id:'m5d', name:'解直角三角形', icon:'📐', items:[
+          {grade:9,text:'锐角三角函数 sinA=对/斜 cosA=邻/斜 tanA=对/邻'},
+          {grade:9,text:'特殊角：sin30°=1/2 sin45°=√2/2 sin60°=√3/2'},
+          {grade:9,text:'同角关系：sin²A+cos²A=1；tanA=sinA/cosA'},
+          {grade:9,text:'实际应用：仰角/俯角测量；方位角；坡度i=铅直/水平=tanθ'},
+        ]},
+      ]
+    },
+    {
+      id:'m6', name:'统计与概率', color:'#10b981', icon:'📊',
+      topics:[
+        { id:'m6a', name:'数据分析', icon:'📋', items:[
+          {grade:8,text:'平均数/加权平均数；中位数(顺序最中间)；众数(频次最多)'},
+          {grade:8,text:'方差：各数据与平均数差的平方的平均值（值越大越分散）'},
+          {grade:8,text:'频数分布：频数直方图；用样本估计总体'},
+        ]},
+        { id:'m6b', name:'概率', icon:'🎲', items:[
+          {grade:9,text:'随机事件/必然事件/不可能事件；列举法(列表/树状图)求概率'},
+          {grade:9,text:'用频率估计概率：大量重复试验频率趋于稳定值'},
+          {grade:9,text:'几何概型：面积比/长度比'},
+        ]},
+      ]
+    }
+  ]
+};
+
+function gradeClass(n){ var m = {7:'g7',8:'g8',9:'g9'}; return m[n] || 'g7'; }
+
+let currentSeg = 'primary';
+
+function renderAll(){
+  const segBar = document.getElementById('segBar');
+  const qBar = document.getElementById('quickBar');
+  const sBar = document.getElementById('statsBar');
+  const root = document.getElementById('mmRoot');
+
+  // 学段 tab
+  segBar.innerHTML = '<div class="seg-tab'+(currentSeg==='primary'?' on':'')+'" onclick="switchSeg(\'primary\')">🎒 小学 1~6年级</div>'+
+    '<div class="seg-tab'+(currentSeg==='middle'?' on':'')+'" onclick="switchSeg(\'middle\')">✏️ 初中 7~9年级</div>';
+
+  const branches = DATA[currentSeg];
+  let totalTopics = 0, totalItems = 0;
+  let branchHTML = '';
+  let quickHTML = '<span class="quick-chip on" data-id="all" onclick="scrollToBranch(\'all\')">📋 全部</span>';
+
+  branches.forEach(b => {
+    let tcHTML = '';
+    b.topics.forEach(t => {
+      let itemsHTML = t.items.map(it => {
+        totalItems++;
+        var gc = currentSeg==='primary' ? ('g'+it.grade) : gradeClass(it.grade);
+        return '<div class="kp-row"><span class="kp-grade '+gc+'">'+it.grade+'年级</span><span class="kp-text">'+it.text+'</span></div>';
+      }).join('');
+      totalTopics++;
+      tcHTML += '<div class="topic-card" id="topic-'+t.id+'">'+
+        '<div class="topic-header" onclick="toggleTopic(this.parentElement)"><span class="th-icon">'+t.icon+'</span>'+t.name+
+        '<span style="font-size:11px;color:var(--l);font-weight:400;margin-left:4px">'+t.items.length+'条</span>'+
+        '<span class="th-arw">▾</span></div>'+
+        '<div class="topic-detail">'+itemsHTML+'</div></div>';
+    });
+
+    branchHTML += '<div class="branch-group open" id="branch-'+b.id+'">'+
+      '<div class="branch-header" style="background:linear-gradient(135deg,'+b.color+',#35d29a)" onclick="toggleBranch(this.parentElement)">'+
+      '<span class="bh-dot"></span><span>'+b.icon+' '+b.name+'</span>'+
+      '<span style="font-size:11px;opacity:.8;font-weight:400">'+b.topics.length+'主题 · '+b.topics.reduce((s,t)=>s+t.items.length,0)+'点</span>'+
+      '<span class="bh-arw">▼</span></div>'+
+      '<div class="branch-body">'+tcHTML+'</div></div>';
+
+    quickHTML += '<span class="quick-chip" data-id="'+b.id+'" onclick="scrollToBranch(\''+b.id+'\')">'+b.icon+' '+b.name+'</span>';
+  });
+
+  root.innerHTML = branchHTML;
+  qBar.innerHTML = quickHTML;
+  var segLabel = currentSeg==='primary'?'小学1~6年级':'初中7~9年级';
+  sBar.innerHTML = '<span class="stat-chip">📚 '+branches.length+' 大领域</span><span class="stat-chip">📌 '+totalTopics+' 主题</span><span class="stat-chip">⭐ '+totalItems+' 知识点</span><span class="stat-chip">🎓 '+segLabel+'全覆盖</span>';
+}
+
+function switchSeg(seg){
+  currentSeg = seg;
+  renderAll();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleBranch(el){ el.classList.toggle('open'); }
+function toggleTopic(el){ el.classList.toggle('open'); }
+
+function scrollToBranch(id){
+  document.querySelectorAll('.quick-chip').forEach(c=>c.classList.remove('on'));
+  if(id==='all'){window.scrollTo({top:0,behavior:'smooth'});document.querySelector('.quick-chip[data-id="all"]').classList.add('on');return;}
+  document.querySelector('.quick-chip[data-id="'+id+'"]').classList.add('on');
+  var el=document.getElementById('branch-'+id);
+  if(el){el.classList.add('open');el.scrollIntoView({behavior:'smooth',block:'start'});}
+}
+
+renderAll();
+window.switchSeg = switchSeg;
+window.scrollToBranch = scrollToBranch;
+window.toggleBranch = toggleBranch;
+window.toggleTopic = toggleTopic;
+})();
+</script>
+</body>
+</html>
