@@ -1,1 +1,204 @@
-1
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>舒尔特方格专注力训练</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Microsoft Yahei", sans-serif;
+    }
+    body {
+      background: #f6f8fa;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #222;
+      margin-bottom: 16px;
+      font-size: 22px;
+    }
+    .control-bar {
+      margin-bottom: 16px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    select, button {
+      padding: 8px 14px;
+      font-size: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccd0d5;
+      outline: none;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    .timer-box {
+      font-size: 26px;
+      font-weight: bold;
+      color: #dc2626;
+      margin: 12px 0;
+    }
+    .grid-wrap {
+      display: grid;
+      gap: 6px;
+      margin: 0 auto;
+      background: #ddd;
+      padding: 6px;
+      border-radius: 8px;
+    }
+    .cell {
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 4px;
+      cursor: default;
+      user-select: none;
+    }
+    .cell.done {
+      background: #22c55e;
+      color: white;
+    }
+    .tip {
+      margin-top:12px;
+      color:#666;
+      font-size:14px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>舒尔特方格专注力训练</h1>
+  <div class="control-bar">
+    <select id="sizeSelect">
+      <option value="5">5 × 5</option>
+      <option value="6">6 × 6</option>
+      <option value="7">7 × 7</option>
+      <option value="8">8 × 8</option>
+      <option value="9">9 × 9</option>
+      <option value="10">10 × 10</option>
+    </select>
+    <button id="resetBtn">重置/刷新</button>
+  </div>
+  <div class="timer-box" id="timer">00:00.00</div>
+  <div class="grid-wrap" id="gridBox"></div>
+  <div class="tip">按顺序点击数字，从1开始依次点完，点对自动标绿，全部点完停止计时</div>
+</div>
+<div><table height="200px"></table></div>
+<div>© 两英豆豆教练</div>
+<script>
+const sizeSelect = document.getElementById('sizeSelect');
+const resetBtn = document.getElementById('resetBtn');
+const gridBox = document.getElementById('gridBox');
+const timerEl = document.getElementById('timer');
+
+let gridSize = 5;
+let totalNum = 25;
+let arr = [];
+let currentTarget = 1;
+let timerRunning = false;
+let startTime = null;
+let timerInterval = null;
+
+// 初始化
+function init(){
+  stopTimer();
+  currentTarget = 1;
+  gridSize = parseInt(sizeSelect.value);
+  totalNum = gridSize * gridSize;
+  // 生成1~n数组并打乱
+  arr = Array.from({length:totalNum},(_,i)=>i+1);
+  shuffle(arr);
+  renderGrid();
+  timerEl.textContent = "00:00.00";
+}
+
+// 洗牌算法
+function shuffle(a){
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+}
+
+// 渲染方格
+function renderGrid(){
+  gridBox.innerHTML = "";
+  const cellSize = Math.min(48, Math.floor((window.innerWidth - 60)/gridSize));
+  gridBox.style.gridTemplateColumns = `repeat(${gridSize}, ${cellSize}px)`;
+
+  arr.forEach(num=>{
+    const div = document.createElement('div');
+    div.className = 'cell';
+    div.style.width = cellSize + 'px';
+    div.style.height = cellSize + 'px';
+    div.textContent = num;
+    div.dataset.val = num;
+    div.onclick = ()=>clickCell(num, div);
+    gridBox.appendChild(div);
+  })
+}
+
+// 点击格子
+function clickCell(num, dom){
+  if(!timerRunning && currentTarget === 1){
+    startTimer();
+  }
+  if(num === currentTarget){
+    dom.classList.add('done');
+    currentTarget++;
+    // 全部完成
+    if(currentTarget > totalNum){
+      stopTimer();
+      alert(`恭喜完成！用时：${timerEl.textContent}`);
+    }
+  }
+}
+
+// 计时
+function startTimer(){
+  timerRunning = true;
+  startTime = Date.now();
+  timerInterval = setInterval(updateTime, 10);
+}
+function stopTimer(){
+  timerRunning = false;
+  clearInterval(timerInterval);
+}
+function updateTime(){
+  const diff = Date.now() - startTime;
+  const ms = Math.floor(diff % 1000).toString().padStart(2,'0');
+  const sec = Math.floor((diff/1000)%60).toString().padStart(2,'0');
+  const min = Math.floor(diff/60000).toString().padStart(2,'0');
+  timerEl.textContent = `${min}:${sec}.${ms}`;
+}
+
+// 事件绑定
+sizeSelect.addEventListener('change', init);
+resetBtn.addEventListener('click', init);
+window.addEventListener('resize', init);
+
+// 页面载入初始化
+init();
+</script>
+</body>
+</html>
