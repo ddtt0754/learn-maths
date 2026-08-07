@@ -332,9 +332,14 @@
         '<div class="stage-star">' + (starsHtml || '尚未练习') + '</div></div>';
     });
     app.innerHTML =
-      '<div class="header"><div><h1>计算专项训练<span class="sub">填空作答 · 每阶20题</span></h1></div>' +
-      '<div style="display:flex;gap:8px"><button class="btn btn-outline btn-sm" id="btnWrongBook">错题本</button>' +
-      '<button class="btn btn-outline btn-sm" id="btnSettings">设置</button></div></div>' +
+      '<div class="hdr">' +
+        '<div style="position:absolute;top:12px;right:12px;display:flex;gap:6px;z-index:1">' +
+          '<button class="btn-glass btn-sm" id="btnWrongBook">错题本</button>' +
+          '<button class="btn-glass btn-sm" id="btnSettings">设置</button>' +
+        '</div>' +
+        '<h1>🧮 计算专项训练</h1>' +
+        '<p class="sub">填空作答 · 每阶20题 · 9阶分阶训练</p>' +
+      '</div>' +
       '<div class="stage-grid">' + cards + '</div>';
     document.querySelectorAll('.stage-card').forEach(function (el) {
       el.addEventListener('click', function () { startQuiz(parseInt(this.dataset.stage)); });
@@ -521,7 +526,11 @@
   /* ======== 错题本 ======== */
   function renderWrongBook() {
     var w = loadWrongs(), stages = QB.STAGES;
-    var html = '<div class="header"><div><h1>错题本<span class="sub">每阶最多保存 100 题</span></h1></div>' +
+    var html = '<div class="hdr">' +
+      '<div style="position:absolute;top:12px;right:12px;z-index:1"><button class="btn-glass btn-sm" onclick="render(&apos;home&apos;)">← 首页</button></div>' +
+      '<h1>📒 错题本</h1>' +
+      '<p class="sub">每阶最多保存 100 题</p>' +
+    '</div>' +
       '<div style="display:flex;gap:8px"><button class="btn btn-ghost btn-sm" id="btnClearAll">清空全部</button>' +
       '<button class="btn btn-outline btn-sm" id="btnBackHome">返回</button></div></div>';
     var hasAny = false;
@@ -553,7 +562,11 @@
   function renderSettings() {
     var s = state.settings;
     app.innerHTML =
-      '<div class="header"><div><h1>设置<span class="sub">个性化你的练习体验</span></h1></div>' +
+      '<div class="hdr">' +
+        '<div style="position:absolute;top:12px;right:12px;z-index:1"><button class="btn-glass btn-sm" onclick="render(&apos;home&apos;)">← 首页</button></div>' +
+        '<h1>⚙️ 设置</h1>' +
+        '<p class="sub">个性化你的练习体验</p>' +
+      '</div>' +
       '<button class="btn btn-outline btn-sm" id="btnBackHome">返回</button></div>' +
       '<div class="q-page" style="min-height:auto">' +
       '<div class="settings-row"><label class="settings-label">每组题数（默认20题）</label>' +
