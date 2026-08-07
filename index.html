@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>豆豆数学专项训练</title>
+<title>豆豆数学培优训练</title>
 <style>
 :root {
   --bg: #f5f7fa;
@@ -28,8 +28,8 @@ body {
 .header .sub { font-size: .85rem; color: var(--text2); font-weight: 400; }
 .header .brand { font-size: .78rem; color: var(--text2); margin-top: 2px; }
 
-/* 六宫格 3×2 */
-.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+/* 八宫格 4×2 */
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
 .grid a {
   text-decoration: none; display: block;
   background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
@@ -67,6 +67,14 @@ body {
 .diagnose .card-icon { color: #14b8a6; }
 .diagnose:hover { border-color: #0d9488; }
 
+.schulte { border-color: #e67e22; }
+.schulte .card-icon { color: #e67e22; }
+.schulte:hover { border-color: #d35400; }
+
+.sim { border-color: #8e44ad; }
+.sim .card-icon { color: #8e44ad; }
+.sim:hover { border-color: #6c3483; }
+
 /* Footer */
 .site-footer {
   text-align: center; padding: 16px 0 20px;
@@ -84,41 +92,52 @@ body {
 <body>
 <div class="container">
   <div class="header">
-    <h1>豆豆数学特训中心</h1>
+    <h1>豆豆数学培优训练</h1>
     <div class="sub">体系化计算与思维训练</div>
   </div>
 
   <div class="grid">
-    <a href="#" class="determine">
+    <a href="knowledge/index.html" class="determine">
       <div class="card-icon">🎯</div>
       <div class="card-title">三定一性</div>
-      <div class="card-desc">定点·定值·定形·存在性</div>
+      <div class="card-desc">定义·定理·定律·性质</div>
     </a>
     <a href="calculation/index.html" class="calc">
       <div class="card-icon">🧮</div>
       <div class="card-title">计算专项</div>
       <div class="card-desc">九阶分阶训练 · 填空作答</div>
     </a>
-    <a href="#" class="thoughts">
+    <a href="thinking/index.html" class="thoughts">
       <div class="card-icon">💡</div>
       <div class="card-title">十大思想</div>
       <div class="card-desc">分类讨论·数形结合·方程函数</div>
     </a>
-    <a href="#" class="model">
+    <a href="model/index.html" class="model">
       <div class="card-icon">🧩</div>
       <div class="card-title">模型思维</div>
       <div class="card-desc">几何模型·代数结构·解题套路</div>
     </a>
     <a href="#" class="classic">
       <div class="card-icon">📐</div>
-      <div class="card-title">经典题型</div>
+      <div class="card-title">经典题库</div>
       <div class="card-desc">真题精选·高频考点·一题多解</div>
     </a>
-    <a href="#" class="diagnose">
+    <a href="https://www.jyeoo.com/eval" class="diagnose">
       <div class="card-icon">📊</div>
       <div class="card-title">学期诊断</div>
       <div class="card-desc">知识点扫雷·薄弱项定位</div>
     </a>
+    <a href="https://phet.colorado.edu/zh_CN/simulations/filter?subjects=math-and-statistics&type=html" class="sim" target="_blank">
+      <div class="card-icon">🔬</div>
+      <div class="card-title">模拟教材</div>
+      <div class="card-desc">PhET 数学模拟实验</div>
+    </a>
+   <a href="concentration/index.html" class="schulte">
+      <div class="card-icon">🔢</div>
+      <div class="card-title">舒尔特方格</div>
+      <div class="card-desc">专注力训练</div>
+    </a>
+
   </div>
 </div>
 
