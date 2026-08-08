@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>网站说明 · 数学学习平台</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--r:16px}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);
+  padding:24px 16px 60px;min-height:100vh;display:flex;justify-content:center}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:22px;padding:30px 20px 26px;text-align:center;color:#fff;overflow:hidden;
+  box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:18px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:22px;letter-spacing:3px;font-weight:700}
+.hdr .sub{position:relative;margin-top:10px;font-size:13px;opacity:.92;letter-spacing:2px}
+.top-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+.top-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 20px;
+  background:rgba(255,255,255,.20);border:1.5px solid rgba(255,255,255,.85);color:#fff;
+  border-radius:999px;font-size:13px;font-weight:600;text-decoration:none}
+
+.card{background:#fff;border-radius:var(--r);padding:18px 20px;margin-bottom:14px;
+  box-shadow:0 6px 18px rgba(47,157,240,.08)}
+.card-title{font-size:1.05rem;font-weight:700;color:#0e7490;margin-bottom:10px;
+  display:flex;align-items:center;gap:8px}
+.card-title::before{content:"";width:4px;height:18px;background:linear-gradient(180deg,#35d29a,#2f9df0);border-radius:2px}
+
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.feat{display:flex;align-items:center;gap:8px;padding:10px 12px;
+  background:#f8fafc;border-radius:10px;font-size:.85rem;line-height:1.4;text-decoration:none;color:var(--t);
+  transition:background .15s,border-color .15s;border:1.5px solid transparent}
+.feat:hover{background:#f0f9ff;border-color:#bfdbfe}
+.feat .ic{font-size:22px;flex-shrink:0}
+.feat .txt strong{color:#0e7490;font-size:.88rem}
+
+.stat-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.stat{flex:1;min-width:100px;padding:12px;background:#f8fafc;border-radius:10px;text-align:center}
+.stat .n{font-size:1.5rem;font-weight:800;color:#0e7490}
+.stat .l{font-size:11px;color:var(--l);margin-top:3px}
+
+.flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:8px 0;font-size:13px;line-height:1.6}
+.flow .step{padding:5px 12px;background:#f0f9ff;color:#0e7490;border-radius:8px;font-weight:600;white-space:nowrap}
+.flow .arr{color:var(--l);font-size:16px}
+
+.table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px}
+.table th,.table td{padding:7px 10px;text-align:left;border-bottom:1px solid #e2e8f0}
+.table th{background:#f0f9ff;color:#0e7490;font-weight:700}
+.table .num{text-align:center;color:var(--l)}
+
+.bt-home{display:block;width:fit-content;margin:20px auto 8px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22)}
+.ft{text-align:center;padding:8px 0 14px;font-size:12px;color:#a8bcb4}
+@media(max-width:420px){.feature-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body><div class="wrap">
+
+<header class="hdr">
+  <h1>&#x1f4d6; 网站说明</h1>
+  <p class="sub">数学学习平台 · 功能导航 · 使用指南</p>
+  <div class="top-btns">
+    <a class="top-btn" href="index.html">&#x1f3e0; 返回首页</a>
+  </div>
+</header>
+
+  <div class="card-title">&#x1f5fa;&#xfe0f; 功能模块导航</div>
+  <div class="feature-grid">
+
+    <a class="feat" href="classic/index.html">
+      <div class="ic">&#x1f4da;</div>
+      <div class="txt"><strong>经典题库</strong><br>3~9年级 14 学期 · 111 个专题练习</div>
+    </a>
+    <a class="feat" href="calculation/index.html">
+      <div class="ic">&#x1f9ee;</div>
+      <div class="txt"><strong>计算专项</strong><br>1~9 阶分级训练 · 填空作答</div>
+    </a>
+    <a class="feat" href="knowledge/index.html">
+      <div class="ic">&#x1f4d8;</div>
+      <div class="txt"><strong>知识总结</strong><br>1~9 年级 18 学期全知识点</div>
+    </a>
+    <a class="feat" href="knowledge/mindmap/index.html">
+      <div class="ic">&#x1f9ed;</div>
+      <div class="txt"><strong>思维导图</strong><br>小学+初中全体系知识树</div>
+    </a>
+    <a class="feat" href="thinking/index.html">
+      <div class="ic">&#x1f4a1;</div>
+      <div class="txt"><strong>十大思想</strong><br>数学思想方法 · 20 道经典题</div>
+    </a>
+    <a class="feat" href="model/index.html">
+      <div class="ic">&#x1f3af;</div>
+      <div class="txt"><strong>模型思维</strong><br>小学 5 大专题 · 初中 60 几何模型</div>
+    </a>
+    <a class="feat" href="test/index.html">
+      <div class="ic">&#x1fa7a;</div>
+      <div class="txt"><strong>学期诊断</strong><br>海淀AB卷 · AI测试报告</div>
+    </a>
+    <a class="feat" href="concentration/index.html">
+      <div class="ic">&#x1f3af;</div>
+      <div class="txt"><strong>舒尔特方格</strong><br>专注力训练</div>
+    </a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">&#x1f4cb; 模块详解</div>
+
+  <p style="font-weight:700;color:#0e7490;margin:10px 0 4px">&#x1f4da; 经典题库（classic/）</p>
+  <p style="font-size:.85rem;line-height:1.7;margin-bottom:8px">
+    覆盖三年级上册至九年级下册共 <b>14 个学期</b>、<b>111 个专题</b>。已填充 56 个专题约 776 道填空练习题。
+    每个专题含多种题型标签切换、即时判定、教师级解析、圆点导航。已填充专题涵盖：
+    时分秒、竖式加减、单位换算、倍的认识、周长计算、植树问题、鸡兔同笼、优化问题、工程问题、行程问题、找次品、
+    百分数应用、鸽巢原理、相反数绝对值、数轴动点、数列求值、绝对值最值、进制转化等。
+  </p>
+
+  <p style="font-weight:700;color:#0e7490;margin:10px 0 4px">&#x1f9ee; 计算专项（calculation/）</p>
+  <p style="font-size:.85rem;line-height:1.7;margin-bottom:8px">
+    九阶分级单选/填空训练：一阶 20以内加减 → 二阶 两位数×一位数 → 三阶 四位数×四位数 → 四阶 多位数÷两位数 →
+    五阶 小数乘除 → 六阶 分数小数百分数混合 → 七阶 有理数混合 → 八阶 一元二次方程 → 九阶 中考混合计算。
+    支持刷新换题、每阶 20 题、即时判分、错题本。
+  </p>
+
+  <p style="font-weight:700;color:#0e7490;margin:10px 0 4px">&#x1f4d8; 知识总结（knowledge/）</p>
+  <p style="font-size:.85rem;line-height:1.7;margin-bottom:8px">
+    按 2024 人教版新课标教材，1~9 年级 18 个学期共 <b>109 章、约 1300 条知识点</b>。
+    每条标注类型（概念/公式/定理/定律/性质）+ 彩色标签便于背诵。学期子页含返回主页按钮。
+    子目录 <b>mindmap/</b> 含小学+初中双学段思维导图（157 知识点）。
+  </p>
+
+  <p style="font-weight:700;color:#0e7490;margin:10px 0 4px">&#x1f4a1; 十大思想（thinking/）</p>
+  <p style="font-size:.85rem;line-height:1.7;margin-bottom:8px">
+    基于 docx 文档提取的 10 大数学思想方法（转化化归/数形结合/分类讨论/函数与方程/归纳类比/逆向递推/假设反证/概率统计/整体思想/模型思想），
+    每类 2 道经典题共 20 题。主页九宫格卡片 + 练习模式含解读卡、填空作答、解析、同类题目刷新、一键回到主页。
+  </p>
+
+  <p style="font-weight:700;color:#0e7490;margin:10px 0 4px">&#x1f3af; 模型思维（model/）</p>
+  <p style="font-size:.85rem;line-height:1.7;margin-bottom:8px">
+    小学部分 5 大专题（应用题/行程/计数/几何/数论），含 119 道练习题。
+    初中部分含 <b>60 几何模型</b>（万唯中考），按 10 大专题分组，每个模型有独立子页（m01~m60.html），
+    含模型信息、基础模型分析、结论分析、典型例题引用。
+  </p>
+
+  <p style="font-weight:700;color:#0e7490;margin:10px 0 4px">&#x1fa7a; 学期诊断（test/）</p>
+  <p style="font-size:.85rem;line-height:1.7;margin-bottom:8px">
+    学期选择 + A/B卷难度选择 → 进入期末测试。A卷含 37 道题（满分 100 分），
+    每题按星级加权计分。交卷后出具 <b>AI 测试报告</b>：正确率/用时/难度分布/知识点掌握表/漏洞诊断/提分建议。
+    支持暂停一次、自动滚动到报告。
+  </p>
+</div>
+
+<div class="card">
+  <div class="card-title">&#x1f504; 使用流程</div>
+  <div class="flow">
+    <span class="step">&#x1f3e0; 主页</span><span class="arr">→</span>
+    <span class="step">选择模块</span><span class="arr">→</span>
+    <span class="step">&#x1f4da;/&#x1f9ee;/&#x1f4d8;/&#x1f4a1;/&#x1f3af;/&#x1fa7a;</span><span class="arr">→</span>
+    <span class="step">选学期/选难度</span><span class="arr">→</span>
+    <span class="step">答题练习</span><span class="arr">→</span>
+    <span class="step">即时判分+解析</span><span class="arr">→</span>
+    <span class="step">&#x1f4ca; 测试报告</span>
+  </div>
+</div>
+
+  <div class="card-title">&#x1f4c8; 数据统计</div>
+  <table class="table">
+    <tr><th>模块</th><th class="num">页面数</th><th class="num">题目数</th><th>覆盖范围</th></tr>
+    <tr><td>经典题库</td><td class="num">112</td><td class="num">~776</td><td>3~9 年级 111 专题（56 已填充）</td></tr>
+    <tr><td>计算专项</td><td class="num">1</td><td class="num">动态生成</td><td>1~9 阶九级体系</td></tr>
+    <tr><td>知识总结</td><td class="num">19</td><td class="num">~1300 知识点</td><td>1~9 年级 18 学期 · 109 章</td></tr>
+    <tr><td>思维导图</td><td class="num">1</td><td class="num">157 节点</td><td>小学 4 领域 + 初中 6 领域</td></tr>
+    <tr><td>十大思想</td><td class="num">1</td><td class="num">20</td><td>10 大思想各 2 题</td></tr>
+    <tr><td>模型思维</td><td class="num">62</td><td class="num">119+</td><td>小学 5 专题 + 初中 60 模型</td></tr>
+    <tr><td>学期诊断</td><td class="num">4</td><td class="num">37</td><td>三年级上册 A/B卷</td></tr>
+    <tr><td>舒尔特方格</td><td class="num">1</td><td class="num">-</td><td>专注力训练</td></tr>
+    <tr style="font-weight:700"><td>合计</td><td class="num">~201</td><td class="num">~2250+</td><td>1~9 年级全学段</td></tr>
+  </table>
+</div>
+
+<a class="bt-home" href="index.html">&#x1f3e0; 返回首页</a>
+<div class="ft">&copy; 两英豆豆教练</div>
+
+</div></body></html>
