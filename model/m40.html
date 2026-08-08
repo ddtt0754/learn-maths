@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>模型 40 · 三角形外接圆 · 中考几何</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--r:14px}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);
+  padding:14px 14px 80px;min-height:100vh;display:flex;justify-content:center}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;overflow:hidden;
+  box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr .num{position:relative;display:inline-block;width:50px;height:50px;line-height:50px;
+  background:rgba(255,255,255,.22);color:#fff;font-size:22px;font-weight:700;
+  border-radius:50%;margin-bottom:6px}
+.hdr h1{position:relative;font-size:20px;letter-spacing:1px;font-weight:700;margin:0}
+.hdr .sub{position:relative;margin-top:8px;font-size:12px;opacity:.95}
+.hdr .back{position:absolute;top:10px;left:12px;z-index:1;
+  background:rgba(255,255,255,.22);color:#fff;border:1px solid rgba(255,255,255,.35);
+  padding:4px 10px;border-radius:999px;font-size:11px;font-weight:600;
+  cursor:pointer;text-decoration:none;backdrop-filter:blur(4px)}
+.hdr .back:hover{background:rgba(255,255,255,.38)}
+.card{background:#fff;border-radius:var(--r);padding:14px 16px;margin-bottom:12px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.card .label{font-size:11px;font-weight:700;color:#0e7490;margin-bottom:6px;
+  display:flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.5px}
+.card .label::before{content:"";width:4px;height:14px;background:linear-gradient(180deg,#35d29a,#2f9df0);border-radius:2px}
+.card .body{font-size:14px;line-height:1.8;color:var(--t)}
+.card .body b{color:#0e7490}
+.model-info{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.model-info span{padding:3px 10px;background:#f0f9ff;color:#0e7490;
+  font-size:11px;border-radius:12px;font-weight:600}
+.formula{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;
+  padding:10px 14px;margin:8px 0;font-size:13px;color:#15803d;line-height:1.8}
+.example{background:#fef3c7;border:1px solid #fcd34d;border-radius:8px;
+  padding:10px 14px;margin:8px 0;font-size:13px;color:#92400e;line-height:1.8}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btn{display:inline-flex;align-items:center;gap:4px;padding:7px 14px;
+  background:var(--b);color:#fff;border:none;border-radius:18px;
+  font-size:12px;font-weight:600;cursor:pointer;text-decoration:none}
+.btn:hover{background:#1f7fd0}
+.bt-home{display:block;width:fit-content;margin:18px auto 8px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);
+  transition:transform .15s}
+.bt-home:hover{transform:translateY(-1px)}
+.ft{text-align:center;padding:6px 0 14px;font-size:11px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+
+<header class="hdr">
+  <a class="back" href="models60.html">← 60 模型</a>
+  <div class="num">40</div>
+  <h1>三角形外接圆</h1>
+  <p class="sub">专题八 圆 · 教材第 129 页</p>
+</header>
+
+<div class="card">
+  <div class="label">模型信息</div>
+  <div class="model-info">
+    <span>📚 专题八 圆</span>
+    <span>📖 教材第 129 页</span>
+    <span>🎯 模型 40 / 60</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="label">基础模型</div>
+  <div class="body">
+    <p>本模型属于 <b>专题八 圆</b>，是中考几何的高频考点。</p>
+    <p>掌握此模型需要：</p>
+    <ol style="padding-left:20px;line-height:2;margin-top:4px">
+      <li>理解基础几何概念（点、线、角、形的性质）</li>
+      <li>识别题目的模型特征 —— 什么时候用这个模型</li>
+      <li>套用对应的模型结论快速解题</li>
+    </ol>
+  </div>
+</div>
+
+<div class="card">
+  <div class="label">结论分析</div>
+  <div class="body">
+    <div class="formula">
+      📌 核心结论：见教材第 <b>129</b> 页<br>
+      通过基础模型的推理，得到适用于此问题的关键定理或性质。
+    </div>
+    <p style="margin-top:8px"><b>怎么用？</b></p>
+    <ol style="padding-left:20px;line-height:2;margin-top:4px">
+      <li><b>找模型</b>：从题目图形中识别出本模型的特征</li>
+      <li><b>用结论</b>：直接套用结论进行计算或证明</li>
+      <li><b>写解答</b>：写出完整的证明 / 计算过程</li>
+    </ol>
+  </div>
+</div>
+
+<div class="card">
+  <div class="label">典型例题</div>
+  <div class="body">
+    <div class="example">
+      <b>📚 例题（参见教材第 129 页）</b><br>
+      本模型典型例题：请翻阅《万唯中考·几何模型》第 129 页，包含基础模型展示、结论证明和视频讲解。
+    </div>
+    <p style="margin-top:8px;font-size:12px;color:var(--l)">
+      💡 建议：结合教材配视频讲解，先独立思考，再对照结论订正。
+    </p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="label">实战演练</div>
+  <div class="body">
+    <p style="font-size:12.5px;color:var(--l)">📌 配套高品质原创题，详见教材第 129 页</p>
+    <div class="btn-row">
+      <a class="btn" href="models60.html">📋 返回 60 模型列表</a>
+      <a class="btn" href="../index.html">🏠 数学主页</a>
+    </div>
+  </div>
+</div>
+
+<a class="bt-home" href="../index.html">🏠 返回数学主页</a>
+<div class="ft">&copy; 两英豆豆教练 · 来源：万唯中考《几何模型》</div>
+
+</div></body></html>

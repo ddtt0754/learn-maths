@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>60 几何模型 · 中考专题 · 万唯</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--r:14px}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);
+  padding:14px 14px 80px;min-height:100vh;display:flex;justify-content:center}
+.wrap{width:100%;max-width:720px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:22px 18px 20px;text-align:center;color:#fff;overflow:hidden;
+  box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700;margin:0}
+.hdr .sub{position:relative;margin-top:6px;font-size:12px;opacity:.95}
+.hdr .back{position:absolute;top:10px;left:12px;z-index:1;
+  background:rgba(255,255,255,.22);color:#fff;border:1px solid rgba(255,255,255,.35);
+  padding:4px 10px;border-radius:999px;font-size:11px;font-weight:600;
+  cursor:pointer;text-decoration:none;backdrop-filter:blur(4px)}
+.hdr .back:hover{background:rgba(255,255,255,.38)}
+
+.summary{background:#fff;border-radius:var(--r);padding:10px 14px;margin-bottom:12px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06);text-align:center;
+  font-size:12.5px;color:var(--l);line-height:1.7}
+.summary b{color:#0e7490;font-weight:700}
+
+.topic-block{background:#fff;border-radius:var(--r);padding:12px 14px;margin-bottom:10px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.topic-hdr{font-size:14px;font-weight:700;color:#0e7490;margin-bottom:8px;
+  padding-left:4px;display:flex;align-items:center;gap:6px;
+  border-left:3px solid var(--b);padding-top:2px;padding-bottom:2px}
+.topic-icon{font-size:16px}
+.m-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.m-card{
+  display:flex;align-items:center;gap:8px;padding:10px 10px;
+  background:linear-gradient(180deg,#f8fafc,#fff);
+  border:1.5px solid #e2e8f0;border-radius:10px;
+  text-decoration:none;color:var(--t);transition:all .15s;
+}
+.m-card:hover{border-color:var(--b);background:#f0f9ff;transform:translateY(-1px)}
+.m-num{width:32px;height:32px;border-radius:8px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;flex-shrink:0}
+.m-body{flex:1;min-width:0}
+.m-name{font-size:13px;font-weight:600;line-height:1.4;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m-page{font-size:10.5px;color:var(--l);margin-top:2px}
+
+.bt-home{display:block;width:fit-content;margin:18px auto 8px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);
+  transition:transform .15s}
+.bt-home:hover{transform:translateY(-1px)}
+.ft{text-align:center;padding:6px 0 14px;font-size:11px;color:#a8bcb4}
+@media(min-width:520px){.m-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body><div class="wrap">
+
+<header class="hdr">
+  <a class="back" href="index.html">← 模型思维</a>
+  <h1>📐 60 几何模型</h1>
+  <p class="sub">中考几何 · 万唯中考 · 10 大专题</p>
+</header>
+
+<div class="summary">
+  📊 共 <b>10 个专题</b> · <b>60 个核心模型</b> · 每个模型配典型例题<br/>
+  💡 点击任一模型进入学习页，含结论分析、例题讲解与实战演练
+</div>
+
+<div class="topic-block"><div class="topic-hdr"><span class="topic-icon">📚</span>专题一 几何初步</div><div class="m-grid"><a class="m-card" href="m01.html"><div class="m-num">01</div><div class="m-body"><div class="m-name">双中点模型</div><div class="m-page">📖 第 1 页</div></div></a><a class="m-card" href="m02.html"><div class="m-num">02</div><div class="m-body"><div class="m-name">双角平分线模型</div><div class="m-page">📖 第 4 页</div></div></a></div></div><div class="topic-block"><div class="topic-hdr"><span class="topic-icon">📚</span>专题二 相交线与平行线</div><div class="m-grid"><a class="m-card" href="m03.html"><div class="m-num">03</div><div class="m-body"><div class="m-name">三线八角</div><div class="m-page">📖 第 7 页</div></div></a><a class="m-card" href="m04.html"><div class="m-num">04</div><div class="m-body"><div class="m-name">"猪蹄"型</div><div class="m-page">📖 第 10 页</div></div></a><a class="m-card" href="m05.html"><div class="m-num">05</div><div class="m-body"><div class="m-name">"铅笔头"型</div><div class="m-page">📖 第 13 页</div></div></a><a class="m-card" href="m06.html"><div class="m-num">06</div><div class="m-body"><div class="m-name">"锯齿"型</div><div class="m-page">📖 第 16 页</div></div></a><a class="m-card" href="m07.html"><div class="m-num">07</div><div class="m-body"><div class="m-name">三角形</div><div class="m-page">📖 第 19 页</div></div></a></div></div><div class="topic-block"><div class="topic-hdr"><span class="topic-icon">📚</span>专题三 三角形</div><div class="m-grid"><a class="m-card" href="m08.html"><div class="m-num">08</div><div class="m-body"><div class="m-name">"8字"型</div><div class="m-page">📖 第 22 页</div></div></a><a class="m-card" href="m09.html"><div class="m-num">09</div><div class="m-body"><div class="m-name">"燕尾"型</div><div class="m-page">📖 第 24 页</div></div></a><a class="m-card" href="m10.html"><div class="m-num">10</div><div class="m-body"><div class="m-name">"风筝"型</div><div class="m-page">📖 第 28 页</div></div></a><a class="m-card" href="m11.html"><div class="m-num">11</div><div class="m-body"><div class="m-name">角平分线模型</div><div class="m-page">📖 第 31 页</div></div></a><a class="m-card" href="m12.html"><div class="m-num">12</div><div class="m-body"><div class="m-name">双角平分线模型</div><div class="m-page">📖 第 34 页</div></div></a><a class="m-card" href="m13.html"><div class="m-num">13</div><div class="m-body"><div class="m-name">"中位线"模型</div><div class="m-page">📖 第 37 页</div></div></a><a class="m-card" href="m14.html"><div class="m-num">14</div><div class="m-body"><div class="m-name">"中垂线"模型</div><div class="m-page">📖 第 40 页</div></div></a><a class="m-card" href="m15.html"><div class="m-num">15</div><div class="m-body"><div class="m-name">倍长中线模型</div><div class="m-page">📖 第 43 页</div></div></a><a class="m-card" href="m16.html"><div class="m-num">16</div><div class="m-body"><div class="m-name">垂线段最短</div><div class="m-page">📖 第 46 页</div></div></a></div></div><div class="topic-block"><div class="topic-hdr"><span class="topic-icon">📚</span>专题四 全等三角形</div><div class="m-grid"><a class="m-card" href="m17.html"><div class="m-num">17</div><div class="m-body"><div class="m-name">"一线三等角"全等模型</div><div class="m-page">📖 第 49 页</div></div></a><a class="m-card" href="m18.html"><div class="m-num">18</div><div class="m-body"><div class="m-name">"半角"全等模型</div><div class="m-page">📖 第 53 页</div></div></a><a class="m-card" href="m19.html"><div class="m-num">19</div><div class="m-body"><div class="m-name">"手拉手"全等模型</div><div class="m-page">📖 第 57 页</div></div></a><a class="m-card" href="m20.html"><div class="m-num">20</div><div class="m-body"><div class="m-name">"反向手拉手"全等模型</div><div class="m-page">📖 第 61 页</div></div></a></div></div><div class="topic-block"><div class="topic-hdr"><span class="topic-icon">📚</span>专题五 轴对称</div><div class="m-grid"><a class="m-card" href="m21.html"><div class="m-num">21</div><div class="m-body"><div class="m-name">将军饮马之"两点一线"模型</div><div class="m-page">📖 第 64 页</div></div></a><a class="m-card" href="m22.html"><div class="m-num">22</div><div class="m-body"><div class="m-name">将军饮马之"一点两线"模型</div><div class="m-page">📖 第 68 页</div></div></a><a class="m-card" href="m23.html"><div class="m-num">23</div><div class="m-body"><div class="m-name">将军饮马之"两点两线"模型</div><div class="m-page">📖 第 71 页</div></div></a><a class="m-card" href="m24.html"><div class="m-num">24</div><div class="m-body"><div class="m-name">将军饮马之"三动点"模型</div><div class="m-page">📖 第 73 页</div></div></a><a class="m-card" href="m25.html"><div class="m-num">25</div><div class="m-body"><div class="m-name">将军饮马之"两定点一定长"模型</div><div class="m-page">📖 第 75 页</div></div></a></div></div><div class="topic-block"><div class="topic-hdr"><span class="topic-icon">📚</span>专题六 勾股定理</div><div class="m-grid"><a class="m-card" href="m26.html"><div class="m-num">26</div><div class="m-body"><div class="m-name">"勾股树"</div><div class="m-page">📖 第 78 页</div></div></a><a class="m-card" href="m27.html"><div class="m-num">27</div><div class="m-body"><div class="m-name">赵爽弦图</div><div class="m-page">📖 第 82 页</div></div></a><a class="m-card" href="m28.html"><div class="m-num">28</div><div class="m-body"><div class="m-name">蚂蚁爬行（最短路径问题）</div><div class="m-page">📖 第 86 页</div></div></a><a class="m-card" href="m29.html"><div class="m-num">29</div><div class="m-body"><div class="m-name">矩形的翻折</div><div class="m-page">📖 第 90 页</div></div></a><a class="m-card" href="m30.html"><div class="m-num">30</div><div class="m-body"><div class="m-name">垂美四边形</div><div class="m-page">📖 第 95 页</div></div></a></div></div><div class="topic-block"><div class="topic-hdr"><span class="topic-icon">📚</span>专题七 四边形</div><div class="m-grid"><a class="m-card" href="m31.html"><div class="m-num">31</div><div class="m-body"><div class="m-name">中点四边形模型</div><div class="m-page">📖 第 98 页</div></div></a><a class="m-card" href="m32.html"><div class="m-num">32</div><div class="m-body"><div class="m-name">"十字架"模型</div><div class="m-page">📖 第 102 页</div></div></a><a class="m-card" href="m33.html"><div class="m-num">33</div><div class="m-body"><div class="m-name">对角互补模型</div><div class="m-page">📖 第 106 页</div></div></a><a class="m-card" href="m34.html"><div class="m-num">34</div><div class="m-body"><div class="m-name">含60°角的菱形</div><div class="m-page">📖 第 110 页</div></div></a></div></div><div class="topic-block"><div class="topic-hdr"><span class="topic-icon">📚</span>专题八 圆</div><div class="m-grid"><a class="m-card" href="m35.html"><div class="m-num">35</div><div class="m-body"><div class="m-name">圆周角定理</div><div class="m-page">📖 第 114 页</div></div></a><a class="m-card" href="m36.html"><div class="m-num">36</div><div class="m-body"><div class="m-name">相交弦定理</div><div class="m-page">📖 第 118 页</div></div></a><a class="m-card" href="m37.html"><div class="m-num">37</div><div class="m-body"><div class="m-name">切割线定理</div><div class="m-page">📖 第 120 页</div></div></a><a class="m-card" href="m38.html"><div class="m-num">38</div><div class="m-body"><div class="m-name">垂径定理</div><div class="m-page">📖 第 123 页</div></div></a><a class="m-card" href="m39.html"><div class="m-num">39</div><div class="m-body"><div class="m-name">双切线</div><div class="m-page">📖 第 126 页</div></div></a><a class="m-card" href="m40.html"><div class="m-num">40</div><div class="m-body"><div class="m-name">三角形外接圆</div><div class="m-page">📖 第 129 页</div></div></a><a class="m-card" href="m41.html"><div class="m-num">41</div><div class="m-body"><div class="m-name">三角形内切圆</div><div class="m-page">📖 第 132 页</div></div></a><a class="m-card" href="m42.html"><div class="m-num">42</div><div class="m-body"><div class="m-name">定角定长作图</div><div class="m-page">📖 第 135 页</div></div></a><a class="m-card" href="m43.html"><div class="m-num">43</div><div class="m-body"><div class="m-name">定弦定角</div><div class="m-page">📖 第 138 页</div></div></a><a class="m-card" href="m44.html"><div class="m-num">44</div><div class="m-body"><div class="m-name">定角定高</div><div class="m-page">📖 第 141 页</div></div></a><a class="m-card" href="m45.html"><div class="m-num">45</div><div class="m-body"><div class="m-name">最大张角</div><div class="m-page">📖 第 144 页</div></div></a><a class="m-card" href="m46.html"><div class="m-num">46</div><div class="m-body"><div class="m-name">四点共圆</div><div class="m-page">📖 第 146 页</div></div></a></div></div><div class="topic-block"><div class="topic-hdr"><span class="topic-icon">📚</span>专题九 相似三角形</div><div class="m-grid"><a class="m-card" href="m47.html"><div class="m-num">47</div><div class="m-body"><div class="m-name">"A字"模型</div><div class="m-page">📖 第 148 页</div></div></a><a class="m-card" href="m48.html"><div class="m-num">48</div><div class="m-body"><div class="m-name">"8字"模型</div><div class="m-page">📖 第 151 页</div></div></a><a class="m-card" href="m49.html"><div class="m-num">49</div><div class="m-body"><div class="m-name">"一线三等角"相似模型</div><div class="m-page">📖 第 154 页</div></div></a><a class="m-card" href="m50.html"><div class="m-num">50</div><div class="m-body"><div class="m-name">"射影定理"模型</div><div class="m-page">📖 第 158 页</div></div></a><a class="m-card" href="m51.html"><div class="m-num">51</div><div class="m-body"><div class="m-name">"飞鱼"模型</div><div class="m-page">📖 第 161 页</div></div></a><a class="m-card" href="m52.html"><div class="m-num">52</div><div class="m-body"><div class="m-name">"手拉手"相似模型</div><div class="m-page">📖 第 164 页</div></div></a></div></div><div class="topic-block"><div class="topic-hdr"><span class="topic-icon">📚</span>专题十 经典模型</div><div class="m-grid"><a class="m-card" href="m53.html"><div class="m-num">53</div><div class="m-body"><div class="m-name">"胡不归"模型</div><div class="m-page">📖 第 167 页</div></div></a><a class="m-card" href="m54.html"><div class="m-num">54</div><div class="m-body"><div class="m-name">"阿氏圆"模型</div><div class="m-page">📖 第 170 页</div></div></a><a class="m-card" href="m55.html"><div class="m-num">55</div><div class="m-body"><div class="m-name">费马点模型</div><div class="m-page">📖 第 174 页</div></div></a><a class="m-card" href="m56.html"><div class="m-num">56</div><div class="m-body"><div class="m-name">主从联动模型</div><div class="m-page">📖 第 178 页</div></div></a><a class="m-card" href="m57.html"><div class="m-num">57</div><div class="m-body"><div class="m-name">"12345"模型</div><div class="m-page">📖 第 182 页</div></div></a><a class="m-card" href="m58.html"><div class="m-num">58</div><div class="m-body"><div class="m-name">"海盗埋宝"模型</div><div class="m-page">📖 第 187 页</div></div></a><a class="m-card" href="m59.html"><div class="m-num">59</div><div class="m-body"><div class="m-name">婆罗摩笈多模型</div><div class="m-page">📖 第 192 页</div></div></a><a class="m-card" href="m60.html"><div class="m-num">60</div><div class="m-body"><div class="m-name">阿基米德折弦定理</div><div class="m-page">📖 第 196 页</div></div></a></div></div>
+
+<a class="bt-home" href="../index.html">🏠 返回数学主页</a>
+<div class="ft">&copy; 两英豆豆教练 · 数据来源：万唯中考《几何模型》</div>
+
+</div></body></html>
