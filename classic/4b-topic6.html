@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>优化问题专题 · 四年级下册</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--r:14px}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);padding:20px 16px 90px;min-height:100vh;display:flex;justify-content:center}
+.wrap{width:100%;max-width:680px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:8px;font-size:13px;opacity:.95}
+.hdr .back{position:absolute;top:12px;left:14px;z-index:1;background:rgba(255,255,255,.22);color:#fff;border:1px solid rgba(255,255,255,.35);padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s}
+.hdr .back:hover{background:rgba(255,255,255,.38)}
+.know{background:#fff;border-radius:var(--r);padding:14px 16px;margin-bottom:12px;box-shadow:0 4px 12px rgba(47,157,240,.06);line-height:1.8}
+.know h3{font-size:1rem;color:#8b5cf6;margin-bottom:4px}
+.know .formula{display:inline-block;background:#f5f3ff;border:1px solid #c4b5fd;border-radius:6px;padding:6px 12px;margin:4px 0;font-size:.9rem;color:#6d28d9;font-weight:600;line-height:2}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:8px 16px;border-radius:999px;border:1.5px solid #d8ebe3;background:#fff;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--t);transition:all .2s}
+.tab:hover{border-color:#8b5cf6}
+.tab.active{background:linear-gradient(135deg,#8b5cf6,#7c3aed);color:#fff;border-color:transparent}
+.q-card{background:#fff;border-radius:var(--r);padding:16px;margin-bottom:12px;box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.q-stem{font-size:1rem;line-height:1.7;margin-bottom:12px;padding-left:10px;border-left:3px solid #8b5cf6}
+.answer-row{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.answer-row input{flex:1;padding:10px 14px;border:2px solid #d8ebe3;border-radius:8px;font-size:1rem;outline:none;transition:border-color .2s}
+.answer-row input:focus{border-color:#8b5cf6}
+.answer-row input.correct{border-color:#22c55e;background:#f0fdf4}
+.answer-row input.wrong{border-color:#ef4444;background:#fef2f2}
+.btn-submit{padding:10px 20px;background:linear-gradient(135deg,#8b5cf6,#7c3aed);color:#fff;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:transform .15s}
+.btn-submit:active{transform:scale(.95)}
+.feedback{margin-top:8px;padding:10px 14px;border-radius:8px;font-size:.88rem;line-height:1.7}
+.feedback.ok{background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d}
+.feedback.err{background:#fef2f2;border:1px solid #fecaca;color:#dc2626}
+.feedback .your{color:#ef4444;font-weight:600}
+.feedback .correct-ans{color:#22c55e;font-weight:600}
+.dot-nav{display:flex;justify-content:center;gap:6px;margin:16px 0;flex-wrap:wrap}
+.dot{width:28px;height:28px;border-radius:50%;border:2px solid #d8ebe3;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;cursor:pointer;background:#fff;color:#999;transition:all .15s}
+.dot.active{border-color:#8b5cf6;background:#8b5cf6;color:#fff;transform:scale(1.2)}
+.dot.done{border-color:var(--g);background:#f0fdf4;color:var(--g)}
+.dot.wrong{border-color:#ef4444;background:#fef2f2;color:#ef4444}
+.toolbar{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid #d8ebe3;padding:8px 14px 12px;display:flex;gap:8px;justify-content:center;z-index:50;box-shadow:0 -4px 18px rgba(0,0,0,.06)}
+.tool-btn{padding:8px 16px;border-radius:999px;border:1.5px solid #d8ebe3;background:#fff;font-size:.82rem;font-weight:600;cursor:pointer;color:var(--t);transition:all .2s}
+.tool-btn:hover{border-color:#8b5cf6}
+.tool-btn.primary{background:linear-gradient(135deg,#8b5cf6,#7c3aed);color:#fff;border:none}
+.bt-home{display:block;width:fit-content;margin:18px auto 8px;padding:11px 26px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt-home:hover{transform:translateY(-1px)}
+.ft{text-align:center;padding:8px 0 18px;font-size:12px;color:#a8bcb4}
+@media(max-width:420px){.hdr h1{font-size:18px}}
+</style>
+</head>
+<body><div class="wrap">
+
+<header class="hdr">
+  <a class="back" href="index.html">&#x2190; 返回专题导航</a>
+  <h1>&#x2699;&#xfe0f; 优化问题专题</h1>
+  <p class="sub">四年级下册 · 沏茶 · 烙饼 · 田忌赛马</p>
+</header>
+
+<div class="know">
+  <h3>&#x1f4d0; 知识要点</h3>
+  <p style="font-size:.92rem;margin-bottom:6px">优化问题让你学会<strong>用最少的时间/资源完成最多的事情</strong>：</p>
+  <div class="formula" id="formulaShow" style="display:block"></div>
+  <p style="font-size:.85rem;color:var(--l);margin-top:8px">
+    &#x1f4a1; 三类经典问题：<b>沏茶</b>（并行安排）| <b>烙饼</b>（满锅交替）| <b>田忌赛马</b>（最优策略）
+  </p>
+</div>
+
+<div class="tabs" id="tabs"></div>
+<div id="questions"></div>
+<div class="dot-nav" id="dotNav"></div>
+
+<div class="toolbar" id="toolbar">
+  <button class="tool-btn primary" id="btnCheck">&#x2705; 提交本题</button>
+  <button class="tool-btn" id="btnPrev">&#x25c0; 上一题</button>
+  <span id="progressSpan" style="display:flex;align-items:center;font-size:.82rem;font-weight:600;color:var(--l);padding:0 6px">1/5</span>
+  <button class="tool-btn" id="btnNext">下一题 &#x25b6;</button>
+</div>
+
+<a class="bt-home" href="../index.html">&#x1f3e0; 返回数学主页</a>
+<div class="ft">&copy; 两英豆豆教练</div>
+
+</div>
+
+<script>
+var TOPICS = [
+  {id:1, name:'沏茶问题', title:'问题一：沏茶问题（合理安排时间）', formula:'核心：找出能<strong>同时进行</strong>的任务，尽量并行。<br>总时间 = 最长的依赖链条时间（关键路径）',
+    items:[
+      {qid:'1-1', stem:'小明沏茶：洗水壶1分→接水1分→烧水8分→洗茶杯2分→找茶叶1分→沏茶1分。烧水时可以同时洗茶杯和找茶叶。最少需要多少分钟？', answer:'11', accept:['11'], explain:'关键路径：洗水壶(1)→接水(1)→烧水(8)→沏茶(1)=11分钟。烧水时并行做洗茶杯和找茶叶（2分钟<8分钟，不增加总时间）。答：11分钟。'},
+      {qid:'1-2', stem:'妈妈做午饭：洗米2分→煮饭25分→洗菜5分→切菜5分→炒菜10分。煮饭时可以同时洗菜切菜。最少需要多少分钟？', answer:'27', accept:['27'], explain:'路径：洗米(2)→煮饭(25)=27分。煮饭时并行：洗菜(5)+切菜(5)+炒菜(10)=20分 < 25分，全在煮饭时间内完成。答：27分钟。'},
+      {qid:'1-3', stem:'小红做作业：语文15分→数学20分→英语10分。休息时可以听音乐5分。如果在做数学时可以同时听音乐，最少需要多少分钟？', answer:'45', accept:['45'], explain:'顺序执行：语文15 + 数学20 + 英语10 = 45分钟。听音乐5分在数学时并行 → 总时间不变，仍为45分。答：45分钟。'},
+      {qid:'1-4', stem:'爸爸修车：检查10分→换零件30分→试车5分。在换零件时可以同时整理工具8分。最少需几分钟？', answer:'45', accept:['45'], explain:'关键路径：检查(10)→换零件(30)→试车(5)=45分。整理工具8分<30分，在换零件时并行完成。答：45分钟。'},
+      {qid:'1-5', stem:'洗衣服：浸泡10分→洗衣机洗30分→晾晒5分。可以把洗碗15分和扫地10分放在洗衣机工作时做。最少需要多少分钟？', answer:'45', accept:['45'], explain:'关键路径：浸泡(10)→洗衣(30)→晾晒(5)=45分。洗衣机工作时并行洗碗(15)+扫地(10)=25分 < 30分。答：45分钟。'}
+    ]},
+  {id:2, name:'烙饼问题', title:'问题二：烙饼问题（锅的利用率）', formula:'每次最多烙 n 张饼，每面需要 t 分钟。<br>最优：始终让锅里<strong>满着</strong>，交替翻面。<br>总时间 ≈ 饼数 × 2面 × t ÷ 每次张数（向上取整）',
+    items:[
+      {qid:'2-1', stem:'一口锅每次最多烙 2 张饼，每面需要 3 分钟。烙 3 张饼最少需要多少分钟？', answer:'9', accept:['9'], explain:'方案：先烙饼1正+饼2正(3分)→饼1反+饼3正(3分)→饼2反+饼3反(3分)=9分。关键：第2轮换入第3张，锅始终满。答：9分钟。'},
+      {qid:'2-2', stem:'每次最多烙 2 张饼，每面 2 分钟。烙 5 张饼最少需要多少分钟？', answer:'10', accept:['10'], explain:'前3张用交替法：3×2×2÷2=6分（同理3张=6分）。剩下2张：正2分+反2分=4分。总计6+4=10分。答：10分钟。'},
+      {qid:'2-3', stem:'每次最多烙 3 张饼，每面 2 分钟。烙 4 张饼最少需要多少分钟？', answer:'6', accept:['6'], explain:'锅可放3张，4张分布：第1轮 饼①②③正(2分)→饼①反+饼②反+饼④正(2分)→饼③反+饼④反(2分，但锅未满)。实际：饼①②③正(2分)→饼④正+饼①②反(2分)→饼③反+饼④反(2分，实际可不烙满)=6分。答：6分钟。'},
+      {qid:'2-4', stem:'每次最多烙 2 张饼，每面 3 分钟。烙 7 张饼最少需要多少分钟？', answer:'21', accept:['21'], explain:'公式：(7×2×3)÷2=21分。验证：每轮2面，每次2张满锅，7张×2面=14面，每轮烙2面需7轮，每轮3分=21分。答：21分钟。'}
+    ]},
+  {id:3, name:'田忌赛马', title:'问题三：田忌赛马（对策论/最优匹配）', formula:'核心策略：<strong>用自己的最弱去对对方的最强</strong>（牺牲一局），<br>然后在剩下的对局中争取全部胜利。<br>即：下等马 vs 上等马 → 上等马 vs 中等马 → 中等马 vs 下等马',
+    items:[
+      {qid:'3-1', stem:'田忌和齐王各有上中下三等马。齐王出马顺序：上→中→下。田忌用\"下对上、上对中、中对下\"策略。田忌能赢几局？', answer:'2', accept:['2'], explain:'田忌策略：下等马 vs 齐王上等马（输1局）；上等马 vs 齐王中等马（赢1局）；中等马 vs 齐王下等马（赢1局）。3局2胜，田忌获胜。答：2局。'},
+      {qid:'3-2', stem:'甲乙各有三张数字卡。甲的卡：9、7、5（从大到小出）。乙的卡：8、6、4。乙怎样安排出场顺序才能2胜1负？', answer:'4对9、8对7、6对5', accept:['4对9、8对7、6对5'], explain:'乙策略：最小牌4对甲最大牌9（战略性放弃）→ 最大牌8对甲7（赢）→ 6对甲5（赢）。2胜1负。答：4对9、8对7、6对5。'},
+      {qid:'3-3', stem:'比赛抢答，双方各有4道题。你估算对方会把最难题放在第1题。你应该把自己的最强题放在第几题？', answer:'第2题', accept:['第2题'], explain:'对策：用最弱题对对方最难题（第1题放弃），然后在第2-4题用强中弱争取3连胜。答：第2题。'},
+      {qid:'3-4', stem:'A和B玩扑克比大小，A先出牌（出牌顺序：10→7→4），B的手牌是9、6、3。B怎样出牌能赢？', answer:'3对10、9对7、6对4', accept:['3对10、9对7、6对4'], explain:'应用田忌赛马策略：B用最小3对A最大10(输1局)→最大9对7(赢)→6对4(赢)。2胜1负。答：3对10、9对7、6对4。'}
+    ]}
+];
+
+var curTopic = 0, curQ = 0, answers = {};
+
+function hashKey(){ return curTopic + '-' + curQ; }
+
+function renderTabs(){
+  document.getElementById('tabs').innerHTML = TOPICS.map(function(t,i){
+    return '<button class="tab' + (i===curTopic?' active':'') + '" onclick="switchTopic(' + i + ')">' + t.title + '</button>';
+  }).join('');
+}
+
+function renderQ(){
+  var t = TOPICS[curTopic], q = t.items[curQ], key = hashKey();
+  var done = answers[key] !== undefined, ok = answers[key] === true;
+  var cls = done ? (ok ? 'correct' : 'wrong') : '';
+  var h = '<div class="q-card">';
+  h += '<div class="q-stem"><strong>【第' + (curQ+1) + '题】</strong> ' + q.stem + '</div>';
+  h += '<div class="answer-row">';
+  h += '<input type="text" id="answerInput" class="' + cls + '" placeholder="输入答案" value="' + (done ? (answers[key+'_user']||'') : '') + '" ' + (done?'disabled':'') + '>';
+  if(!done) h += '<button class="btn-submit" onclick="checkAnswer()">确认</button>';
+  h += '</div>';
+  if(done){
+    h += '<div class="feedback ' + (ok?'ok':'err') + '">';
+    if(ok) h += '&#x2705; <strong>回答正确！</strong> ' + q.explain;
+    else h += '&#x274c; <span class="your">你的答案：' + answers[key+'_user'] + '</span>&emsp;<span class="correct-ans">正确答案：' + q.answer + '</span><br>' + q.explain;
+    h += '</div>';
+  }
+  h += '</div>';
+  document.getElementById('questions').innerHTML = h;
+  document.getElementById('formulaShow').innerHTML = t.formula;
+  var dots = '';
+  for(var i=0;i<t.items.length;i++){
+    var k = curTopic + '-' + i, c2 = 'dot';
+    if(i===curQ) c2 += ' active';
+    if(answers[k]===true) c2 += ' done';
+    else if(answers[k]===false) c2 += ' wrong';
+    dots += '<button class="' + c2 + '" onclick="switchQ(' + i + ')">' + (i+1) + '</button>';
+  }
+  document.getElementById('dotNav').innerHTML = dots;
+  document.getElementById('progressSpan').textContent = (curQ+1) + '/' + t.items.length;
+  if(!done){ var inp = document.getElementById('answerInput'); if(inp) setTimeout(function(){inp.focus();},100); }
+}
+
+function judge(input, answer, accept){
+  var s = input.replace(/\s+/g, '').toLowerCase();
+  var a = answer.replace(/\s+/g, '').toLowerCase();
+  if(s === a) return true;
+  for(var i=0; accept && i<accept.length; i++){
+    if(s === accept[i].replace(/\s+/g, '').toLowerCase()) return true;
+  }
+  return false;
+}
+
+function checkAnswer(){
+  var inp = document.getElementById('answerInput'), val = inp.value.trim();
+  if(!val) return;
+  var q = TOPICS[curTopic].items[curQ], key = hashKey();
+  var ok = judge(val, q.answer, q.accept);
+  answers[key] = ok; answers[key+'_user'] = val; renderQ();
+}
+
+function switchTopic(i){ curTopic = i; curQ = 0; renderTabs(); renderQ(); }
+function switchQ(i){ curQ = Math.max(0, Math.min(i, TOPICS[curTopic].items.length - 1)); renderQ(); }
+
+document.getElementById('btnCheck').addEventListener('click', checkAnswer);
+document.getElementById('btnPrev').addEventListener('click', function(){ switchQ(curQ - 1); });
+document.getElementById('btnNext').addEventListener('click', function(){ switchQ(curQ + 1); });
+
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Enter'){
+    var key = hashKey();
+    if(answers[key] === undefined) checkAnswer(); else switchQ(curQ + 1);
+  }
+  if(e.key === 'ArrowLeft' && !e.target.closest('input')) switchQ(curQ - 1);
+  if(e.key === 'ArrowRight' && !e.target.closest('input')) switchQ(curQ + 1);
+});
+
+renderTabs(); renderQ();
+</script>
+</body></html>

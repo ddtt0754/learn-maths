@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>百分数应用专题 · 六年级上册</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--r:14px;--ac:#2563eb}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);padding:20px 16px 90px;min-height:100vh;display:flex;justify-content:center}
+.wrap{width:100%;max-width:680px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:8px;font-size:13px;opacity:.95}
+.hdr .back{position:absolute;top:12px;left:14px;z-index:1;background:rgba(255,255,255,.22);color:#fff;border:1px solid rgba(255,255,255,.35);padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s}
+.hdr .back:hover{background:rgba(255,255,255,.38)}
+.know{background:#fff;border-radius:var(--r);padding:14px 16px;margin-bottom:12px;box-shadow:0 4px 12px rgba(47,157,240,.08);line-height:1.8}
+.know h3{font-size:1rem;color:var(--ac);margin-bottom:4px}
+.know .formula{display:inline-block;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:6px 12px;margin:4px 0;font-size:.9rem;color:#1e40af;font-weight:600;line-height:2}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:8px 14px;border-radius:999px;border:1.5px solid #d8ebe3;background:#fff;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--t);transition:all .2s}
+.tab:hover{border-color:var(--ac)}
+.tab.active{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border-color:transparent}
+.q-card{background:#fff;border-radius:var(--r);padding:16px;margin-bottom:12px;box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.q-stem{font-size:1rem;line-height:1.7;margin-bottom:12px;padding-left:10px;border-left:3px solid var(--ac)}
+.answer-row{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.answer-row input{flex:1;padding:10px 14px;border:2px solid #d8ebe3;border-radius:8px;font-size:1rem;outline:none;transition:border-color .2s}
+.answer-row input:focus{border-color:var(--ac)}
+.answer-row input.correct{border-color:#22c55e;background:#f0fdf4}
+.answer-row input.wrong{border-color:#ef4444;background:#fef2f2}
+.btn-submit{padding:10px 20px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:transform .15s}
+.btn-submit:active{transform:scale(.95)}
+.feedback{margin-top:8px;padding:10px 14px;border-radius:8px;font-size:.88rem;line-height:1.7}
+.feedback.ok{background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d}
+.feedback.err{background:#fef2f2;border:1px solid #fecaca;color:#dc2626}
+.feedback .your{color:#ef4444;font-weight:600}
+.feedback .correct-ans{color:#22c55e;font-weight:600}
+.dot-nav{display:flex;justify-content:center;gap:6px;margin:16px 0;flex-wrap:wrap}
+.dot{width:28px;height:28px;border-radius:50%;border:2px solid #d8ebe3;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;cursor:pointer;background:#fff;color:#999;transition:all .15s}
+.dot.active{border-color:var(--ac);background:var(--ac);color:#fff;transform:scale(1.2)}
+.dot.done{border-color:var(--g);background:#f0fdf4;color:var(--g)}
+.dot.wrong{border-color:#ef4444;background:#fef2f2;color:#ef4444}
+.toolbar{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid #d8ebe3;padding:8px 14px 12px;display:flex;gap:8px;justify-content:center;z-index:50;box-shadow:0 -4px 18px rgba(0,0,0,.06)}
+.tool-btn{padding:8px 16px;border-radius:999px;border:1.5px solid #d8ebe3;background:#fff;font-size:.82rem;font-weight:600;cursor:pointer;color:var(--t);transition:all .2s}
+.tool-btn:hover{border-color:var(--ac)}
+.tool-btn.primary{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none}
+.bt-home{display:block;width:fit-content;margin:18px auto 8px;padding:11px 26px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt-home:hover{transform:translateY(-1px)}
+.ft{text-align:center;padding:8px 0 18px;font-size:12px;color:#a8bcb4}
+@media(max-width:420px){.hdr h1{font-size:18px}}
+</style>
+</head>
+<body><div class="wrap">
+
+<header class="hdr">
+  <a class="back" href="index.html">&#x2190; 返回专题导航</a>
+  <h1>&#x1f4ca; 百分数应用专题</h1>
+  <p class="sub">六年级上册 · 折扣·成数·税率·利率·利润·浓度</p>
+</header>
+
+<div class="know">
+  <h3>&#x1f4d0; 知识要点</h3>
+  <p style="font-size:.92rem;margin-bottom:6px">百分数在生活中的六大应用，核心是<strong>找准单位"1"</strong>，把实际问题转化为百分数计算：</p>
+  <div class="formula" id="formulaShow" style="display:block"></div>
+  <p style="font-size:.85rem;color:var(--l);margin-top:8px">
+    &#x1f4a1; 六类应用：<b>折扣</b>（现价=原价×折扣）｜<b>成数</b>（几成=十分之几）｜<b>税率</b>（税额=收入×税率）｜<b>利率</b>（利息=本金×利率×时间）｜<b>利润</b>（利润=售价-进价）｜<b>浓度</b>（溶质÷溶液）
+  </p>
+</div>
+
+<div class="tabs" id="tabs"></div>
+<div id="questions"></div>
+<div class="dot-nav" id="dotNav"></div>
+
+<div class="toolbar" id="toolbar">
+  <button class="tool-btn primary" id="btnCheck">&#x2705; 提交本题</button>
+  <button class="tool-btn" id="btnPrev">&#x25c0; 上一题</button>
+  <span id="progressSpan" style="display:flex;align-items:center;font-size:.82rem;font-weight:600;color:var(--l);padding:0 6px">1/5</span>
+  <button class="tool-btn" id="btnNext">下一题 &#x25b6;</button>
+</div>
+
+<a class="bt-home" href="../index.html">&#x1f3e0; 返回数学主页</a>
+<div class="ft">&copy; 两英豆豆教练</div>
+
+</div>
+
+<script>
+var TOPICS = [
+  {id:1, name:'折扣与成数', title:'题型一：折扣·成数', formula:'折扣：现价 = 原价 × 折扣（几折=十分之几）<br>成数：几成 = 十分之几 = 百分之几十<br>便宜 = 原价 × (1 - 折扣)',
+    items:[
+      {qid:'p1', stem:'一件衣服原价 200 元，打八五折出售。现价多少元？', answer:'170', accept:['170'], explain:'八五折=85%。现价=200×85%=200×0.85=170(元)。答：170元。'},
+      {qid:'p2', stem:'一双鞋打七折后卖 140 元。原价是多少元？', answer:'200', accept:['200'], explain:'七折=70%。原价×70%=140 → 原价=140÷0.7=200(元)。答：200元。'},
+      {qid:'p3', stem:'一台电视原价 3200 元，现价 2560 元。打了几折？', answer:'8', accept:['8'], explain:'折扣=2560÷3200=0.8=80%=八折。答：八折。'},
+      {qid:'p4', stem:'今年小麦产量比去年增产二成五。去年产 400 千克，今年产多少千克？', answer:'500', accept:['500'], explain:'二成五=25%。今年=400×(1+25%)=400×1.25=500(千克)。答：500千克。'},
+      {qid:'p5', stem:'一件商品先打九折，再打八折。相当于打了几折？', answer:'7.2', accept:['7.2'], explain:'第一次：原价×0.9；第二次：(原价×0.9)×0.8=原价×0.72=七二折。答：七二折（72%）。'}
+    ]},
+  {id:2, name:'税率与利率', title:'题型二：税率·利率', formula:'应纳税额 = 收入 × 税率<br>利息 = 本金 × 利率 × 时间<br>本息和 = 本金 + 利息',
+    items:[
+      {qid:'p6', stem:'小明的爸爸月收入 8000 元，按规定超过 5000 元的部分要缴纳 3% 的个人所得税。每月缴税多少元？', answer:'90', accept:['90'], explain:'应税部分=8000-5000=3000元。税额=3000×3%=90(元)。答：90元。'},
+      {qid:'p7', stem:'李叔叔存了 10000 元，定期 3 年，年利率 2.75%。到期后利息是多少元？', answer:'825', accept:['825'], explain:'利息=本金×利率×时间=10000×2.75%×3=10000×0.0275×3=825(元)。答：825元。'},
+      {qid:'p8', stem:'妈妈存了 5000 元，年利率 2.25%，存了 2 年。到期一共能取多少元？', answer:'5225', accept:['5225'], explain:'利息=5000×2.25%×2=5000×0.0225×2=225(元)。本息和=5000+225=5225(元)。答：5225元。'},
+      {qid:'p9', stem:'一家商店月营业额 15 万元，按 5% 的税率缴纳营业税。应缴多少万元？', answer:'0.75', accept:['0.75'], explain:'税额=15×5%=15×0.05=0.75(万元)=7500元。答：0.75万元。'}
+    ]},
+  {id:3, name:'利润问题', title:'题型三：利润问题', formula:'利润 = 售价 - 进价<br>利润率 = 利润 ÷ 进价 × 100%<br>售价 = 进价 × (1 + 利润率)',
+    items:[
+      {qid:'p10', stem:'一台学习机进价 800 元，商店加价 25% 出售。售价是多少元？', answer:'1000', accept:['1000'], explain:'利润=800×25%=200元。售价=800+200=1000(元)。或直接：售价=800×(1+25%)=1000(元)。答：1000元。'},
+      {qid:'p11', stem:'一本书进价 15 元，售价 24 元。利润率是多少？', answer:'60', accept:['60'], explain:'利润=24-15=9元。利润率=9÷15×100%=0.6×100%=60%。答：60%。'},
+      {qid:'p12', stem:'一件商品售价 480 元，商场获利 20%。进价是多少元？', answer:'400', accept:['400'], explain:'售价=进价×(1+20%)→480=进价×1.2→进价=480÷1.2=400(元)。答：400元。'},
+      {qid:'p13', stem:'某商品打八折后仍能获利 25%。如果进价是 160 元，原价是多少元？', answer:'250', accept:['250'], explain:'进价160→目标售价=160×1.25=200元。200是原价的80%→原价=200÷0.8=250(元)。答：250元。'}
+    ]},
+  {id:4, name:'浓度问题', title:'题型四：浓度问题', formula:'浓度 = 溶质质量 ÷ 溶液质量 × 100%<br>溶液质量 = 溶质质量 + 溶剂质量<br>混合浓度 = 总溶质 ÷ 总溶液 × 100%',
+    items:[
+      {qid:'p14', stem:'把 20 克盐放入 180 克水中，盐水浓度是多少？', answer:'10', accept:['10'], explain:'溶质(盐)=20克，溶液=20+180=200克。浓度=20÷200×100%=10%。答：10%。'},
+      {qid:'p15', stem:'现有 200 克浓度为 15% 的盐水。含盐多少克？', answer:'30', accept:['30'], explain:'盐质量=200×15%=200×0.15=30(克)。答：30克。'},
+      {qid:'p16', stem:'将 50 克浓度为 20% 的盐水和 50 克浓度为 10% 的盐水混合。混合后浓度是多少？', answer:'15', accept:['15'], explain:'总盐=50×20%+50×10%=10+5=15克。总溶液=50+50=100克。浓度=15÷100×100%=15%。答：15%。'},
+      {qid:'p17', stem:'要把 300 克浓度为 10% 的盐水变成浓度为 25%，需要加多少克盐？', answer:'60', accept:['60'], explain:'原有盐=300×10%=30克。设加x克盐：(30+x)÷(300+x)=25%→30+x=0.25(300+x)→30+x=75+0.25x→0.75x=45→x=60(克)。答：60克。'}
+    ]}
+];
+
+var curTopic=0,curQ=0,answers={};
+function hashKey(){return curTopic+'-'+curQ;}
+function renderTabs(){
+  document.getElementById('tabs').innerHTML=TOPICS.map(function(t,i){
+    return '<button class="tab'+(i===curTopic?' active':'')+'" onclick="switchTopic('+i+')">'+t.title+'</button>';
+  }).join('');
+}
+function renderQ(){
+  var t=TOPICS[curTopic],q=t.items[curQ],key=hashKey();
+  var done=answers[key]!==undefined,ok=answers[key]===true;
+  var cls=done?(ok?'correct':'wrong'):'';
+  var h='<div class="q-card">';
+  h+='<div class="q-stem"><strong>【第'+(curQ+1)+'题】</strong> '+q.stem+'</div>';
+  h+='<div class="answer-row">';
+  h+='<input type="text" id="answerInput" class="'+cls+'" placeholder="输入答案" value="'+(done?(answers[key+'_user']||''):'')+'" '+(done?'disabled':'')+'>';
+  if(!done) h+='<button class="btn-submit" onclick="checkAnswer()">确认</button>';
+  h+='</div>';
+  if(done){
+    h+='<div class="feedback '+(ok?'ok':'err')+'">';
+    if(ok) h+='&#x2705; <strong>回答正确！</strong> '+q.explain;
+    else h+='&#x274c; <span class="your">你的答案：'+answers[key+'_user']+'</span>&emsp;<span class="correct-ans">正确答案：'+q.answer+'</span><br>'+q.explain;
+    h+='</div>';
+  }
+  h+='</div>';
+  document.getElementById('questions').innerHTML=h;
+  document.getElementById('formulaShow').innerHTML=t.formula;
+  var dots='';
+  for(var i=0;i<t.items.length;i++){
+    var k=curTopic+'-'+i,c2='dot';
+    if(i===curQ)c2+=' active';
+    if(answers[k]===true)c2+=' done';
+    else if(answers[k]===false)c2+=' wrong';
+    dots+='<button class="'+c2+'" onclick="switchQ('+i+')">'+(i+1)+'</button>';
+  }
+  document.getElementById('dotNav').innerHTML=dots;
+  document.getElementById('progressSpan').textContent=(curQ+1)+'/'+t.items.length;
+  if(!done){var inp=document.getElementById('answerInput');if(inp)setTimeout(function(){inp.focus();},100);}
+}
+function judge(input,answer,accept){
+  var s=input.replace(/\s+/g,'').toLowerCase();
+  var a=answer.replace(/\s+/g,'').toLowerCase();
+  if(s===a)return true;
+  for(var i=0;accept&&i<accept.length;i++){if(s===accept[i].replace(/\s+/g,'').toLowerCase())return true;}
+  var n1=parseFloat(input),n2=parseFloat(answer);
+  if(!isNaN(n1)&&!isNaN(n2)&&Math.abs(n1-n2)<0.01)return true;
+  return false;
+}
+function checkAnswer(){
+  var inp=document.getElementById('answerInput'),val=inp.value.trim();
+  if(!val)return;
+  var q=TOPICS[curTopic].items[curQ],key=hashKey();
+  var ok=judge(val,q.answer,q.accept);
+  answers[key]=ok;answers[key+'_user']=val;renderQ();
+}
+function switchTopic(i){curTopic=i;curQ=0;renderTabs();renderQ();}
+function switchQ(i){curQ=Math.max(0,Math.min(i,TOPICS[curTopic].items.length-1));renderQ();}
+document.getElementById('btnCheck').addEventListener('click',checkAnswer);
+document.getElementById('btnPrev').addEventListener('click',function(){switchQ(curQ-1);});
+document.getElementById('btnNext').addEventListener('click',function(){switchQ(curQ+1);});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Enter'){var key=hashKey();if(answers[key]===undefined)checkAnswer();else switchQ(curQ+1);}
+  if(e.key==='ArrowLeft'&&!e.target.closest('input'))switchQ(curQ-1);
+  if(e.key==='ArrowRight'&&!e.target.closest('input'))switchQ(curQ+1);
+});
+renderTabs();renderQ();
+</script>
+</body></html>

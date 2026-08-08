@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=3.0">
+<meta name="theme-color" content="#2ebd85">
+<title>三年级上册 · 周长计算</title>
+<style>
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--border:#e1eeea;--card:#fff;--danger:#ef4444;--bg:#f5fbf8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);font-size:15px;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.wrap{width:100%;max-width:760px;padding:14px 14px 0;flex:1}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);border-radius:20px;padding:20px 18px 18px;text-align:center;color:#fff;overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:12px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:20px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12px;opacity:.95}
+.back-link{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;background:var(--card);border:1.5px solid var(--border);border-radius:999px;font-size:12.5px;font-weight:600;color:var(--t);text-decoration:none;transition:all .2s;margin-right:8px;margin-bottom:8px}
+.back-link:hover{border-color:var(--b);color:var(--b)}
+.know-card{background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:0 4px 14px rgba(47,157,240,.06);margin-bottom:12px;border-left:4px solid var(--b)}
+.know-card h3{font-size:15px;color:var(--b);margin-bottom:8px}
+.know-card .rule{padding:8px 12px;background:#f0fdf4;border-left:3px solid var(--g);border-radius:6px;margin:8px 0;font-size:13px;line-height:1.7}
+.q-card{background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:0 4px 14px rgba(47,157,240,.06);margin-bottom:10px}
+.q-card .q-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.q-card .q-badge{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border-radius:999px;padding:4px 14px;font-size:12px;font-weight:700;white-space:nowrap}
+.q-card .q-title{font-size:14px;font-weight:700;color:var(--t)}
+.q-card .q-stem{font-size:14px;line-height:1.75;color:var(--t);background:var(--bg);padding:12px 14px;border-radius:10px;margin-bottom:10px}
+.ans-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.ans-inp{flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;outline:none;transition:border-color .2s}
+.ans-inp:focus{border-color:var(--b)}
+.ans-inp:disabled{background:#f1f5f9}
+.ans-btn{padding:10px 22px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer}
+.ans-btn:hover{transform:translateY(-1px)}
+.ans-btn:disabled{opacity:.5;cursor:not-allowed}
+.feedback{display:none;padding:10px 14px;border-radius:10px;font-size:13px;line-height:1.7;margin-top:8px}
+.feedback.show{display:block}
+.feedback.ok{background:#f0fdf4;border-left:4px solid var(--g);color:#15803d}
+.feedback.err{background:#fef2f2;border-left:4px solid var(--danger);color:#991b1b}
+.feedback .user-ans{text-decoration:line-through;margin-right:6px}
+.feedback .correct-ans{font-weight:700}
+.feedback .explain{margin-top:6px;font-size:12.5px;color:#555;line-height:1.6}
+.bt-home{display:block;width:fit-content;margin:18px auto 8px;padding:11px 26px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22)}
+.site-footer{text-align:center;padding:12px 0 22px;color:var(--l);font-size:.72rem;border-top:1px solid var(--border);margin-top:6px;width:100%}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hdr"><h1>🟩 周长计算</h1><p class="sub">三年级上册 · 3 类题型共 15 题</p></header>
+<div><a class="back-link" href="index.html">← 返回专题导航</a><a class="back-link" href="../index.html">🏠 回到首页</a></div>
+
+<div class="know-card">
+  <h3>📖 知识要点与难点突破</h3>
+  <div class="rule"><b>长方形周长 = (长+宽)×2</b><br><b>正方形周长 = 边长×4</b><br><b>口诀：</b>长方形先加后乘2，正方形直接乘4。<br><b>陷阱：</b>已知周长求长/宽时要先÷2再减！</div>
+</div>
+
+<div id="qContainer"></div>
+
+<a class="bt-home" href="index.html">← 返回专题导航</a>
+<footer class="site-footer">&copy; 两英豆豆教练</footer>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+const TOPICS = [
+	{id:1, name:'公式计算', title:'题型1 · 直接用公式求周长',
+	items:[
+		{qid:'1', stem:'长方形长 8cm 宽 5cm，周长 = ______ cm。', ans:'26', explain:'(8+5)×2=26cm'},
+		{qid:'2', stem:'正方形边长 6dm，周长 = ______ dm。', ans:'24', explain:'6×4=24dm'},
+		{qid:'3', stem:'长方形长 12m 宽 7m，周长 = ______ m。', ans:'38', explain:'(12+7)×2=38m'},
+		{qid:'4', stem:'正方形周长 36cm，边长 = ______ cm。', ans:'9', explain:'36÷4=9cm'},
+		{qid:'5', stem:'长方形周长 30dm，长 8dm，宽 = ______ dm。', ans:'7', explain:'30÷2=15,15-8=7dm'}
+	]},
+	{id:2, name:'变式应用', title:'题型2 · 周长变式与逆求',
+	items:[
+		{qid:'1', stem:'用铁丝围一个边长 10cm 的正方形，需要 ______ cm 铁丝。', ans:'40', explain:'10×4=40cm'},
+		{qid:'2', stem:'操场长 80m 宽 40m，小明跑一圈 ______ m，跑两圈 ______ m。', ans:'240,480', explain:'一圈(80+40)×2=240,两圈480'},
+		{qid:'3', stem:'长方形周长 28cm，宽 5cm，长 = ______ cm。', ans:'9', explain:'28÷2=14,14-5=9cm'},
+		{qid:'4', stem:'两个边长 3cm 的正方形拼成长方形，周长 = ______ cm。', ans:'18', explain:'拼后长6宽3,周长(6+3)×2=18'},
+		{qid:'5', stem:'把一个长方形剪成两个同样长方形，原周长 20cm，一个的周长 ______（填"大于/等于/小于"）10cm。', ans:'大于', explain:'剪开后多两条边,每个小长方形周长>10cm'}
+	]},
+	{id:3, name:'比较推理', title:'题型3 · 周长比较与判断',
+	items:[
+		{qid:'1', stem:'长方形 A:长10宽2;长方形 B:长7宽5。周长 A____B(填">","<"或"=")。', ans:'=', explain:'A=(10+2)×2=24,B=(7+5)×2=24,相等'},
+		{qid:'2', stem:'正方形的边长扩大 2 倍,周长扩大 ______ 倍。', ans:'2', explain:'周长=边长×4,边长×2→周长×2'},
+		{qid:'3', stem:'长方形的长增加 3,宽不变,周长增加 ______。', ans:'6', explain:'长增加3,两条长共增6'},
+		{qid:'4', stem:'面积相同的长方形和正方形,______ 的周长更短。', ans:'正方形', explain:'等面积下正方形周长最短'},
+		{qid:'5', stem:'长 4cm 宽 3cm 的长方形与边长 ______ cm 的正方形周长相等。', ans:'3.5', explain:'(4+3)×2=14,14÷4=3.5'}
+	]}
+];
+
+let currentTopic = 0;
+let currentItem = 0;
+let answered = {};
+
+function getKey(){ return currentTopic+'-'+currentItem; }
+
+function render(){
+  const container = document.getElementById('qContainer');
+  let html = '';
+
+  for (let ti = 0; ti < TOPICS.length; ti++) {
+    const tp = TOPICS[ti];
+    const open = ti === currentTopic;
+    html += '<div class="q-card">';
+    html += '<div class="q-head"><span class="q-badge" style="font-size:11px">题型'+(ti+1)+'</span>';
+    html += '<span class="q-title" style="cursor:pointer;font-size:13px" onclick="switchTopic('+ti+')">'+tp.title+'</span></div>';
+    
+    if (open) {
+      for (let ii = 0; ii < tp.items.length; ii++) {
+        const it = tp.items[ii];
+        const key = ti+'-'+ii;
+        const ans = answered[key];
+        const isCurrent = (ti === currentTopic && ii === currentItem);
+        const bg = isCurrent ? 'background:#eff6ff;border:2px solid var(--b)' : '';
+        
+        html += '<div style="margin-top:8px;padding:10px 12px;border-radius:10px;'+bg+'" id="item-'+key+'">';
+        html += '<div style="font-size:12px;font-weight:700;color:var(--b);margin-bottom:4px">Q'+it.qid+'</div>';
+        html += '<div class="q-stem" style="font-size:13px;margin-bottom:0">'+it.stem+'</div>';
+        
+        if (!ans) {
+          html += '<div class="ans-row" style="margin-top:8px"><input class="ans-inp" id="inp-'+key+'" placeholder="输入答案..." onkeydown="if(event.key===13)submitOne(\''+key+'\')">';
+          html += '<button class="ans-btn" onclick="submitOne(\''+key+'\')">确认</button></div>';
+        }
+        if (ans) {
+          html += '<div class="feedback show '+(ans.ok?'ok':'err')+'">';
+          if (ans.ok) { html += '✓ 正确！答案：<b>'+ans.correct+'</b>'; }
+          else { html += '✗ <span class="user-ans">你的答案：'+ans.input+'</span> 正确答案：<span class="correct-ans">'+ans.correct+'</span>'; }
+          html += '<div class="explain">'+it.explain+'</div></div>';
+        }
+        html += '</div>';
+      }
+    }
+    html += '</div>';
+  }
+
+  container.innerHTML = html;
+  const el = document.getElementById('item-'+getKey());
+  if (el) el.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function switchTopic(ti){ currentTopic=ti; currentItem=0; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+
+function submitOne(key){
+  const parts = key.split('-');
+  const ti = parseInt(parts[0]), ii = parseInt(parts[1]);
+  const q = TOPICS[ti].items[ii];
+  const inp = document.getElementById('inp-'+key);
+  if (!inp) return;
+  const val = inp.value.trim();
+  if (!val) { inp.focus(); return; }
+  const nv=val.toLowerCase().replace(/\s+/g,'');
+  const na=q.ans.toLowerCase().replace(/\s+/g,'');
+  let ok=false;
+  if(nv===na)ok=true;
+  const numV=Number(val),numA=Number(q.ans);
+  if(!isNaN(numV)&&!isNaN(numA)&&Math.abs(numV-numA)<0.01)ok=true;
+  if(na.includes(nv)&&nv.length>1)ok=true;
+  if(nv.includes(na)&&na.length>1)ok=true;
+  answered[key]={input:val,correct:q.ans,ok:ok};
+  currentTopic=ti; currentItem=ii; render();
+}
+
+window.submitOne=submitOne;
+window.switchTopic=switchTopic;
+render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>工程问题 专题</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--r:14px;--ac:#0891b2}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);padding:20px 16px 90px;min-height:100vh;display:flex;justify-content:center}
+.wrap{width:100%;max-width:680px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:8px;font-size:13px;opacity:.95}
+.hdr .back{position:absolute;top:12px;left:14px;z-index:1;background:rgba(255,255,255,.22);color:#fff;border:1px solid rgba(255,255,255,.35);padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s}
+.hdr .back:hover{background:rgba(255,255,255,.38)}
+.know{background:#fff;border-radius:var(--r);padding:14px 16px;margin-bottom:12px;box-shadow:0 4px 12px rgba(47,157,240,.06);line-height:1.8}
+.know h3{font-size:1rem;color:var(--ac);margin-bottom:4px}
+.know .formula{display:inline-block;background:#f5f3ff;border:1px solid #c4b5fd;border-radius:6px;padding:6px 12px;margin:4px 0;font-size:.9rem;color:#6d28d9;font-weight:600;line-height:2}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:8px 16px;border-radius:999px;border:1.5px solid #d8ebe3;background:#fff;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--t);transition:all .2s}
+.tab:hover{border-color:var(--ac)}
+.tab.active{background:linear-gradient(135deg,#0891b2,#0891b2);color:#fff;border-color:transparent}
+.q-card{background:#fff;border-radius:var(--r);padding:16px;margin-bottom:12px;box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.q-stem{font-size:1rem;line-height:1.7;margin-bottom:12px;padding-left:10px;border-left:3px solid var(--ac)}
+.answer-row{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.answer-row input{flex:1;padding:10px 14px;border:2px solid #d8ebe3;border-radius:8px;font-size:1rem;outline:none;transition:border-color .2s}
+.answer-row input:focus{border-color:var(--ac)}
+.answer-row input.correct{border-color:#22c55e;background:#f0fdf4}
+.answer-row input.wrong{border-color:#ef4444;background:#fef2f2}
+.btn-submit{padding:10px 20px;background:linear-gradient(135deg,#0891b2,#0891b2);color:#fff;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:transform .15s}
+.btn-submit:active{transform:scale(.95)}
+.feedback{margin-top:8px;padding:10px 14px;border-radius:8px;font-size:.88rem;line-height:1.7}
+.feedback.ok{background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d}
+.feedback.err{background:#fef2f2;border:1px solid #fecaca;color:#dc2626}
+.feedback .your{color:#ef4444;font-weight:600}
+.feedback .correct-ans{color:#22c55e;font-weight:600}
+.dot-nav{display:flex;justify-content:center;gap:6px;margin:16px 0;flex-wrap:wrap}
+.dot{width:28px;height:28px;border-radius:50%;border:2px solid #d8ebe3;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;cursor:pointer;background:#fff;color:#999;transition:all .15s}
+.dot.active{border-color:var(--ac);background:var(--ac);color:#fff;transform:scale(1.2)}
+.dot.done{border-color:var(--g);background:#f0fdf4;color:var(--g)}
+.dot.wrong{border-color:#ef4444;background:#fef2f2;color:#ef4444}
+.toolbar{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid #d8ebe3;padding:8px 14px 12px;display:flex;gap:8px;justify-content:center;z-index:50;box-shadow:0 -4px 18px rgba(0,0,0,.06)}
+.tool-btn{padding:8px 16px;border-radius:999px;border:1.5px solid #d8ebe3;background:#fff;font-size:.82rem;font-weight:600;cursor:pointer;color:var(--t);transition:all .2s}
+.tool-btn:hover{border-color:var(--ac)}
+.tool-btn.primary{background:linear-gradient(135deg,#0891b2,#0891b2);color:#fff;border:none}
+.bt-home{display:block;width:fit-content;margin:18px auto 8px;padding:11px 26px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt-home:hover{transform:translateY(-1px)}
+.ft{text-align:center;padding:8px 0 18px;font-size:12px;color:#a8bcb4}
+@media(max-width:420px){.hdr h1{font-size:18px}}
+</style>
+</head>
+<body><div class="wrap">
+
+<header class="hdr">
+  <a class="back" href="index.html">&#x2190; 返回专题导航</a>
+  <h1>&#x1f3d7;&#xfe0f; 工程问题专题</h1>
+  <p class="sub">五年级下册 · 工作效率 · 合作时间 · 进出水</p>
+</header>
+
+<div class="know">
+  <h3>&#x1f4d0; 知识要点</h3>
+  <p style="font-size:.92rem;margin-bottom:6px">工程问题的核心：<strong>工作总量 = 效率 × 时间</strong>。通常设总量为 1，根据时间反推效率。</p>
+  <div class="formula" id="formulaShow" style="display:block"></div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+<div id="questions"></div>
+<div class="dot-nav" id="dotNav"></div>
+
+<div class="toolbar" id="toolbar">
+  <button class="tool-btn primary" id="btnCheck">&#x2705; 提交本题</button>
+  <button class="tool-btn" id="btnPrev">&#x25c0; 上一题</button>
+  <span id="progressSpan" style="display:flex;align-items:center;font-size:.82rem;font-weight:600;color:var(--l);padding:0 6px">1/5</span>
+  <button class="tool-btn" id="btnNext">下一题 &#x25b6;</button>
+</div>
+
+<a class="bt-home" href="../index.html">&#x1f3e0; 返回数学主页</a>
+<div class="ft">&copy; 两英豆豆教练</div>
+
+</div>
+
+<script>
+var TOPICS = [
+  {id:1, name:'基本工程', title:'题型一：基本工程问题', formula:'工作总量 = 工作效率 × 工作时间<br>合作效率 = 甲效率 + 乙效率<br>合作时间 = 1 ÷ (1/甲单独时间 + 1/乙单独时间)',
+    items:[
+      {qid:'w1', stem:'一项工程，甲单独做 10 天完成，乙单独做 15 天完成。两人合作需要多少天？', answer:'6', accept:['6'], explain:'甲效率=1/10，乙效率=1/15。合作效率=1/10+1/15=5/30=1/6。合作时间=1÷(1/6)=6(天)。答：6天。'},
+      {qid:'w2', stem:'修一条路，甲队单独修 12 天完成，乙队单独修 24 天完成。两队合修需要多少天？', answer:'8', accept:['8'], explain:'甲效率=1/12，乙效率=1/24。合作效率=1/12+1/24=3/24=1/8。时间=1÷(1/8)=8(天)。答：8天。'},
+      {qid:'w3', stem:'一份稿件，甲单独打印 6 小时完成，乙单独打印 12 小时完成。两人同时打印需几小时？', answer:'4', accept:['4'], explain:'甲效率=1/6，乙效率=1/12。合作=1/6+1/12=3/12=1/4。时间=1÷(1/4)=4(小时)。答：4小时。'},
+      {qid:'w4', stem:'水池有两根进水管，A管单独注满需 3 小时，B管单独注满需 6 小时。两管齐开需几小时？', answer:'2', accept:['2'], explain:'A效率=1/3，B效率=1/6。合作=1/3+1/6=3/6=1/2。时间=1÷(1/2)=2(小时)。答：2小时。'},
+      {qid:'w5', stem:'一个工程，甲一天完成 1/8，乙一天完成 1/12。两人合作 3 天后，还剩几分之几？', answer:'3/8', accept:['3/8'], explain:'合作效率=1/8+1/12=3/24+2/24=5/24。3天完成=3×5/24=15/24=5/8。还剩=1-5/8=3/8。答：3/8。'}
+    ]},
+  {id:2, name:'中途加入', title:'题型二：中途加入/退出', formula:'先算已完成部分 → 再算剩余部分 → 最后求时间<br>或者用方程：甲做 x 天 + 乙做 y 天 = 1',
+    items:[
+      {qid:'w6', stem:'一项工程，甲单独做 20 天完成。甲先做了 5 天，剩下的由乙单独做还要 10 天。乙单独完成要几天？', answer:'40/3', accept:['40/3'], explain:'甲5天完成5/20=1/4。剩3/4由乙10天完成。乙效率=3/4÷10=3/40。乙单独时间=1÷(3/40)=40/3≈13.3天。答：40/3 天。'},
+      {qid:'w7', stem:'甲乙合作一项工程 6 天可以完成。甲单独做 10 天完成。乙单独做要几天？', answer:'15', accept:['15'], explain:'合作效率=1/6。甲效率=1/10。乙效率=1/6-1/10=5/30-3/30=2/30=1/15。乙单独时间=1÷(1/15)=15(天)。答：15天。'},
+      {qid:'w8', stem:'修一条水渠，甲独修 30 天，乙独修 20 天。甲先修 6 天，剩下由乙修。乙还需几天？', answer:'16', accept:['16'], explain:'甲6天完成6/30=1/5。剩余4/5。乙效率=1/20。乙时间=4/5÷(1/20)=4/5×20=16(天)。答：16天。'},
+      {qid:'w9', stem:'一份工作，甲先做 4 天完成 1/3，然后乙加入一起做，又过 4 天全部完成。乙单独做需几天？', answer:'12', accept:['12'], explain:'甲4天完成1/3→甲效率=1/12。剩下2/3，甲乙合作4天完成→合作效率=2/3÷4=1/6。乙效率=1/6-1/12=1/12。乙单独=1÷(1/12)=12(天)。答：12天。'}
+    ]},
+  {id:3, name:'进出水', title:'题型三：进出水（牛吃草类）', formula:'进水为正，出水为负。<br>净效率 = 进水效率 - 出水效率<br>时间 = 总量 ÷ 净效率',
+    items:[
+      {qid:'w10', stem:'一个水池，进水管单独注满需 4 小时，出水管单独排空需 6 小时。两管齐开，几小时注满？', answer:'12', accept:['12'], explain:'进水效率=1/4，出水效率=-1/6。净效率=1/4-1/6=3/12-2/12=1/12。时间=1÷(1/12)=12(小时)。答：12小时。'},
+      {qid:'w11', stem:'水池有A、B两进水管和一排水管C。A单独注满需3小时，B需6小时，C单独排空需8小时。三管齐开，几小时注满？', answer:'8/3', accept:['8/3'], explain:'A效率=1/3，B=1/6，C=-1/8。净=1/3+1/6-1/8=8/24+4/24-3/24=9/24=3/8。时间=1÷(3/8)=8/3(小时)。答：8/3 小时（约2.67小时）。'},
+      {qid:'w12', stem:'进水管注满需 5 小时，出水管排空需 8 小时。两管齐开，先开了 2 小时后关闭出水管。还需几小时注满？', answer:'2.25', accept:['2.25'], explain:'净效率=1/5-1/8=8/40-5/40=3/40。2小时注了6/40=3/20。剩余17/20。关出水后=1/5。时间=17/20÷(1/5)=17/4=4.25小时。答：4.25小时。'}
+    ]}
+];
+
+var curTopic=0,curQ=0,answers={};
+function hashKey(){return curTopic+'-'+curQ;}
+function renderTabs(){
+  document.getElementById('tabs').innerHTML=TOPICS.map(function(t,i){
+    return '<button class="tab'+(i===curTopic?' active':'')+'" onclick="switchTopic('+i+')">'+t.title+'</button>';
+  }).join('');
+}
+function renderQ(){
+  var t=TOPICS[curTopic],q=t.items[curQ],key=hashKey();
+  var done=answers[key]!==undefined,ok=answers[key]===true;
+  var cls=done?(ok?'correct':'wrong'):'';
+  var h='<div class="q-card">';
+  h+='<div class="q-stem"><strong>【第'+(curQ+1)+'题】</strong> '+q.stem+'</div>';
+  h+='<div class="answer-row">';
+  h+='<input type="text" id="answerInput" class="'+cls+'" placeholder="输入答案" value="'+(done?(answers[key+'_user']||''):'')+'" '+(done?'disabled':'')+'>';
+  if(!done) h+='<button class="btn-submit" onclick="checkAnswer()">确认</button>';
+  h+='</div>';
+  if(done){
+    h+='<div class="feedback '+(ok?'ok':'err')+'">';
+    if(ok) h+='&#x2705; <strong>回答正确！</strong> '+q.explain;
+    else h+='&#x274c; <span class="your">你的答案：'+answers[key+'_user']+'</span>&emsp;<span class="correct-ans">正确答案：'+q.answer+'</span><br>'+q.explain;
+    h+='</div>';
+  }
+  h+='</div>';
+  document.getElementById('questions').innerHTML=h;
+  document.getElementById('formulaShow').innerHTML=t.formula;
+  var dots='';
+  for(var i=0;i<t.items.length;i++){
+    var k=curTopic+'-'+i,c2='dot';
+    if(i===curQ)c2+=' active';
+    if(answers[k]===true)c2+=' done';
+    else if(answers[k]===false)c2+=' wrong';
+    dots+='<button class="'+c2+'" onclick="switchQ('+i+')">'+(i+1)+'</button>';
+  }
+  document.getElementById('dotNav').innerHTML=dots;
+  document.getElementById('progressSpan').textContent=(curQ+1)+'/'+t.items.length;
+  if(!done){var inp=document.getElementById('answerInput');if(inp)setTimeout(function(){inp.focus();},100);}
+}
+function judge(input,answer,accept){
+  var s=input.replace(/\s+/g,'').toLowerCase();
+  var a=answer.replace(/\s+/g,'').toLowerCase();
+  if(s===a)return true;
+  for(var i=0;accept&&i<accept.length;i++){if(s===accept[i].replace(/\s+/g,'').toLowerCase())return true;}
+  var n1=parseFloat(input),n2=parseFloat(answer);
+  if(!isNaN(n1)&&!isNaN(n2)&&Math.abs(n1-n2)<0.01)return true;
+  return false;
+}
+function checkAnswer(){
+  var inp=document.getElementById('answerInput'),val=inp.value.trim();
+  if(!val)return;
+  var q=TOPICS[curTopic].items[curQ],key=hashKey();
+  var ok=judge(val,q.answer,q.accept);
+  answers[key]=ok;answers[key+'_user']=val;renderQ();
+}
+function switchTopic(i){curTopic=i;curQ=0;renderTabs();renderQ();}
+function switchQ(i){curQ=Math.max(0,Math.min(i,TOPICS[curTopic].items.length-1));renderQ();}
+document.getElementById('btnCheck').addEventListener('click',checkAnswer);
+document.getElementById('btnPrev').addEventListener('click',function(){switchQ(curQ-1);});
+document.getElementById('btnNext').addEventListener('click',function(){switchQ(curQ+1);});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Enter'){var key=hashKey();if(answers[key]===undefined)checkAnswer();else switchQ(curQ+1);}
+  if(e.key==='ArrowLeft'&&!e.target.closest('input'))switchQ(curQ-1);
+  if(e.key==='ArrowRight'&&!e.target.closest('input'))switchQ(curQ+1);
+});
+renderTabs();renderQ();
+</script>
+</body></html>

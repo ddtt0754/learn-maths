@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=3.0">
+<meta name="theme-color" content="#2ebd85">
+<title>三年级上册 · 倍的认识</title>
+<style>
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--border:#e1eeea;--card:#fff;--danger:#ef4444;--bg:#f5fbf8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);font-size:15px;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.wrap{width:100%;max-width:760px;padding:14px 14px 0;flex:1}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);border-radius:20px;padding:20px 18px 18px;text-align:center;color:#fff;overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:12px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:20px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12px;opacity:.95}
+.back-link{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;background:var(--card);border:1.5px solid var(--border);border-radius:999px;font-size:12.5px;font-weight:600;color:var(--t);text-decoration:none;transition:all .2s;margin-right:8px;margin-bottom:8px}
+.back-link:hover{border-color:var(--b);color:var(--b)}
+.know-card{background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:0 4px 14px rgba(47,157,240,.06);margin-bottom:12px;border-left:4px solid var(--b)}
+.know-card h3{font-size:15px;color:var(--b);margin-bottom:8px}
+.know-card .rule{padding:8px 12px;background:#f0fdf4;border-left:3px solid var(--g);border-radius:6px;margin:8px 0;font-size:13px;line-height:1.7}
+.q-card{background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:0 4px 14px rgba(47,157,240,.06);margin-bottom:10px}
+.q-card .q-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.q-card .q-badge{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border-radius:999px;padding:4px 14px;font-size:12px;font-weight:700;white-space:nowrap}
+.q-card .q-title{font-size:14px;font-weight:700;color:var(--t)}
+.q-card .q-stem{font-size:14px;line-height:1.75;color:var(--t);background:var(--bg);padding:12px 14px;border-radius:10px;margin-bottom:10px}
+.ans-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.ans-inp{flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;outline:none;transition:border-color .2s}
+.ans-inp:focus{border-color:var(--b)}
+.ans-inp:disabled{background:#f1f5f9}
+.ans-btn{padding:10px 22px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer}
+.ans-btn:hover{transform:translateY(-1px)}
+.ans-btn:disabled{opacity:.5;cursor:not-allowed}
+.feedback{display:none;padding:10px 14px;border-radius:10px;font-size:13px;line-height:1.7;margin-top:8px}
+.feedback.show{display:block}
+.feedback.ok{background:#f0fdf4;border-left:4px solid var(--g);color:#15803d}
+.feedback.err{background:#fef2f2;border-left:4px solid var(--danger);color:#991b1b}
+.feedback .user-ans{text-decoration:line-through;margin-right:6px}
+.feedback .correct-ans{font-weight:700}
+.feedback .explain{margin-top:6px;font-size:12.5px;color:#555;line-height:1.6}
+.bt-home{display:block;width:fit-content;margin:18px auto 8px;padding:11px 26px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22)}
+.site-footer{text-align:center;padding:12px 0 22px;color:var(--l);font-size:.72rem;border-top:1px solid var(--border);margin-top:6px;width:100%}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hdr"><h1>🔗 倍的认识</h1><p class="sub">三年级上册 · 3 类题型共 15 题</p></header>
+<div><a class="back-link" href="index.html">← 返回专题导航</a><a class="back-link" href="../index.html">🏠 回到首页</a></div>
+
+<div class="know-card">
+  <h3>📖 知识要点与难点突破</h3>
+  <div class="rule"><b>求一个数的几倍：</b>用乘法 → 几倍量 = 标准量 × 倍数<br><b>求一个数是另一个数的几倍：</b>用除法 → 倍数 = 比较量 ÷ 标准量<br><b>易错点：</b>"求几倍"vs"求是几倍"极易混淆！</div>
+</div>
+
+<div id="qContainer"></div>
+
+<a class="bt-home" href="index.html">← 返回专题导航</a>
+<footer class="site-footer">&copy; 两英豆豆教练</footer>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+const TOPICS = [
+	{id:1, name:'求几倍', title:'题型1 · 求一个数的几倍（用乘法）',
+	items:[
+		{qid:'1', stem:'小鸡有 5 只,小鸭是小鸡的 3 倍,小鸭有 ______ 只。', ans:'15', explain:'5×3=15只'},
+		{qid:'2', stem:'一根绳子长 8 米,另一根是它的 4 倍,另一根长 ______ 米。', ans:'32', explain:'8×4=32米'},
+		{qid:'3', stem:'小明有 12 张卡片,小华的卡片数是小明的 2 倍,两人共有 ______ 张。', ans:'36', explain:'小华12×2=24,合计12+24=36'},
+		{qid:'4', stem:'一个数的 5 倍是 35,这个数是 ______。', ans:'7', explain:'35÷5=7'},
+		{qid:'5', stem:'3 的 4 倍 = ______,7 的 5 倍 = ______。', ans:'12,35', explain:'3×4=12,7×5=35'}
+	]},
+	{id:2, name:'求是几倍', title:'题型2 · 求是另一个数的几倍（用除法）',
+	items:[
+		{qid:'1', stem:'苹果 18 个,橘子 6 个,苹果是橘子的 ______ 倍。', ans:'3', explain:'18÷6=3倍'},
+		{qid:'2', stem:'哥哥 12 岁,弟弟 4 岁,哥哥的年龄是弟弟的 ______ 倍。', ans:'3', explain:'12÷4=3倍'},
+		{qid:'3', stem:'公园里有 24 棵松树和 8 棵柳树,松树是柳树的 ______ 倍。', ans:'3', explain:'24÷8=3倍'},
+		{qid:'4', stem:'有 45 本书,分给 9 个班,每班分的书是总书的几分之几?', ans:'1/9', explain:'9个班平均分,每班1/9'},
+		{qid:'5', stem:'甲是乙的 4 倍,甲有 28,乙 = ______。', ans:'7', explain:'28÷4=7'}
+	]},
+	{id:3, name:'倍数应用', title:'题型3 · 倍数综合应用',
+	items:[
+		{qid:'1', stem:'母鸡 6 只,公鸡 2 只,母鸡是公鸡的 ______ 倍;如果母鸡再多 6 只,母鸡就是公鸡的 ______ 倍。', ans:'3,6', explain:'6÷2=3倍;(6+6)÷2=6倍'},
+		{qid:'2', stem:'一根绳子剪掉一半还剩 8 米,原来长 ______ 米。', ans:'16', explain:'原来长度是剩的2倍,8×2=16'},
+		{qid:'3', stem:'树上有鸟,飞走 5 只后,剩的鸟是 3 的 4 倍,原来有 ______ 只。', ans:'17', explain:'3×4=12,原来的=12+5=17'},
+		{qid:'4', stem:'两数之和是 24,甲是乙的 3 倍,甲=______,乙=______。', ans:'18,6', explain:'和倍问题:4倍=24,1倍=6,甲=18'},
+		{qid:'5', stem:'两数之差是 10,甲是乙的 3 倍,乙=______。', ans:'5', explain:'差倍问题:2倍=10,1倍=5'}
+	]}
+];
+
+let currentTopic = 0;
+let currentItem = 0;
+let answered = {};
+
+function getKey(){ return currentTopic+'-'+currentItem; }
+
+function render(){
+  const container = document.getElementById('qContainer');
+  let html = '';
+
+  for (let ti = 0; ti < TOPICS.length; ti++) {
+    const tp = TOPICS[ti];
+    const open = ti === currentTopic;
+    html += '<div class="q-card">';
+    html += '<div class="q-head"><span class="q-badge" style="font-size:11px">题型'+(ti+1)+'</span>';
+    html += '<span class="q-title" style="cursor:pointer;font-size:13px" onclick="switchTopic('+ti+')">'+tp.title+'</span></div>';
+    
+    if (open) {
+      for (let ii = 0; ii < tp.items.length; ii++) {
+        const it = tp.items[ii];
+        const key = ti+'-'+ii;
+        const ans = answered[key];
+        const isCurrent = (ti === currentTopic && ii === currentItem);
+        const bg = isCurrent ? 'background:#eff6ff;border:2px solid var(--b)' : '';
+        
+        html += '<div style="margin-top:8px;padding:10px 12px;border-radius:10px;'+bg+'" id="item-'+key+'">';
+        html += '<div style="font-size:12px;font-weight:700;color:var(--b);margin-bottom:4px">Q'+it.qid+'</div>';
+        html += '<div class="q-stem" style="font-size:13px;margin-bottom:0">'+it.stem+'</div>';
+        
+        if (!ans) {
+          html += '<div class="ans-row" style="margin-top:8px"><input class="ans-inp" id="inp-'+key+'" placeholder="输入答案..." onkeydown="if(event.key===13)submitOne(\''+key+'\')">';
+          html += '<button class="ans-btn" onclick="submitOne(\''+key+'\')">确认</button></div>';
+        }
+        if (ans) {
+          html += '<div class="feedback show '+(ans.ok?'ok':'err')+'">';
+          if (ans.ok) { html += '✓ 正确！答案：<b>'+ans.correct+'</b>'; }
+          else { html += '✗ <span class="user-ans">你的答案：'+ans.input+'</span> 正确答案：<span class="correct-ans">'+ans.correct+'</span>'; }
+          html += '<div class="explain">'+it.explain+'</div></div>';
+        }
+        html += '</div>';
+      }
+    }
+    html += '</div>';
+  }
+
+  container.innerHTML = html;
+  const el = document.getElementById('item-'+getKey());
+  if (el) el.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function switchTopic(ti){ currentTopic=ti; currentItem=0; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+
+function submitOne(key){
+  const parts = key.split('-');
+  const ti = parseInt(parts[0]), ii = parseInt(parts[1]);
+  const q = TOPICS[ti].items[ii];
+  const inp = document.getElementById('inp-'+key);
+  if (!inp) return;
+  const val = inp.value.trim();
+  if (!val) { inp.focus(); return; }
+  const nv=val.toLowerCase().replace(/\s+/g,'');
+  const na=q.ans.toLowerCase().replace(/\s+/g,'');
+  let ok=false;
+  if(nv===na)ok=true;
+  const numV=Number(val),numA=Number(q.ans);
+  if(!isNaN(numV)&&!isNaN(numA)&&Math.abs(numV-numA)<0.01)ok=true;
+  if(na.includes(nv)&&nv.length>1)ok=true;
+  if(nv.includes(na)&&na.length>1)ok=true;
+  answered[key]={input:val,correct:q.ans,ok:ok};
+  currentTopic=ti; currentItem=ii; render();
+}
+
+window.submitOne=submitOne;
+window.switchTopic=switchTopic;
+render();
+})();
+</script>
+</body>
+</html>

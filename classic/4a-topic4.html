@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=3.0">
+<meta name="theme-color" content="#2ebd85">
+<title>四年级上册 · 公顷和平方千米</title>
+<style>
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--border:#e1eeea;--card:#fff;--danger:#ef4444;--bg:#f5fbf8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);font-size:15px;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.wrap{width:100%;max-width:760px;padding:14px 14px 0;flex:1}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);border-radius:20px;padding:20px 18px 18px;text-align:center;color:#fff;overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:12px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:20px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12px;opacity:.95}
+.back-link{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;background:var(--card);border:1.5px solid var(--border);border-radius:999px;font-size:12.5px;font-weight:600;color:var(--t);text-decoration:none;transition:all .2s;margin-right:8px;margin-bottom:8px}
+.back-link:hover{border-color:var(--b);color:var(--b)}
+.know-card{background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:0 4px 14px rgba(47,157,240,.06);margin-bottom:12px;border-left:4px solid var(--b)}
+.know-card h3{font-size:15px;color:var(--b);margin-bottom:8px}
+.know-card .rule{padding:8px 12px;background:#f0fdf4;border-left:3px solid var(--g);border-radius:6px;margin:8px 0;font-size:13px;line-height:1.7}
+.q-card{background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:0 4px 14px rgba(47,157,240,.06);margin-bottom:10px}
+.q-card .q-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.q-card .q-badge{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border-radius:999px;padding:4px 14px;font-size:12px;font-weight:700;white-space:nowrap}
+.q-card .q-title{font-size:14px;font-weight:700;color:var(--t)}
+.q-card .q-stem{font-size:14px;line-height:1.75;color:var(--t);background:var(--bg);padding:12px 14px;border-radius:10px;margin-bottom:10px}
+.ans-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.ans-inp{flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;outline:none;transition:border-color .2s}
+.ans-inp:focus{border-color:var(--b)}
+.ans-inp:disabled{background:#f1f5f9}
+.ans-btn{padding:10px 22px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer}
+.ans-btn:hover{transform:translateY(-1px)}
+.ans-btn:disabled{opacity:.5;cursor:not-allowed}
+.feedback{display:none;padding:10px 14px;border-radius:10px;font-size:13px;line-height:1.7;margin-top:8px}
+.feedback.show{display:block}
+.feedback.ok{background:#f0fdf4;border-left:4px solid var(--g);color:#15803d}
+.feedback.err{background:#fef2f2;border-left:4px solid var(--danger);color:#991b1b}
+.feedback .user-ans{text-decoration:line-through;margin-right:6px}
+.feedback .correct-ans{font-weight:700}
+.feedback .explain{margin-top:6px;font-size:12.5px;color:#555;line-height:1.6}
+.bt-home{display:block;width:fit-content;margin:18px auto 8px;padding:11px 26px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22)}
+.site-footer{text-align:center;padding:12px 0 22px;color:var(--l);font-size:.72rem;border-top:1px solid var(--border);margin-top:6px;width:100%}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hdr"><h1>📏 公顷和平方千米</h1><p class="sub">四年级上册 · 2 类题型共 10 题</p></header>
+<div><a class="back-link" href="index.html">← 返回专题导航</a><a class="back-link" href="../index.html">🏠 回到首页</a></div>
+<div class="know-card"><h3>📖 知识要点与难点突破</h3><div class="rule"><b>1公顷(ha)=10000m²</b><br><b>1km²=100公顷=1000000m²</b><br><b>口诀:</b>公顷=m²÷10000,平方千米=公顷÷100<br><b>应用:</b>天安门广场44ha=440000m²</div></div>
+<div id="qContainer"></div><a class="bt-home" href="index.html">← 返回专题导航</a><footer class="site-footer">&copy; 两英豆豆教练</footer>
+</div>
+<script>
+(function(){
+'use strict';
+const TOPICS = [
+	{id:1, name:'单位换算', title:'题型1 · 公顷与平方千米换算',
+	items:[
+		{qid:'1', stem:'3公顷 = ______平方米(m²)。', ans:'30000', explain:'3×10000=30000m²'},
+		{qid:'2', stem:'50000m² = ______公顷。', ans:'5', explain:'50000÷10000=5ha'},
+		{qid:'3', stem:'2km² = ______公顷。', ans:'200', explain:'2×100=200ha'},
+		{qid:'4', stem:'6km² = ______m²。', ans:'6000000', explain:'6×1000000=6000000m²'},
+		{qid:'5', stem:'北京故宫约72ha=______m²,合______km²。', ans:'720000,0.72', explain:'72×10000=720000m²=0.72km²'}
+	]},
+	{id:2, name:'应用', title:'题型2 · 面积应用',
+	items:[
+		{qid:'1', stem:'长方形操场长400m宽250m,面积=______m²=______ha。', ans:'100000,10', explain:'400×250=100000m²=10ha'},
+		{qid:'2', stem:'边长500m的正方形广场,面积=______ha。', ans:'25', explain:'500²=250000m²=25ha'},
+		{qid:'3', stem:'1km²的正方形边长=______m。', ans:'1000', explain:'√1000000=1000m=1km'},
+		{qid:'4', stem:'一块地8ha,种树每棵占地4m²,可种______棵。', ans:'20000', explain:'8×10000÷4=20000'},
+		{qid:'5', stem:'用50公顷围长方形菜地,宽500m,长=______m。', ans:'1000', explain:'50ha=500000m²,500000÷500=1000m'}
+	]}
+];
+let currentTopic = 0; let currentItem = 0; let answered = {};
+function getKey(){ return currentTopic+'-'+currentItem; }
+function render(){
+  const c=document.getElementById('qContainer'); let h='';
+  for(let ti=0;ti<TOPICS.length;ti++){
+    const tp=TOPICS[ti],op=ti===currentTopic;
+    h+='<div class="q-card"><div class="q-head"><span class="q-badge" style="font-size:11px">题型'+(ti+1)+'</span><span class="q-title" style="cursor:pointer;font-size:13px" onclick="switchTopic('+ti+')">'+tp.title+'</span></div>';
+    if(op){ for(let ii=0;ii<tp.items.length;ii++){
+      const it=tp.items[ii],key=ti+'-'+ii,ans=answered[key];
+      const bg=(ti===currentTopic&&ii===currentItem)?'background:#eff6ff;border:2px solid var(--b)':'';
+      h+='<div style="margin-top:8px;padding:10px 12px;border-radius:10px;'+bg+'" id="item-'+key+'">';
+      h+='<div style="font-size:12px;font-weight:700;color:var(--b);margin-bottom:4px">Q'+it.qid+'</div><div class="q-stem" style="font-size:13px;margin-bottom:0">'+it.stem+'</div>';
+      if(!ans){ h+='<div class="ans-row" style="margin-top:8px"><input class="ans-inp" id="inp-'+key+'" placeholder="输入答案..." onkeydown="if(event.key===13)submitOne(\''+key+'\')"><button class="ans-btn" onclick="submitOne(\''+key+'\')">确认</button></div>'; }
+      if(ans){ h+='<div class="feedback show '+(ans.ok?'ok':'err')+'">';h+=ans.ok?'✓ 正确！答案：<b>'+ans.correct+'</b>':'✗ <span class="user-ans">你的答案：'+ans.input+'</span> 正确答案：<span class="correct-ans">'+ans.correct+'</span>';h+='<div class="explain">'+it.explain+'</div></div>'; }
+      h+='</div>';
+    }}
+    h+='</div>';
+  }
+  c.innerHTML=h; const el=document.getElementById('item-'+getKey()); if(el)el.scrollIntoView({behavior:'smooth',block:'center'});
+}
+function switchTopic(ti){ currentTopic=ti;currentItem=0;render();window.scrollTo({top:0,behavior:'smooth'}); }
+function submitOne(key){
+  const p=key.split('-'),ti=parseInt(p[0]),ii=parseInt(p[1]),q=TOPICS[ti].items[ii],inp=document.getElementById('inp-'+key);
+  if(!inp)return; const v=inp.value.trim(); if(!v){inp.focus();return;}
+  const nv=v.toLowerCase().replace(/\s+/g,''),na=q.ans.toLowerCase().replace(/\s+/g,'');
+  let ok=nv===na; const ov=Number(v),oa=Number(q.ans);
+  if(!isNaN(ov)&&!isNaN(oa)&&Math.abs(ov-oa)<0.01)ok=true;
+  if(na.includes(nv)&&nv.length>1||nv.includes(na)&&na.length>1)ok=true;
+  answered[key]={input:v,correct:q.ans,ok:ok}; currentTopic=ti;currentItem=ii;render();
+}
+window.submitOne=submitOne;window.switchTopic=switchTopic;render();
+})();
+</script>
+</body>
+</html>

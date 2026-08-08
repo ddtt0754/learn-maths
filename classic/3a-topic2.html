@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=3.0">
+<meta name="theme-color" content="#2ebd85">
+<title>三年级上册 · 万以内竖式加减</title>
+<style>
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--border:#e1eeea;--card:#fff;--danger:#ef4444;--bg:#f5fbf8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);font-size:15px;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.wrap{width:100%;max-width:760px;padding:14px 14px 0;flex:1}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);border-radius:20px;padding:20px 18px 18px;text-align:center;color:#fff;overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:12px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:20px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12px;opacity:.95}
+.back-link{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;background:var(--card);border:1.5px solid var(--border);border-radius:999px;font-size:12.5px;font-weight:600;color:var(--t);text-decoration:none;transition:all .2s;margin-right:8px;margin-bottom:8px}
+.back-link:hover{border-color:var(--b);color:var(--b)}
+.know-card{background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:0 4px 14px rgba(47,157,240,.06);margin-bottom:12px;border-left:4px solid var(--b)}
+.know-card h3{font-size:15px;color:var(--b);margin-bottom:8px}
+.know-card .rule{padding:8px 12px;background:#f0fdf4;border-left:3px solid var(--g);border-radius:6px;margin:8px 0;font-size:13px;line-height:1.7}
+.q-card{background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:0 4px 14px rgba(47,157,240,.06);margin-bottom:10px}
+.q-card .q-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.q-card .q-badge{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border-radius:999px;padding:4px 14px;font-size:12px;font-weight:700;white-space:nowrap}
+.q-card .q-title{font-size:14px;font-weight:700;color:var(--t)}
+.q-card .q-stem{font-size:14px;line-height:1.75;color:var(--t);background:var(--bg);padding:12px 14px;border-radius:10px;margin-bottom:10px}
+.ans-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.ans-inp{flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;outline:none;transition:border-color .2s}
+.ans-inp:focus{border-color:var(--b)}
+.ans-inp:disabled{background:#f1f5f9}
+.ans-btn{padding:10px 22px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer}
+.ans-btn:hover{transform:translateY(-1px)}
+.ans-btn:disabled{opacity:.5;cursor:not-allowed}
+.feedback{display:none;padding:10px 14px;border-radius:10px;font-size:13px;line-height:1.7;margin-top:8px}
+.feedback.show{display:block}
+.feedback.ok{background:#f0fdf4;border-left:4px solid var(--g);color:#15803d}
+.feedback.err{background:#fef2f2;border-left:4px solid var(--danger);color:#991b1b}
+.feedback .user-ans{text-decoration:line-through;margin-right:6px}
+.feedback .correct-ans{font-weight:700}
+.feedback .explain{margin-top:6px;font-size:12.5px;color:#555;line-height:1.6}
+.bt-home{display:block;width:fit-content;margin:18px auto 8px;padding:11px 26px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22)}
+.site-footer{text-align:center;padding:12px 0 22px;color:var(--l);font-size:.72rem;border-top:1px solid var(--border);margin-top:6px;width:100%}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hdr"><h1>🧮 万以内竖式加减</h1><p class="sub">三年级上册 · 3 类题型共 15 题</p></header>
+<div><a class="back-link" href="index.html">← 返回专题导航</a><a class="back-link" href="../index.html">🏠 回到首页</a></div>
+
+<div class="know-card">
+  <h3>📖 知识要点与难点突破</h3>
+  <div class="rule"><b>加法口诀：</b>数位对齐，个位起算，满十进一。<br><b>减法口诀：</b>数位对齐，个位起算，不够减退一（借1当10）。<br><b>验算方法：</b>加法用减法验，减法用加法验。</div>
+</div>
+
+<div id="qContainer"></div>
+
+<a class="bt-home" href="index.html">← 返回专题导航</a>
+<footer class="site-footer">&copy; 两英豆豆教练</footer>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+const TOPICS = [
+	{id:1, name:'加法竖式', title:'题型1 · 三位数加法竖式',
+	items:[
+		{qid:'1', stem:'笔算：367 + 285 = ______。', ans:'652', explain:'个位7+5=12写2进1,十位6+8+1=15写5进1,百位3+2+1=6'},
+		{qid:'2', stem:'笔算：543 + 278 = ______。', ans:'821', explain:'个位3+8=11写1进1,十位4+7+1=12写2进1,百位5+2+1=8'},
+		{qid:'3', stem:'297 + 403 = ______（估算也可得 700）。', ans:'700', explain:'个位7+3=10写0进1,十位9+0+1=10写0进1,百位2+4+1=7'},
+		{qid:'4', stem:'笔算：128 + 39 + 272 = ______。', ans:'439', explain:'128+39=167,167+272=439'},
+		{qid:'5', stem:'验算 456+328=784 是否正确：784 - ____ = ____', ans:'328,456', explain:'和-加数=另一个加数,784-328=456✓'}
+	]},
+	{id:2, name:'减法竖式', title:'题型2 · 三位数减法竖式（含退位）',
+	items:[
+		{qid:'1', stem:'笔算：813 - 376 = ______。', ans:'437', explain:'个位3-6不够借1,13-6=7;十位0-7不够借1,10-7=3;百位7-1-3=4'},
+		{qid:'2', stem:'笔算：500 - 258 = ______。', ans:'242', explain:'注意连续退位:个位0-8借1,10-8=2;十位9-5=4;百位4-2=2'},
+		{qid:'3', stem:'笔算：640 - 185 = ______。', ans:'455', explain:'个位0-5借1,10-5=5;十位3-8借1,13-8=5;百位5-1=4'},
+		{qid:'4', stem:'验算 528-196=332 是否正确：332 + ______ = ______。', ans:'196,528', explain:'差+减数=被减数,332+196=528✓'},
+		{qid:'5', stem:'最大的三位数(999)减去最小的三位数(100) = ______。', ans:'899', explain:'999-100=899'}
+	]},
+	{id:3, name:'混合运算', title:'题型3 · 加减混合与简算',
+	items:[
+		{qid:'1', stem:'简算：76 + 25 + 14 = ______。', ans:'115', explain:'76+14=90,90+25=115(交换结合律)'},
+		{qid:'2', stem:'简算：300 - 45 - 55 = ______。', ans:'200', explain:'45+55=100,300-100=200'},
+		{qid:'3', stem:'脱式计算：126 + 37 - 48 = ______。', ans:'115', explain:'126+37=163,163-48=115'},
+		{qid:'4', stem:'小明有 350 元,买书用 128 元,买文具用 65 元,还剩 ______ 元。', ans:'157', explain:'350-128-65=157'},
+		{qid:'5', stem:'两个数和为 500,其中一个是 279,另一个 = ______。', ans:'221', explain:'500-279=221'}
+	]}
+];
+
+let currentTopic = 0;
+let currentItem = 0;
+let answered = {};
+
+function getKey(){ return currentTopic+'-'+currentItem; }
+
+function render(){
+  const container = document.getElementById('qContainer');
+  let html = '';
+
+  for (let ti = 0; ti < TOPICS.length; ti++) {
+    const tp = TOPICS[ti];
+    const open = ti === currentTopic;
+    html += '<div class="q-card">';
+    html += '<div class="q-head"><span class="q-badge" style="font-size:11px">题型'+(ti+1)+'</span>';
+    html += '<span class="q-title" style="cursor:pointer;font-size:13px" onclick="switchTopic('+ti+')">'+tp.title+'</span></div>';
+    
+    if (open) {
+      for (let ii = 0; ii < tp.items.length; ii++) {
+        const it = tp.items[ii];
+        const key = ti+'-'+ii;
+        const ans = answered[key];
+        const isCurrent = (ti === currentTopic && ii === currentItem);
+        const bg = isCurrent ? 'background:#eff6ff;border:2px solid var(--b)' : '';
+        
+        html += '<div style="margin-top:8px;padding:10px 12px;border-radius:10px;'+bg+'" id="item-'+key+'">';
+        html += '<div style="font-size:12px;font-weight:700;color:var(--b);margin-bottom:4px">Q'+it.qid+'</div>';
+        html += '<div class="q-stem" style="font-size:13px;margin-bottom:0">'+it.stem+'</div>';
+        
+        if (!ans) {
+          html += '<div class="ans-row" style="margin-top:8px"><input class="ans-inp" id="inp-'+key+'" placeholder="输入答案..." onkeydown="if(event.key===13)submitOne(\''+key+'\')">';
+          html += '<button class="ans-btn" onclick="submitOne(\''+key+'\')">确认</button></div>';
+        }
+        if (ans) {
+          html += '<div class="feedback show '+(ans.ok?'ok':'err')+'">';
+          if (ans.ok) { html += '✓ 正确！答案：<b>'+ans.correct+'</b>'; }
+          else { html += '✗ <span class="user-ans">你的答案：'+ans.input+'</span> 正确答案：<span class="correct-ans">'+ans.correct+'</span>'; }
+          html += '<div class="explain">'+it.explain+'</div></div>';
+        }
+        html += '</div>';
+      }
+    }
+    html += '</div>';
+  }
+
+  container.innerHTML = html;
+  const el = document.getElementById('item-'+getKey());
+  if (el) el.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function switchTopic(ti){ currentTopic=ti; currentItem=0; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+
+function submitOne(key){
+  const parts = key.split('-');
+  const ti = parseInt(parts[0]), ii = parseInt(parts[1]);
+  const q = TOPICS[ti].items[ii];
+  const inp = document.getElementById('inp-'+key);
+  if (!inp) return;
+  const val = inp.value.trim();
+  if (!val) { inp.focus(); return; }
+  const nv=val.toLowerCase().replace(/\s+/g,'');
+  const na=q.ans.toLowerCase().replace(/\s+/g,'');
+  let ok=false;
+  if(nv===na)ok=true;
+  const numV=Number(val),numA=Number(q.ans);
+  if(!isNaN(numV)&&!isNaN(numA)&&Math.abs(numV-numA)<0.01)ok=true;
+  if(na.includes(nv)&&nv.length>1)ok=true;
+  if(nv.includes(na)&&na.length>1)ok=true;
+  answered[key]={input:val,correct:q.ans,ok:ok};
+  currentTopic=ti; currentItem=ii; render();
+}
+
+window.submitOne=submitOne;
+window.switchTopic=switchTopic;
+render();
+})();
+</script>
+</body>
+</html>

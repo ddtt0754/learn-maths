@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>鸡兔同笼专题 · 四年级上册</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--r:14px}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);padding:20px 16px 90px;min-height:100vh;display:flex;justify-content:center}
+.wrap{width:100%;max-width:680px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:8px;font-size:13px;opacity:.95}
+.hdr .back{position:absolute;top:12px;left:14px;z-index:1;background:rgba(255,255,255,.22);color:#fff;border:1px solid rgba(255,255,255,.35);padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s}
+.hdr .back:hover{background:rgba(255,255,255,.38)}
+.know{background:#fff;border-radius:var(--r);padding:14px 16px;margin-bottom:12px;box-shadow:0 4px 12px rgba(47,157,240,.06);line-height:1.8}
+.know h3{font-size:1rem;color:var(--b);margin-bottom:4px}
+.know .formula{display:inline-block;background:#fef3c7;border:1px solid #fcd34d;border-radius:6px;padding:6px 12px;margin:4px 0;font-size:.9rem;color:#92400e;font-weight:600;line-height:2}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:8px 16px;border-radius:999px;border:1.5px solid #d8ebe3;background:#fff;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--t);transition:all .2s}
+.tab:hover{border-color:var(--b)}
+.tab.active{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border-color:transparent}
+.q-card{background:#fff;border-radius:var(--r);padding:16px;margin-bottom:12px;box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.q-stem{font-size:1rem;line-height:1.7;margin-bottom:12px;padding-left:10px;border-left:3px solid #f59e0b}
+.answer-row{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.answer-row input{flex:1;padding:10px 14px;border:2px solid #d8ebe3;border-radius:8px;font-size:1rem;outline:none;transition:border-color .2s}
+.answer-row input:focus{border-color:var(--b)}
+.answer-row input.correct{border-color:#22c55e;background:#f0fdf4}
+.answer-row input.wrong{border-color:#ef4444;background:#fef2f2}
+.btn-submit{padding:10px 20px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:transform .15s}
+.btn-submit:active{transform:scale(.95)}
+.feedback{margin-top:8px;padding:10px 14px;border-radius:8px;font-size:.88rem;line-height:1.7}
+.feedback.ok{background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d}
+.feedback.err{background:#fef2f2;border:1px solid #fecaca;color:#dc2626}
+.feedback .your{color:#ef4444;font-weight:600}
+.feedback .correct-ans{color:#22c55e;font-weight:600}
+.dot-nav{display:flex;justify-content:center;gap:6px;margin:16px 0;flex-wrap:wrap}
+.dot{width:28px;height:28px;border-radius:50%;border:2px solid #d8ebe3;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;cursor:pointer;background:#fff;color:#999;transition:all .15s}
+.dot.active{border-color:#f59e0b;background:#f59e0b;color:#fff;transform:scale(1.2)}
+.dot.done{border-color:var(--g);background:#f0fdf4;color:var(--g)}
+.dot.wrong{border-color:#ef4444;background:#fef2f2;color:#ef4444}
+.toolbar{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid #d8ebe3;padding:8px 14px 12px;display:flex;gap:8px;justify-content:center;z-index:50;box-shadow:0 -4px 18px rgba(0,0,0,.06)}
+.tool-btn{padding:8px 16px;border-radius:999px;border:1.5px solid #d8ebe3;background:#fff;font-size:.82rem;font-weight:600;cursor:pointer;color:var(--t);transition:all .2s}
+.tool-btn:hover{border-color:#f59e0b}
+.tool-btn.primary{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border:none}
+.bt-home{display:block;width:fit-content;margin:18px auto 8px;padding:11px 26px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt-home:hover{transform:translateY(-1px)}
+.ft{text-align:center;padding:8px 0 18px;font-size:12px;color:#a8bcb4}
+@media(max-width:420px){.hdr h1{font-size:18px}}
+</style>
+</head>
+<body><div class="wrap">
+
+<header class="hdr">
+  <a class="back" href="index.html">&#x2190; 返回专题导航</a>
+  <h1>&#x1f414; 鸡兔同笼专题</h1>
+  <p class="sub">四年级上册 · 四大解法 · 经典数学模型</p>
+</header>
+
+<div class="know">
+  <h3>&#x1f4d0; 知识要点</h3>
+  <p style="font-size:.92rem;margin-bottom:6px">鸡兔同笼是中国古代经典数学问题，核心是<strong>利用两种动物的脚数差来求解</strong>：</p>
+  <div class="formula" id="formulaShow" style="display:block"></div>
+  <p style="font-size:.85rem;color:var(--l);margin-top:8px">
+    &#x1f4a1; 四大解法：<b>假设法</b>（最通用）| <b>列表法</b>（有序枚举）| <b>打包法</b>（有倍数关系时）| <b>抬腿法</b>（形象直观）
+  </p>
+</div>
+
+<div class="tabs" id="tabs"></div>
+<div id="questions"></div>
+<div class="dot-nav" id="dotNav"></div>
+
+<div class="toolbar" id="toolbar">
+  <button class="tool-btn primary" id="btnCheck">&#x2705; 提交本题</button>
+  <button class="tool-btn" id="btnPrev">&#x25c0; 上一题</button>
+  <span id="progressSpan" style="display:flex;align-items:center;font-size:.82rem;font-weight:600;color:var(--l);padding:0 6px">1/5</span>
+  <button class="tool-btn" id="btnNext">下一题 &#x25b6;</button>
+</div>
+
+<a class="bt-home" href="../index.html">&#x1f3e0; 返回数学主页</a>
+<div class="ft">&copy; 两英豆豆教练</div>
+
+</div>
+
+<script>
+var TOPICS = [
+  {id:1, name:'假设法', title:'方法一：假设法（最常用）', formula:'假设全是鸡：兔数 = (总脚数 - 2×总头数) ÷ (4-2)<br>假设全是兔：鸡数 = (4×总头数 - 总脚数) ÷ (4-2)',
+    items:[
+      {qid:'1-1', stem:'笼子里有鸡和兔共 8 个头，26 只脚。鸡和兔各几只？', answer:'鸡3只兔5只', accept:['鸡3只兔5只'], explain:'假设全是鸡：脚 = 8×2 = 16。比实际少 26-16 = 10 只脚。每把一只鸡换成兔，增加 2 只脚。兔 = 10÷2 = 5（只），鸡 = 8-5 = 3（只）。答：鸡 3 只，兔 5 只。'},
+      {qid:'1-2', stem:'鸡兔同笼，共 10 个头，28 只脚。鸡和兔各几只？', answer:'鸡6只兔4只', accept:['鸡6只兔4只'], explain:'假设全是兔：脚 = 10×4 = 40。比实际多 40-28 = 12 只。每把一只兔换成鸡，减少 2 只脚。鸡 = 12÷2 = 6（只），兔 = 10-6 = 4（只）。答：鸡 6 只，兔 4 只。'},
+      {qid:'1-3', stem:'停车场上停着汽车和摩托车共 12 辆，共有 44 个轮子。汽车（4轮）和摩托车（2轮）各几辆？', answer:'汽车10辆摩托车2辆', accept:['汽车10辆摩托车2辆'], explain:'假设全是摩托车：轮子 = 12×2 = 24。比实际少 44-24 = 20。每换一辆汽车增加 2 个轮子。汽车 = 20÷2 = 10（辆），摩托车 = 12-10 = 2（辆）。答：汽车 10 辆，摩托车 2 辆。'},
+      {qid:'1-4', stem:'学校买来篮球和足球共 6 个，篮球每个 80 元，足球每个 50 元，一共花了 420 元。篮球和足球各几个？', answer:'篮球4个足球2个', accept:['篮球4个足球2个'], explain:'假设全是足球：总价 = 6×50 = 300。比实际少 420-300 = 120。差价 = 80-50 = 30。篮球 = 120÷30 = 4（个），足球 = 6-4 = 2（个）。答：篮球 4 个，足球 2 个。'},
+      {qid:'1-5', stem:'有 20 张 5 元和 10 元的人民币，一共 145 元。两种纸币各几张？', answer:'5元11张10元9张', accept:['5元11张10元9张'], explain:'假设全是 5 元：总额 = 20×5 = 100。比实际少 145-100 = 45。差价 = 10-5 = 5。10元 = 45÷5 = 9（张），5元 = 20-9 = 11（张）。答：5元 11 张，10元 9 张。'}
+    ]},
+  {id:2, name:'列表法', title:'方法二：列表法（有序枚举）', formula:'从鸡=0开始逐步增加，计算对应脚数，直到找到符合条件的组合。<br>适用于头数较少的情况，头多时可用取中列表法加速。',
+    items:[
+      {qid:'2-1', stem:'鸡兔同笼，共 6 个头，20 只脚。用列表法求鸡和兔各几只。', answer:'鸡2只兔4只', accept:['鸡2只兔4只'], explain:'列表：鸡0→脚24(多)；鸡1→脚22(多)；鸡2→脚20(正好)。答：鸡 2 只，兔 4 只。'},
+      {qid:'2-2', stem:'鸡兔同笼，共 7 个头，18 只脚。鸡和兔各几只？', answer:'鸡5只兔2只', accept:['鸡5只兔2只'], explain:'列表：鸡0→脚28(多)；鸡1→脚26；鸡2→脚24；鸡3→脚22；鸡4→脚20；鸡5→脚18(正好)。答：鸡 5 只，兔 2 只。'},
+      {qid:'2-3', stem:'用取中列表法：鸡兔共 12 个头，40 只脚。先猜鸡=6 兔=6，计算脚数，再调整。', answer:'鸡4只兔8只', accept:['鸡4只兔8只'], explain:'取中：鸡6兔6 → 脚=6×2+6×4=36(偏少)，需减少鸡(增兔)。鸡4兔8 → 脚=4×2+8×4=40(正好)。答：鸡 4 只，兔 8 只。'},
+      {qid:'2-4', stem:'1元和5角硬币共 10 枚，合计 7 元。用列表法求各几枚。（提示：5角=0.5元）', answer:'1元4枚5角6枚', accept:['1元4枚5角6枚'], explain:'1元(100分)看作"头"，总值700分：枚数×100+0.5枚×100的差。列表：1元0枚→5元(少)；1元1枚→5.5元；...1元4枚→7元(正好)。答：1元 4 枚，5角 6 枚。'}
+    ]},
+  {id:3, name:'打包法', title:'方法三：打包法（分组法）', formula:'将一只鸡和一只兔「打包」为一组（共 6 只脚）。<br>先用假设法算出一种动物数量，再按比例打包分组。',
+    items:[
+      {qid:'3-1', stem:'鸡兔同笼，鸡的数量是兔的 2 倍，共 40 只脚。鸡和兔各几只？', answer:'鸡10只兔5只', accept:['鸡10只兔5只'], explain:'打包：2只鸡+1只兔为一组（2×2+1×4=8只脚）。组数 = 40÷8 = 5。兔 = 5×1 = 5 只，鸡 = 5×2 = 10 只。答：鸡 10 只，兔 5 只。'},
+      {qid:'3-2', stem:'鸡的数量是兔的 3 倍，共 50 只脚。鸡和兔各几只？', answer:'鸡15只兔5只', accept:['鸡15只兔5只'], explain:'打包：3鸡+1兔为一组（3×2+1×4=10只脚）。50÷10=5组。兔=5只，鸡=15只。答：鸡 15 只，兔 5 只。'},
+      {qid:'3-3', stem:'鸡比兔多 8 只，共 88 只脚。鸡和兔各几只？', answer:'鸡20只兔12只', accept:['鸡20只兔12只'], explain:'先把多的 8 只鸡拿走：剩脚 88-8×2=72。此时鸡兔数量相等。打包：1鸡+1兔=6只脚/组。72÷6=12组。兔=12只，鸡=12+8=20只。答：鸡 20 只，兔 12 只。'},
+      {qid:'3-4', stem:'兔比鸡多 3 只，共 66 只脚。鸡和兔各几只？', answer:'鸡9只兔12只', accept:['鸡9只兔12只'], explain:'把多的 3 只兔拿走：剩脚 66-3×4=54。此时相等。打包：1鸡+1兔=6只。54÷6=9组。鸡=9只，兔=9+3=12只。答：鸡 9 只，兔 12 只。'}
+    ]},
+  {id:4, name:'抬腿法', title:'方法四：抬腿法（吹哨法）', formula:'吹一声哨，所有动物抬起 2 条腿。<br>剩下站着的都是兔子的腿（每只兔剩 2 条），除以 2 即得兔数。',
+    items:[
+      {qid:'4-1', stem:'鸡兔同笼，共 15 个头，40 只脚。用抬腿法求解。', answer:'鸡10只兔5只', accept:['鸡10只兔5只'], explain:'吹哨：每只抬 2 条腿，共抬起 15×2=30 条。剩下 40-30=10 条腿。剩下的全是兔腿（每只兔剩 2 条）。兔 = 10÷2 = 5（只），鸡 = 15-5 = 10（只）。答：鸡 10 只，兔 5 只。'},
+      {qid:'4-2', stem:'动物园有鸵鸟和长颈鹿共 20 只，共有 52 只脚。鸵鸟（2脚）和长颈鹿（4脚）各几只？', answer:'鸵鸟14只长颈鹿6只', accept:['鸵鸟14只长颈鹿6只'], explain:'吹哨抬 2 脚：抬起 20×2=40 只脚。剩 52-40=12 只。全是长颈鹿的脚（每只剩 2 只）。长颈鹿 = 12÷2 = 6，鸵鸟 = 20-6 = 14。答：鸵鸟 14 只，长颈鹿 6 只。'},
+      {qid:'4-3', stem:'鸡兔同笼，共 32 个头，100 只脚。鸡和兔各几只？', answer:'鸡14只兔18只', accept:['鸡14只兔18只'], explain:'吹哨抬 2 脚：抬起 32×2=64 只。剩 100-64=36 只。兔 = 36÷2 = 18，鸡 = 32-18 = 14。答：鸡 14 只，兔 18 只。'},
+      {qid:'4-4', stem:'会议室有方凳（4条腿）和圆凳（3条腿）共 50 个，共 175 条腿。两种凳子各几个？', answer:'方凳25个圆凳25个', accept:['方凳25个圆凳25个'], explain:'抬腿法变式：假设每种抬 3 条腿 → 抬起 50×3=150。剩 175-150=25。全是方凳腿（每只剩 1 条）。方凳=25，圆凳=50-25=25。答：方凳 25 个，圆凳 25 个。'}
+    ]}
+];
+
+var curTopic = 0, curQ = 0, answers = {};
+
+function hashKey(){ return curTopic + '-' + curQ; }
+
+function renderTabs(){
+  document.getElementById('tabs').innerHTML = TOPICS.map(function(t,i){
+    return '<button class="tab' + (i===curTopic?' active':'') + '" onclick="switchTopic(' + i + ')">' + t.title + '</button>';
+  }).join('');
+}
+
+function renderQ(){
+  var t = TOPICS[curTopic], q = t.items[curQ], key = hashKey();
+  var done = answers[key] !== undefined, ok = answers[key] === true;
+  var cls = done ? (ok ? 'correct' : 'wrong') : '';
+  var h = '<div class="q-card">';
+  h += '<div class="q-stem"><strong>【第' + (curQ+1) + '题】</strong> ' + q.stem + '</div>';
+  h += '<div class="answer-row">';
+  h += '<input type="text" id="answerInput" class="' + cls + '" placeholder="输入答案" value="' + (done ? (answers[key+'_user']||'') : '') + '" ' + (done?'disabled':'') + '>';
+  if(!done) h += '<button class="btn-submit" onclick="checkAnswer()">确认</button>';
+  h += '</div>';
+  if(done){
+    h += '<div class="feedback ' + (ok?'ok':'err') + '">';
+    if(ok) h += '&#x2705; <strong>回答正确！</strong> ' + q.explain;
+    else h += '&#x274c; <span class="your">你的答案：' + answers[key+'_user'] + '</span>&emsp;<span class="correct-ans">正确答案：' + q.answer + '</span><br>' + q.explain;
+    h += '</div>';
+  }
+  h += '</div>';
+  document.getElementById('questions').innerHTML = h;
+  document.getElementById('formulaShow').innerHTML = t.formula;
+  var dots = '';
+  for(var i=0;i<t.items.length;i++){
+    var k = curTopic + '-' + i, c2 = 'dot';
+    if(i===curQ) c2 += ' active';
+    if(answers[k]===true) c2 += ' done';
+    else if(answers[k]===false) c2 += ' wrong';
+    dots += '<button class="' + c2 + '" onclick="switchQ(' + i + ')">' + (i+1) + '</button>';
+  }
+  document.getElementById('dotNav').innerHTML = dots;
+  document.getElementById('progressSpan').textContent = (curQ+1) + '/' + t.items.length;
+  if(!done){ var inp = document.getElementById('answerInput'); if(inp) setTimeout(function(){inp.focus();},100); }
+}
+
+function judge(input, answer, accept){
+  var s = input.replace(/\s+/g, '').toLowerCase();
+  var a = answer.replace(/\s+/g, '').toLowerCase();
+  if(s === a) return true;
+  for(var i=0; accept && i<accept.length; i++){
+    if(s === accept[i].replace(/\s+/g, '').toLowerCase()) return true;
+  }
+  return false;
+}
+
+function checkAnswer(){
+  var inp = document.getElementById('answerInput'), val = inp.value.trim();
+  if(!val) return;
+  var q = TOPICS[curTopic].items[curQ], key = hashKey();
+  var ok = judge(val, q.answer, q.accept);
+  answers[key] = ok; answers[key+'_user'] = val; renderQ();
+}
+
+function switchTopic(i){ curTopic = i; curQ = 0; renderTabs(); renderQ(); }
+function switchQ(i){ curQ = Math.max(0, Math.min(i, TOPICS[curTopic].items.length - 1)); renderQ(); }
+
+document.getElementById('btnCheck').addEventListener('click', checkAnswer);
+document.getElementById('btnPrev').addEventListener('click', function(){ switchQ(curQ - 1); });
+document.getElementById('btnNext').addEventListener('click', function(){ switchQ(curQ + 1); });
+
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Enter'){
+    var key = hashKey();
+    if(answers[key] === undefined) checkAnswer(); else switchQ(curQ + 1);
+  }
+  if(e.key === 'ArrowLeft' && !e.target.closest('input')) switchQ(curQ - 1);
+  if(e.key === 'ArrowRight' && !e.target.closest('input')) switchQ(curQ + 1);
+});
+
+renderTabs(); renderQ();
+</script>
+</body></html>

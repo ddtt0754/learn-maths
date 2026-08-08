@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>行程问题 专题</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--r:14px;--ac:#dc2626}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);padding:20px 16px 90px;min-height:100vh;display:flex;justify-content:center}
+.wrap{width:100%;max-width:680px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:8px;font-size:13px;opacity:.95}
+.hdr .back{position:absolute;top:12px;left:14px;z-index:1;background:rgba(255,255,255,.22);color:#fff;border:1px solid rgba(255,255,255,.35);padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s}
+.hdr .back:hover{background:rgba(255,255,255,.38)}
+.know{background:#fff;border-radius:var(--r);padding:14px 16px;margin-bottom:12px;box-shadow:0 4px 12px rgba(47,157,240,.06);line-height:1.8}
+.know h3{font-size:1rem;color:var(--ac);margin-bottom:4px}
+.know .formula{display:inline-block;background:#f5f3ff;border:1px solid #c4b5fd;border-radius:6px;padding:6px 12px;margin:4px 0;font-size:.9rem;color:#6d28d9;font-weight:600;line-height:2}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:8px 16px;border-radius:999px;border:1.5px solid #d8ebe3;background:#fff;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--t);transition:all .2s}
+.tab:hover{border-color:var(--ac)}
+.tab.active{background:linear-gradient(135deg,#dc2626,#dc2626);color:#fff;border-color:transparent}
+.q-card{background:#fff;border-radius:var(--r);padding:16px;margin-bottom:12px;box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.q-stem{font-size:1rem;line-height:1.7;margin-bottom:12px;padding-left:10px;border-left:3px solid var(--ac)}
+.answer-row{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.answer-row input{flex:1;padding:10px 14px;border:2px solid #d8ebe3;border-radius:8px;font-size:1rem;outline:none;transition:border-color .2s}
+.answer-row input:focus{border-color:var(--ac)}
+.answer-row input.correct{border-color:#22c55e;background:#f0fdf4}
+.answer-row input.wrong{border-color:#ef4444;background:#fef2f2}
+.btn-submit{padding:10px 20px;background:linear-gradient(135deg,#dc2626,#dc2626);color:#fff;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:transform .15s}
+.btn-submit:active{transform:scale(.95)}
+.feedback{margin-top:8px;padding:10px 14px;border-radius:8px;font-size:.88rem;line-height:1.7}
+.feedback.ok{background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d}
+.feedback.err{background:#fef2f2;border:1px solid #fecaca;color:#dc2626}
+.feedback .your{color:#ef4444;font-weight:600}
+.feedback .correct-ans{color:#22c55e;font-weight:600}
+.dot-nav{display:flex;justify-content:center;gap:6px;margin:16px 0;flex-wrap:wrap}
+.dot{width:28px;height:28px;border-radius:50%;border:2px solid #d8ebe3;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;cursor:pointer;background:#fff;color:#999;transition:all .15s}
+.dot.active{border-color:var(--ac);background:var(--ac);color:#fff;transform:scale(1.2)}
+.dot.done{border-color:var(--g);background:#f0fdf4;color:var(--g)}
+.dot.wrong{border-color:#ef4444;background:#fef2f2;color:#ef4444}
+.toolbar{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid #d8ebe3;padding:8px 14px 12px;display:flex;gap:8px;justify-content:center;z-index:50;box-shadow:0 -4px 18px rgba(0,0,0,.06)}
+.tool-btn{padding:8px 16px;border-radius:999px;border:1.5px solid #d8ebe3;background:#fff;font-size:.82rem;font-weight:600;cursor:pointer;color:var(--t);transition:all .2s}
+.tool-btn:hover{border-color:var(--ac)}
+.tool-btn.primary{background:linear-gradient(135deg,#dc2626,#dc2626);color:#fff;border:none}
+.bt-home{display:block;width:fit-content;margin:18px auto 8px;padding:11px 26px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt-home:hover{transform:translateY(-1px)}
+.ft{text-align:center;padding:8px 0 18px;font-size:12px;color:#a8bcb4}
+@media(max-width:420px){.hdr h1{font-size:18px}}
+</style>
+</head>
+<body><div class="wrap">
+
+<header class="hdr">
+  <a class="back" href="index.html">&#x2190; 返回专题导航</a>
+  <h1>&#x1f3c3; 行程问题专题</h1>
+  <p class="sub">五年级下册 · 路程 · 速度 · 时间 · 相遇 · 追及</p>
+</header>
+
+<div class="know">
+  <h3>&#x1f4d0; 知识要点</h3>
+  <p style="font-size:.92rem;margin-bottom:6px">行程问题的核心：<strong>路程 = 速度 × 时间</strong>。相遇问题用速度和，追及问题用速度差。</p>
+  <div class="formula" id="formulaShow" style="display:block"></div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+<div id="questions"></div>
+<div class="dot-nav" id="dotNav"></div>
+
+<div class="toolbar" id="toolbar">
+  <button class="tool-btn primary" id="btnCheck">&#x2705; 提交本题</button>
+  <button class="tool-btn" id="btnPrev">&#x25c0; 上一题</button>
+  <span id="progressSpan" style="display:flex;align-items:center;font-size:.82rem;font-weight:600;color:var(--l);padding:0 6px">1/5</span>
+  <button class="tool-btn" id="btnNext">下一题 &#x25b6;</button>
+</div>
+
+<a class="bt-home" href="../index.html">&#x1f3e0; 返回数学主页</a>
+<div class="ft">&copy; 两英豆豆教练</div>
+
+</div>
+
+<script>
+var TOPICS = [
+  {id:1, name:'基本行程', title:'题型一：基本行程问题', formula:'路程 = 速度 × 时间<br>速度 = 路程 ÷ 时间<br>时间 = 路程 ÷ 速度',
+    items:[
+      {qid:'t1', stem:'一辆汽车以 60 千米/时的速度行驶 3 小时，能行驶多少千米？', answer:'180', accept:['180'], explain:'路程=速度×时间=60×3=180(千米)。答：180千米。'},
+      {qid:'t2', stem:'小明骑自行车 2 小时骑了 30 千米，他的平均速度是多少？', answer:'15', accept:['15'], explain:'速度=路程÷时间=30÷2=15(千米/时)。答：15千米/时。'},
+      {qid:'t3', stem:'两地相距 240 千米，火车以 80 千米/时行驶。需要几小时到达？', answer:'3', accept:['3'], explain:'时间=路程÷速度=240÷80=3(小时)。答：3小时。'},
+      {qid:'t4', stem:'一辆车上午 8:30 出发，下午 2:30 到达，共行驶 300 千米。平均速度是多少？', answer:'50', accept:['50'], explain:'时间=14:30-8:30=6小时。速度=300÷6=50(千米/时)。答：50千米/时。'}
+    ]},
+  {id:2, name:'相遇问题', title:'题型二：相遇问题', formula:'相遇时间 = 总路程 ÷ (甲速 + 乙速)<br>相遇时甲行路程 = 甲速 × 相遇时间',
+    items:[
+      {qid:'t5', stem:'甲乙两地相距 350 千米。甲车以 50 km/h 从A出发，乙车以 60 km/h 从B出发，相向而行。几小时相遇？', answer:'3.18', accept:['3.18'], explain:'相遇时间=350÷(50+60)=350÷110≈3.18(小时)。答：约3.18小时。'},
+      {qid:'t6', stem:'小明和小红从相距 400 米的两地同时相向出发。小明每分钟走 60 米，小红每分钟走 40 米。几分钟后相遇？', answer:'4', accept:['4'], explain:'时间=400÷(60+40)=400÷100=4(分钟)。答：4分钟。'},
+      {qid:'t7', stem:'两列火车从相距 720 千米的两地同时相向开出，一列速度 80 km/h，另一列 100 km/h。几小时后两车相距 180 千米？', answer:'3', accept:['3'], explain:'它们要行驶的路程=720-180=540千米。时间=540÷(80+100)=540÷180=3(小时)。答：3小时。'},
+      {qid:'t8', stem:'甲乙从相距 120 km 的两地相向而行，甲速度 15 km/h，乙速度 25 km/h。甲先出发 1 小时后乙才出发。乙出发后几小时相遇？', answer:'2.63', accept:['2.63'], explain:'甲1小时走了15km，剩105km。相遇时间=105÷(15+25)=105÷40=2.625(小时)。答：约2.63小时。'}
+    ]},
+  {id:3, name:'追及问题', title:'题型三：追及问题', formula:'追及时间 = 初始距离 ÷ (快速度 - 慢速度)<br>注意速度单位一致！',
+    items:[
+      {qid:'t9', stem:'小红先走了 200 米后，小明以 80 米/分去追。小红速度 50 米/分。小明需要几分钟追上？', answer:'6.67', accept:['6.67'], explain:'速度差=80-50=30(米/分)。时间=200÷30≈6.67(分钟)。答：约6.67分钟。'},
+      {qid:'t10', stem:'一辆摩托车以 45 km/h 出发，2 小时后一辆汽车以 75 km/h 去追。汽车几小时追上？', answer:'3', accept:['3'], explain:'摩托车先走 45×2=90 千米。速度差=75-45=30。时间=90÷30=3(小时)。答：3小时。'},
+      {qid:'t11', stem:'甲乙两人跑步，乙在甲前面 50 米。甲速度 5 米/秒，乙速度 3 米/秒。甲多少秒追上乙？', answer:'25', accept:['25'], explain:'速度差=5-3=2(米/秒)。时间=50÷2=25(秒)。答：25秒。'}
+    ]}
+];
+
+var curTopic=0,curQ=0,answers={};
+function hashKey(){return curTopic+'-'+curQ;}
+function renderTabs(){
+  document.getElementById('tabs').innerHTML=TOPICS.map(function(t,i){
+    return '<button class="tab'+(i===curTopic?' active':'')+'" onclick="switchTopic('+i+')">'+t.title+'</button>';
+  }).join('');
+}
+function renderQ(){
+  var t=TOPICS[curTopic],q=t.items[curQ],key=hashKey();
+  var done=answers[key]!==undefined,ok=answers[key]===true;
+  var cls=done?(ok?'correct':'wrong'):'';
+  var h='<div class="q-card">';
+  h+='<div class="q-stem"><strong>【第'+(curQ+1)+'题】</strong> '+q.stem+'</div>';
+  h+='<div class="answer-row">';
+  h+='<input type="text" id="answerInput" class="'+cls+'" placeholder="输入答案" value="'+(done?(answers[key+'_user']||''):'')+'" '+(done?'disabled':'')+'>';
+  if(!done) h+='<button class="btn-submit" onclick="checkAnswer()">确认</button>';
+  h+='</div>';
+  if(done){
+    h+='<div class="feedback '+(ok?'ok':'err')+'">';
+    if(ok) h+='&#x2705; <strong>回答正确！</strong> '+q.explain;
+    else h+='&#x274c; <span class="your">你的答案：'+answers[key+'_user']+'</span>&emsp;<span class="correct-ans">正确答案：'+q.answer+'</span><br>'+q.explain;
+    h+='</div>';
+  }
+  h+='</div>';
+  document.getElementById('questions').innerHTML=h;
+  document.getElementById('formulaShow').innerHTML=t.formula;
+  var dots='';
+  for(var i=0;i<t.items.length;i++){
+    var k=curTopic+'-'+i,c2='dot';
+    if(i===curQ)c2+=' active';
+    if(answers[k]===true)c2+=' done';
+    else if(answers[k]===false)c2+=' wrong';
+    dots+='<button class="'+c2+'" onclick="switchQ('+i+')">'+(i+1)+'</button>';
+  }
+  document.getElementById('dotNav').innerHTML=dots;
+  document.getElementById('progressSpan').textContent=(curQ+1)+'/'+t.items.length;
+  if(!done){var inp=document.getElementById('answerInput');if(inp)setTimeout(function(){inp.focus();},100);}
+}
+function judge(input,answer,accept){
+  var s=input.replace(/\s+/g,'').toLowerCase();
+  var a=answer.replace(/\s+/g,'').toLowerCase();
+  if(s===a)return true;
+  for(var i=0;accept&&i<accept.length;i++){if(s===accept[i].replace(/\s+/g,'').toLowerCase())return true;}
+  var n1=parseFloat(input),n2=parseFloat(answer);
+  if(!isNaN(n1)&&!isNaN(n2)&&Math.abs(n1-n2)<0.01)return true;
+  return false;
+}
+function checkAnswer(){
+  var inp=document.getElementById('answerInput'),val=inp.value.trim();
+  if(!val)return;
+  var q=TOPICS[curTopic].items[curQ],key=hashKey();
+  var ok=judge(val,q.answer,q.accept);
+  answers[key]=ok;answers[key+'_user']=val;renderQ();
+}
+function switchTopic(i){curTopic=i;curQ=0;renderTabs();renderQ();}
+function switchQ(i){curQ=Math.max(0,Math.min(i,TOPICS[curTopic].items.length-1));renderQ();}
+document.getElementById('btnCheck').addEventListener('click',checkAnswer);
+document.getElementById('btnPrev').addEventListener('click',function(){switchQ(curQ-1);});
+document.getElementById('btnNext').addEventListener('click',function(){switchQ(curQ+1);});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Enter'){var key=hashKey();if(answers[key]===undefined)checkAnswer();else switchQ(curQ+1);}
+  if(e.key==='ArrowLeft'&&!e.target.closest('input'))switchQ(curQ-1);
+  if(e.key==='ArrowRight'&&!e.target.closest('input'))switchQ(curQ+1);
+});
+renderTabs();renderQ();
+</script>
+</body></html>

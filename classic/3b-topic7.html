@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>植树问题专题 · 三年级下册</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--r:14px}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);padding:20px 16px 90px;min-height:100vh;display:flex;justify-content:center}
+.wrap{width:100%;max-width:680px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);border-radius:20px;padding:24px 18px 22px;text-align:center;color:#fff;overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700}
+.hdr .sub{position:relative;margin-top:8px;font-size:13px;opacity:.95}
+.hdr .back{position:absolute;top:12px;left:14px;z-index:1;background:rgba(255,255,255,.22);color:#fff;border:1px solid rgba(255,255,255,.35);padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s}
+.hdr .back:hover{background:rgba(255,255,255,.38)}
+.know{background:#fff;border-radius:var(--r);padding:14px 16px;margin-bottom:12px;box-shadow:0 4px 12px rgba(47,157,240,.06);line-height:1.8}
+.know h3{font-size:1rem;color:var(--b);margin-bottom:4px}
+.know .formula{display:inline-block;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px;padding:6px 12px;margin:4px 0;font-size:.9rem;color:#15803d;font-weight:600}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:8px 16px;border-radius:999px;border:1.5px solid #d8ebe3;background:#fff;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--t);transition:all .2s}
+.tab:hover{border-color:var(--b)}
+.tab.active{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border-color:transparent}
+.q-card{background:#fff;border-radius:var(--r);padding:16px;margin-bottom:12px;box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.q-stem{font-size:1rem;line-height:1.7;margin-bottom:12px;padding-left:10px;border-left:3px solid var(--g)}
+.answer-row{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.answer-row input{flex:1;padding:10px 14px;border:2px solid #d8ebe3;border-radius:8px;font-size:1rem;outline:none;transition:border-color .2s}
+.answer-row input:focus{border-color:var(--b)}
+.answer-row input.correct{border-color:#22c55e;background:#f0fdf4}
+.answer-row input.wrong{border-color:#ef4444;background:#fef2f2}
+.btn-submit{padding:10px 20px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:transform .15s,opacity .2s}
+.btn-submit:active{transform:scale(.95)}
+.feedback{margin-top:8px;padding:10px 14px;border-radius:8px;font-size:.88rem;line-height:1.7}
+.feedback.ok{background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d}
+.feedback.err{background:#fef2f2;border:1px solid #fecaca;color:#dc2626}
+.feedback .your{color:#ef4444;font-weight:600}
+.feedback .correct-ans{color:#22c55e;font-weight:600}
+.dot-nav{display:flex;justify-content:center;gap:6px;margin:16px 0;flex-wrap:wrap}
+.dot{width:28px;height:28px;border-radius:50%;border:2px solid #d8ebe3;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;cursor:pointer;background:#fff;color:#999;transition:all .15s}
+.dot.active{border-color:var(--b);background:var(--b);color:#fff;transform:scale(1.2)}
+.dot.done{border-color:var(--g);background:#f0fdf4;color:var(--g)}
+.dot.wrong{border-color:#ef4444;background:#fef2f2;color:#ef4444}
+.toolbar{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid #d8ebe3;padding:8px 14px 12px;display:flex;gap:8px;justify-content:center;z-index:50;box-shadow:0 -4px 18px rgba(0,0,0,.06)}
+.tool-btn{padding:8px 16px;border-radius:999px;border:1.5px solid #d8ebe3;background:#fff;font-size:.82rem;font-weight:600;cursor:pointer;color:var(--t);transition:all .2s}
+.tool-btn:hover{border-color:var(--b)}
+.tool-btn.primary{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none}
+.bt-home{display:block;width:fit-content;margin:18px auto 8px;padding:11px 26px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt-home:hover{transform:translateY(-1px)}
+.ft{text-align:center;padding:8px 0 18px;font-size:12px;color:#a8bcb4}
+@media(max-width:420px){.hdr h1{font-size:18px}}
+</style>
+</head>
+<body><div class="wrap">
+
+<header class="hdr">
+  <a class="back" href="index.html">← 返回专题导航</a>
+  <h1>🌳 植树问题专题</h1>
+  <p class="sub">三年级下册 · 数学模型 · 三种情况</p>
+</header>
+
+<div class="know">
+  <h3>📐 知识要点</h3>
+  <p style="font-size:.92rem;margin-bottom:6px">植树问题的关键是弄清楚<strong>棵数与间隔数的关系</strong>：</p>
+  <div class="formula" id="formulaShow" style="display:block;line-height:2"></div>
+  <p style="font-size:.85rem;color:var(--l);margin-top:8px">
+    💡 先求间隔数 → 再根据种树方式（两端/一端/都不种/封闭）确定棵数
+  </p>
+</div>
+
+<div class="tabs" id="tabs"></div>
+<div id="questions"></div>
+<div class="dot-nav" id="dotNav"></div>
+
+<div class="toolbar" id="toolbar">
+  <button class="tool-btn" id="btnCheck">✅ 提交本题</button>
+  <button class="tool-btn" id="btnPrev">◀ 上一题</button>
+  <span id="progressSpan" style="display:flex;align-items:center;font-size:.82rem;font-weight:600;color:var(--l);padding:0 6px">1/5</span>
+  <button class="tool-btn" id="btnNext">下一题 ▶</button>
+</div>
+
+<a class="bt-home" href="../index.html">🏠 返回数学主页</a>
+<div class="ft">&copy; 两英豆豆教练</div>
+
+</div>
+
+<script>
+const TOPICS = [
+  {id:1, name:'两端都种', title:'题型一：两端都种（直线植树）', formula:'棵数 = 间隔数 + 1 = 总长 ÷ 间距 + 1<br>总长 = (棵数 − 1) × 间距',
+    items:[
+      {qid:'1-1', stem:'一条路长 100 米，从头到尾每隔 5 米种一棵树，一共要种多少棵？', answer:'21', accept:['21'], explain:'间隔数 = 100÷5 = 20（个）。两端都种：棵数 = 20+1 = 21（棵）。答：21 棵。'},
+      {qid:'1-2', stem:'在一条 240 米的公路一侧植树，每隔 8 米种一棵（两端都种），需要多少棵树？', answer:'31', accept:['31'], explain:'间隔数 = 240÷8 = 30。棵数 = 30+1 = 31（棵）。答：31 棵。'},
+      {qid:'1-3', stem:'在一条路的一边从头到尾种了 15 棵树，每两棵之间相距 6 米。这条路长多少米？', answer:'84', accept:['84'], explain:'棵数 = 15，两端都种 → 间隔数 = 15−1 = 14。总长 = 14×6 = 84（米）。答：84 米。'},
+      {qid:'1-4', stem:'一条长廊长 72 米，从头到尾每隔 4 米摆一盆花，需要多少盆花？', answer:'19', accept:['19'], explain:'间隔数 = 72÷4 = 18。两端都摆：盆数 = 18+1 = 19（盆）。答：19 盆。'},
+      {qid:'1-5', stem:'马路一侧从头到尾种树，共种了 51 棵，每两棵间距 5 米。这条路全长多少米？', answer:'250', accept:['250'], explain:'棵数 = 51 → 间隔数 = 51−1 = 50。全长 = 50×5 = 250（米）。答：250 米。'}
+    ]},
+  {id:2, name:'两端都不种/只种一端', title:'题型二：两端都不种 / 只种一端', formula:'两端都不种：棵数 = 间隔数 − 1<br>只种一端：棵数 = 间隔数<br>总长 = 间距 × 间隔数',
+    items:[
+      {qid:'2-1', stem:'两座教学楼之间有一条 60 米的小路，在小路一侧每隔 3 米种一棵树（两端都不种），需种多少棵？', answer:'19', accept:['19'], explain:'间隔数 = 60÷3 = 20。两端都不种：棵数 = 20−1 = 19（棵）。答：19 棵。'},
+      {qid:'2-2', stem:'学校大门到教学楼之间 48 米，只在大门这一端种一棵树，然后每隔 4 米种一棵一直到教学楼（教学楼不种）。共种多少棵？', answer:'12', accept:['12'], explain:'间隔数 = 48÷4 = 12。只种一端：棵数 = 间隔数 = 12（棵）。答：12 棵。'},
+      {qid:'2-3', stem:'在两栋楼之间种树，楼间距 90 米，每隔 6 米种一棵（两端都是楼，不种树）。需要多少棵树？', answer:'14', accept:['14'], explain:'间隔数 = 90÷6 = 15。两端都不种：棵数 = 15−1 = 14（棵）。答：14 棵。'},
+      {qid:'2-4', stem:'一座桥全长 50 米，只在桥头一侧开始每隔 5 米插一面彩旗（只插桥头一端），共需要多少面彩旗？', answer:'10', accept:['10'], explain:'间隔数 = 50÷5 = 10。只种一端：棵数 = 间隔数 = 10。答：10 面。'},
+      {qid:'2-5', stem:'在两棵大树之间每隔 4 米栽一棵小树，两棵大树相距 36 米。一共可以栽多少棵小树？', answer:'8', accept:['8'], explain:'间隔数 = 36÷4 = 9。两端已有大树，不栽小树 → 两端都不种。棵数 = 9−1 = 8（棵）。答：8 棵。'}
+    ]},
+  {id:3, name:'封闭图形', title:'题型三：封闭图形（圆形/方形/三角形）', formula:'封闭图形：棵数 = 间隔数 = 周长 ÷ 间距<br>关键：封闭图形首尾相连，棵数等于间隔数！',
+    items:[
+      {qid:'3-1', stem:'一个圆形花坛周长 40 米，沿花坛每隔 2 米种一棵树。需要种多少棵？', answer:'20', accept:['20'], explain:'封闭图形：棵数 = 间隔数。间隔数 = 周长÷间距 = 40÷2 = 20。答：20 棵。'},
+      {qid:'3-2', stem:'一个正方形鱼塘边长 25 米，沿塘边每隔 5 米种一棵树（四个角都种）。共种多少棵？', answer:'20', accept:['20'], explain:'周长 = 25×4 = 100（米）。封闭图形：棵数 = 100÷5 = 20（棵）。答：20 棵。'},
+      {qid:'3-3', stem:'圆形操场周长 300 米，沿操场每隔 6 米插一面彩旗。一共需要多少面？', answer:'50', accept:['50'], explain:'封闭图形：间隔数 = 300÷6 = 50，棵数 = 间隔数 = 50。答：50 面。'},
+      {qid:'3-4', stem:'一个三角形花坛，三边长分别为 18米、24米、30米。在花坛边上每隔 3 米种一棵树（三个顶点都种）。共种多少棵？', answer:'24', accept:['24'], explain:'封闭图形：周长 = 18+24+30 = 72（米）。间隔 = 72÷3 = 24。棵数 = 间隔数 = 24（棵）。答：24 棵。'},
+      {qid:'3-5', stem:'一个长方形池塘长 80 米、宽 40 米，沿池塘每隔 5 米种一棵柳树（四角都种）。共种多少棵？', answer:'48', accept:['48'], explain:'周长 = (80+40)×2 = 240（米）。封闭图形：棵数 = 240÷5 = 48（棵）。答：48 棵。'}
+    ]}
+];
+
+let curTopic = 0;
+let curQ = 0;
+let answers = {};
+
+function hashKey() { return curTopic + '-' + curQ; }
+
+function renderTabs() {
+  document.getElementById('tabs').innerHTML = TOPICS.map(function(t, i) {
+    return '<button class="tab' + (i === curTopic ? ' active' : '') + '" onclick="switchTopic(' + i + ')">' + t.title + '</button>';
+  }).join('');
+}
+
+function renderQ() {
+  var t = TOPICS[curTopic];
+  var q = t.items[curQ];
+  var key = hashKey();
+  var done = answers[key] !== undefined;
+  var ok = answers[key] === true;
+
+  var cls = '';
+  if (done) cls = ok ? 'correct' : 'wrong';
+
+  var html = '<div class="q-card">';
+  html += '<div class="q-stem"><strong>【第' + (curQ + 1) + '题】</strong> ' + q.stem + '</div>';
+  html += '<div class="answer-row">';
+  html += '<input type="text" id="answerInput" class="' + cls + '" placeholder="输入答案" value="' + (done ? (answers[key + '_user'] || '') : '') + '" ' + (done ? 'disabled' : '') + '>';
+  if (!done) {
+    html += '<button class="btn-submit" id="btnCheckInline" onclick="checkAnswer()">确认</button>';
+  }
+  html += '</div>';
+  if (done) {
+    var fb = ok ? 'feedback ok' : 'feedback err';
+    html += '<div class="' + fb + '">';
+    if (ok) {
+      html += '✅ <strong>回答正确！</strong> ' + q.explain;
+    } else {
+      html += '❌ <span class="your">你的答案：' + answers[key + '_user'] + '</span>　　<span class="correct-ans">正确答案：' + q.answer + '</span><br>' + q.explain;
+    }
+    html += '</div>';
+  }
+  html += '</div>';
+
+  document.getElementById('questions').innerHTML = html;
+
+  // Update formula
+  document.getElementById('formulaShow').innerHTML = t.formula;
+
+  // Update dots
+  var dots = '';
+  for (var i = 0; i < t.items.length; i++) {
+    var k = curTopic + '-' + i;
+    var cls2 = 'dot';
+    if (i === curQ) cls2 += ' active';
+    if (answers[k] === true) cls2 += ' done';
+    else if (answers[k] === false) cls2 += ' wrong';
+    dots += '<button class="' + cls2 + '" onclick="switchQ(' + i + ')">' + (i + 1) + '</button>';
+  }
+  document.getElementById('dotNav').innerHTML = dots;
+  document.getElementById('progressSpan').textContent = (curQ + 1) + '/' + t.items.length;
+
+  // Focus
+  if (!done) {
+    var inp = document.getElementById('answerInput');
+    if (inp) setTimeout(function() { inp.focus(); }, 100);
+  }
+}
+
+function checkAnswer() {
+  var inp = document.getElementById('answerInput');
+  var val = inp.value.trim();
+  if (!val) return;
+
+  var t = TOPICS[curTopic];
+  var q = t.items[curQ];
+  var key = hashKey();
+  var ok = judge(val, q.answer, q.accept);
+
+  answers[key] = ok;
+  answers[key + '_user'] = val;
+
+  renderQ();
+}
+
+function judge(input, answer, accept) {
+  var s = input.replace(/\s+/g, '').toLowerCase();
+  var a = answer.replace(/\s+/g, '').toLowerCase();
+  if (s === a) return true;
+  // Check accept list
+  for (var i = 0; accept && i < accept.length; i++) {
+    if (s === accept[i].replace(/\s+/g, '').toLowerCase()) return true;
+  }
+  // Numeric tolerance
+  var n1 = parseFloat(input);
+  var n2 = parseFloat(answer);
+  if (!isNaN(n1) && !isNaN(n2) && Math.abs(n1 - n2) < 0.01) return true;
+  return false;
+}
+
+function switchTopic(i) {
+  curTopic = i;
+  curQ = 0;
+  renderTabs();
+  renderQ();
+}
+
+function switchQ(i) {
+  curQ = Math.max(0, Math.min(i, TOPICS[curTopic].items.length - 1));
+  renderQ();
+}
+
+document.getElementById('btnCheck').addEventListener('click', checkAnswer);
+document.getElementById('btnPrev').addEventListener('click', function() { switchQ(curQ - 1); });
+document.getElementById('btnNext').addEventListener('click', function() { switchQ(curQ + 1); });
+
+// Keyboard
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    var key = hashKey();
+    if (answers[key] === undefined) checkAnswer();
+    else switchQ(curQ + 1);
+  }
+  if (e.key === 'ArrowLeft' && !e.target.closest('input')) switchQ(curQ - 1);
+  if (e.key === 'ArrowRight' && !e.target.closest('input')) switchQ(curQ + 1);
+});
+
+// Init
+renderTabs();
+renderQ();
+</script>
+</body></html>
