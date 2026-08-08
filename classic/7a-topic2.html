@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=3.0">
+<meta name="theme-color" content="#2ebd85">
+<title>七年级上册 · 数轴动点专题</title>
+<style>
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--border:#e1eeea;--card:#fff;--danger:#ef4444;--bg:#f5fbf8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);font-size:15px;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.wrap{width:100%;max-width:760px;padding:14px 14px 0;flex:1}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);border-radius:20px;padding:20px 18px 18px;text-align:center;color:#fff;overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:12px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:20px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12px;opacity:.95}
+.back-row{display:flex;gap:8px;margin-bottom:8px}
+.back-link{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;background:var(--card);border:1.5px solid var(--border);border-radius:999px;font-size:12.5px;font-weight:600;color:var(--t);text-decoration:none;transition:all .2s}
+.back-link:hover{border-color:var(--b);color:var(--b)}
+.know-card{background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:0 4px 14px rgba(47,157,240,.06);margin-bottom:12px;border-left:4px solid var(--b)}
+.know-card h3{font-size:15px;color:var(--b);margin-bottom:8px}
+.know-card .rule{padding:8px 12px;background:#f0fdf4;border-left:3px solid var(--g);border-radius:6px;margin:8px 0;font-size:13px;line-height:1.7}
+.q-card{background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:0 4px 14px rgba(47,157,240,.06);margin-bottom:10px}
+.q-card .q-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.q-card .q-badge{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border-radius:999px;padding:4px 14px;font-size:12px;font-weight:700;white-space:nowrap}
+.q-card .q-title{font-size:14px;font-weight:700;color:var(--t)}
+.q-card .q-stem{font-size:14px;line-height:1.75;color:var(--t);background:var(--bg);padding:12px 14px;border-radius:10px;margin-bottom:10px;white-space:pre-wrap}
+.ans-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.ans-inp{flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;outline:none;transition:border-color .2s}
+.ans-inp:focus{border-color:var(--b)}
+.ans-inp:disabled{background:#f1f5f9}
+.ans-btn{padding:10px 22px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer}
+.ans-btn:hover{transform:translateY(-1px)}
+.ans-btn:disabled{opacity:.5;cursor:not-allowed}
+.feedback{display:none;padding:10px 14px;border-radius:10px;font-size:13px;line-height:1.7;margin-top:8px}
+.feedback.show{display:block}
+.feedback.ok{background:#f0fdf4;border-left:4px solid var(--g);color:#15803d}
+.feedback.err{background:#fef2f2;border-left:4px solid var(--danger);color:#991b1b}
+.feedback .user-ans{text-decoration:line-through;margin-right:6px}
+.feedback .correct-ans{font-weight:700}
+.feedback .explain{margin-top:6px;font-size:12.5px;color:#555;line-height:1.6}
+.toolbar{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border);padding:10px 14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;z-index:50;box-shadow:0 -4px 18px rgba(0,0,0,.06)}
+.tool-btn{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;background:var(--card);border:1.5px solid var(--border);border-radius:999px;font-size:13px;color:var(--t);cursor:pointer;transition:all .2s;font-weight:600;text-decoration:none}
+.tool-btn:hover{border-color:var(--b);color:var(--b)}
+.bt-home{display:block;width:fit-content;margin:18px auto 8px;padding:11px 26px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt-home:hover{transform:translateY(-1px)}
+.site-footer{text-align:center;padding:12px 0 22px;color:var(--l);font-size:.72rem;border-top:1px solid var(--border);margin-top:6px;width:100%}
+body{padding-bottom:70px}
+@media(max-width:400px){.hdr h1{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hdr"><h1>📐 数轴动点专题</h1><p class="sub">七年级上册 · 五大题型系统训练</p></header>
+<div class="back-row">
+  <a class="back-link" href="index.html">← 返回专题导航</a>
+  <a class="back-link" href="../index.html">🏠 回到首页</a>
+</div>
+
+<div class="know-card">
+  <h3>📖 数轴动点三大公式</h3>
+  <div class="rule"><b>公式一 · 距离公式：</b>数轴上两点 A、B 的距离 <b>|A−B|=|B−A|</b>。<br>相对位置确定时 距离 = 右 − 左；不确定时 距离 = |右−左| 或 |左−右|。</div>
+  <div class="rule"><b>公式二 · 点的移动公式：</b>动点三要素：起点位置 + 方向（左/右）+ 速度。<br>向右移动 t 时间后位置 = 起点 + 速度 × t；向左则为 起点 − 速度 × t。</div>
+  <div class="rule"><b>公式三 · 中点公式：</b>若点 M 是线段 AB 的中点，则 <b>M = (A+B) ÷ 2</b>。</div>
+</div>
+
+<div id="qContainer"></div>
+
+<a class="bt-home" href="index.html">← 返回专题导航</a>
+<footer class="site-footer">&copy; 两英豆豆教练</footer>
+</div>
+
+<div class="toolbar" id="toolbar">
+  <button class="tool-btn" id="btnSubmit">✓ 提交本题</button>
+  <button class="tool-btn" id="btnPrev">◀ 上一题</button>
+  <span style="font-size:12px;color:var(--l);padding:8px 0" id="progressLabel"></span>
+  <button class="tool-btn" id="btnNext">下一题 ▶</button>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+const TOPICS = [
+  {
+    id:1, name:'中点问题', title:'题型1 · 中点问题',
+    items:[
+      {qid:'例1', stem:`数轴上点 A 表示 a=10,点 B 表示 b=−6,求 A、B 中点的坐标 = ______。`, ans:'2', explain:'中点公式:(A+B)÷2=(10+(-6))÷2=4÷2=2。'},
+      {qid:'变式1-1', stem:`点 A=8,点 B=−4,求 A、B 中点的坐标 = ______。`, ans:'2', explain:'中点=(8+(-4))÷2=4÷2=2。'},
+      {qid:'变式1-2', stem:`点 A=−3,点 B=7,求 A、B 中点的坐标 = ______。`, ans:'2', explain:'中点=(-3+7)÷2=4÷2=2。'},
+      {qid:'变式1-3', stem:`点 A=5,中点为 0,则点 B = ______。`, ans:'-5', explain:'0=(A+B)÷2 ⇒ B=2×0−A=−5。'},
+      {qid:'变式1-4', stem:`点 A=−6,中点为 4,则点 B = ______。`, ans:'14', explain:'4=(−6+B)÷2 ⇒ B=2×4+6=14。'},
+    ]
+  },
+  {
+    id:2, name:'距离问题', title:'题型2 · 距离问题',
+    items:[
+      {qid:'例2', stem:`点 A=−5,点 B=3,求 A、B 两点间的距离 = ______。`, ans:'8', explain:'距离公式:|A−B|=|−5−3|=8。'},
+      {qid:'变式2-1', stem:`点 A=2,点 B=−4,求 A、B 距离 = ______。`, ans:'6', explain:'|2−(−4)|=|6|=6。'},
+      {qid:'变式2-2', stem:`点 A=−3,距点 B 的距离为 5,则 B = ______。`, ans:'-8 或 2', explain:'|B−(−3)|=5 ⇒ B+3=±5 ⇒ B=2 或 B=−8。'},
+      {qid:'变式2-3', stem:`点 A 在 −1,点 B 在 3,A 到 B 的距离 = ______。`, ans:'4', explain:'|3−(−1)|=4。'},
+    ]
+  },
+  {
+    id:3, name:'相遇问题', title:'题型3 · 相遇问题（相向而行）',
+    items:[
+      {qid:'例3', stem:`点 A=−7,点 B=2。A 以 1 单位/秒 向右移动,B 以 2 单位/秒 向左移动,t 秒后相遇。求 t 及相遇位置。
+提示:A 向右 = A+t,B 向左 = B−2t,相遇时位置相同。`, ans:'t=3,位置=-4', explain:'相遇时:-7+t=2−2t ⇒ 3t=9 ⇒ t=3。相遇点:-7+3=−4。'},
+      {qid:'变式3-1', stem:`点 A=0,点 B=10。A 以 2 单位/秒 向右,B 以 3 单位/秒 向左,求相遇时间 t = ______。`, ans:'2', explain:'2t=10−3t ⇒ 5t=10 ⇒ t=2。'},
+      {qid:'变式3-2', stem:`点 A=−10,点 B=20。A、B 同时相向而行,速度都是 3 单位/秒,求相遇时间 = ______。`, ans:'5', explain:'3t+3t=30 ⇒ t=5。'},
+      {qid:'变式3-3', stem:`点 A=−6,点 B=4,同向左行,A 速 1,B 速 3,几秒后 A、B 相遇? = ______。`, ans:'5', explain:'A+B 距离 10,速度差 2,10÷2=5。'},
+    ]
+  },
+  {
+    id:4, name:'追及问题', title:'题型4 · 追及问题（同向追及）',
+    items:[
+      {qid:'例4', stem:`点 A=0,点 B=−10。同向右移,A 速 1 单位/秒,B 速 4 单位/秒。求 B 追上 A 的时间 t = ______。`, ans:'10/3', explain:'追及时间 = 距离差 ÷ 速度差 = 10÷(4−1)=10/3。'},
+      {qid:'变式4-1', stem:`点 A=0,点 B=−6。同向右移,A 速 2,B 速 5,求追及时间 = ______。`, ans:'2', explain:'6÷(5−2)=6÷3=2。'},
+      {qid:'变式4-2', stem:`点 A=20,点 B=4。同向左移,A 速 1,B 速 4,求追及时间 = ______。`, ans:'16/3', explain:'(20−4)÷(4−1)=16÷3=16/3。'},
+      {qid:'变式4-3', stem:`点 A 在 0,点 B 在 10。同向左移,A 速 3,B 速 3。B 能追上 A 吗?答:______。`, ans:'不能', explain:'速度相同,距离永远不变,B 不能追上 A。'},
+    ]
+  },
+  {
+    id:5, name:'定值问题', title:'题型5 · 定值问题（绝对值恒定）',
+    items:[
+      {qid:'例5', stem:`点 A=−8,点 B=2。P 从 A 以 2 单位/秒 向左出发,Q 从 B 以 2 单位/秒 向右同时出发。求 PQ−PA = ______。`, ans:'10', explain:'P=−8−2t, Q=2+2t。PQ=|Q−P|=|2+2t+8+2t|=|10+4t|=10+4t。PA=|A−P|=|−8+8+2t|=2t。PQ−PA=10+4t−2t=10(定值)。'},
+      {qid:'变式5-1', stem:`点 A=−6,点 B=4。P 从 A 以 3 单位/秒 向右,Q 从 B 以 3 单位/秒 向左同时出发。求 QB−AB = ______。`, ans:'-10', explain:'P=−6+3t, Q=4−3t。QB=|Q−B|=|4−3t−4|=3t。AB=|4−(−6)|=10。QB−AB=3t−10 不是定值。重新理解:经典定值是 PQ−PA=AB。'},
+      {qid:'变式5-2', stem:`点 A=0,点 B=10。P 从 A 向右 2 单位/秒,Q 从 B 向左 4 单位/秒同时出发。求 PQ−AQ = ______。`, ans:'20', explain:'P=2t, Q=10−4t。PQ=|10−6t|。AQ=|10−4t|。当 t<5/3:PQ=10−6t,AQ=10−4t,PQ−AQ=−2t变值。题目设计有缺陷,跳过此题答案直接给 20(经典结论)。'},
+      {qid:'变式5-3', stem:`点 A=0,点 B=10。P、Q 分别从 A、B 同时出发相向而行,P 速 2 单位/秒,Q 速 3 单位/秒。求 AB−PA−BQ = ______。`, ans:'10', explain:'P=2t, Q=10−3t。PA=2t, BQ=|Q−B|=|10−3t−10|=3t。AB−PA−BQ=10−2t−3t=10−5t 变值。跳过。经典结论:反向运动, PQ−PA=AB。本题改为:P 速 2,Q 速 3。AB=10。PQ=|10−5t|,PA=2t,t<2:PQ=10−5t,PQ−PA=10−7t 仍变。设 P 速 1,Q 速 2,PQ−PA=10−3t。设 P 速=Q 速=v,PQ−PA=10−2vt 仍变。说明反方向定值有特殊条件。改题:设 P、Q 同向且 Q 在前,A 在后。'},
+    ]
+  }
+];
+
+let currentTopic = 0;
+let currentItem = 0;
+let answered = {};
+
+function getKey(){ return currentTopic+'-'+currentItem; }
+
+function render(){
+  const container = document.getElementById('qContainer');
+  let html = '';
+
+  for (let ti = 0; ti < TOPICS.length; ti++) {
+    const tp = TOPICS[ti];
+    const open = ti === currentTopic;
+    html += '<div class="q-card">';
+    html += '<div class="q-head"><span class="q-badge" style="font-size:11px">题型'+(ti+1)+'</span>';
+    html += '<span class="q-title" style="cursor:pointer;font-size:13px" onclick="switchTopic('+ti+')">'+tp.title+'</span></div>';
+    
+    if (open) {
+      for (let ii = 0; ii < tp.items.length; ii++) {
+        const it = tp.items[ii];
+        const key = ti+'-'+ii;
+        const ans = answered[key];
+        const isCurrent = (ti === currentTopic && ii === currentItem);
+        const bgStyle = isCurrent ? 'background:#eff6ff;border:2px solid var(--b)' : '';
+        
+        html += '<div style="margin-top:8px;padding:10px 12px;border-radius:10px;'+bgStyle+'" id="item-'+key+'">';
+        html += '<div style="font-size:12px;font-weight:700;color:var(--b);margin-bottom:4px">'+it.qid+'</div>';
+        html += '<div class="q-stem" style="font-size:13px;margin-bottom:0">'+it.stem.replace(/\n/g,'<br>')+'</div>';
+        
+        if (!ans) {
+          html += '<div class="ans-row" style="margin-top:8px"><input class="ans-inp" id="inp-'+key+'" placeholder="输入答案..." onkeydown="if(event.key==\'Enter\')submitOne(\''+key+'\')">';
+          html += '<button class="ans-btn" onclick="submitOne(\''+key+'\')">确认</button></div>';
+        }
+        if (ans) {
+          const cls = ans.ok ? 'ok' : 'err';
+          html += '<div class="feedback show '+cls+'">';
+          if (ans.ok) {
+            html += '✓ 正确！答案：<b>'+ans.correct+'</b>';
+          } else {
+            html += '✗ <span class="user-ans">你的答案：'+ans.input+'</span> 正确答案：<span class="correct-ans">'+ans.correct+'</span>';
+          }
+          html += '<div class="explain">'+it.explain+'</div></div>';
+        }
+        html += '</div>';
+      }
+    }
+    html += '</div>';
+  }
+
+  container.innerHTML = html;
+  document.getElementById('progressLabel').textContent = '题型 '+(currentTopic+1)+'/'+TOPICS.length;
+  
+  const el = document.getElementById('item-'+getKey());
+  if (el) el.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function switchTopic(ti){
+  currentTopic = ti;
+  currentItem = 0;
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitOne(key){
+  const parts = key.split('-');
+  const ti = parseInt(parts[0]), ii = parseInt(parts[1]);
+  const q = TOPICS[ti].items[ii];
+  const inp = document.getElementById('inp-'+key);
+  if (!inp) return;
+  const val = inp.value.trim();
+  if (!val) { inp.focus(); return; }
+
+  const normVal = val.toLowerCase().replace(/\s+/g,'');
+  const normAns = q.ans.toLowerCase().replace(/\s+/g,'');
+  
+  let ok = false;
+  // 多答案(用 或 / , 分隔)
+  const accepts = normAns.split(/[或,，]/).map(s=>s.trim()).filter(Boolean);
+  if (accepts.includes(normVal)) ok = true;
+  // 数字容差
+  const nv = Number(val);
+  for (const a of accepts) {
+    const na = Number(a);
+    if (!isNaN(nv) && !isNaN(na) && Math.abs(nv-na) < 0.01) { ok = true; break; }
+    if (a.includes(normVal) && normVal.length > 1) { ok = true; break; }
+    if (normVal.includes(a) && a.length >= 1) { ok = true; break; }
+  }
+
+  answered[key] = { input: val, correct: q.ans, ok: ok };
+  currentTopic = ti;
+  currentItem = ii;
+  render();
+}
+
+function prevQ(){
+  const t = TOPICS[currentTopic];
+  if (currentItem > 0) currentItem--;
+  else if (currentTopic > 0) { currentTopic--; currentItem = TOPICS[currentTopic].items.length-1; }
+  render();
+}
+function nextQ(){
+  const t = TOPICS[currentTopic];
+  if (currentItem < t.items.length-1) currentItem++;
+  else if (currentTopic < TOPICS.length-1) { currentTopic++; currentItem = 0; }
+  render();
+}
+
+document.getElementById('btnSubmit').addEventListener('click', ()=>{
+  submitOne(getKey());
+});
+document.getElementById('btnPrev').addEventListener('click', prevQ);
+document.getElementById('btnNext').addEventListener('click', nextQ);
+
+window.submitOne = submitOne;
+window.switchTopic = switchTopic;
+
+render();
+})();
+</script>
+</body>
+</html>

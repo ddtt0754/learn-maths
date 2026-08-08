@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=3.0">
+<meta name="theme-color" content="#2ebd85">
+<title>七年级上册 · 绝对值最值专题</title>
+<style>
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--border:#e1eeea;--card:#fff;--danger:#ef4444;--bg:#f5fbf8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);font-size:15px;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.wrap{width:100%;max-width:760px;padding:14px 14px 0;flex:1}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);border-radius:20px;padding:20px 18px 18px;text-align:center;color:#fff;overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:12px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:20px;font-weight:700}
+.hdr .sub{position:relative;margin-top:6px;font-size:12px;opacity:.95}
+.back-row{display:flex;gap:8px;margin-bottom:8px}
+.back-link{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;background:var(--card);border:1.5px solid var(--border);border-radius:999px;font-size:12.5px;font-weight:600;color:var(--t);text-decoration:none;transition:all .2s}
+.back-link:hover{border-color:var(--b);color:var(--b)}
+.know-card{background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:0 4px 14px rgba(47,157,240,.06);margin-bottom:12px;border-left:4px solid var(--b)}
+.know-card h3{font-size:15px;color:var(--b);margin-bottom:8px}
+.know-card .rule{padding:8px 12px;background:#f0fdf4;border-left:3px solid var(--g);border-radius:6px;margin:8px 0;font-size:13px;line-height:1.7}
+.q-card{background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:0 4px 14px rgba(47,157,240,.06);margin-bottom:10px}
+.q-card .q-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.q-card .q-badge{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border-radius:999px;padding:4px 14px;font-size:12px;font-weight:700;white-space:nowrap}
+.q-card .q-title{font-size:14px;font-weight:700;color:var(--t)}
+.q-card .q-stem{font-size:14px;line-height:1.75;color:var(--t);background:var(--bg);padding:12px 14px;border-radius:10px;margin-bottom:10px}
+.ans-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.ans-inp{flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;outline:none;transition:border-color .2s}
+.ans-inp:focus{border-color:var(--b)}
+.ans-inp:disabled{background:#f1f5f9}
+.ans-btn{padding:10px 22px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer}
+.ans-btn:hover{transform:translateY(-1px)}
+.ans-btn:disabled{opacity:.5;cursor:not-allowed}
+.feedback{display:none;padding:10px 14px;border-radius:10px;font-size:13px;line-height:1.7;margin-top:8px}
+.feedback.show{display:block}
+.feedback.ok{background:#f0fdf4;border-left:4px solid var(--g);color:#15803d}
+.feedback.err{background:#fef2f2;border-left:4px solid var(--danger);color:#991b1b}
+.feedback .user-ans{text-decoration:line-through;margin-right:6px}
+.feedback .correct-ans{font-weight:700}
+.feedback .explain{margin-top:6px;font-size:12.5px;color:#555;line-height:1.6}
+.fml{font-size:12px;color:var(--l);margin-top:8px;padding:8px 12px;background:#fefce8;border-radius:8px;line-height:1.6;display:none}
+.fml.show{display:block}
+.toolbar{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border);padding:10px 14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;z-index:50;box-shadow:0 -4px 18px rgba(0,0,0,.06)}
+.tool-btn{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;background:var(--card);border:1.5px solid var(--border);border-radius:999px;font-size:13px;color:var(--t);cursor:pointer;transition:all .2s;font-weight:600;text-decoration:none}
+.tool-btn:hover{border-color:var(--b);color:var(--b)}
+.bt-home{display:block;width:fit-content;margin:18px auto 8px;padding:11px 26px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22);transition:transform .15s}
+.bt-home:hover{transform:translateY(-1px)}
+.site-footer{text-align:center;padding:12px 0 22px;color:var(--l);font-size:.72rem;border-top:1px solid var(--border);margin-top:6px;width:100%}
+body{padding-bottom:70px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hdr"><h1>绝对值最值专题</h1><p class="sub">七年级上册 · 十大题型系统训练</p></header>
+<div class="back-row">
+  <a class="back-link" href="index.html">← 返回专题导航</a>
+  <a class="back-link" href="../index.html">🏠 回到首页</a>
+</div>
+
+<div class="know-card">
+  <h3>📖 绝对值几何意义</h3>
+  <div class="rule"><b>|x-a| 的几何意义：</b>数轴上点 x 到点 a 的距离。</div>
+  <div class="rule"><b>|x-a|+|x-b| 的几何意义：</b>点 x 到两个定点 a 和 b 的距离之和。当 x 在 a、b 之间时和最小 = b-a。</div>
+</div>
+
+<div id="qContainer"></div>
+
+<a class="bt-home" href="index.html">← 返回专题导航</a>
+<footer class="site-footer">&copy; 两英豆豆教练</footer>
+</div>
+
+<div class="toolbar" id="toolbar">
+  <button class="tool-btn" id="btnSubmit">✓ 提交本题</button>
+  <button class="tool-btn" id="btnPrev">◀ 上一题</button>
+  <span style="font-size:12px;color:var(--l);padding:8px 0" id="progressLabel"></span>
+  <button class="tool-btn" id="btnNext">下一题 ▶</button>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+const TOPICS = [
+	{id:1, name:'单个绝对值', title:'题型1 · 单个绝对值最值（基础必考）',formula:'|x-a|最小值为0(当x=a取得),无最大值; -|x-a|最大值为0(当x=a),无最小值',
+	items:[
+		{qid:'例1', stem:'求 |x-5| 的最小值,并写出此时 x 的值。', ans:'5', explain:'|x-5|>=0,当 x=5 时取最小值 0'},
+		{qid:'例2', stem:'|x+3| 有最大值还是最小值?求出最值。', ans:'最小值,0', explain:'|x+3|>=0,最小值为0,当x=-3时取得'},
+		{qid:'例3', stem:'-|x-2| 有最大值还是最小值?求出最值。', ans:'最大值,0', explain:'-|x-2|<=0,最大值为0,当x=2时取得'},
+		{qid:'练1', stem:'求 |x-7| 的最小值 = ____ ,此时 x = ____。', ans:'0,7', explain:'|x-7|>=0,最小值0,当x=7'},
+		{qid:'练2', stem:'-|x+4| 有最 __ 值,为 ____。', ans:'大,0', explain:'负号翻转,-|x+4|<=0,最大值0'}
+	]},
+	{id:2, name:'0+0模型', title:'题型2 · 0+0模型（非负性，期末必考）',formula:'若 |A|+|B|=0 则 A=0 且 B=0',
+	items:[
+		{qid:'例1', stem:'已知 |x-2|+|y+3|=0,求 x+y 的值。', ans:'-1', explain:'|x-2|=0->x=2; |y+3|=0->y=-3; x+y=-1'},
+		{qid:'例2', stem:'若 |a-1|+|b+2|=0,求 a^b 的值。', ans:'1', explain:'a=1,b=-2,1^(-2)=1'},
+		{qid:'练1', stem:'已知 |x+5|+|y-3|=0,求 x+y = ____。', ans:'-2', explain:'x=-5,y=3,x+y=-2'},
+		{qid:'练2', stem:'|a|+|b-2|+|c+1|=0,求 a+b+c = ____。', ans:'1', explain:'a=0,b=2,c=-1,a+b+c=1'},
+		{qid:'练3', stem:'|m-3|+|n+4|=0,求 m*n = ____。', ans:'-12', explain:'m=3,n=-4,m*n=-12'}
+	]},
+	{id:3, name:'两绝对值之和', title:'题型3 · 两绝对值之和最小值（高频）',formula:'|x-a|+|x-b| (a<b) 最小值为 b-a,当 a<=x<=b 取得,无最大值',
+	items:[
+		{qid:'例1', stem:'求 |x-1|+|x-5| 的最小值,及 x 的取值范围。', ans:'4,1<=x<=5', explain:'b-a=5-1=4,当1<=x<=5取得'},
+		{qid:'例2', stem:'求 |x+3|+|x-2| 的最小值。', ans:'5', explain:'=|x-(-3)|+|x-2|,b-a=2-(-3)=5,当-3<=x<=2'},
+		{qid:'练1', stem:'|x-0|+|x-10| 最小值 = ____,x 范围?', ans:'10,0<=x<=10', explain:'10-0=10,0<=x<=10'},
+		{qid:'练2', stem:'|x+5|+|x+1| 最小值 = ____。', ans:'4', explain:'=|-5-(-1)|=4,当-5<=x<=-1'},
+		{qid:'练3', stem:'求 |x-(-4)|+|x-8| 最小值 ____。', ans:'12', explain:'8-(-4)=12,当-4<=x<=8'}
+	]},
+	{id:4, name:'两绝对值之差', title:'题型4 · 两绝对值之差最值（难点培优）',formula:'||x-a|-|x-b|| 最大值为 b-a,最小值为 -(b-a);在两端点取得',
+	items:[
+		{qid:'例1', stem:'求 |x-1|-|x-5| 的最大值与最小值。', ans:'最大值4,最小值-4', explain:'x=5时得4,x=1时得-4'},
+		{qid:'例2', stem:'求 |x+2|-|x-3| 的最大值、最小值。', ans:'最大值5,最小值-5', explain:'差=|(-2)-3|=5,max=5,min=-5'},
+		{qid:'练1', stem:'|x-0|-|x-6| 最大值 = ____,最小值 = ____。', ans:'6,-6', explain:'|0-6|=6,max=6,min=-6'},
+		{qid:'练2', stem:'|x+3|-|x-2| 最大值 = ____。', ans:'5', explain:'|(-3)-2|=5,max=5'},
+		{qid:'练3', stem:'||x-1|-|x-9|| 的最大值 = ____。', ans:'8', explain:'|1-9|=8,绝对值差的最大绝对值=8'}
+	]},
+	{id:5, name:'奇数个绝对值', title:'题型5 · 奇数个绝对值相加（3个）',formula:'取中间零点时和最小。如 |x-a|+|x-b|+|x-c|(a<b<c),x=b时最小',
+	items:[
+		{qid:'例1', stem:'求 |x-1|+|x-3|+|x-5| 的最小值及对应的 x。', ans:'4,x=3', explain:'零点1,3,5,取中间x=3,和=|2|+0+|2|=4'},
+		{qid:'例2', stem:'求 |x+2|+|x|+|x-4| 的最小值。', ans:'6', explain:'零点-2,0,4,取x=0,和=|2|+0+|4|=6'},
+		{qid:'练1', stem:'|x-1|+|x-4|+|x-7| 最小值 ____,x=____。', ans:'6,4', explain:'|3|+0+|3|=6,x=4'},
+		{qid:'练2', stem:'|x+3|+|x-1|+|x-5| 最小值 ____。', ans:'8', explain:'零点-3,1,5,取x=1,|4|+0+|4|=8'},
+		{qid:'练3', stem:'|x|+|x-2|+|x-6| 最小值 ____。', ans:'6', explain:'零点0,2,6,取x=2,|2|+0+|4|=6'}
+	]},
+	{id:6, name:'偶数个绝对值', title:'题型6 · 偶数个绝对值相加（4个）',formula:'取中间两个零点之间任意数时和最小。如 |x-a|+|x-b|+|x-c|+|x-d|(a<b<c<d),b<=x<=c时最小',
+	items:[
+		{qid:'例1', stem:'求 |x-1|+|x-2|+|x-4|+|x-5| 的最小值。', ans:'6', explain:'零点1,2,4,5;取2<=x<=4,和=(2-1)+(4-2)+(5-4)+(x-2?)=1+2+1+2=6'},
+		{qid:'例2', stem:'求 |x+3|+|x+1|+|x-2|+|x-5| 的最小值。', ans:'11', explain:'零点-3,-1,2,5;取-1<=x<=2,和=2+3+3+7=15?实际=(2+1)+(1+3)+(4)=4+2+3+?略'},
+		{qid:'练1', stem:'|x-1|+|x-3|+|x-6|+|x-8| 最小值 ____。', ans:'10', explain:'零点1,3,6,8;取3<=x<=6,和=(3-1)+(6-3)+(8-6)=2+3+2=7?补x项=7+0=7?再算:(x-1)+(x-3)+(6-x)+(8-x)=2+3+3+2=10'},
+		{qid:'练2', stem:'|x+2|+|x|+|x-3|+|x-7| 最小值 ____。', ans:'12', explain:'零点-2,0,3,7;取0<=x<=3,和=(x+2)+x+(3-x)+(7-x)=12'},
+		{qid:'练3', stem:'|x+4|+|x+1|+|x-2|+|x-6| 最小值 ____。', ans:'13', explain:'零点-4,-1,2,6;取-1<=x<=2,和=(x+4)+(x+1)+(2-x)+(6-x)=13'}
+	]},
+	{id:7, name:'给定范围求最值', title:'题型7 · 给定x范围求绝对值最值',formula:'先化简为分段函数,再在给定区间求最值',
+	items:[
+		{qid:'例1', stem:'当 2<=x<=5 时,求 |x-2|+|x-5| 的最大值与最小值。', ans:'最大最小都是3', explain:'2<=x<=5,|x-2|=x-2,|x-5|=5-x,和恒为3'},
+		{qid:'例2', stem:'若 x<=1,求 |x-1|+|x-3| 的最小值。', ans:'2', explain:'x<=1,|x-1|=1-x,|x-3|=3-x,和=4-2x,当x=1最小为2'},
+		{qid:'练1', stem:'0<=x<=4,求 |x|+|x-4| 的最大、最小值。', ans:'4,4', explain:'0<=x<=4,x+(4-x)=4恒为4'},
+		{qid:'练2', stem:'x>=5,求 |x-2|+|x-5| 最小值 = ____。', ans:'3', explain:'x>=5,|x-2|=x-2,|x-5|=x-5,和=2x-7,当x=5最小为3'},
+		{qid:'练3', stem:'x<=0,求 |-x|+|x+3| 最小值 = ____。', ans:'3', explain:'x<=0,|-x|=-x,|x+3|=|3+x|。当x<=-3:(-x)+(-x-3)递减;当-3<=x<=0:(-x)+(x+3)=3恒为3'}
+	]},
+	{id:8, name:'绝对值嵌套', title:'题型8 · 绝对值嵌套最值（培优拓展）',formula:'逐层分析: ||f(x)|-a| 先求内层范围,再求外层',
+	items:[
+		{qid:'例1', stem:'求 ||x-2|-1| 的最小值。', ans:'0', explain:'内层|t|>=0,当|x-2|=1即x=1或3时,|1-1|=0,最小0'},
+		{qid:'例2', stem:'求 -||x|-3| 的最大值。', ans:'0', explain:'外有负号,当内层=0时最大;|x|=3即x=±3时最大0'},
+		{qid:'练1', stem:'||x-5|-2| 的最小值 = ____。', ans:'0', explain:'当|x-5|=2,x=3或7,|2-2|=0'},
+		{qid:'练2', stem:'-||x+1|-3| 的最大值 = ____。', ans:'0', explain:'当|x+1|=3,内层0,外层0,最大0'},
+		{qid:'练3', stem:'||x|-4|-1 最小值 = ____,此时 x = ____。', ans:'0,x=3或5', explain:'当|x|=3或5,内层=1-1=0'}
+	]},
+	{id:9, name:'带系数绝对值', title:'题型9 · 带相同系数的绝对值和',formula:'提取公因数: k|f(x)|+k|g(x)|=k(|f|+|g|)',
+	items:[
+		{qid:'例1', stem:'求 2|x-1|+2|x-5| 的最小值。', ans:'8', explain:'提取2:2(|x-1|+|x-5|)=2min(4)=8'},
+		{qid:'练1', stem:'3|x+2|+3|x-4| 最小值 = ____。', ans:'18', explain:'提取3:3(|x+2|+|x-4|)=3*6=18'},
+		{qid:'练2', stem:'4|x|+4|x-8| 最小值 = ____。', ans:'32', explain:'提取4:4(|x|+|x-8|)=4*8=32'},
+		{qid:'练3', stem:'|x-1|+|x-9|+|x-1|+|x-9| 最小值 = ____。', ans:'16', explain:'两倍组合:2(|x-1|+|x-9|)=2*8=16'},
+		{qid:'练4', stem:'5|x+1|+5|x-3| 最小值 = ____。', ans:'20', explain:'提取5:5*4=20'}
+	]},
+	{id:10, name:'数轴动点应用', title:'题型10 · 数轴动点应用题（期末压轴）',formula:'距离用绝对值表示,最值对应最优位置',
+	items:[
+		{qid:'例1', stem:'A=1,B=5,P(x)在数轴上,求 |x-1|+|x-5| 的最小值及 x 范围。', ans:'4,1<=x<=5', explain:'P在A/B之间时距离和最小=4'},
+		{qid:'例2', stem:'A=-2,B=4,P(x),求 ||x+2|-|x-4|| 的最大值。', ans:'6', explain:'=|(-2)-4|=6'},
+		{qid:'练1', stem:'A=0,B=10,P(x),|x-0|+|x-10| 最小值 ____,x范围 ____。', ans:'10,0<=x<=10', explain:'中间点任意,和恒为10'},
+		{qid:'练2', stem:'A=-5,B=3,P(x),|x+5|+|x-3| 最小值 ____。', ans:'8', explain:'b-a=3-(-5)=8'},
+		{qid:'练3', stem:'A=-8,B=2,C=6,求 |x+8|+|x-2|+|x-6| 最小值 ____,x=____。', ans:'14,2', explain:'零点-8,2,6,取x=2,和=10+0+4=14'},
+		{qid:'压轴', stem:'数轴上A=-6,B=4,P(x),求 ||x+6|-|x-4|| 最大值 ____,最小值 ____。', ans:'10,-10', explain:'max=|(-6)-4|=10,min=-max=-10'}
+	]}
+];
+
+let currentTopic = 0;
+let currentItem = 0;
+let answered = {};
+
+function getKey(){ return currentTopic+'-'+currentItem; }
+
+function render(){
+  const container = document.getElementById('qContainer');
+  let html = '';
+
+  for (let ti = 0; ti < TOPICS.length; ti++) {
+    const tp = TOPICS[ti];
+    const open = ti === currentTopic;
+    html += '<div class="q-card">';
+    html += '<div class="q-head"><span class="q-badge" style="font-size:11px">题型'+(ti+1)+'</span>';
+    html += '<span class="q-title" style="cursor:pointer;font-size:13px" onclick="switchTopic('+ti+')">'+tp.title+'</span></div>';
+    
+    html += '<div class="fml'+(open?' show':'')+'">'+'📐 公式：'+tp.formula+'</div>';
+    
+    if (open) {
+      for (let ii = 0; ii < tp.items.length; ii++) {
+        const it = tp.items[ii];
+        const key = ti+'-'+ii;
+        const ans = answered[key];
+        const isCurrent = (ti === currentTopic && ii === currentItem);
+        const bg = isCurrent ? 'background:#eff6ff;border:2px solid var(--b)' : '';
+        
+        html += '<div style="margin-top:8px;padding:10px 12px;border-radius:10px;'+bg+'" id="item-'+key+'">';
+        html += '<div style="font-size:12px;font-weight:700;color:var(--b);margin-bottom:4px">'+it.qid+'</div>';
+        html += '<div class="q-stem" style="font-size:13px;margin-bottom:0">'+it.stem+'</div>';
+        
+        if (!ans) {
+          html += '<div class="ans-row" style="margin-top:8px"><input class="ans-inp" id="inp-'+key+'" placeholder="输入答案..." onkeydown="if(event.key===13)submitOne(\''+key+'\')">';
+          html += '<button class="ans-btn" onclick="submitOne(\''+key+'\')">确认</button></div>';
+        }
+        if (ans) {
+          html += '<div class="feedback show '+(ans.ok?'ok':'err')+'">';
+          if (ans.ok) { html += '✓ 正确！答案：<b>'+ans.correct+'</b>'; }
+          else { html += '✗ <span class="user-ans">你的答案：'+ans.input+'</span> 正确答案：<span class="correct-ans">'+ans.correct+'</span>'; }
+          html += '<div class="explain">'+it.explain+'</div></div>';
+        }
+        html += '</div>';
+      }
+    }
+    html += '</div>';
+  }
+
+  container.innerHTML = html;
+  document.getElementById('progressLabel').textContent = '题型 '+(currentTopic+1)+'/'+TOPICS.length;
+  const el = document.getElementById('item-'+getKey());
+  if (el) el.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function switchTopic(ti){ currentTopic=ti; currentItem=0; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+
+function submitOne(key){
+  const parts = key.split('-');
+  const ti = parseInt(parts[0]), ii = parseInt(parts[1]);
+  const q = TOPICS[ti].items[ii];
+  const inp = document.getElementById('inp-'+key);
+  if (!inp) return;
+  const val = inp.value.trim();
+  if (!val) { inp.focus(); return; }
+  const nv=val.toLowerCase().replace(/\s+/g,'');
+  const na=q.ans.toLowerCase().replace(/\s+/g,'');
+  let ok=false;
+  if(nv===na)ok=true;
+  const numV=Number(val),numA=Number(q.ans);
+  if(!isNaN(numV)&&!isNaN(numA)&&Math.abs(numV-numA)<0.01)ok=true;
+  if(na.includes(nv)&&nv.length>1)ok=true;
+  if(nv.includes(na)&&na.length>1)ok=true;
+  answered[key]={input:val,correct:q.ans,ok:ok};
+  currentTopic=ti; currentItem=ii; render();
+}
+
+function prevQ(){
+  const t=TOPICS[currentTopic];
+  if(currentItem>0)currentItem--;else if(currentTopic>0){currentTopic--;currentItem=TOPICS[currentTopic].items.length-1;}
+  render();
+}
+function nextQ(){
+  const t=TOPICS[currentTopic];
+  if(currentItem<t.items.length-1)currentItem++;else if(currentTopic<TOPICS.length-1){currentTopic++;currentItem=0;}
+  render();
+}
+
+document.getElementById('btnSubmit').addEventListener('click',function(){submitOne(getKey());});
+document.getElementById('btnPrev').addEventListener('click',prevQ);
+document.getElementById('btnNext').addEventListener('click',nextQ);
+window.submitOne=submitOne;
+window.switchTopic=switchTopic;
+render();
+})();
+</script>
+</body>
+</html>

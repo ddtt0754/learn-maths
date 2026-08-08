@@ -1,1 +1,931 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2ebd85">
+<title>经典题库 · 专题训练</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  :root{
+    --green:#2ebd85;--green-deep:#1fa873;--blue:#2f9df0;
+    --text:#33434b;--text-light:#8aa09a;
+    --card:#fff;--shadow:0 8px 22px rgba(47,157,240,.10);--radius:16px
+  }
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
+    background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+    color:var(--text);display:flex;justify-content:center;align-items:flex-start;
+    padding:28px 16px calc(40px + env(safe-area-inset-bottom));
+    min-height:100vh
+  }
+  .container{
+    width:100%;max-width:560px;display:flex;flex-direction:column;align-items:center
+  }
+  .title-card{
+    position:relative;width:100%;
+    background:linear-gradient(135deg,#35d29a 0%,#2f9df0 100%);
+    border-radius:22px;padding:30px 20px 26px;text-align:center;
+    color:#fff;overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25)
+  }
+  .title-card::before,.title-card::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+  .title-card::before{width:120px;height:120px;top:-40px;right:-30px}
+  .title-card::after{width:70px;height:70px;bottom:-24px;left:-16px}
+  .title-card h1{position:relative;font-size:24px;letter-spacing:3px;font-weight:700;text-shadow:0 2px 6px rgba(0,0,0,.12)}
+  .title-card .sub{position:relative;margin-top:10px;font-size:13px;letter-spacing:4px;opacity:.92}
+  .top-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .top-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:10px 22px;background:rgba(255,255,255,.20);
+    border:1.5px solid rgba(255,255,255,.85);color:#fff;
+    border-radius:999px;font-size:13.5px;font-weight:600;
+    text-decoration:none;cursor:pointer;transition:background .2s
+  }
+  .top-btn:hover{background:rgba(255,255,255,.32)}
+  .tabs{width:100%;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:16px}
+  .tab{
+    border:none;background:#fff;color:var(--text-light);
+    font-size:13px;padding:10px 0;border-radius:12px;cursor:pointer;
+    box-shadow:0 4px 10px rgba(47,157,240,.08);
+    transition:transform .15s,box-shadow .25s,background .25s,color .25s
+  }
+  .tab.active{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;font-weight:600;box-shadow:0 8px 16px rgba(47,157,240,.28)}
+  .tab:active{transform:scale(.95)}
+  .controls{width:100%;display:flex;gap:10px;margin-top:14px}
+  .select-wrap{position:relative;flex:1}
+  .select-wrap select{
+    width:100%;appearance:none;-webkit-appearance:none;
+    border:1.5px solid #d8ebe3;border-radius:12px;background:#fff;
+    padding:11px 34px 11px 14px;font-size:15px;color:var(--text);
+    cursor:pointer;outline:none;transition:border-color .25s
+  }
+  .select-wrap select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(46,189,133,.15)}
+  .select-wrap::after{content:"";position:absolute;right:14px;top:50%;width:7px;height:7px;border-right:2px solid #9db8ae;border-bottom:2px solid #9db8ae;transform:translateY(-65%) rotate(45deg);pointer-events:none}
+  .info{width:100%;margin-top:14px;background:#fff;border-radius:12px;padding:9px 12px;text-align:center;font-size:13px;color:var(--text-light);box-shadow:0 4px 10px rgba(47,157,240,.06)}
+  .info b{color:var(--green-deep);font-weight:600}
+  .semester-row{width:100%;margin-top:14px}
+  .sem-label{font-size:14px;font-weight:700;color:var(--green-deep);margin-bottom:10px;padding-left:6px;display:flex;align-items:center;gap:6px}
+  .sem-label::before{content:"";width:4px;height:16px;background:linear-gradient(180deg,#35d29a,#2f9df0);border-radius:2px}
+  .opening{background:linear-gradient(135deg,#2ebd85,#22a06f)!important;border-color:#1fa873!important;box-shadow:0 10px 22px rgba(46,189,133,.35)!important}
+  .opening .num{color:rgba(255,255,255,.75)!important}
+  .opening .name,.opening .hint{color:#fff!important}
+  .grid{width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .cell{
+    position:relative;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:4px;
+    background:var(--card);border-radius:14px;
+    box-shadow:0 6px 16px rgba(47,157,240,.08);
+    padding:20px 6px 16px;text-align:center;
+    text-decoration:none;color:var(--text);cursor:pointer;
+    border:1.5px solid transparent;
+    transition:transform .15s,box-shadow .25s,border-color .2s;
+    animation:riseIn .35s ease backwards
+  }
+  @keyframes riseIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  .cell:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(47,157,240,.16);border-color:#a7f3d0}
+  .cell:active{transform:scale(.95)}
+  .cell .num{position:absolute;top:7px;left:10px;font-size:10px;font-weight:700;color:#b3d4c3}
+  .cell .icon{font-size:24px;line-height:1}
+  .cell .name{font-size:14px;font-weight:600}
+  .cell .hint{font-size:10px;color:#b3c4be}
+  footer{width:100%;margin-top:20px;text-align:center;font-size:12px;color:#a8bcb4;letter-spacing:1px}
+  @media (max-width:380px){
+    .title-card h1{font-size:20px;letter-spacing:2px}
+    .tab{font-size:11px;padding:8px 0}
+    .grid{grid-template-columns:repeat(3,1fr)}
+    .cell .name{font-size:12px}
+  }
+</style>
+</head>
+<body>
+<div class="container">
 
+  <header class="title-card">
+    <h1>📚 经典题库</h1>
+    <p class="sub">专题练习</p>
+    <div class="top-btns">
+      <a class="top-btn" href="../index.html">🏠 返回首页 </a>
+      <a class="top-btn" href="../knowledge/mindmap/index.html">🧭 思维导图 </a>
+      <a class="top-btn" href="../knowledge/index.html">🎯学期考点</a>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs"></nav>
+
+  <div class="controls">
+    <div class="select-wrap">
+      <select id="gradeSelect" aria-label="选择年级"></select>
+    </div>
+    <div class="select-wrap">
+      <select id="semesterSelect" aria-label="选择学期"></select>
+    </div>
+  </div>
+
+  <p class="info" id="info"></p>
+
+    <div class="semester-row" id="sem-3a" style="display:none">
+      <div class="sem-label">三年级 · 上册（8 个专题）</div>
+      <div class="grid">
+        <a class="cell" href="3a-topic1.html" style="animation-delay:30ms">
+          <span class="num">01</span>
+          <span class="icon">⏰</span>
+          <span class="name">时分秒</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="3a-topic2.html" style="animation-delay:60ms">
+          <span class="num">02</span>
+          <span class="icon">🧮</span>
+          <span class="name">竖式加减</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="3a-topic3.html" style="animation-delay:90ms">
+          <span class="num">03</span>
+          <span class="icon">📏</span>
+          <span class="name">单位换算</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="3a-topic4.html" style="animation-delay:120ms">
+          <span class="num">04</span>
+          <span class="icon">🔗</span>
+          <span class="name">倍的认识</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="3a-topic5.html" style="animation-delay:150ms">
+          <span class="num">05</span>
+          <span class="icon">✖️</span>
+          <span class="name">乘一位数</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="3a-topic6.html" style="animation-delay:180ms">
+          <span class="num">06</span>
+          <span class="icon">🟩</span>
+          <span class="name">周长计算</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="3a-topic7.html" style="animation-delay:210ms">
+          <span class="num">07</span>
+          <span class="icon">🍕</span>
+          <span class="name">分数初步</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="3a-topic8.html" style="animation-delay:240ms">
+          <span class="num">08</span>
+          <span class="icon">🔍</span>
+          <span class="name">估算近似</span>
+          <span class="hint">专题练习</span>
+        </a>
+      </div>
+    </div>
+    <div class="semester-row" id="sem-3b" style="display:none">
+      <div class="sem-label">三年级 · 下册（8 个专题）</div>
+      <div class="grid">
+        <a class="cell" href="3b-topic1.html" style="animation-delay:30ms">
+          <span class="num">01</span>
+          <span class="icon">🧭</span>
+          <span class="name">位置方向</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="3b-topic2.html" style="animation-delay:60ms">
+          <span class="num">02</span>
+          <span class="icon">➗</span>
+          <span class="name">除数一位</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="3b-topic3.html" style="animation-delay:90ms">
+          <span class="num">03</span>
+          <span class="icon">✖</span>
+          <span class="name"> 两位乘两位</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="3b-topic4.html" style="animation-delay:120ms">
+          <span class="num">04</span>
+          <span class="icon">📐</span>
+          <span class="name">面积计算</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="3b-topic5.html" style="animation-delay:150ms">
+          <span class="num">05</span>
+          <span class="icon">📅</span>
+          <span class="name">年月日</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="3b-topic6.html" style="animation-delay:180ms">
+          <span class="num">06</span>
+          <span class="icon">🔢</span>
+          <span class="name">小数初步</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="3b-topic7.html" style="animation-delay:210ms">
+          <span class="num">07</span>
+          <span class="icon">🌳</span>
+          <span class="name">植树问题</span>
+          <span class="hint">三大题型</span>
+        </a>
+        <a class="cell" href="3b-topic8.html" style="animation-delay:240ms">
+          <span class="num">08</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 8</span>
+          <span class="hint">专题练习</span>
+        </a>
+      </div>
+    </div>
+    <div class="semester-row" id="sem-4a" style="display:none">
+      <div class="sem-label">四年级 · 上册（8 个专题）</div>
+      <div class="grid">
+        <a class="cell" href="4a-topic1.html" style="animation-delay:30ms">
+          <span class="num">01</span>
+          <span class="icon">🔢</span>
+          <span class="name">大数认识</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="4a-topic2.html" style="animation-delay:60ms">
+          <span class="num">02</span>
+          <span class="icon">✖</span>
+          <span class="name"> 三位乘两位</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="4a-topic3.html" style="animation-delay:90ms">
+          <span class="num">03</span>
+          <span class="icon">▱</span>
+          <span class="name">平行四边形梯形</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="4a-topic4.html" style="animation-delay:120ms">
+          <span class="num">04</span>
+          <span class="icon">📏</span>
+          <span class="name">公顷平方千米</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="4a-topic5.html" style="animation-delay:150ms">
+          <span class="num">05</span>
+          <span class="icon">📐</span>
+          <span class="name">角的度量</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="4a-topic6.html" style="animation-delay:180ms">
+          <span class="num">06</span>
+          <span class="icon">➗</span>
+          <span class="name">除数是两位数</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="4a-topic7.html" style="animation-delay:210ms">
+          <span class="num">07</span>
+          <span class="icon">🐔</span>
+          <span class="name">鸡兔同笼</span>
+          <span class="hint">四大解法</span>
+        </a>
+        <a class="cell" href="4a-topic8.html" style="animation-delay:240ms">
+          <span class="num">08</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 8</span>
+          <span class="hint">专题练习</span>
+        </a>
+      </div>
+    </div>
+    <div class="semester-row" id="sem-4b" style="display:none">
+      <div class="sem-label">四年级 · 下册（8 个专题）</div>
+      <div class="grid">
+        <a class="cell" href="4b-topic1.html" style="animation-delay:30ms">
+          <span class="num">01</span>
+          <span class="icon">⚖</span>
+          <span class="name"> 运算定律</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="4b-topic2.html" style="animation-delay:60ms">
+          <span class="num">02</span>
+          <span class="icon">🔢</span>
+          <span class="name">小数性质</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="4b-topic3.html" style="animation-delay:90ms">
+          <span class="num">03</span>
+          <span class="icon">🔺</span>
+          <span class="name">三角形</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="4b-topic4.html" style="animation-delay:120ms">
+          <span class="num">04</span>
+          <span class="icon">➕</span>
+          <span class="name">小数加减</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="4b-topic5.html" style="animation-delay:150ms">
+          <span class="num">05</span>
+          <span class="icon">📊</span>
+          <span class="name">平均数</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="4b-topic6.html" style="animation-delay:180ms">
+          <span class="num">06</span>
+          <span class="icon">⚙️</span>
+          <span class="name">优化问题</span>
+          <span class="hint">沏茶·烙饼·赛马</span>
+        </a>
+        <a class="cell" href="4b-topic7.html" style="animation-delay:210ms">
+          <span class="num">07</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 7</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="4b-topic8.html" style="animation-delay:240ms">
+          <span class="num">08</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 8</span>
+          <span class="hint">专题练习</span>
+        </a>
+      </div>
+    </div>
+    <div class="semester-row" id="sem-5a" style="display:none">
+      <div class="sem-label">五年级 · 上册（8 个专题）</div>
+      <div class="grid">
+        <a class="cell" href="5a-topic1.html" style="animation-delay:30ms">
+          <span class="num">01</span>
+          <span class="icon">✖</span>
+          <span class="name"> 小数乘法</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="5a-topic2.html" style="animation-delay:60ms">
+          <span class="num">02</span>
+          <span class="icon">🔣</span>
+          <span class="name">简易方程</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="5a-topic3.html" style="animation-delay:90ms">
+          <span class="num">03</span>
+          <span class="icon">📐</span>
+          <span class="name">多边形面积</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="5a-topic4.html" style="animation-delay:120ms">
+          <span class="num">04</span>
+          <span class="icon">➗</span>
+          <span class="name">小数除法</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="5a-topic5.html" style="animation-delay:150ms">
+          <span class="num">05</span>
+          <span class="icon">🧭</span>
+          <span class="name">位置数对</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="5a-topic6.html" style="animation-delay:180ms">
+          <span class="num">06</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 6</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="5a-topic7.html" style="animation-delay:210ms">
+          <span class="num">07</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 7</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="5a-topic8.html" style="animation-delay:240ms">
+          <span class="num">08</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 8</span>
+          <span class="hint">专题练习</span>
+        </a>
+      </div>
+    </div>
+    <div class="semester-row" id="sem-5b" style="display:none">
+      <div class="sem-label">五年级 · 下册（8 个专题）</div>
+      <div class="grid">
+        <a class="cell" href="5b-topic1.html" style="animation-delay:30ms">
+          <span class="num">01</span>
+          <span class="icon">🔢</span>
+          <span class="name">因数倍数</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="5b-topic2.html" style="animation-delay:60ms">
+          <span class="num">02</span>
+          <span class="icon">📦</span>
+          <span class="name">长正方体</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="5b-topic3.html" style="animation-delay:90ms">
+          <span class="num">03</span>
+          <span class="icon">📐</span>
+          <span class="name">分数意义性质</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="5b-topic4.html" style="animation-delay:120ms">
+          <span class="num">04</span>
+          <span class="icon">➕</span>
+          <span class="name">分数加减</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="5b-topic5.html" style="animation-delay:150ms">
+          <span class="num">05</span>
+          <span class="icon">📈</span>
+          <span class="name">折线统计图</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="5b-topic6.html" style="animation-delay:180ms">
+          <span class="num">06</span>
+          <span class="icon">🏗️</span>
+          <span class="name">工程问题</span>
+          <span class="hint">合作·进出水</span>
+        </a>
+        <a class="cell" href="5b-topic7.html" style="animation-delay:210ms">
+          <span class="num">07</span>
+          <span class="icon">🏃</span>
+          <span class="name">行程问题</span>
+          <span class="hint">相遇·追及</span>
+        </a>
+        <a class="cell" href="5b-topic8.html" style="animation-delay:240ms">
+          <span class="num">08</span>
+          <span class="icon">⚖️</span>
+          <span class="name">找次品</span>
+          <span class="hint">天平·三分法</span>
+        </a>
+      </div>
+    </div>
+    <div class="semester-row" id="sem-6a" style="display:none">
+      <div class="sem-label">六年级 · 上册（8 个专题）</div>
+      <div class="grid">
+        <a class="cell" href="6a-topic1.html" style="animation-delay:30ms">
+          <span class="num">01</span>
+          <span class="icon">✖</span>
+          <span class="name"> 分数乘法</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="6a-topic2.html" style="animation-delay:60ms">
+          <span class="num">02</span>
+          <span class="icon">➗</span>
+          <span class="name">分数除法</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="6a-topic3.html" style="animation-delay:90ms">
+          <span class="num">03</span>
+          <span class="icon">⚖</span>
+          <span class="name"> 比和比例</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="6a-topic4.html" style="animation-delay:120ms">
+          <span class="num">04</span>
+          <span class="icon">⭕</span>
+          <span class="name">圆</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="6a-topic5.html" style="animation-delay:150ms">
+          <span class="num">05</span>
+          <span class="icon">%</span>
+          <span class="name">百分数</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="6a-topic6.html" style="animation-delay:180ms">
+          <span class="num">06</span>
+          <span class="icon">📊</span>
+          <span class="name">百分数应用</span>
+          <span class="hint">折扣·利息·浓度</span>
+        </a>
+        <a class="cell" href="6a-topic7.html" style="animation-delay:210ms">
+          <span class="num">07</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 7</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="6a-topic8.html" style="animation-delay:240ms">
+          <span class="num">08</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 8</span>
+          <span class="hint">专题练习</span>
+        </a>
+      </div>
+    </div>
+    <div class="semester-row" id="sem-6b" style="display:none">
+      <div class="sem-label">六年级 · 下册（6 个专题）</div>
+      <div class="grid">
+        <a class="cell" href="6b-topic1.html" style="animation-delay:30ms">
+          <span class="num">01</span>
+          <span class="icon">➖</span>
+          <span class="name">负数</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="6b-topic2.html" style="animation-delay:60ms">
+          <span class="num">02</span>
+          <span class="icon">💰</span>
+          <span class="name">百分数应用</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="6b-topic3.html" style="animation-delay:90ms">
+          <span class="num">03</span>
+          <span class="icon">🥫</span>
+          <span class="name">圆柱圆锥</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="6b-topic4.html" style="animation-delay:120ms">
+          <span class="num">04</span>
+          <span class="icon">⚖</span>
+          <span class="name"> 比例</span>
+          <span class="hint">专项训练
+        </a>
+        <a class="cell" href="6b-topic5.html" style="animation-delay:150ms">
+          <span class="num">05</span>
+          <span class="icon">🐦</span>
+          <span class="name">鸽巢原理</span>
+          <span class="hint">抽屉·最不利</span>
+        </a>
+        <a class="cell" href="6b-topic6.html" style="animation-delay:180ms">
+          <span class="num">06</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 6</span>
+          <span class="hint">专题练习</span>
+        </a>
+      </div>
+    </div>
+    <div class="semester-row" id="sem-7a" style="display:none">
+      <div class="sem-label">七年级 · 上册（8 个专题）</div>
+      <div class="grid">
+        <a class="cell" href="7a-topic1.html" style="animation-delay:30ms">
+          <span class="num">01</span>
+          <span class="icon">📐</span>
+          <span class="name">相反数·绝对值</span>
+          <span class="hint">十大题型</span>
+        </a>
+        <a class="cell" href="7a-topic2.html" style="animation-delay:60ms">
+          <span class="num">02</span>
+          <span class="icon">🚂</span>
+          <span class="name">数轴动点</span>
+          <span class="hint">五大题型</span>
+        </a>
+        <a class="cell" href="7a-topic3.html" style="animation-delay:90ms">
+          <span class="num">03</span>
+          <span class="icon">🔢</span>
+          <span class="name">数列求值</span>
+          <span class="hint">十大题型</span>
+        </a>
+        <a class="cell" href="7a-topic4.html" style="animation-delay:120ms">
+          <span class="num">04</span>
+          <span class="icon">🎯</span>
+          <span class="name">绝对值最值</span>
+          <span class="hint">十大题型</span>
+        </a>
+        <a class="cell" href="7a-topic5.html" style="animation-delay:150ms">
+          <span class="num">05</span>
+          <span class="icon">🔢</span>
+          <span class="name">进制转化</span>
+          <span class="hint">二·八·十互转</span>
+        </a>
+        <a class="cell" href="7a-topic6.html" style="animation-delay:180ms">
+          <span class="num">06</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 6</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="7a-topic7.html" style="animation-delay:210ms">
+          <span class="num">07</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 7</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="7a-topic8.html" style="animation-delay:240ms">
+          <span class="num">08</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 8</span>
+          <span class="hint">专题练习</span>
+        </a>
+      </div>
+    </div>
+    <div class="semester-row" id="sem-7b" style="display:none">
+      <div class="sem-label">七年级 · 下册（8 个专题）</div>
+      <div class="grid">
+        <a class="cell" href="7b-topic1.html" style="animation-delay:30ms">
+          <span class="num">01</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 1</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="7b-topic2.html" style="animation-delay:60ms">
+          <span class="num">02</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 2</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="7b-topic3.html" style="animation-delay:90ms">
+          <span class="num">03</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 3</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="7b-topic4.html" style="animation-delay:120ms">
+          <span class="num">04</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 4</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="7b-topic5.html" style="animation-delay:150ms">
+          <span class="num">05</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 5</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="7b-topic6.html" style="animation-delay:180ms">
+          <span class="num">06</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 6</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="7b-topic7.html" style="animation-delay:210ms">
+          <span class="num">07</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 7</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="7b-topic8.html" style="animation-delay:240ms">
+          <span class="num">08</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 8</span>
+          <span class="hint">专题练习</span>
+        </a>
+      </div>
+    </div>
+    <div class="semester-row" id="sem-8a" style="display:none">
+      <div class="sem-label">八年级 · 上册（8 个专题）</div>
+      <div class="grid">
+        <a class="cell" href="8a-topic1.html" style="animation-delay:30ms">
+          <span class="num">01</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 1</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="8a-topic2.html" style="animation-delay:60ms">
+          <span class="num">02</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 2</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="8a-topic3.html" style="animation-delay:90ms">
+          <span class="num">03</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 3</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="8a-topic4.html" style="animation-delay:120ms">
+          <span class="num">04</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 4</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="8a-topic5.html" style="animation-delay:150ms">
+          <span class="num">05</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 5</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="8a-topic6.html" style="animation-delay:180ms">
+          <span class="num">06</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 6</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="8a-topic7.html" style="animation-delay:210ms">
+          <span class="num">07</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 7</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="8a-topic8.html" style="animation-delay:240ms">
+          <span class="num">08</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 8</span>
+          <span class="hint">专题练习</span>
+        </a>
+      </div>
+    </div>
+    <div class="semester-row" id="sem-8b" style="display:none">
+      <div class="sem-label">八年级 · 下册（8 个专题）</div>
+      <div class="grid">
+        <a class="cell" href="8b-topic1.html" style="animation-delay:30ms">
+          <span class="num">01</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 1</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="8b-topic2.html" style="animation-delay:60ms">
+          <span class="num">02</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 2</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="8b-topic3.html" style="animation-delay:90ms">
+          <span class="num">03</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 3</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="8b-topic4.html" style="animation-delay:120ms">
+          <span class="num">04</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 4</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="8b-topic5.html" style="animation-delay:150ms">
+          <span class="num">05</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 5</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="8b-topic6.html" style="animation-delay:180ms">
+          <span class="num">06</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 6</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="8b-topic7.html" style="animation-delay:210ms">
+          <span class="num">07</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 7</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="8b-topic8.html" style="animation-delay:240ms">
+          <span class="num">08</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 8</span>
+          <span class="hint">专题练习</span>
+        </a>
+      </div>
+    </div>
+    <div class="semester-row" id="sem-9a" style="display:none">
+      <div class="sem-label">九年级 · 上册（8 个专题）</div>
+      <div class="grid">
+        <a class="cell" href="9a-topic1.html" style="animation-delay:30ms">
+          <span class="num">01</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 1</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="9a-topic2.html" style="animation-delay:60ms">
+          <span class="num">02</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 2</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="9a-topic3.html" style="animation-delay:90ms">
+          <span class="num">03</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 3</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="9a-topic4.html" style="animation-delay:120ms">
+          <span class="num">04</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 4</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="9a-topic5.html" style="animation-delay:150ms">
+          <span class="num">05</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 5</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="9a-topic6.html" style="animation-delay:180ms">
+          <span class="num">06</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 6</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="9a-topic7.html" style="animation-delay:210ms">
+          <span class="num">07</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 7</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="9a-topic8.html" style="animation-delay:240ms">
+          <span class="num">08</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 8</span>
+          <span class="hint">专题练习</span>
+        </a>
+      </div>
+    </div>
+    <div class="semester-row" id="sem-9b" style="display:none">
+      <div class="sem-label">九年级 · 下册（7 个专题）</div>
+      <div class="grid">
+        <a class="cell" href="9b-topic1.html" style="animation-delay:30ms">
+          <span class="num">01</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 1</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="9b-topic2.html" style="animation-delay:60ms">
+          <span class="num">02</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 2</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="9b-topic3.html" style="animation-delay:90ms">
+          <span class="num">03</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 3</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="9b-topic4.html" style="animation-delay:120ms">
+          <span class="num">04</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 4</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="9b-topic5.html" style="animation-delay:150ms">
+          <span class="num">05</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 5</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="9b-topic6.html" style="animation-delay:180ms">
+          <span class="num">06</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 6</span>
+          <span class="hint">专题练习</span>
+        </a>
+        <a class="cell" href="9b-topic7.html" style="animation-delay:210ms">
+          <span class="num">07</span>
+          <span class="icon">📝</span>
+          <span class="name">专题 7</span>
+          <span class="hint">专题练习</span>
+        </a>
+      </div>
+    </div>
+
+  <footer>&copy; 两英豆豆教练<br/><br/></footer>
+</div>
+
+<script>
+(function(){
+  const GRADES = {3:"三年级",4:"四年级",5:"五年级",6:"六年级",7:"七年级",8:"八年级",9:"九年级"};
+  const COUNTS = {"3a":8,"3b":8,"4a":8,"4b":8,"5a":8,"5b":8,"6a":8,"6b":6,"7a":9,"7b":9,"8a":8,"8b":8,"9a":8,"9b":7};
+  const tabsEl = document.getElementById("tabs");
+  const gradeSelect = document.getElementById("gradeSelect");
+  const semesterSelect = document.getElementById("semesterSelect");
+  const infoEl = document.getElementById("info");
+  var state = { grade: 3, sem: "a" };
+
+  function updateUI(){
+    Array.from(tabsEl.children).forEach(function(t){
+      t.classList.toggle("active", parseInt(t.dataset.grade) === state.grade);
+    });
+    gradeSelect.value = state.grade;
+    semesterSelect.value = state.sem;
+    var code = state.grade + state.sem;
+    var count = COUNTS[code] || 8;
+    var gname = GRADES[state.grade] || "";
+    var sname = state.sem === "a" ? "上册" : "下册";
+    infoEl.innerHTML = "当前：<b>" + gname + "</b> · <b>" + sname + "</b> · 共 <b>" + count + "</b> 个专题";
+    document.querySelectorAll(".semester-row").forEach(function(r){
+      r.style.display = "none";
+    });
+    var target = document.getElementById("sem-" + code);
+    if (target) target.style.display = "block";
+  }
+
+  Object.keys(GRADES).forEach(function(g){
+    var b = document.createElement("button");
+    b.className = "tab";
+    b.textContent = GRADES[g];
+    b.dataset.grade = g;
+    b.addEventListener("click", function(){
+      state.grade = parseInt(g);
+      updateUI();
+    });
+    tabsEl.appendChild(b);
+  });
+
+  Object.keys(GRADES).forEach(function(k){
+    var o = document.createElement("option");
+    o.value = k;
+    o.textContent = GRADES[k];
+    gradeSelect.appendChild(o);
+  });
+  gradeSelect.addEventListener("change", function(){
+    state.grade = parseInt(gradeSelect.value);
+    updateUI();
+  });
+
+  [["a","上册"],["b","下册"]].forEach(function(p){
+    var o = document.createElement("option");
+    o.value = p[0];
+    o.textContent = p[1];
+    semesterSelect.appendChild(o);
+  });
+  semesterSelect.addEventListener("change", function(){
+    state.sem = semesterSelect.value;
+    updateUI();
+  });
+
+  document.querySelectorAll(".cell").forEach(function(cell){
+    cell.addEventListener("click", function(e){
+      e.preventDefault();
+      this.classList.add("opening");
+      this.querySelector(".name").textContent = "打开中…";
+      var href = this.getAttribute("href");
+      setTimeout(function(){ location.href = href; }, 400);
+    });
+  });
+
+  updateUI();
+})();
+</script>
+</body>
+</html>
