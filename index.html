@@ -87,9 +87,68 @@ body {
   .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .header h1 { font-size: 1.35rem; }
 }
+
+/* ========== 手机号验证锁屏 ========== */
+.lock-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(15,23,42,.78); backdrop-filter: blur(10px);
+  display: flex; align-items: center; justify-content: center;
+  font-family: -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+}
+.lock-overlay.hidden { display: none; }
+.lock-card {
+  background: #fff; border-radius: 20px; padding: 32px 28px 24px;
+  width: 340px; max-width: 92vw; text-align: center;
+  box-shadow: 0 24px 60px rgba(0,0,0,.25); animation: lockIn .35s ease;
+}
+@keyframes lockIn { from { opacity:0; transform: translateY(20px) scale(.96); } to { opacity:1; transform: translateY(0) scale(1); } }
+.lock-card .lock-icon { font-size: 48px; margin-bottom: 6px; }
+.lock-card h2 { font-size: 18px; font-weight: 800; color: #1e293b; margin-bottom: 6px; }
+.lock-card .lock-desc { font-size: 12px; color: #94a3b8; margin-bottom: 18px; line-height: 1.6; }
+.lock-input-row { display: flex; gap: 8px; }
+.lock-input-row input {
+  flex: 1; padding: 12px 14px; border: 2px solid #e2e8f0; border-radius: 12px;
+  font-size: 16px; outline: none; text-align: center; letter-spacing: 2px;
+  font-family: inherit; transition: border-color .2s;
+}
+.lock-input-row input:focus { border-color: #3b82f6; }
+.lock-input-row input.error { border-color: #ef4444; background: #fef2f2; animation: shake .4s; }
+@keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.lock-input-row button {
+  padding: 12px 22px; background: linear-gradient(135deg,#35d29a,#2f9df0);
+  color: #fff; border: none; border-radius: 12px; font-size: 15px; font-weight: 700;
+  cursor: pointer; white-space: nowrap; transition: transform .15s;
+}
+.lock-input-row button:hover { transform: scale(1.03); }
+.lock-input-row button:active { transform: scale(.97); }
+.lock-input-row button:disabled { opacity: .5; cursor: not-allowed; }
+.lock-loading { display: none; margin-top: 10px; font-size: 12px; color: #64748b; }
+.lock-loading.show { display: block; }
+.lock-error { display: none; margin-top: 10px; padding: 8px 12px; background: #fef2f2;
+  color: #dc2626; border-radius: 8px; font-size: 12px; font-weight: 600; }
+.lock-error.show { display: block; }
+.lock-hint { margin-top: 12px; font-size: 11px; color: #94a3b8; line-height: 1.6; }
+
 </style>
 </head>
 <body>
+
+<!-- 手机号验证锁屏 -->
+<div class="lock-overlay" id="lockOverlay">
+  <div class="lock-card">
+    <div class="lock-icon">🔐</div>
+    <h2>请输入手机号验证</h2>
+    <div class="lock-desc">首次访问需验证手机号<br>验证通过后可 7 天内免登录</div>
+    <div class="lock-input-row">
+      <input type="tel" id="phoneInput" placeholder="输入 11 位手机号" maxlength="11" inputmode="numeric" autofocus>
+      <button id="verifyBtn" onclick="verifyPhone()">验证</button>
+    </div>
+    <div class="lock-loading" id="lockLoading">⏳ 正在验证…</div>
+    <div class="lock-error" id="lockError"></div>
+    <div class="lock-hint">仅限已登记手机号访问<br>如有疑问请联系两英豆豆教练</div>
+  </div>
+</div>
+
 <div class="container">
   <div class="header">
     <h1>豆豆数学培优训练</h1>
@@ -142,5 +201,143 @@ body {
 </div>
 
 <footer class="site-footer">&copy; 两英豆豆教练 &nbsp;·&nbsp; <a href="readme.html" style="color:#8aa09a">📖 网站说明</a></footer>
+
+<script>
+(function(){
+  var overlay = document.getElementById('lockOverlay');
+  var phoneInput = document.getElementById('phoneInput');
+  var errEl = document.getElementById('lockError');
+  var loadEl = document.getElementById('lockLoading');
+  var btnEl = document.getElementById('verifyBtn');
+
+  // 有效期 7 天
+  var VALID_MS = 7 * 24 * 60 * 60 * 1000;
+  var relockTimer = null;
+
+  // Enter 键提交（始终绑定，保证重新锁屏后也能用）
+  if (phoneInput) {
+    phoneInput.addEventListener('keydown', function(e){
+      if (e.key === 'Enter') verifyPhone();
+    });
+  }
+  window.verifyPhone = verifyPhone;
+
+  // Check existing session (1 minute)
+  var session = null;
+  try { session = JSON.parse(localStorage.getItem('phone_session')); } catch(e) {}
+  if (session && session.expires && Date.now() < session.expires) {
+    if (overlay) overlay.classList.add('hidden');
+    scheduleRelock(session.expires);
+    return;
+  }
+
+  // Show overlay
+  if (overlay) overlay.classList.remove('hidden');
+  if (phoneInput) phoneInput.focus();
+
+  // SHA-256 hash phone, fetch hash list, compare
+  function sha256(str){
+    var encoder = new TextEncoder();
+    return crypto.subtle.digest('SHA-256', encoder.encode(str))
+      .then(function(buf){
+        return Array.from(new Uint8Array(buf))
+          .map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+      });
+  }
+
+  function verifyPhone(){
+    var phone = phoneInput.value.replace(/\s+/g, '');
+    if (!phone) { showErr('请输入手机号'); shake(); return; }
+    if (!/^1\d{10}$/.test(phone)) { showErr('请输入正确的 11 位手机号'); shake(); return; }
+
+    btnEl.disabled = true;
+    loadEl.classList.add('show');
+    errEl.classList.remove('show');
+    phoneInput.classList.remove('error');
+
+    // 兜底哈希列表：fetch 失败（如本地 file:// 打开）时使用，仅存哈希不存明文
+    var FALLBACK_HASHES = [
+      '413b7b3d5700ad8a6b296c9d0e7107dbd7280a985c1c695db8646c278e510224',
+      '270b0e42fa470c44d366bde6b47de2225e915e5b274f1c3838682e1ca350532f',
+      'cbcf800f235bcba864b3fa23d3fb3cfab8eb3806a5ef2da4e9f84b89d0010ab6',
+      'f33f356f0975feb01468d154687a812a113ffa87ac5091ecc99637a552f033e9'
+    ];
+
+    function check(phoneHash, hashes){
+      var matched = hashes.some(function(h){ return h === phoneHash; });
+      loadEl.classList.remove('show');
+      btnEl.disabled = false;
+      if (matched) {
+        unlock(phone);
+      } else {
+        showErr('输入有误，请重新输入');
+        shake();
+      }
+    }
+
+    // Hash the input, fetch hash list; fallback to embedded list if fetch fails
+    sha256(phone).then(function(phoneHash){
+      fetch('jiesuo.html').then(function(r){ return r.text(); }).then(function(text){
+        var hashes = text.trim().split(/[\n\r]+/).filter(function(h){ return h.trim(); });
+        check(phoneHash, hashes);
+      }).catch(function(){
+        check(phoneHash, FALLBACK_HASHES);
+      });
+    }).catch(function(){
+      loadEl.classList.remove('show');
+      btnEl.disabled = false;
+      showErr('设备不支持，请更换浏览器');
+    });
+  };
+
+  function unlock(phone){
+    var now = Date.now();
+    var expires = now + VALID_MS;
+    localStorage.setItem('phone_session', JSON.stringify({
+      phone: phone,
+      loginAt: now,
+      expires: expires
+    }));
+    if (overlay) {
+      overlay.style.opacity = '0';
+      overlay.style.transition = 'opacity .4s';
+      setTimeout(function(){ overlay.classList.add('hidden'); overlay.style.opacity = '1'; }, 400);
+    }
+    scheduleRelock(expires);
+  }
+
+  // 有效期结束后重新锁屏（页面停留期间也会触发）
+  function relock(){
+    relockTimer = null;
+    try { localStorage.removeItem('phone_session'); } catch(e) {}
+    if (!overlay) return;
+    phoneInput.value = '';
+    errEl.classList.remove('show');
+    overlay.classList.remove('hidden');
+    overlay.style.opacity = '1';
+    overlay.style.transition = 'none';
+    if (phoneInput) phoneInput.focus();
+  }
+
+  function scheduleRelock(expires){
+    if (relockTimer) { clearTimeout(relockTimer); relockTimer = null; }
+    var remain = expires - Date.now();
+    if (remain <= 0) { relock(); return; }
+    relockTimer = setTimeout(relock, remain);
+  }
+
+  function showErr(msg){
+    errEl.textContent = msg;
+    errEl.classList.add('show');
+    setTimeout(function(){ errEl.classList.remove('show'); }, 3000);
+  }
+
+  function shake(){
+    phoneInput.classList.add('error');
+    setTimeout(function(){ phoneInput.classList.remove('error'); }, 400);
+  }
+})();
+</script>
+
 </body>
 </html>
