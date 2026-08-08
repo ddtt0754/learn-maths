@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>智能诊断测试</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--r:14px}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);
+  padding:14px 14px 90px;min-height:100vh;display:flex;justify-content:center}
+.wrap{width:100%;max-width:680px}
+.topbar{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.topbar .back{background:var(--b);color:#fff;border:none;border-radius:999px;
+  padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none}
+.topbar .info{font-size:.8rem;color:var(--l);flex:1;text-align:right}
+.topbar .timer{font-size:.9rem;font-weight:700;color:#0e7490;min-width:50px;text-align:center}
+
+.q-card{background:#fff;border-radius:var(--r);padding:16px;margin-bottom:10px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.q-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.q-num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:12px;font-weight:700;color:#fff;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);flex-shrink:0}
+.q-diff{font-size:11px;padding:2px 8px;border-radius:8px;font-weight:600}
+.q-diff.d1{background:#dcfce7;color:#15803d}.q-diff.d2{background:#fef9c3;color:#854d0e}
+.q-diff.d3{background:#fef3c7;color:#92400e}.q-diff.d4{background:#ffedd5;color:#9a3412}
+.q-diff.d5{background:#fce7f3;color:#9d174d}
+.q-stem{font-size:1rem;line-height:1.7;margin-bottom:10px;padding-left:8px;
+  border-left:3px solid var(--b)}
+.answer-row{display:flex;gap:8px}
+.answer-row input{flex:1;padding:9px 12px;border:2px solid #d8ebe3;border-radius:8px;
+  font-size:.95rem;outline:none;font-family:inherit}
+.answer-row input:focus{border-color:var(--b)}
+.answer-row input.ok{border-color:#22c55e;background:#f0fdf4}
+.answer-row input.err{border-color:#ef4444;background:#fef2f2}
+.feedback{font-size:.85rem;margin-top:6px;padding:6px 10px;border-radius:6px;display:none}
+.feedback.show{display:block}
+.feedback.ok{background:#f0fdf4;color:#15803d}
+.feedback.err{background:#fef2f2;color:#dc2626}
+.feedback .ans{color:#22c55e;font-weight:600}
+
+/* submit bar */
+.submit-bar{text-align:center;margin:14px 0}
+.submit-bar button{padding:12px 40px;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:700;
+  cursor:pointer;box-shadow:0 6px 16px rgba(47,157,240,.25)}
+.submit-bar button:disabled{opacity:.4;cursor:not-allowed}
+
+/* result */
+.result{background:#fff;border-radius:var(--r);padding:24px 20px;text-align:center;
+  box-shadow:0 6px 18px rgba(47,157,240,.12);margin-top:10px}
+.result h2{font-size:1.3rem;margin-bottom:6px}
+.result .score{font-size:3rem;font-weight:800;margin:10px 0}
+.result .stats{display:flex;justify-content:center;gap:24px;margin:14px 0;flex-wrap:wrap}
+.result .stat{text-align:center}
+.result .stat .n{font-size:1.4rem;font-weight:700}
+.result .stat .l{font-size:.75rem;color:var(--l)}
+.result .details{text-align:left;margin-top:14px;max-height:300px;overflow-y:auto}
+.result .details .row{padding:8px 0;border-bottom:1px solid #e2e8f0;font-size:.85rem}
+.result .details .row .ri{color:#22c55e}
+.result .details .row .wr{color:#ef4444;font-weight:600}
+.result .btns{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.result .btns button,.result .btns a{padding:10px 24px;border-radius:12px;
+  font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none}
+.btn-retry{background:var(--b);color:#fff;border:none}
+.btn-home{background:var(--bg);color:var(--t);border:1.5px solid var(--border)}
+
+.ft{text-align:center;padding:8px 0 14px;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+
+<div class="topbar">
+  <a class="back" href="index.html">← 返回主页</a>
+  <span class="info" id="testInfo"></span>
+  <span class="timer" id="timer">0:00</span>
+</div>
+
+<div id="questionsArea"></div>
+
+<div class="submit-bar" id="submitBar">
+  <button id="btnSubmit" onclick="submitAll()">📝 交卷评分</button>
+</div>
+
+<div class="result" id="resultArea" style="display:none"></div>
+
+<div class="ft">&copy; 两英豆豆教练</div>
+
+</div>
+
+<script>
+// Load from sessionStorage
+var raw = sessionStorage.getItem('testData');
+if(!raw){ document.getElementById('questionsArea').innerHTML='<div class="q-card" style="text-align:center;padding:40px"><h3>⚠️ 未找到测试数据</h3><p style="margin-top:10px;color:var(--l)">请从组卷页面重新开始</p><a class="back" href="index.html" style="display:inline-block;margin-top:14px">← 返回组卷</a></div>'; }
+else {
+  var data = JSON.parse(raw);
+  var questions = data.questions;
+  var perQScore = Math.round(100 / data.count * 10) / 10;
+  var answers = {};
+  var timerSec = 0, timerHandle;
+
+  document.getElementById('testInfo').textContent = '第'+(data.grade===2?'二':data.grade===3?'三':data.grade===4?'四':data.grade===5?'五':data.grade===6?'六':data.grade===7?'七':data.grade===8?'八':'九')+'年级'+(data.sem==='a'?'上':'下')+'册 · '+data.count+'题';
+  timerHandle = setInterval(function(){timerSec++;document.getElementById('timer').textContent=Math.floor(timerSec/60)+':'+String(timerSec%60).padStart(2,'0');},1000);
+
+  renderQuestions();
+
+  function renderQuestions(){
+    var h = '';
+    questions.forEach(function(q,i){
+      var diffCls = 'd'+q.diff;
+      var stars = {1:'★',2:'★★',3:'★★★',4:'★★★★',5:'★★★★★'}[q.diff];
+      var done = answers[i] !== undefined, ok = answers[i];
+      h += '<div class="q-card">'+
+        '<div class="q-head"><div class="q-num">'+(i+1)+'</div>'+
+        '<span class="q-diff '+diffCls+'">'+stars+' '+perQScore+'分</span>'+
+        '<span style="font-size:11px;color:var(--l);margin-left:auto">'+(done?(ok?'✓':'✗'):'')+'</span></div>'+
+        '<div class="q-stem">'+q.stem+'</div>'+
+        '<div class="answer-row"><input type="text" id="inp'+i+'" placeholder="输入答案" '+(done?'disabled':'')+
+        ' class="'+(done?(ok?'ok':'err'):'')+'" value="'+(answers[i+'_user']||'')+'" onkeydown="if(event.key===\'Enter\')checkOne('+i+')"></div>'+
+        (done?'<div class="feedback show '+(ok?'ok':'err')+'">'+(ok?'✅ 正确！':'❌ 不正确 <span class=ans>答案：'+q.answer+'</span>')+'</div>':'')+
+        '</div>';
+    });
+    document.getElementById('questionsArea').innerHTML = h;
+    if(Object.keys(answers).filter(function(k){return !k.endsWith('_user');}).length === 0){
+      setTimeout(function(){document.getElementById('inp0').focus();},200);
+    }
+  }
+
+  function checkOne(i){
+    var inp = document.getElementById('inp'+i);
+    if(!inp || inp.disabled) return;
+    var val = inp.value.trim();
+    if(!val) return;
+    var q = questions[i];
+    var ok = judge(val, q.answer);
+    answers[i] = ok;
+    answers[i+'_user'] = val;
+    renderQuestions();
+    // Focus next empty
+    for(var j=i+1;j<questions.length;j++){
+      if(answers[j]===undefined){var nx=document.getElementById('inp'+j);if(nx)setTimeout(function(){nx.focus();},100);return;}
+    }
+  }
+
+  function submitAll(){
+    // Auto-check all unanswered
+    for(var i=0;i<questions.length;i++){
+      if(answers[i]===undefined){
+        var inp = document.getElementById('inp'+i);
+        if(inp && inp.value.trim()){
+          var ok = judge(inp.value.trim(), questions[i].answer);
+          answers[i] = ok; answers[i+'_user'] = inp.value.trim();
+        } else {
+          answers[i] = false; answers[i+'_user'] = '';
+        }
+      }
+    }
+    clearInterval(timerHandle);
+    renderQuestions();
+    showResult();
+  }
+
+  function showResult(){
+    var score = 0;
+    for(var i=0;i<questions.length;i++){ if(answers[i]) score += perQScore; }
+    score = Math.round(score*10)/10;
+    var pct = Math.round(score/data.score*100);
+    var color = pct>=80?'#22c55e':pct>=60?'#f59e0b':'#ef4444';
+    var correct = Object.values(answers).filter(function(v){return v===true;}).length;
+    var h = '<h2>📊 测试报告</h2>'+
+      '<div class="score" style="color:'+color+'">'+score+' / '+data.score+' 分</div>'+
+      '<div class="stats">'+
+        '<div class="stat"><div class="n">'+data.count+'</div><div class="l">总题数</div></div>'+
+        '<div class="stat"><div class="n" style="color:#22c55e">'+correct+'</div><div class="l">正确</div></div>'+
+        '<div class="stat"><div class="n" style="color:#ef4444">'+(data.count-correct)+'</div><div class="l">错误</div></div>'+
+        '<div class="stat"><div class="n">'+Math.floor(timerSec/60)+':'+String(timerSec%60).padStart(2,'0')+'</div><div class="l">用时</div></div>'+
+      '</div>'+
+      '<div class="details">';
+    questions.forEach(function(q,i){
+      var ok = answers[i];
+      h += '<div class="row"><span class="'+(ok?'ri':'wr')+'">'+(ok?'✓':'✗')+'</span> '+
+        (i+1)+'. '+q.stem+' — 答案：'+q.answer+(ok?'':'（你答：'+answers[i+'_user']+'）')+'</div>';
+    });
+    h += '</div><div class="btns">'+
+      '<button class="btn-retry" onclick="retry()">🔄 重新测试</button>'+
+      '<a class="btn-home" href="index.html">📋 重新组卷</a>'+
+      '<a class="btn-home" href="../index.html">🏠 返回主页</a></div>';
+    document.getElementById('resultArea').innerHTML = h;
+    document.getElementById('resultArea').style.display = 'block';
+    document.getElementById('submitBar').style.display = 'none';
+    document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
+  }
+
+  function retry(){
+    answers = {}; timerSec = 0;
+    document.getElementById('resultArea').style.display = 'none';
+    document.getElementById('submitBar').style.display = 'block';
+    clearInterval(timerHandle);
+    timerHandle = setInterval(function(){timerSec++;document.getElementById('timer').textContent=Math.floor(timerSec/60)+':'+String(timerSec%60).padStart(2,'0');},1000);
+    renderQuestions();
+    setTimeout(function(){document.getElementById('inp0').focus();},200);
+    window.scrollTo(0,0);
+  }
+
+  function judge(input, answer){
+    var s = input.replace(/\s+/g,'').toLowerCase();
+    var a = String(answer).replace(/\s+/g,'').toLowerCase();
+    if(s===a) return true;
+    var n1=parseFloat(input), n2=parseFloat(answer);
+    if(!isNaN(n1)&&!isNaN(n2)&&Math.abs(n1-n2)<0.01) return true;
+    return false;
+  }
+}
+</script>
+</body></html>

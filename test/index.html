@@ -1,1 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>学期诊断 · 漏洞统计</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--r:16px}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);
+  padding:24px 16px 60px;min-height:100vh;display:flex;justify-content:center}
+.wrap{width:100%;max-width:680px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:22px;padding:30px 20px 26px;text-align:center;color:#fff;overflow:hidden;
+  box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:18px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:24px;letter-spacing:3px;font-weight:700}
+.hdr .sub{position:relative;margin-top:10px;font-size:13px;letter-spacing:2px;opacity:.92}
+.top-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+.top-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;
+  background:rgba(255,255,255,.20);border:1.5px solid rgba(255,255,255,.85);color:#fff;
+  border-radius:999px;font-size:13.5px;font-weight:600;text-decoration:none;cursor:pointer}
 
+.card{background:#fff;border-radius:var(--r);padding:18px 20px;margin-bottom:14px;
+  box-shadow:0 6px 18px rgba(47,157,240,.08)}
+.card-title{font-size:1.05rem;font-weight:700;color:#0e7490;margin-bottom:12px;
+  display:flex;align-items:center;gap:8px}
+.card-title::before{content:"";width:4px;height:18px;background:linear-gradient(180deg,#35d29a,#2f9df0);border-radius:2px}
+
+/* semester */
+.grade-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.grade-btn{padding:10px 6px;border:2px solid #d8ebe3;border-radius:12px;background:#fff;
+  font-size:.85rem;font-weight:600;color:var(--t);cursor:pointer;text-align:center;transition:all .15s}
+.grade-btn:hover{border-color:var(--b)}
+.grade-btn.sel{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border-color:transparent}
+.sem-row{display:flex;gap:8px}
+.sem-btn{flex:1;padding:11px;border:2px solid #d8ebe3;border-radius:12px;background:#fff;
+  font-size:.95rem;font-weight:600;color:var(--t);cursor:pointer;text-align:center;transition:all .15s}
+.sem-btn:hover{border-color:var(--b)}
+.sem-btn.sel{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border-color:transparent}
+
+/* difficulty A/B */
+.ab-row{display:flex;gap:12px}
+.ab-card{flex:1;padding:24px 16px;border:2px solid #d8ebe3;border-radius:16px;background:#fff;
+  text-align:center;cursor:pointer;transition:all .2s}
+.ab-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(47,157,240,.16)}
+.ab-card .ic{font-size:44px;line-height:1;margin-bottom:8px}
+.ab-card .nm{font-size:1.15rem;font-weight:700;margin-bottom:4px}
+.ab-card .ds{font-size:12px;color:var(--l);line-height:1.5}
+.ab-card.a{background:linear-gradient(180deg,#f0fdf4,#fff);border-color:#bbf7d0}
+.ab-card.a:hover{border-color:#22c55e}
+.ab-card.a.sel{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:#22c55e;border-width:3px;box-shadow:0 4px 16px rgba(34,197,94,.15)}
+.ab-card.b{background:linear-gradient(180deg,#fff7ed,#fff);border-color:#fed7aa}
+.ab-card.b:hover{border-color:#f97316}
+.ab-card.b.sel{background:linear-gradient(135deg,#fff7ed,#ffedd5);border-color:#f97316;border-width:3px;box-shadow:0 4px 16px rgba(249,115,22,.15)}
+
+/* info + start btn */
+.info{text-align:center;padding:14px;background:#f0f9ff;border-radius:12px;
+  font-size:14px;color:#0e7490;margin-bottom:6px}
+.info b{font-weight:700;color:#0369a1}
+
+.start-btn{display:block;width:100%;padding:16px;margin:10px 0 6px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:16px;font-size:1.15rem;font-weight:700;cursor:pointer;
+  box-shadow:0 8px 22px rgba(47,157,240,.28);
+  transition:transform .15s,box-shadow .25s}
+.start-btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(47,157,240,.36)}
+.start-btn:active{transform:scale(.97)}
+
+.bt-home{display:block;width:fit-content;margin:18px auto 8px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+  text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22)}
+.ft{text-align:center;padding:8px 0 14px;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+
+<header class="hdr">
+  <h1>&#x1fa7a; 学期诊断</h1>
+  <p class="sub">智能测评 · 精准定位薄弱环节</p>
+  <div class="top-btns">
+    <a class="top-btn" href="../classic/index.html">&#x1f4da; 经典题库</a>
+  </div>
+</header>
+
+<div class="card">
+  <div class="card-title">1. 选择学期</div>
+  <div class="grade-grid" id="gradeGrid"></div>
+  <div class="sem-row" id="semRow"></div>
+</div>
+
+<div class="card">
+  <div class="card-title">2. 选择难度</div>
+  <div class="ab-row">
+    <div class="ab-card a sel" id="cardA">
+      <div class="ic">&#x1f4d6;</div>
+      <div class="nm">中等A卷</div>
+      <div class="ds">基础达标 · 课内巩固<br>适合大多数同学</div>
+    </div>
+    <div class="ab-card b" id="cardB">
+      <div class="ic">&#x1f4d7;</div>
+      <div class="nm">偏高B卷</div>
+      <div class="ds">拔高强化 · 思维拓展<br>适合学有余力的同学</div>
+    </div>
+  </div>
+</div>
+
+<div class="info" id="examInfo">
+  💡 <b id="infoLine">三年级上册 · 中等A卷</b>
+</div>
+
+<button class="start-btn" id="btnStart">&#x25b6; 开始测试</button>
+<p style="text-align:center;font-size:12px;color:var(--l);margin-bottom:4px">满分 100 分 · 测试完成出具 AI 诊断报告</p>
+
+<a class="bt-home" href="../index.html">&#x1f3e0; 返回首页</a>
+<div class="ft">&copy; 两英豆豆教练</div>
+
+</div>
+
+<script>
+var grade=3, sem='a', difficulty='a';
+var NAMES = {2:'二',3:'三',4:'四',5:'五',6:'六',7:'七',8:'八',9:'九'};
+
+function renderGradeGrid(){
+  var h='';
+  for(var g=2;g<=9;g++){
+    h += '<button class="grade-btn'+(g===grade?' sel':'')+'" data-g="'+g+'">'+NAMES[g]+'年级</button>';
+  }
+  document.getElementById('gradeGrid').innerHTML = h;
+}
+function renderSemRow(){
+  var h='';
+  h += '<button class="sem-btn'+('a'===sem?' sel':'')+'" data-s="a">上册</button>';
+  h += '<button class="sem-btn'+('b'===sem?' sel':'')+'" data-s="b">下册</button>';
+  document.getElementById('semRow').innerHTML = h;
+}
+
+function updateInfo(){
+  var sn = NAMES[grade]+'年级'+(sem==='a'?'上册':'下册');
+  var dn = difficulty==='a'?'中等A卷':'偏高B卷';
+  document.getElementById('infoLine').textContent = sn+' · '+dn;
+}
+
+// Click handlers via delegation
+document.addEventListener('click', function(e){
+  var el = e.target;
+  // grade button
+  if(el.classList.contains('grade-btn') && el.dataset.g){
+    grade = parseInt(el.dataset.g);
+    renderGradeGrid();
+    updateInfo();
+    return;
+  }
+  // sem button
+  if(el.classList.contains('sem-btn') && el.dataset.s){
+    sem = el.dataset.s;
+    renderSemRow();
+    updateInfo();
+    return;
+  }
+  // A card
+  if(el.closest('#cardA')){
+    difficulty = 'a';
+    document.getElementById('cardA').classList.add('sel');
+    document.getElementById('cardB').classList.remove('sel');
+    updateInfo();
+    return;
+  }
+  // B card
+  if(el.closest('#cardB')){
+    difficulty = 'b';
+    document.getElementById('cardB').classList.add('sel');
+    document.getElementById('cardA').classList.remove('sel');
+    updateInfo();
+    return;
+  }
+});
+
+// Start button
+document.getElementById('btnStart').addEventListener('click', function(){
+  var code = grade + sem;
+  // Route: A卷 (difficulty='a') → exam-{semester}.html, B卷 → exam-{semester}-b.html
+  // Currently only 三年级上册 (3a) has real content
+  if(code !== '3a'){
+    alert('当前仅三年级上册已完善，为您跳转至三年级上册'+ (difficulty==='a'?'A卷':'B卷') +'。');
+    code = '3a';
+  }
+  var file = 'exam-' + code + (difficulty==='b' ? '-b' : '') + '.html';
+  // For now, B卷 file is exam-3b.html (same as sem-independent name)
+  if(difficulty==='b'){
+    file = 'exam-3b.html';
+  }
+  window.location.href = file;
+});
+
+// Init
+renderGradeGrid();
+renderSemRow();
+updateInfo();
+</script>
+</body></html>
