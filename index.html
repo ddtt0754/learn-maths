@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>豆豆数学培优训练</title>
+<title>数学专项培优训练</title>
 <style>
 :root {
   --bg: #f5f7fa;
@@ -82,6 +82,30 @@ body {
   border-top: 1px solid #e2e8f0; margin-top: auto;
 }
 
+/* 教练微信号提示框 */
+.coach-tip {
+  position: relative; display: inline-block;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.coach-tip .tip {
+  visibility: hidden; opacity: 0;
+  position: absolute; bottom: 145%; left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: linear-gradient(135deg,#35d29a,#2f9df0); color: #fff;
+  padding: 7px 14px; border-radius: 10px; font-size: 12.5px; font-weight: 700;
+  white-space: nowrap; letter-spacing: .5px; z-index: 99; pointer-events: none;
+  box-shadow: 0 6px 18px rgba(47,157,240,.35);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s;
+}
+.coach-tip .tip::after {
+  content: ""; position: absolute; top: 100%; left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent; border-top-color: #2f9df0;
+}
+.coach-tip:hover .tip, .coach-tip:active .tip, .coach-tip:focus .tip {
+  visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0);
+}
+
 /* 移动端 2 列 */
 @media (max-width: 520px) {
   .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -151,7 +175,7 @@ body {
 
 <div class="container">
   <div class="header">
-    <h1>豆豆数学培优训练</h1>
+    <h1>数学专项培优训练</h1>
     <div class="sub">体系化计算与思维训练</div>
   </div>
 
@@ -200,7 +224,7 @@ body {
   </div>
 </div>
 
-<footer class="site-footer">&copy; 两英豆豆教练 &nbsp;·&nbsp; <a href="readme.html" style="color:#8aa09a">📖 网站说明</a></footer>
+<footer class="site-footer">&copy; <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span> &nbsp;·&nbsp; <a href="readme.html" style="color:#8aa09a">📖 网站说明</a></footer>
 
 <script>
 (function(){
