@@ -38,6 +38,14 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
   color:var(--t);text-decoration:none;font-weight:600;border:1.5px solid #d8ebe3;transition:all .2s}
 .top-nav a:hover{border-color:var(--g);color:var(--g);background:#fff}
 .ft{width:100%;margin-top:18px;text-align:center;font-size:12px;color:#a8bcb4}
+
+/* 教练微信号提示框 */
+.coach-tip{position:relative;display:inline-block;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.coach-tip .tip{visibility:hidden;opacity:0;position:absolute;bottom:145%;left:50%;transform:translateX(-50%) translateY(4px);background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;padding:7px 14px;border-radius:10px;font-size:12.5px;font-weight:700;white-space:nowrap;letter-spacing:.5px;z-index:99;pointer-events:none;box-shadow:0 6px 18px rgba(47,157,240,.35);transition:opacity .2s ease,transform .2s ease,visibility .2s}
+.coach-tip .tip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#2f9df0}
+.coach-tip:hover .tip,.coach-tip:active .tip,.coach-tip:focus .tip{visibility:visible;opacity:1;transform:translateX(-50%) translateY(0)}
+.coach-footer{text-align:center;padding:14px 0 18px;color:var(--text2,#7f8c8d);font-size:.75rem}
+
 </style>
 </head>
 <body><div class="wrap">
@@ -80,5 +88,5 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
 <a class="cell" href="9a.html"><span class="icon">📚</span><span class="name">九年级上册</span><span class="hint">5 章 · 49 条</span></a>
 <a class="cell" href="9b.html"><span class="icon">📚</span><span class="name">九年级下册</span><span class="hint">5 章 · 48 条</span></a>
 </div></div>
-<footer class="ft">© 两英豆豆教练</footer>
+<footer class="ft">© <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span></footer>
 </div></body></html>
