@@ -437,7 +437,7 @@ body {
 (function(){
   var overlay = document.getElementById('modalOverlay');
   var frame = document.getElementById('modalFrame');
-  var ASK_URL = '../dd-teacher/index.html'; // 豆神答疑弹窗加载地址
+  var ASK_URL = '../learn/dd-teacher/index.html'; // 豆神答疑弹窗加载地址
   document.getElementById('askBtn').addEventListener('click', function(){
     if (!frame.getAttribute('src')) frame.src = ASK_URL;
     overlay.classList.add('open');
