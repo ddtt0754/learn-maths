@@ -51,6 +51,29 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
 .table th{background:#f0f9ff;color:#0e7490;font-weight:700}
 .table .num{text-align:center;color:var(--l)}
 
+/* ---- 441 学习法 ---- */
+.f441{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
+  margin:2px 0 12px;padding:10px 8px;background:#f0f9ff;border-radius:10px;
+  font-size:13px;font-weight:700;color:#0e7490;letter-spacing:.5px}
+.f441 span{color:var(--l);font-weight:400}
+.g441{display:flex;flex-direction:column;gap:10px}
+.row441{display:flex;gap:12px;padding:12px 14px;background:#f8fafc;border-radius:12px;
+  border-left:4px solid #2ebd85}
+.row441:nth-child(2){border-left-color:#2f9df0}
+.row441:nth-child(3){border-left-color:#0e7490}
+.num441{flex-shrink:0;width:46px;height:46px;border-radius:12px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:19px;font-weight:800;letter-spacing:1px}
+.bd441{flex:1;min-width:0}
+.bd441 strong{display:block;color:#0e7490;font-size:.92rem;margin-bottom:4px}
+.bd441 p{font-size:.82rem;line-height:1.68;color:var(--t)}
+.chip441{display:inline-flex;align-items:center;gap:4px;padding:4px 11px;margin:6px 6px 0 0;
+  background:#fff;border:1.5px solid #d7ebe4;border-radius:999px;
+  font-size:12px;font-weight:600;color:#0e7490;text-decoration:none;
+  transition:border-color .15s,background .15s}
+.chip441:hover{border-color:#2ebd85;background:#f0f9ff}
+
 .bt-home{display:block;width:fit-content;margin:20px auto 8px;padding:11px 26px;
   background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
   border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
@@ -181,6 +204,62 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
     <tr><td>舒尔特方格</td><td class="num">1</td><td class="num">-</td><td>专注力训练</td></tr>
     <tr style="font-weight:700"><td>合计</td><td class="num">~201</td><td class="num">~2250+</td><td>1~9 年级全学段</td></tr>
   </table>
+</div>
+
+<div class="card">
+  <div class="card-title">&#x1f3af; 441 学习法</div>
+  <p style="font-size:.85rem;line-height:1.7;margin-bottom:10px">
+    本站全面贯彻<b>豆豆教练</b>的 <b>441 数学培优法</b> ——
+    不靠刷题的堆量，而是把数学拆成三层可执行的确定动作：
+    <b>吃透四项</b>、<b>循环四项</b>、<b>冲刺一项</b>。
+    下方每个板块都对应「441」中的一环，全部有据可依、可回看、可补漏。
+  </p>
+
+  <div class="f441">4 吃透四项 <span>+</span> 4 循环四项 <span>+</span> 1 冲刺一项</div>
+
+  <div class="g441">
+
+    <div class="row441">
+      <div class="num441">4</div>
+      <div class="bd441">
+        <strong>&#x1f4cc; 吃透四项 · 三定一性</strong>
+        <p>把每个知识点的四根骨架讲清、背熟、会认：<b>定义 · 定理 · 定律 · 性质</b>。
+        这是数学的地基 —— 地基不实，后面所有技巧都是空转。</p>
+        <a class="chip441" href="knowledge/index.html">&#x1f4d8; 知识总结</a>
+        <a class="chip441" href="knowledge/mindmap/index.html">&#x1f9ed; 思维导图</a>
+      </div>
+    </div>
+
+    <div class="row441">
+      <div class="num441">4</div>
+      <div class="bd441">
+        <strong>&#x1f504; 循环四项 · 测学练复</strong>
+        <p>学一个单元走一轮闭环：<b>测</b>先摸底定位漏洞 → <b>学</b>带着问题补讲解 →
+        <b>练</b>分阶强化巩固 → <b>复</b>回看总结成网。一轮之后再测，螺旋上升。</p>
+        <a class="chip441" href="test/index.html">&#x1fa7a; 测 · 学期诊断</a>
+        <a class="chip441" href="tutoring/index.html">&#x1f4d6; 学 · 预习补习</a>
+        <a class="chip441" href="homework/index.html">&#x270f;&#xfe0f; 练 · 作业中心</a>
+        <a class="chip441" href="knowledge/index.html">&#x1f9e0; 复 · 知识总结</a>
+      </div>
+    </div>
+
+    <div class="row441">
+      <div class="num441">1</div>
+      <div class="bd441">
+        <strong>&#x26a1; 冲刺一项 · 计算 / 模型</strong>
+        <p>临考前只做两件最提分的事：<b>计算</b>（九阶分阶，练到不再丢无谓分）与
+        <b>模型</b>（几何模型 · 解题套路，一眼认出题型）。</p>
+        <a class="chip441" href="calculation/index.html">&#x1f9ee; 计算专项</a>
+        <a class="chip441" href="model/index.html">&#x1f3af; 模型思维</a>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="font-size:.82rem;line-height:1.7;margin-top:12px;color:var(--l)">
+    &#x1f4a1; 用法建议：先「测」定位漏洞 → 按「三定一性」补地基 → 「练」到会、定期「复」到牢 →
+    考前用「计算 / 模型」冲刺。
+  </p>
 </div>
 
 <a class="bt-home" href="index.html">&#x1f3e0; 返回首页</a>

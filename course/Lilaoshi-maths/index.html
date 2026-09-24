@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2ebd85">
+<title>豆豆数学思维课 · 1-4 阶视频课程</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
+    background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+    color:#33434b;min-height:100vh;display:flex;justify-content:center;align-items:flex-start;
+    padding:28px 16px calc(60px + env(safe-area-inset-bottom));
+  }
+  .container{width:100%;max-width:560px;display:flex;flex-direction:column;align-items:center}
+  /* 顶部标题卡 */
+  .hero{
+    position:relative;width:100%;
+    background:linear-gradient(135deg,#35d29a 0%,#2f9df0 100%);
+    border-radius:22px;padding:28px 20px 24px;text-align:center;color:#fff;
+    overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);
+  }
+  .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+  .hero::before{width:120px;height:120px;top:-40px;right:-30px}
+  .hero::after{width:70px;height:70px;bottom:-24px;left:-16px}
+  .hero .tag{position:relative;display:inline-block;background:rgba(255,255,255,.22);border-radius:20px;padding:3px 14px;font-size:12px;letter-spacing:2px;backdrop-filter:blur(4px)}
+  .hero h1{position:relative;font-size:23px;letter-spacing:2px;font-weight:700;margin-top:10px;text-shadow:0 2px 6px rgba(0,0,0,.12)}
+  .hero .sub{position:relative;margin-top:8px;font-size:12px;letter-spacing:5px;opacity:.92}
+  /* 阶标签 */
+  .tabs{width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
+  .tab{
+    border:none;background:#fff;color:#8aa09a;font-size:13px;padding:11px 0;border-radius:12px;
+    cursor:pointer;box-shadow:0 4px 10px rgba(47,157,240,.08);transition:all .25s;font-family:inherit;
+    touch-action:manipulation;user-select:none;
+  }
+  .tab:active{transform:scale(.95)}
+  .tab.active{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;font-weight:700;box-shadow:0 8px 16px rgba(47,157,240,.28)}
+  .tab b{display:block;font-size:11px;font-weight:400;opacity:.8}
+  .info{width:100%;margin-top:14px;background:#fff;border-radius:12px;padding:9px 12px;text-align:center;font-size:13px;color:#8aa09a;box-shadow:0 4px 10px rgba(47,157,240,.06)}
+  .info b{color:#1fa873;font-weight:700}
+  /* 课程列表 */
+  .list{width:100%;margin-top:14px;display:flex;flex-direction:column;gap:10px}
+  .lesson{
+    width:100%;display:flex;align-items:center;gap:12px;text-align:left;
+    background:#fff;border:none;border-radius:14px;padding:13px 14px;cursor:pointer;font-family:inherit;
+    box-shadow:0 4px 14px rgba(47,157,240,.09);
+    transition:transform .12s,box-shadow .2s;touch-action:manipulation;user-select:none;
+    animation:rise .3s ease backwards;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .lesson:active{transform:scale(.97)}
+  .lesson:hover{box-shadow:0 8px 20px rgba(47,157,240,.16)}
+  .lesson .no{
+    flex:0 0 34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;font-size:13px;font-weight:800;font-variant-numeric:tabular-nums;
+  }
+  .lesson .name{flex:1;font-size:14px;font-weight:600;color:#1f2d3d;line-height:1.5;word-break:break-all}
+  .lesson .practice{flex:0 0 auto;padding:7px 14px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none;box-shadow:0 4px 10px rgba(47,157,240,.25);flex-shrink:0}
+  .lesson{cursor:pointer}
+  .lesson .play{flex:0 0 32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#8b7cf6,#a78bfa);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px}
+  /* 播放弹窗 */
+  .player-mask{position:fixed;inset:0;z-index:9990;background:rgba(15,28,42,.72);display:none;align-items:center;justify-content:center;padding:14px;backdrop-filter:blur(4px)}
+  .player-mask.open{display:flex}
+  .player-box{width:100%;max-width:640px;background:#000;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:pop .2s ease}
+  @keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+  .player-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 14px;background:linear-gradient(120deg,#35d29a,#2f9df0);color:#fff}
+  .player-title{flex:1;font-size:13.5px;font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .player-close{flex:0 0 auto;width:30px;height:30px;border-radius:50%;border:none;background:rgba(255,255,255,.22);color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .player-close:active{transform:scale(.9)}
+  .player-box video{width:100%;aspect-ratio:16/9;display:block;background:#000}
+  /* 底部按钮与署名 */
+  .btn-row{display:flex;gap:10px;margin-top:18px}
+  .link-btn{
+    display:inline-flex;align-items:center;gap:6px;padding:10px 24px;background:#fff;color:#1fa873;
+    border:1.5px solid #2ebd85;border-radius:999px;font-size:13.5px;font-weight:700;text-decoration:none;
+    box-shadow:0 4px 12px rgba(46,158,107,.12);transition:transform .15s;touch-action:manipulation;
+  }
+  .link-btn:active{transform:scale(.95)}
+  footer{width:100%;margin-top:22px;text-align:center;font-size:12px;color:#a8bcb4;letter-spacing:1px}
+  .coach-tip{position:relative;display:inline-block;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .coach-tip .tip{visibility:hidden;opacity:0;position:absolute;bottom:145%;left:50%;transform:translateX(-50%) translateY(4px);background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;padding:7px 14px;border-radius:10px;font-size:12.5px;font-weight:700;white-space:nowrap;letter-spacing:.5px;z-index:99;pointer-events:none;box-shadow:0 6px 18px rgba(47,157,240,.35);transition:opacity .2s ease,transform .2s ease,visibility .2s}
+  .coach-tip .tip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#2f9df0}
+  .coach-tip:hover .tip,.coach-tip:active .tip,.coach-tip:focus .tip{visibility:visible;opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <span class="tag">小学数学思维 · 视频课程</span>
+    <h1>豆豆数学思维课</h1>
+    <div class="sub">启蒙培养：独立自主学习能力＋举一反三能力</div>
+  </header>
+
+  <nav class="tabs" id="tabs"></nav>
+  <p class="info" id="info"></p>
+  <div class="list" id="list"></div>
+
+  <div class="btn-row">
+    <a class="link-btn" href="../../index.html">🏠 返回首页</a>
+  </div>
+  <footer>© 2026 <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span></footer>
+</div>
+
+<!-- 视频播放弹窗 -->
+<div class="player-mask" id="playerMask">
+  <div class="player-box">
+    <div class="player-head">
+      <span class="player-title" id="playerTitle"></span>
+      <button class="player-close" id="playerClose" title="关闭">✕</button>
+    </div>
+    <video id="player" controls playsinline preload="metadata"></video>
+  </div>
+</div>
+
+<script>
+/* ============ 视频课程数据（自动扫描生成） ============ */
+const DATA = {
+  "first‑order": [
+    "001-1、应用题举一反三 - 移多补少.mp4"
+  ],
+  "second‑order": [
+    "001-1、四则运算专题 - 11种找规律.mp4",
+    "002-2、四则运算专题 - 11种找规律提高篇.mp4",
+    "003-3、四则运算专题 - 加减巧算.mp4",
+    "004-4、四则运算专题 - 乘除巧算.mp4",
+    "005-5、四则运算专题 - 分数巧算技巧.mp4",
+    "006-6、四则运算专题 -小数巧算技巧.mp4",
+    "007-7、四则运算专题 -循环小数和分数【基础差点的孩子可跳过此节课，高年级再学】.mp4",
+    "008-8、应用题举一反三- 和差问题基础篇.mp4",
+    "009-9、应用题举一反三 - 和差问题提高篇.mp4",
+    "010-10、应用题举一反三 - 和差问题拓展篇.mp4",
+    "011-11、应用题举一反三 - 和倍问题基础篇.mp4",
+    "012-12、应用题举一反三 - 和倍问题提高篇.mp4",
+    "013-13、应用题举一反三- 和倍问题拓展篇.mp4",
+    "014-14、应用题举一反三 - 差倍问题基础篇.mp4",
+    "015-15、应用题举一反三 - 差倍问题提高篇.mp4",
+    "016-16、应用题举一反三 - 差倍问题拓展篇.mp4",
+    "017-17、应用题举一反三 - 鸡兔同笼基础.mp4",
+    "018-18、应用题举一反三 - 鸡兔同笼拔高.mp4",
+    "019-19、应用题举一反三 - 鸡兔同笼拓展.mp4",
+    "020-20、应用题举一反三 - 鸡兔同笼综合.mp4",
+    "022-22、应用题举一反三 - 植树问题【封闭型】.mp4",
+    "023-23、应用题举一反三 - 植树问题【拓展型】.mp4",
+    "024-24、应用题举一反三 - 周期问题【图形中】.mp4",
+    "025-25、应用题举一反三 - 周期问题【数列中】.mp4",
+    "026-26、应用题举一反三 - 周期问题【时间周期】.mp4",
+    "027-27、应用题举一反三 - 还原问题.mp4",
+    "028-28、应用题举一反三 - 年龄问题【基础篇】.mp4",
+    "029-29、应用题举一反三 - 年龄问题【提高篇】.mp4",
+    "030-30、应用题举一反三 - 年龄问题【拓展篇】.mp4",
+    "031-31、应用题举一反三 - 平均数问题.mp4",
+    "032-盈亏问题基础篇.mp4",
+    "033-盈亏问题提高篇.mp4",
+    "034-应用题 - 方阵问题.mp4",
+    "035-32、计数专题 - 数数图形基础篇.mp4",
+    "036-33、计数专题 - 数数图形提高篇.mp4",
+    "037-34、计数专题 - 数数图形拓展篇.mp4",
+    "038-35、计数专题 - 枚举法.mp4",
+    "039-36、计数专题 - 容斥原理.mp4",
+    "040-37、几何专题 - 平面几何公式总结.mp4",
+    "041-几何专题 - 巧求周长基础.mp4",
+    "042-38、几何专题 - 巧求周长拔高【基础差点的孩子可跳过此节课，高年级再学】.mp4",
+    "043-几何专题 - 巧求面积起步.mp4",
+    "044-39、几何专题 - 巧求面积【基础篇】.mp4",
+    "045-40、几何专题 - 巧求面积【提高篇】.mp4",
+    "046-41、几何专题 - 巧求面积【拓展篇】.mp4",
+    "047-42、推理专题 - 横式问题.mp4",
+    "048-43、推理专题 - 加减竖式问题【基础篇】.mp4",
+    "049-44、推理专题 - 加减竖式问题【提高篇】.mp4",
+    "050-45、推理专题 - 乘除竖式问题【基础篇】.mp4",
+    "051-46、推理专题 - 乘除竖式问题【提高篇】.mp4",
+    "052-47、推理专题 - 数字谜【基础篇】.mp4",
+    "053-48、推理专题 - 数字谜【提高篇】.mp4",
+    "054-49、推理专题 - 九宫格.mp4",
+    "055-50、推理专题 - 图形推理.mp4",
+    "056-51、推理专题 - 数阵图.mp4"
+  ],
+  "third‑order": [
+    "001-1、四则运算专题 - 11种找规律.mp4",
+    "002-2、四则运算专题 - 简便计算综合篇.mp4",
+    "003-简便运算综合特训【练习课没有讲义】.mp4",
+    "004-3、四则运算专题 - 分数计算技巧.mp4",
+    "005-4、四则运算专题 - 裂项技巧.mp4",
+    "006-5、四则运算专题 - 小数巧算技巧.mp4",
+    "007-6、四则运算专题 - 循环小数与分数.mp4",
+    "008-7、四则运算专题 - 等差数列.mp4",
+    "009-8、四则运算专题 - 分数比大小四板斧.mp4",
+    "010-9、四则运算专题 - 解方程之整数小数方程【先了解 五年级正式系统学】.mp4",
+    "011-10、四则运算专题 - 解方程之分数方程【先了解 五年级正式系统学】.mp4",
+    "012-11、四则运算专题 - 解方程之比例方程【先了解 五年级正式系统学】.mp4",
+    "013-12、四则运算专题 - 定义新运算.mp4",
+    "014-13、应用题举一反三专题 - 和差问题综合拔高.mp4",
+    "015-14、应用题举一反三专题 - 和倍问题综合拔高.mp4",
+    "016-15、应用题举一反三专题 - 差倍问题综合拔高.mp4",
+    "017-16、应用题举一反三专题 - 鸡兔同笼综合拔高.mp4",
+    "018-17、应用题举一反三专题 - 年龄问题综合拔高.mp4",
+    "019-19、应用题举一反三专题 - 时间周期问题.mp4",
+    "020-20、应用题 - 周期问题.mp4",
+    "021-21、应用题举一反三专题 - 假设法综合.mp4",
+    "022-22、应用题举一反三专题 - 归一问题.mp4",
+    "023-23、应用题举一反三专题 - 归总问题.mp4",
+    "024-24、盈亏问题基础篇.mp4",
+    "025-25、盈亏问题提高篇.mp4",
+    "026-26、应用题 - 统筹规划.mp4",
+    "027-27、计数专题专题 - 加法原理.mp4",
+    "028-28、计数专题 - 乘法原理.mp4",
+    "029-29、计数专题 - 加乘原理混合.mp4",
+    "030-30、计数专题 - 排列.mp4",
+    "031-31、计数专题 - 组合.mp4",
+    "032-32、计数专题 - 排列组合.mp4",
+    "033-33、计数专题 - 抽屉原理.mp4",
+    "034-34、计数专题 -递推思维.mp4",
+    "035-35、几何专题 - 巧求周长.mp4",
+    "036-36、几何专题 - 组合图形求面积基础篇.mp4",
+    "037-37、几何专题 - 组合图形求面积拔高篇.mp4",
+    "038-38、几何专题 -立体图形初步.mp4",
+    "039-39、几何专题 - 勾股定理初步.mp4",
+    "040-40、推理专题 - 文字谜拓展篇.mp4",
+    "041-41、行程专题 - 相遇问题基础篇.mp4",
+    "042-42、行程专题 - 相遇问题提高篇.mp4",
+    "043-43、行程专题 - 追击问题基础篇.mp4",
+    "044-44、行程专题 - 追击问题拔高篇.mp4",
+    "045-45、行程专题 - 火车过桥.mp4",
+    "046-46、行程专题 - 流水行船.mp4",
+    "047-47、行程专题 - 时钟问题.mp4",
+    "048-48、行程专题 - 环形跑道.mp4",
+    "049-49、行程专题 - 间隔发车.mp4"
+  ],
+  "fourth‑order": [
+    "001-1、计算专题 - 12种简便运算技巧【培优】.mp4"
+  ]
+};
+const ORDER_NAME = {'first‑order':'一阶','second‑order':'二阶','third‑order':'三阶','fourth‑order':'四阶'};
+const PRACTICE = {
+  'first‑order': {1:'f-practice001-1.html'},
+  'second‑order': {1:'s-practice001-1.html',2:'s-practice001-1.html',3:'s-practice003-1.html',4:'s-practice003-1.html',5:'s-practice005-1.html',6:'s-practice005-1.html',7:'s-practice005-1.html',8:'s-practice008-1.html',9:'s-practice008-1.html',10:'s-practice008-1.html',11:'s-practice011-1.html',12:'s-practice011-1.html',13:'s-practice011-1.html',14:'s-practice014-1.html',15:'s-practice014-1.html',16:'s-practice014-1.html',17:'s-practice017-1.html',18:'s-practice017-1.html',19:'s-practice017-1.html',20:'s-practice017-1.html',22:'s-practice022-1.html',23:'s-practice022-1.html',24:'s-practice024-1.html',25:'s-practice024-1.html',26:'s-practice024-1.html',27:'s-practice027-1.html',28:'s-practice028-1.html',29:'s-practice028-1.html',30:'s-practice028-1.html',31:'s-practice031-1.html',32:'s-practice032-1.html',33:'s-practice032-1.html',34:'s-practice034-1.html',38:'s-practice038-1.html',39:'s-practice039-1.html',47:'s-practice047-1.html'},
+  'third‑order': {1:'t-practice001-1.html',2:'t-practice002-1.html',3:'t-practice002-1.html',6:'t-practice006-1.html',8:'t-practice008-1.html',13:'t-practice013-1.html',14:'t-practice014-1.html',15:'t-practice015-1.html',16:'t-practice016-1.html',17:'t-practice017-1.html',18:'t-practice018-1.html',19:'t-practice019-1.html',20:'t-practice019-1.html',21:'t-practice021-1.html',22:'t-practice022-1.html',23:'t-practice022-1.html',26:'t-practice026-1.html',27:'t-practice027-1.html',28:'t-practice027-1.html',29:'t-practice027-1.html',30:'t-practice030-1.html',31:'t-practice030-1.html',32:'t-practice030-1.html',33:'t-practice033-1.html',41:'t-practice041-1.html',42:'t-practice041-1.html',43:'t-practice043-1.html',44:'t-practice043-1.html',45:'t-practice045-1.html',46:'t-practice046-1.html',48:'t-practice048-1.html'},
+  'fourth‑order': {1:'ff-practice001-1.html'}
+};
+const ORDER = Object.keys(DATA);
+let curOrder = 0;
+
+const tabsEl = document.getElementById('tabs');
+const infoEl = document.getElementById('info');
+const listEl = document.getElementById('list');
+const mask = document.getElementById('playerMask');
+const player = document.getElementById('player');
+const playerTitle = document.getElementById('playerTitle');
+
+/* 视频 URL：中文路径分段编码 */
+function vUrl(folder, file){
+  return '../../resources/Lilaoshi-maths/video/' + encodeURIComponent(folder) + '/' + encodeURIComponent(file);
+}
+/* 显示名：去掉 .mp4 */
+function showName(file){ return file.replace(/\.mp4$/i,''); }
+
+function renderTabs(){
+  tabsEl.innerHTML = '';
+  ORDER.forEach((name, i)=>{
+    const b = document.createElement('button');
+    b.className = 'tab' + (i===curOrder ? ' active' : '');
+    b.innerHTML = (ORDER_NAME[name]||name) + '<b>' + DATA[name].length + ' 节</b>';
+    b.addEventListener('click', ()=>{ curOrder = i; renderTabs(); renderList(); });
+    tabsEl.appendChild(b);
+  });
+}
+function renderList(){
+  const name = ORDER[curOrder];
+  const files = DATA[name];
+  infoEl.innerHTML = '当前：<b>' + (ORDER_NAME[name]||name) + '</b> · 共 <b>' + files.length + '</b> 节视频';
+  listEl.innerHTML = '';
+  files.forEach((f, i)=>{
+    const b = document.createElement('div');
+    b.className = 'lesson';
+    b.style.animationDelay = (i*15)+'ms';
+    const pf = (PRACTICE[name]||{})[parseInt(f.split('-')[0],10)];
+    b.innerHTML = '<span class="no">' + String(i+1).padStart(2,'0') + '</span>' +
+      '<span class="name">' + showName(f) + '</span>' +
+      '<span class="play">▶</span>' +
+      (pf ? '<a class="practice" href="' + pf + '" onclick="event.stopPropagation();">📝 练习</a>' : '');
+    b.addEventListener('click', ()=>{
+      player.pause();
+      player.src = vUrl(name, f);
+      playerTitle.textContent = showName(f);
+      mask.classList.add('open');
+      player.load();
+      player.play().catch(()=>{});
+    });
+    listEl.appendChild(b);
+  });
+}
+document.getElementById('playerClose').addEventListener('click', ()=>{ mask.classList.remove('open'); player.pause(); });
+mask.addEventListener('click', (e)=>{ if(e.target === mask){ mask.classList.remove('open'); player.pause(); } });
+
+renderTabs();
+renderList();
+</script>
+</body>
+</html>

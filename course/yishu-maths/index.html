@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2ebd85">
+<title>智学中心 · 一数初中数学频课程</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
+    background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+    color:#33434b;min-height:100vh;display:flex;justify-content:center;align-items:flex-start;
+    padding:28px 16px calc(60px + env(safe-area-inset-bottom));
+  }
+  .container{width:100%;max-width:560px;display:flex;flex-direction:column;align-items:center}
+  /* 顶部标题卡 */
+  .hero{
+    position:relative;width:100%;
+    background:linear-gradient(135deg,#35d29a 0%,#2f9df0 100%);
+    border-radius:22px;padding:28px 20px 24px;text-align:center;color:#fff;
+    overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);
+  }
+  .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+  .hero::before{width:120px;height:120px;top:-40px;right:-30px}
+  .hero::after{width:70px;height:70px;bottom:-24px;left:-16px}
+  .hero .tag{position:relative;display:inline-block;background:rgba(255,255,255,.22);border-radius:20px;padding:3px 14px;font-size:12px;letter-spacing:2px;backdrop-filter:blur(4px)}
+  .hero h1{position:relative;font-size:23px;letter-spacing:2px;font-weight:700;margin-top:10px;text-shadow:0 2px 6px rgba(0,0,0,.12)}
+  .hero .sub{position:relative;margin-top:8px;font-size:12px;letter-spacing:3px;opacity:.92}
+  .hero .src{position:relative;margin-top:10px;font-size:11px;opacity:.82;letter-spacing:1px}
+  .hero .src a{color:#fff;text-decoration:underline}
+  /* 分类标签 */
+  .tabs{width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(74px,1fr));gap:8px;margin-top:16px}
+  .tab{
+    border:none;background:#fff;color:#8aa09a;font-size:13px;padding:11px 0;border-radius:12px;
+    cursor:pointer;box-shadow:0 4px 10px rgba(47,157,240,.08);transition:all .25s;font-family:inherit;
+    touch-action:manipulation;user-select:none;
+  }
+  .tab:active{transform:scale(.95)}
+  .tab.active{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;font-weight:700;box-shadow:0 8px 16px rgba(47,157,240,.28)}
+  .tab b{display:block;font-size:11px;font-weight:400;opacity:.8}
+  .info{width:100%;margin-top:14px;background:#fff;border-radius:12px;padding:9px 12px;text-align:center;font-size:13px;color:#8aa09a;box-shadow:0 4px 10px rgba(47,157,240,.06)}
+  .info b{color:#1fa873;font-weight:700}
+  /* 课程列表 */
+  .list{width:100%;margin-top:14px;display:flex;flex-direction:column;gap:10px}
+  .lesson{
+    width:100%;display:flex;align-items:center;gap:12px;text-align:left;
+    background:#fff;border:none;border-radius:14px;padding:13px 14px;cursor:pointer;font-family:inherit;
+    box-shadow:0 4px 14px rgba(47,157,240,.09);
+    transition:transform .12s,box-shadow .2s;touch-action:manipulation;user-select:none;
+    animation:rise .3s ease backwards;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .lesson:active{transform:scale(.97)}
+  .lesson:hover{box-shadow:0 8px 20px rgba(47,157,240,.16)}
+  .lesson .no{
+    flex:0 0 34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;font-size:13px;font-weight:800;font-variant-numeric:tabular-nums;
+  }
+  .lesson .body{flex:1;min-width:0}
+  .lesson .name{flex:1;font-size:14px;font-weight:600;color:#1f2d3d;line-height:1.5;word-break:break-all}
+  .lesson .dur{font-size:11px;color:#a8bcb4;margin-top:3px}
+  .lesson .play{flex:0 0 32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#8b7cf6,#a78bfa);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+  /* 播放弹窗（B站可嵌入播放器） */
+  .player-mask{position:fixed;inset:0;z-index:9990;background:rgba(15,28,42,.72);display:none;align-items:center;justify-content:center;padding:14px;backdrop-filter:blur(4px)}
+  .player-mask.open{display:flex}
+  .player-box{width:100%;max-width:680px;background:#000;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:pop .2s ease}
+  @keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+  .player-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 14px;background:linear-gradient(120deg,#35d29a,#2f9df0);color:#fff}
+  .player-title{flex:1;font-size:13.5px;font-weight:700;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .player-open{flex:0 0 auto;padding:5px 12px;background:rgba(255,255,255,.22);color:#fff;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none;margin-right:6px}
+  .player-close{flex:0 0 auto;width:30px;height:30px;border-radius:50%;border:none;background:rgba(255,255,255,.22);color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .player-close:active{transform:scale(.9)}
+  .player-box iframe{width:100%;aspect-ratio:16/9;display:block;background:#000;border:0}
+  /* 底部按钮与署名 */
+  .btn-row{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;justify-content:center}
+  .link-btn{
+    display:inline-flex;align-items:center;gap:6px;padding:10px 24px;background:#fff;color:#1fa873;
+    border:1.5px solid #2ebd85;border-radius:999px;font-size:13.5px;font-weight:700;text-decoration:none;
+    box-shadow:0 4px 12px rgba(46,158,107,.12);transition:transform .15s;touch-action:manipulation;
+  }
+  .link-btn:active{transform:scale(.95)}
+  footer{width:100%;margin-top:22px;text-align:center;font-size:12px;color:#a8bcb4;letter-spacing:1px}
+  .coach-tip{position:relative;display:inline-block;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .coach-tip .tip{visibility:hidden;opacity:0;position:absolute;bottom:145%;left:50%;transform:translateX(-50%) translateY(4px);background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;padding:7px 14px;border-radius:10px;font-size:12.5px;font-weight:700;white-space:nowrap;letter-spacing:.5px;z-index:99;pointer-events:none;box-shadow:0 6px 18px rgba(47,157,240,.35);transition:opacity .2s ease,transform .2s ease,visibility .2s}
+  .coach-tip .tip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#2f9df0}
+  .coach-tip:hover .tip,.coach-tip:active .tip,.coach-tip:focus .tip{visibility:visible;opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <span class="tag">初中数学 · 一数精讲</span>
+    <h1>一数初中数学课程</h1>
+    <div class="sub">按章节与难度选看 · 基础 / 中档 / 拔高</div>
+  </header>
+
+  <nav class="tabs" id="tabs"></nav>
+  <p class="info" id="info"></p>
+  <div class="list" id="list"></div>
+
+  <div class="btn-row">
+    <a class="link-btn" href="../../index.html">🏠 返回首页</a>
+  </div>
+  <footer>© 2026 <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span></footer>
+</div>
+
+<!-- 视频播放弹窗 -->
+<div class="player-mask" id="playerMask">
+  <div class="player-box">
+    <div class="player-head">
+      <span class="player-title" id="playerTitle"></span>
+      <a class="player-open" id="playerOpen" href="#" target="_blank" rel="noopener">↗ 在B站看</a>
+      <button class="player-close" id="playerClose" title="关闭">✕</button>
+    </div>
+    <iframe id="player" allowfullscreen="true" scrolling="no" frameborder="0" allow="autoplay"></iframe>
+  </div>
+</div>
+
+<script>
+const BV = "BV1qE411H7Uv";
+const COURSE = [{"cat": "数与式", "items": [{"p": 2, "t": "【数与式】【基础】数与式的基本概念", "d": 605}, {"p": 3, "t": "【数与式】【基础】大题第一题：数与式的化简求值", "d": 898}, {"p": 5, "t": "【数与式】【中档】绝对值的意义与解题方法", "d": 792}, {"p": 6, "t": "【数与式】【中档】乘法公式大全以及使用方法", "d": 1407}, {"p": 7, "t": "【数与式】【拔高】配方的进阶技巧（偏竞赛难度）", "d": 987}, {"p": 8, "t": "【数与式】【拔高】因式分解进阶技巧（小题压轴难度）", "d": 1083}], "n": 6}, {"cat": "方程与不等式", "items": [{"p": 9, "t": "【方程与不等式】【基础】大题第二题：解方程（组）稳定得分方法", "d": 930}, {"p": 10, "t": "【方程与不等式】【基础】大题第二题：解不等式（组）", "d": 650}, {"p": 11, "t": "【方程与不等式】【中档】含参方程（组）与不等式（组）解题思路", "d": 899}, {"p": 12, "t": "【方程与不等式】【中档】中考方程与不等式实际应用大题稳定得分策略", "d": 931}, {"p": 13, "t": "【方程与不等式】【中档】韦达定理运用策略", "d": 1537}, {"p": 4, "t": "【知识点】【基础】十字相乘法；二次函数、方程、不等式基础知识梳理", "d": 1018}], "n": 6}, {"cat": "几何", "items": [{"p": 18, "t": "【几何】【知识点】三角形的全等与相似", "d": 1238}, {"p": 19, "t": "【几何】【中档】角平分线的解题策略", "d": 1321}, {"p": 20, "t": "【几何】【拔高】直角中的“特殊型”", "d": 1504}, {"p": 21, "t": "【几何】【拔高】利用相似计算长度与比例关系", "d": 2128}, {"p": 22, "t": "【几何】【知识点】圆的知识梳理（含四点共圆、圆幂定理）", "d": 1210}, {"p": 23, "t": "【几何】【基础】与圆有关的角（转角思路）", "d": 1444}, {"p": 24, "t": "【几何】【中档】垂径定理的使用策略", "d": 1164}, {"p": 25, "t": "【几何】【中档】圆与内接四边形题型解题思路", "d": 2168}, {"p": 26, "t": "【几何】【中档】圆中线段的积与商", "d": 2262}, {"p": 27, "t": "【几何】【中档】圆中线段的计算方法", "d": 1974}, {"p": 28, "t": "【几何】【中档】圆幂定理的运用（中档）", "d": 1008}, {"p": 29, "t": "【几何】几何探索规律压轴题解题思路（拔高）", "d": 1860}], "n": 12}, {"cat": "函数", "items": [{"p": 14, "t": "【函数】【基础】一次函数与反比例函数知识点串讲", "d": 971}, {"p": 15, "t": "【函数】【中档】中考利润型大题，听完本节课，不会再丢分！", "d": 872}, {"p": 16, "t": "【函数】【拔高】二次函数中的a、b、c考点汇总（小题压轴题难度）", "d": 1195}, {"p": 17, "t": "【函数】【拔高】含参一元二次函数解题思路 （视频里最后一题高中的解集符号可以忽略）", "d": 1676}, {"p": 30, "t": "【函数压轴】【知识点】直线与反比例函数要点总结（重要）", "d": 710}, {"p": 31, "t": "【函数压轴】动态图形的最值探究（拔高）", "d": 1614}, {"p": 32, "t": "【函数压轴】动点与特殊图形压轴题-树状图分析", "d": 1534}, {"p": 33, "t": "【函数压轴】二次函数与特殊三角形上集（中档）", "d": 1708}, {"p": 34, "t": "【函数压轴】二次函数与特殊三角形下集（拔高）", "d": 1664}, {"p": 35, "t": "【函数压轴】二次函数与平行四边形（中档）", "d": 1550}, {"p": 36, "t": "【函数压轴】二次函数与特殊平行四边形（拔高）", "d": 1733}], "n": 11}, {"cat": "压轴", "items": [{"b": "BV1Gs4y1q7Zu", "p": 1, "t": "【中考压轴】最值方法梳理！将军饮马+胡不归+瓜豆+隐圆！", "d": 3574}, {"b": "BV1qV4y1B7ao", "p": 1, "t": "【中考压轴】抛物线与特殊形大总结！", "d": 1703}, {"b": "BV1PW4y1Q7tT", "p": 1, "t": "【中考压轴】常考几何模型总结！再也不怕连辅助线！", "d": 1768}], "n": 3}];
+const BILI_WATCH = "https://www.bilibili.com/video/" + BV + "?p=";
+const BILI_EMBED = "https://player.bilibili.com/player.html?bvid=" + BV + "&page=";
+
+const tabsEl = document.getElementById('tabs');
+const infoEl = document.getElementById('info');
+const listEl = document.getElementById('list');
+const mask = document.getElementById('playerMask');
+const player = document.getElementById('player');
+const playerTitle = document.getElementById('playerTitle');
+const playerOpen = document.getElementById('playerOpen');
+
+let cur = 0;
+function fmtDur(s){ var m=Math.floor(s/60), x=s%60; return m+':' + (x<10?'0':'') + x; }
+
+function renderTabs(){
+  tabsEl.innerHTML = '';
+  COURSE.forEach((g, i)=>{
+    const b = document.createElement('button');
+    b.className = 'tab' + (i===cur?' active':'');
+    b.innerHTML = g.cat + '<b>' + g.n + ' 节</b>';
+    b.addEventListener('click', ()=>{ cur=i; renderTabs(); renderList(); });
+    tabsEl.appendChild(b);
+  });
+}
+function renderList(){
+  const g = COURSE[cur];
+  infoEl.innerHTML = '当前：<b>' + g.cat + '</b> · 共 <b>' + g.n + '</b> 节视频';
+  listEl.innerHTML = '';
+  g.items.forEach((it, i)=>{
+    const b = document.createElement('div');
+    b.className = 'lesson';
+    b.style.animationDelay = (i*15)+'ms';
+    b.innerHTML = '<span class="no">' + String(i+1).padStart(2,'0') + '</span>' +
+      '<span class="body"><span class="name">' + it.t + '</span>' +
+      '<span class="dur">⏱ ' + fmtDur(it.d) + ' · 第 ' + it.p + ' P</span></span>' +
+      '<span class="play">▶</span>';
+    b.addEventListener('click', ()=> openPlayer(it));
+    listEl.appendChild(b);
+  });
+}
+function openPlayer(it){
+  const bvid = it.b || BV;
+  const url = "https://player.bilibili.com/player.html?bvid=" + bvid + "&page=" + it.p + "&high_quality=1&danmaku=0&autoplay=1";
+  player.src = url;
+  playerTitle.textContent = it.t;
+  playerOpen.href = "https://www.bilibili.com/video/" + bvid + "?p=" + it.p;
+  mask.classList.add('open');
+}
+document.getElementById('playerClose').addEventListener('click', ()=>{ mask.classList.remove('open'); player.src=''; });
+mask.addEventListener('click', (e)=>{ if(e.target===mask){ mask.classList.remove('open'); player.src=''; } });
+
+renderTabs();
+renderList();
+</script>
+</body>
+</html>

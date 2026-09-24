@@ -46,12 +46,21 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
 .coach-tip:hover .tip,.coach-tip:active .tip,.coach-tip:focus .tip{visibility:visible;opacity:1;transform:translateX(-50%) translateY(0)}
 .coach-footer{text-align:center;padding:14px 0 18px;color:var(--text2,#7f8c8d);font-size:.75rem}
 
+
+  /* 返回首页（底部居中） */
+  .home-row{display:flex;justify-content:center;margin-top:18px}
+  .home-btn{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#1fa873;
+    border:1.5px solid #2ebd85;padding:12px 28px;border-radius:999px;font-size:14px;font-weight:800;
+    text-decoration:none;box-shadow:0 4px 12px rgba(46,158,107,.14);
+    transition:transform .15s;touch-action:manipulation}
+  .home-btn:active{transform:scale(.95)}
+
 </style>
 </head>
 <body><div class="wrap">
 <header class="hdr"><h1>📖 数学课本知识总结</h1><p class="sub">人教版 2024 修订新课标 · 1~9 年级 18 学期</p></header>
 <div class="tips"><b>📌 背诵提示：</b>① 每章按概念/公式/定理/定律/性质分层；<br>② 点击章节展开背诵；<br>③ ★ 标记核心公式务必背熟；<br>④ 彩色标签快速定位知识点类型（紫=概念/绿=公式/红=定理/橙=定律/青=性质）。</div>
-<div class="top-nav"><a href="../index.html">🏠 回到首页 </a><a href="../calculation/index.html">🧮 计算专项 </a><a href="../thinking/index.html">💡 十大思想 </a><a href="mindmap/index.html">🧭思维导图 </a><a href="mindmap/index.html">📐经典题库</a></div>
+<div class="top-nav"><a href="../calculation/index.html">🧮 计算专项 </a><a href="../thinking/index.html">💡 十大思想 </a><a href="mindmap/index.html">🧭思维导图 </a><a href="mindmap/index.html">📐经典题库</a><a href="../tutoring/index.html">📐预习补习</a><a href="../../dd-teacher/b-courses.html">📺 B站名师课</a></div>
 <div class="grade-row"><div class="grade-label">一年级</div><div class="sem-cells">
 <a class="cell" href="1a.html"><span class="icon">📘</span><span class="name">一年级上册</span><span class="hint">9 章 · 69 条</span></a>
 <a class="cell" href="1b.html"><span class="icon">📘</span><span class="name">一年级下册</span><span class="hint">8 章 · 69 条</span></a>
@@ -88,5 +97,6 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
 <a class="cell" href="9a.html"><span class="icon">📚</span><span class="name">九年级上册</span><span class="hint">5 章 · 49 条</span></a>
 <a class="cell" href="9b.html"><span class="icon">📚</span><span class="name">九年级下册</span><span class="hint">5 章 · 48 条</span></a>
 </div></div>
+<div class="home-row"><a class="home-btn" href="../index.html">🏠 返回首页</a></div>
 <footer class="ft">© <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span></footer>
 </div></body></html>

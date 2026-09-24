@@ -752,6 +752,8 @@ function doSubmit(){
 
 /* ============ 渲染：全部 ============ */
 function renderAll(){
+  var tb = document.getElementById('toolbar');
+  if (tb) tb.style.display = (state.view === 'home') ? 'none' : '';
   if (state.view === 'home') renderHome();
   else renderPractice();
 }

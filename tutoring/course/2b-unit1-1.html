@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>1 认识秒 · 二年级上册</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:linear-gradient(180deg,#eafaf3 0%,#e8f4ff 100%);
+    color:#2c3e50;min-height:100vh;overflow-x:hidden;
+  }
+  /* 双圆装饰 */
+  .deco{position:fixed;border-radius:50%;pointer-events:none;z-index:0}
+  .deco.d1{width:220px;height:220px;background:rgba(53,210,154,.18);top:-80px;right:-70px}
+  .deco.d2{width:160px;height:160px;background:rgba(47,157,240,.15);bottom:-60px;left:-50px}
+
+  .app{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:16px 14px 120px}
+
+  /* ===== 头部渐变标题卡 ===== */
+  .hero{
+    background:linear-gradient(135deg,#35d29a,#2f9df0);
+    border-radius:20px;padding:22px 20px 18px;color:#fff;
+    box-shadow:0 8px 24px rgba(47,157,240,.35);position:relative;overflow:hidden;
+  }
+  .hero .tag{display:inline-block;background:rgba(255,255,255,.25);border-radius:20px;padding:3px 12px;font-size:12px;letter-spacing:1px;backdrop-filter:blur(4px)}
+  .hero h1{font-size:28px;margin:8px 0 4px;font-weight:800;letter-spacing:2px}
+  .hero p{font-size:13px;opacity:.92}
+  .hero .circle{position:absolute;border:2px solid rgba(255,255,255,.35);border-radius:50%}
+  .hero .circle.c1{width:90px;height:90px;right:-20px;top:-24px}
+  .hero .circle.c2{width:46px;height:46px;right:34px;bottom:-14px}
+
+  /* ===== 通用卡片 ===== */
+  .card{
+    background:#fff;border-radius:16px;padding:16px;margin-top:14px;
+    box-shadow:0 4px 14px rgba(44,62,80,.07);
+  }
+  .card h3{
+    font-size:15px;color:#1a2b3d;display:flex;align-items:center;gap:7px;margin-bottom:10px;
+  }
+  .card h3 .ico{width:26px;height:26px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;color:#fff;background:linear-gradient(135deg,#35d29a,#2f9df0);flex-shrink:0}
+  .card li{list-style:none;font-size:14px;line-height:1.75;color:#3d5168;padding-left:16px;position:relative}
+  .card li::before{content:"";position:absolute;left:0;top:10px;width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,#35d29a,#2f9df0)}
+  .card .note{font-size:13px;color:#7a8ba0;line-height:1.7;margin-top:6px}
+  .hl{color:#12b76a;font-weight:700}
+
+  /* ===== 按钮（胶囊药丸+玻璃质感） ===== */
+  .btn{
+    display:block;width:100%;border:none;cursor:pointer;text-align:center;
+    border-radius:999px;padding:15px 20px;font-size:16px;font-weight:700;letter-spacing:2px;
+    transition:transform .12s ease,box-shadow .2s ease;user-select:none;
+  }
+  .btn:active{transform:scale(.95)}
+  .btn-primary{
+    background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;
+    box-shadow:0 6px 18px rgba(47,157,240,.35);
+  }
+  .btn-ghost{
+    background:rgba(255,255,255,.6);color:#2f9df0;border:1.5px solid #2f9df0;
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  }
+  .btn-lg{padding:17px 20px;font-size:17px}
+  .btn .sm{display:block;font-size:12px;font-weight:400;letter-spacing:0;opacity:.85;margin-top:3px}
+  .btn.loading{color:transparent !important;position:relative}
+  .btn.loading::after{
+    content:"打开中…";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    color:#12b76a;font-size:16px;font-weight:700;letter-spacing:2px;background:rgba(255,255,255,.92);border-radius:999px;
+  }
+
+  .btnRow{display:flex;gap:10px;margin-top:14px}
+  .btnRow .btn{flex:1}
+
+  /* ===== 进度卡 ===== */
+  .status-pill{display:inline-block;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+  .st-todo{background:#eef3f8;color:#7a8ba0}
+  .st-doing{background:#e6f7ef;color:#12b76a}
+  .st-done{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+  .bar{height:10px;border-radius:10px;background:#eef3f8;overflow:hidden;margin-top:10px}
+  .bar i{display:block;height:100%;border-radius:10px;background:linear-gradient(90deg,#35d29a,#2f9df0);transition:width .6s ease}
+
+  /* ===== 本章小节列表 ===== */
+  .sub-list{list-style:none;padding:0;margin:0}
+  .sub-list li{margin-top:8px}
+  .sub-list li:first-child{margin-top:0}
+  .sub-list label{display:flex;align-items:center;gap:10px;padding:9px 12px;background:#f7fbf9;border:1px solid #d9f0e6;border-radius:10px;cursor:pointer;font-size:14px;color:#1a2b3d;transition:background .15s}
+  .sub-list label:hover{background:#eef7f2}
+  .sub-list .play{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:linear-gradient(135deg,#8b7cf6,#a78bfa);color:#fff;border-radius:7px;font-size:12px;flex-shrink:0}
+  .sub-list .name{font-weight:600;color:#2f9df0;word-break:break-all}
+  .sub-list .state{font-size:11px;font-weight:700;margin-left:auto;flex-shrink:0;letter-spacing:1px}
+  .sub-item .play{transition:transform .12s}
+  .sub-item:not(.lock):not(.done) label{cursor:pointer}
+  .sub-item.lock label{opacity:.55;cursor:not-allowed;background:#f6f8fa;border-color:#e6ebf0}
+  .sub-item.lock .play{background:#cbd5e1}
+  .sub-item.lock .state{color:#9aa8b8}
+  .sub-item.open .state{color:#2f9df0}
+  .sub-item.done label{background:#e9f9f0;border-color:#b7e6cd;cursor:default}
+  .sub-item.done .play{background:linear-gradient(135deg,#22c55e,#16a34a)}
+  .sub-item.done .name{color:#0f9d58}
+  .sub-item.done .state{color:#12b76a}
+
+  /* ===== 视频弹窗 ===== */
+  .modal{position:fixed;inset:0;z-index:50;background:rgba(10,20,30,.72);backdrop-filter:blur(6px);display:none;flex-direction:column;align-items:center;justify-content:center;padding:14px}
+  .modal.show{display:flex}
+  .m-box{background:#fff;border-radius:18px;max-width:480px;width:100%;max-height:94vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+  .m-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+  .m-head .t{font-size:15px;font-weight:700;letter-spacing:1px}
+  .m-close{
+    width:32px;height:32px;border-radius:50%;border:none;background:rgba(255,255,255,.22);color:#fff;
+    font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .12s;
+  }
+  .m-close:active{transform:scale(.9)}
+  .m-close:disabled{background:rgba(255,255,255,.12);color:rgba(255,255,255,.35);cursor:not-allowed}
+  .m-body{overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
+  .video-wrap{width:100%;background:#000;aspect-ratio:16/9}
+  .video-wrap video{width:100%;height:100%;display:block;background:#000}
+  .watch-tip{background:#fff7e6;color:#b25e09;font-size:13px;padding:10px 14px;line-height:1.6;text-align:center}
+  .watch-tip.ok{background:#e6f7ef;color:#0f9d58}
+
+  /* 知识笔记 */
+  .note-card{background:#f7fbf9;border:1px solid #d9f0e6;border-radius:12px;margin:12px;padding:12px}
+  .note-card h4{font-size:14px;color:#0f9d58;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .note-card ol{padding-left:18px}
+  .note-card li{font-size:13px;line-height:1.75;color:#3d5168}
+
+  /* ===== 练习页 ===== */
+  .quiz-top{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#fff;border-radius:14px;box-shadow:0 4px 14px rgba(44,62,80,.07);position:sticky;top:0;z-index:5}
+  .timer{display:flex;align-items:center;gap:8px}
+  .timer .clock{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px}
+  .timer .num{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums;color:#1a2b3d}
+  .quiz-prog{font-size:13px;color:#7a8ba0;font-weight:700}
+
+  .q-card{background:#fff;border-radius:16px;padding:16px;margin-top:14px;box-shadow:0 4px 14px rgba(44,62,80,.07)}
+  .q-no{display:inline-block;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;font-size:12px;font-weight:700;border-radius:10px;padding:3px 10px;margin-bottom:10px}
+  .q-diff{float:right;font-size:12px;color:#b45309;font-weight:700;background:#fff7e6;border:1px solid #fde68a;border-radius:10px;padding:3px 10px;margin-bottom:10px;letter-spacing:1px}
+  .quiz-src{background:linear-gradient(135deg,rgba(53,210,154,.12),rgba(47,157,240,.12));border:1.5px dashed #35d29a;color:#0f9d58;font-size:13px;font-weight:600;text-align:center;padding:9px 12px;border-radius:12px;margin-top:14px}
+  .quiz-src b{color:#2f9df0}
+  .rev-diff{font-size:11px;color:#b45309;background:#fff7e6;border-radius:8px;padding:1px 7px;margin-left:6px;letter-spacing:1px;vertical-align:middle}
+  .q-text{font-size:16px;font-weight:700;color:#1a2b3d;line-height:1.6;margin-bottom:12px}
+
+  .fill-box{display:flex;align-items:center;gap:8px;margin-top:6px}
+  .fill-box input{
+    flex:1;max-width:160px;border:2px solid #d7e3ef;border-radius:12px;padding:11px 14px;font-size:18px;
+    font-weight:700;color:#1a2b3d;text-align:center;outline:none;background:#f8fbfe;font-variant-numeric:tabular-nums;
+  }
+  .fill-box input:focus{border-color:#2f9df0;background:#fff}
+  .fill-box .unit{font-size:14px;color:#7a8ba0;font-weight:600}
+
+  .opt{display:block;width:100%;text-align:left;border:2px solid #e3ecf4;border-radius:12px;background:#f8fbfe;padding:12px 14px;font-size:15px;color:#3d5168;cursor:pointer;margin-top:9px;transition:all .15s;font-family:inherit}
+  .opt:active{transform:scale(.97)}
+  .opt.sel{border-color:#2f9df0;background:rgba(47,157,240,.08);color:#1a2b3d;font-weight:700}
+  .opt .k{display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;border-radius:50%;background:#e3ecf4;color:#5b6b7d;font-size:13px;margin-right:8px;font-weight:700}
+  .opt.sel .k{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+
+  .judge-row{display:flex;gap:10px;margin-top:6px}
+  .judge{flex:1;border:2px solid #e3ecf4;border-radius:12px;background:#f8fbfe;padding:12px;font-size:15px;font-weight:700;cursor:pointer;color:#5b6b7d;transition:all .15s;font-family:inherit}
+  .judge:active{transform:scale(.95)}
+  .judge.t{color:#12b76a}
+  .judge.f{color:#f04438}
+  .judge.selT{border-color:#12b76a;background:rgba(18,183,106,.1);color:#12b76a}
+  .judge.selF{border-color:#f04438;background:rgba(240,68,56,.1);color:#f04438}
+
+  /* ===== 报告页 ===== */
+  .report-hero{background:#fff;border-radius:18px;padding:22px 16px;text-align:center;box-shadow:0 4px 14px rgba(44,62,80,.07);margin-top:14px}
+  .ring{position:relative;width:120px;height:120px;margin:0 auto 12px}
+  .ring svg{transform:rotate(-90deg)}
+  .ring .val{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring .val b{font-size:28px;font-weight:800;color:#1a2b3d;font-variant-numeric:tabular-nums}
+  .ring .val span{font-size:12px;color:#8a99ab}
+  .verdict{font-size:18px;font-weight:800;margin-bottom:4px}
+  .verdict.pass{color:#12b76a}
+  .verdict.fail{color:#f04438}
+  .report-sub{font-size:13px;color:#7a8ba0;line-height:1.7}
+  .report-stats{display:flex;gap:8px;margin-top:14px}
+  .stat{flex:1;background:#f4f8fb;border-radius:12px;padding:10px 4px;text-align:center}
+  .stat b{display:block;font-size:19px;font-weight:800;color:#1a2b3d;font-variant-numeric:tabular-nums}
+  .stat span{font-size:11px;color:#8a99ab}
+
+  .review-item{background:#fff;border-radius:14px;padding:14px;margin-top:12px;box-shadow:0 4px 14px rgba(44,62,80,.07)}
+  .review-item .q{font-size:14px;font-weight:700;color:#1a2b3d;line-height:1.6;margin-bottom:8px}
+  .rev-line{font-size:13px;line-height:1.9}
+  .rev-line .lb{color:#8a99ab;margin-right:4px}
+  .rev-line.correct{color:#12b76a}
+  .rev-line.wrong{color:#f04438}
+  .rev-ex{background:#f7fbf9;border-left:3px solid #35d29a;border-radius:8px;padding:9px 11px;font-size:12.5px;color:#4a6076;line-height:1.7;margin-top:8px}
+
+
+  .toast{position:fixed;left:50%;bottom:60px;transform:translateX(-50%) translateY(20px);background:rgba(20,40,60,.9);color:#fff;padding:11px 20px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:all .3s;z-index:99;max-width:86%;text-align:center}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* ===== 豆神答疑底部栏（参照 learn-maths/index.html） ===== */
+  .askbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:40;   /* 低于视频弹窗 z-index:50 */
+    background:#fff;border-top:1px solid #e2e8f0;
+    padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    box-shadow:0 -3px 16px rgba(0,0,0,.08);
+  }
+  .ask-btn{
+    width:100%;border:none;cursor:pointer;
+    background:linear-gradient(120deg,#35d29a,#2f9df0);
+    color:#fff;font-size:15px;font-weight:700;
+    padding:12px;border-radius:14px;font-family:inherit;
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    box-shadow:0 6px 18px rgba(47,157,240,.28);
+    transition:transform .12s ease;
+  }
+  .ask-btn:active{transform:scale(.97)}
+  /* ===== 豆神答疑弹窗 ===== */
+  .ask-overlay{
+    position:fixed;inset:0;z-index:9990;
+    background:rgba(15,28,42,.55);
+    display:none;align-items:center;justify-content:center;
+    padding:16px;
+  }
+  .ask-overlay.open{display:flex}
+  .ask-modal{
+    width:100%;height:100%;
+    max-width:960px;max-height:900px;
+    background:#fff;border-radius:18px;overflow:hidden;
+    display:flex;flex-direction:column;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+    animation:askPop .2s ease;
+  }
+  @keyframes askPop{from{opacity:0;transform:scale(.96) translateY(10px)}to{opacity:1;transform:none}}
+  .ask-head{
+    flex:0 0 auto;
+    display:flex;align-items:center;gap:10px;
+    padding:12px 16px;
+    background:linear-gradient(120deg,#35d29a,#2f9df0);
+    color:#fff;
+  }
+  .ask-title{flex:1;font-size:16px;font-weight:700}
+  .ask-close{
+    border:none;cursor:pointer;
+    width:28px;height:28px;border-radius:50%;
+    background:rgba(255,255,255,.22);color:#fff;
+    font-size:18px;line-height:1;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .ask-body{flex:1 1 auto;min-height:0;position:relative;background:#fff}
+  .ask-body iframe{width:100%;height:100%;border:none;display:block}
+  .foot{text-align:center;font-size:12px;color:#9db0c2;margin-top:26px;letter-spacing:1px;margin-bottom:10px}   /* 底部预留悬浮栏空间 */
+  .hidden{display:none !important}
+/* 教练微信号提示框 */
+.coach-tip{position:relative;display:inline-block;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.coach-tip .tip{visibility:hidden;opacity:0;position:absolute;bottom:145%;left:50%;transform:translateX(-50%) translateY(4px);background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;padding:7px 14px;border-radius:10px;font-size:12.5px;font-weight:700;white-space:nowrap;letter-spacing:.5px;z-index:99;pointer-events:none;box-shadow:0 6px 18px rgba(47,157,240,.35);transition:opacity .2s ease,transform .2s ease,visibility .2s}
+.coach-tip .tip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#2f9df0}
+.coach-tip:hover .tip,.coach-tip:active .tip,.coach-tip:focus .tip{visibility:visible;opacity:1;transform:translateX(-50%) translateY(0)}
+  /* ===== 返回目录按钮 ===== */
+  .dir-wrap{text-align:center;margin-top:16px;margin-bottom:6px}
+  .back-dir{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 28px;background:#fff;color:#1fa873;border:1.5px solid #2ebd85;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 4px 12px rgba(46,158,107,.12);transition:transform .15s;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+  .back-dir:active{transform:scale(.95)}
+  /* ===== 小节完成确认弹层 ===== */
+  .confirm-mask{position:fixed;inset:0;z-index:9999;background:rgba(15,28,42,.5);display:none;align-items:center;justify-content:center;padding:20px}
+  .confirm-mask.open{display:flex}
+  .confirm-box{width:100%;max-width:320px;background:#fff;border-radius:18px;padding:22px 20px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:askPop .2s ease}
+  .confirm-title{font-size:16px;font-weight:800;color:#1a2b3d;margin-bottom:10px}
+  .confirm-text{font-size:14px;color:#5b6b7c;line-height:1.8;margin-bottom:16px}
+  .confirm-text b{color:#0f9d58}
+  .confirm-btns{display:flex;gap:10px}
+  .btn-c{flex:1;border:none;border-radius:999px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:transform .12s}
+  .btn-c:active{transform:scale(.95)}
+  .btn-c.primary{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+  .btn-c.ghost{background:#f1f5f9;color:#7a8ba0}
+</style>
+</head>
+<body>
+<div class="deco d1"></div><div class="deco d2"></div>
+<div class="app">
+
+  <!-- ============ 视图1：预习主页 ============ -->
+  <section id="viewHome">
+    <div class="hero">
+      <span class="tag">人教版 · 二年级上册</span>
+      <h1>第一单元 时、分、秒</h1>
+      <p>1 认识秒 · 视频 · 练习</p>
+      <div class="circle c1"></div><div class="circle c2"></div>
+    </div>
+
+    <div class="card">
+      <h3><span class="ico">🎯</span>学习目标</h3>
+      <ul>
+        <li>认识时间单位「秒」，知道秒是比分更小的时间单位</li>
+        <li>认识钟面上的秒针，会正确读秒针走过的时间</li>
+        <li>掌握时、分、秒之间的进率：1时=60分，1分=60秒</li>
+        <li>能解决与秒有关的简单实际问题</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3><span class="ico">📖</span>核心知识速览</h3>
+      <ul>
+        <li>计量很短的时间，常用<strong>秒</strong>作单位，秒是比<strong>分</strong>更小的时间单位</li>
+        <li>钟面有<strong>三</strong>根针：秒针最长最细、走得最快，走一小格是<span class="hl">1秒</span>，一大格是<span class="hl">5秒</span>，一圈是<span class="hl">60秒=1分钟</span></li>
+        <li>分针走一小格是1分钟，一大格是5分钟，一圈是60分钟=1小时</li>
+        <li>时针走一大格是1小时，一圈是12小时</li>
+        <li>进率：<span class="hl">1时=60分　1分=60秒　1时=3600秒</span></li>
+        <li>典型算法：秒针从2走到9 = (9−2)×5 = <span class="hl">35秒</span></li>
+      </ul>
+      <p class="note">💡 建议先观看视频，再做练习；正确率达到 80% 即可解锁下一章节。</p>
+    </div>
+
+    <div class="btnRow">
+      <button class="btn btn-primary btn-lg" id="btnVideo">▶ 观看视频<span class="sm">第一次可随时关闭窗口</span></button>
+      <button class="btn btn-ghost btn-lg" id="btnQuiz">📝 进入练习<span class="sm">5题 · 计时作答</span></button>
+    </div>
+
+    <div class="card">
+      <h3><span class="ico">📊</span>学习进度</h3>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#7a8ba0">
+        当前状态：
+        <span class="status-pill" id="statusPill">未开始</span>
+      </div>
+      <div class="bar"><i id="progressBar" style="width:0%"></i></div>
+      <p class="note" style="margin-top:6px">通关规则：每次 5 道题，正确率 ≥ 80% 即通过本小节；未达标将自动返回视频重新学习，看完视频自动进入新一轮练习，直至达标。</p>
+    </div>
+
+    <div class="card">
+      <h3><span class="ico">📂</span>本章节列表</h3>
+      <ul class="sub-list" id="subList"></ul>
+      <div class="dir-wrap"><a class="back-dir" href="../index.html">📚 返回目录</a></div>
+    </div>
+  </section>
+
+  <!-- ============ 视图2：练习页 ============ -->
+  <section id="viewQuiz" class="hidden">
+    <div class="quiz-top">
+      <div class="quiz-prog" id="quizProg">第 1 / 5 题</div>
+      <div class="timer" id="timerBox">
+        <div class="clock">⏱</div>
+        <div class="num" id="timerNum">05:00</div>
+      </div>
+    </div>
+    <div id="quizBody"></div>
+    <button class="btn btn-primary btn-lg" id="btnSubmit" style="margin-top:18px">✅ 提交答卷</button>
+  </section>
+
+  <!-- ============ 视图3：练习报告页 ============ -->
+  <section id="viewReport" class="hidden"></section>
+
+  <!-- ============ 视频播放弹窗 ============ -->
+  <div class="modal" id="videoModal">
+    <div class="m-box">
+      <div class="m-head">
+        <div class="t">📺 1 认识秒 · 视频讲解</div>
+        <button class="m-close" id="videoClose">✕</button>
+      </div>
+      <div class="m-body">
+        <div class="video-wrap">
+          <video id="player" controls preload="metadata" playsinline></video>
+        </div>
+        <div class="watch-tip" id="watchTip">👆 点击视频下方播放键开始观看，可随时关闭</div>
+        <div class="note-card">
+          <h4>📝 知识笔记</h4>
+          <ol>
+            <li>计量很短的时间，常用<strong>秒</strong>作单位，秒是比<strong>分</strong>更小的时间单位。</li>
+            <li>钟面上有<strong>三</strong>根针：秒针最长最细、走得最快。<strong>秒针走一小格=1秒，走一大格=5秒，走一圈=60秒=1分钟</strong>。</li>
+            <li>分针走一小格=1分钟，走一大格=5分钟，走一圈=60分钟=1小时；时针走一大格=1小时，走一圈=12小时。</li>
+            <li>分针走一小格，秒针正好走<strong>一圈</strong>；时针走一大格，分针正好走<strong>一圈</strong>。</li>
+            <li>时间单位进率：<strong>1时=60分，1分=60秒，1时=3600秒</strong>。</li>
+            <li>数格要诀：先数大格，再乘 5。如秒针从 2 走到 9：7大格×5秒=<strong>35秒</strong>。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="foot">© 2026 <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span></div>
+
+<div class="askbar">
+  <button class="ask-btn" id="askBtn">🧙 豆神答疑</button>
+</div>
+
+<div class="ask-overlay" id="askOverlay">
+  <div class="ask-modal">
+    <div class="ask-head">
+      <span class="ask-title">🧙 豆神答疑</span>
+      <button class="ask-close" id="askClose" title="关闭">×</button>
+    </div>
+    <div class="ask-body">
+      <iframe id="askFrame" title="豆神答疑"></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="confirm-mask" id="confirmMask">
+  <div class="confirm-box">
+    <div class="confirm-title">📖 小节学习确认</div>
+    <div class="confirm-text" id="confirmText"></div>
+    <div class="confirm-btns">
+      <button class="btn-c primary" id="confirmLearn">🚀 进入学习</button>
+      <button class="btn-c" id="confirmYes">✅ 标记完成</button>
+    </div>
+    <button class="btn-c ghost" id="confirmNo" style="margin-top:10px;width:100%">↩ 稍后</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   1 认识秒 · 预习通关系统
+   流程：主页 → 视频(自由/强制) → 5题练习(计时) → 报告
+   ≥80% 解锁下一章；<80% 强制回看视频，播完自动换新5题
+   ============================================================ */
+"use strict";
+
+/* ---------- 题库（菁优网 · 本学期期末高频考题，难度 1~5 星） ---------- */
+const QPOOL = [
+  {id:1,  type:'fill',   q:'秒针走一小格是（ ）秒。',            ans:'1',    unit:'', diff:1, ex:'秒针走一小格的时间就是 1 秒。'},
+  {id:2,  type:'fill',   q:'秒针走一大格是（ ）秒。',            ans:'5',    unit:'', diff:1, ex:'一大格里有 5 小格，秒针走一大格是 5 秒。'},
+  {id:3,  type:'fill',   q:'秒针走一圈是（ ）秒。',              ans:'60',   unit:'', diff:2, ex:'秒针走一圈是 60 秒，也就是 1 分钟。'},
+  {id:4,  type:'fill',   q:'1 分 =（ ）秒。',                    ans:'60',   unit:'', diff:1, ex:'时间单位间的进率：1 分 = 60 秒。'},
+  {id:5,  type:'fill',   q:'1 时 =（ ）分。',                    ans:'60',   unit:'', diff:1, ex:'时间单位间的进率：1 时 = 60 分。'},
+  {id:6,  type:'fill',   q:'1 时 =（ ）秒。',                    ans:'3600', unit:'', diff:3, ex:'1 时 = 60 分 = 60×60 秒 = 3600 秒。'},
+  {id:7,  type:'fill',   q:'秒针从 2 走到 9，经过了（ ）秒。',   ans:'35',   unit:'', diff:3, ex:'2 到 9 是 7 大格，7×5 = 35 秒。'},
+  {id:8,  type:'fill',   q:'分针从 2 走到 9，经过了（ ）分钟。', ans:'35',   unit:'', diff:3, ex:'分针走一大格是 5 分钟，7 大格就是 35 分钟。'},
+  {id:9,  type:'fill',   q:'时针从 2 走到 9，经过了（ ）小时。', ans:'7',    unit:'', diff:3, ex:'时针走一大格是 1 小时，7 大格就是 7 小时。'},
+  {id:10, type:'fill',   q:'分针走一小格，秒针正好走（ ）圈。',  ans:'1',    unit:'', diff:3, ex:'分针走一小格是 1 分钟，秒针走一圈也是 1 分钟。'},
+  {id:11, type:'fill',   q:'秒针从 12 走到 3，经过了（ ）秒。',  ans:'15',   unit:'', diff:2, ex:'12 到 3 是 3 大格，3×5 = 15 秒。'},
+  {id:12, type:'fill',   q:'秒针从 1 走到 6，经过了（ ）秒。',   ans:'25',   unit:'', diff:2, ex:'1 到 6 是 5 大格，5×5 = 25 秒。'},
+  {id:13, type:'fill',   q:'分针走一小格是（ ）分钟。',          ans:'1',    unit:'', diff:1, ex:'分针走一小格的时间是 1 分钟。'},
+  {id:14, type:'judge',  q:'计量很短的时间，常用「秒」作单位。', ans:'对',   diff:1, ex:'秒是比分更小的时间单位，适合计量很短的时间。'},
+  {id:15, type:'judge',  q:'秒针从 1 走到 6 是 5 秒。',           ans:'错',   diff:4, ex:'1 到 6 是 5 大格，应经过 5×5 = 25 秒。'},
+  {id:16, type:'choice', q:'钟面上走得最快、最长最细的针是（ ）。', opts:['时针','分针','秒针'],                    ans:2, diff:1, ex:'秒针最长最细、走得最快。'},
+  {id:17, type:'choice', q:'下面哪个时间最长？（ ）',              opts:['1 分','50 秒','59 秒'],                    ans:0, diff:2, ex:'1 分 = 60 秒，比 50 秒、59 秒都长。'},
+  {id:18, type:'choice', q:'1 分 30 秒 =（ ）。',                  opts:['60 秒','90 秒','130 秒'],                  ans:1, diff:2, ex:'1 分 = 60 秒，60 + 30 = 90 秒。'},
+  {id:19, type:'choice', q:'秒针走 2 大格是（ ）。',               opts:['2 秒','10 秒','12 秒'],                    ans:1, diff:2, ex:'1 大格 5 秒，2 大格就是 2×5 = 10 秒。'},
+  {id:20, type:'fill',   q:'分针从 12 走到 6，经过了（ ）分钟。', ans:'30',  unit:'', diff:3, ex:'12 到 6 是 6 大格，6×5 = 30 分钟。'},
+];
+
+const PASS_RATE = 0.8;      // 通关正确率
+const NUM_QUIZ = 5;         // 每轮题数
+const NEXT_URL = '3a-unit1-2.html';  // 下一小节（2 时间的单位换算）
+
+/* 难度星级渲染：diff 1~5 → ★★☆☆☆ */
+function stars(n){ return '★'.repeat(n) + '☆'.repeat(5-n); }
+
+/* ---------- 状态（localStorage 持久化） ---------- */
+const SKEY = 'rsm_sec_progress_v1';
+let st = load();
+function load(){
+  try{
+    const o = JSON.parse(localStorage.getItem(SKEY) || '{}');
+    return { passed:!!o.passed, usedQ:Array.isArray(o.usedQ)?o.usedQ:[], attempts:o.attempts||0, best:o.best||0 };
+  }catch(e){ return { passed:false, usedQ:[], attempts:0, best:0 }; }
+}
+function save(){ localStorage.setItem(SKEY, JSON.stringify(st)); }
+
+/* ---------- DOM ---------- */
+const $ = id => document.getElementById(id);
+const vHome=$('viewHome'), vQuiz=$('viewQuiz'), vReport=$('viewReport');
+const modal=$('videoModal'), player=$('player'), videoClose=$('videoClose');
+
+/* ---------- 抽题：从未用过的题中随机取5道，不足则重置 ---------- */
+let curQuiz = [];   // 当前一轮题目
+let answers = {};   // 当前作答 {qid: 答案}
+let forced = false; // 当前视频是否强制模式
+
+function pickQuestions(){
+  let pool = QPOOL.filter(q => !st.usedQ.includes(q.id));
+  if(pool.length < NUM_QUIZ){ st.usedQ = []; pool = QPOOL.slice(); }
+  for(let i=pool.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [pool[i],pool[j]]=[pool[j],pool[i]]; }
+  const picked = pool.slice(0, NUM_QUIZ);
+  picked.forEach(q => st.usedQ.push(q.id));
+  save();
+  return picked;
+}
+
+/* ---------- 计时器（正计时：从 00:00 开始记录用时） ---------- */
+let timer=null, usedSec=0;
+function startTimer(){
+  stopTimer();
+  usedSec = 0;
+  renderTimer();
+  timer = setInterval(()=>{
+    usedSec++;
+    renderTimer();
+  },1000);
+}
+function stopTimer(){ if(timer){ clearInterval(timer); timer=null; } }
+function renderTimer(){
+  const m=String(Math.floor(usedSec/60)).padStart(2,'0'), s=String(usedSec%60).padStart(2,'0');
+  $('timerNum').textContent = m+':'+s;
+  $('timerBox').classList.remove('danger');
+}
+
+/* ---------- 渲染练习 ---------- */
+function renderQuiz(){
+  $('quizProg').textContent = '共 '+NUM_QUIZ+' 题 · 计时作答';
+  const html = curQuiz.map((q,idx)=>{
+    let body='';
+    if(q.type==='fill'){
+      body = '<div class="fill-box"><input type="text" inputmode="numeric" data-id="'+q.id+'" placeholder="填写答案" autocomplete="off"><span class="unit">'+q.unit+'</span></div>';
+    }else if(q.type==='judge'){
+      body = '<div class="judge-row">'+
+        '<button class="judge t" data-id="'+q.id+'" data-v="对">✓ 对</button>'+
+        '<button class="judge f" data-id="'+q.id+'" data-v="错">✗ 错</button></div>';
+    }else{
+      body = q.opts.map((o,oi)=>'<button class="opt" data-id="'+q.id+'" data-v="'+oi+'"><span class="k">'+'ABCD'[oi]+'</span>'+o+'</button>').join('');
+    }
+    return '<div class="q-card" data-q="'+q.id+'"><span class="q-no">第 '+(idx+1)+' 题</span>'+
+      '<span class="q-diff">难度 '+stars(q.diff||1)+'</span>'+
+      '<div class="q-text">'+q.q+'</div>'+body+'</div>';
+  }).join('');
+  $('quizBody').innerHTML = '<div class="quiz-src">🎓 题目精选自 <b>期末高频考题</b></div>' + html;
+  // 事件绑定
+  $('quizBody').querySelectorAll('.opt,.judge').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const id=b.dataset.id, v=b.dataset.v;
+      answers[id]=v;
+      const group = b.closest('.q-card');
+      group.querySelectorAll('.opt,.judge').forEach(x=>x.classList.remove('sel','selT','selF'));
+      if(b.classList.contains('judge')){
+        b.classList.add(v==='对'?'selT':'selF');
+      }else{
+        b.classList.add('sel');
+      }
+    });
+  });
+  $('quizBody').querySelectorAll('input[data-id]').forEach(inp=>{
+    inp.addEventListener('input', ()=>{ answers[inp.dataset.id]=inp.value.trim(); });
+  });
+}
+
+/* ---------- 提交判分 ---------- */
+function submitQuiz(){
+  stopTimer();
+  let correct=0;
+  const details = curQuiz.map(q=>{
+    const ua = (answers[q.id]===undefined?'':String(answers[q.id])).trim();
+    let ok;
+    if(q.type==='choice'){ ok = ua!=='' && Number(ua)===q.ans; }
+    else if(q.type==='judge'){ ok = ua===q.ans; }
+    else { ok = ua!=='' && (ua===q.ans || String(parseInt(ua,10))===q.ans); }
+    if(ok) correct++;
+    return { q, user: ua, ok };
+  });
+  const rate = correct / NUM_QUIZ;
+  st.attempts++; st.best = Math.max(st.best, Math.round(rate*100));
+  if(rate >= PASS_RATE) st.passed = true;
+  save();
+  showReport(details, correct, rate);
+}
+
+/* ---------- 报告页 ---------- */
+let autoTimer=null;
+function showReport(details, correct, rate){
+  vQuiz.classList.add('hidden'); vHome.classList.add('hidden');
+  vReport.classList.remove('hidden');
+  const pass = rate >= PASS_RATE;
+  const pct = Math.round(rate*100);
+  const ringR = 52, C = 2*Math.PI*ringR, dash = (C*rate).toFixed(1);
+  const m=String(Math.floor(usedSec/60)).padStart(2,'0'), s=String(usedSec%60).padStart(2,'0');
+  const timeTxt = m+':'+s;
+
+  const rev = details.map((d,i)=>{
+    const ua = d.q.type==='choice' ? (d.user!==''?'ABCD'[Number(d.user)]+' '+d.q.opts[Number(d.user)]:'未作答') : (d.user!==''?d.user:'未作答');
+    const ca = d.q.type==='choice' ? 'ABCD'[d.q.ans]+' '+d.q.opts[d.q.ans] : d.q.ans;
+    return '<div class="review-item"><div class="q">'+(i+1)+'. '+d.q.q+
+      '<span class="rev-diff">难度 '+stars(d.q.diff||1)+'</span></div>'+
+      '<div class="rev-line '+(d.ok?'correct':'wrong')+'"><span class="lb">你的答案：</span>'+ua+'</div>'+
+      (d.ok?'':'<div class="rev-line correct"><span class="lb">正确答案：</span>'+ca+'</div>')+
+      '<div class="rev-ex">💡 '+d.q.ex+'</div></div>';
+  }).join('');
+
+  /* 满分：10 秒后自动跳转下一章节；通过（非满分）：手动进入；未达标：错题数×1分钟 后自动返回视频 */
+  const wrong = NUM_QUIZ - correct;
+  let passHtml;
+  if(pass && correct === NUM_QUIZ){
+    passHtml = '<div class="verdict pass">🏆 满分通关！</div>'+
+      '<div class="report-sub">正答率 100%！<b id="autoNext">10</b> 秒后自动进入下一小节「2 时间的单位换算」</div>'+
+      '<div class="btnRow"><button class="btn btn-primary btn-lg" id="btnNext">🚀 立即进入下一章</button>'+
+      '<button class="btn btn-ghost btn-lg" id="btnBackHome">🏠 返回主页</button></div>';
+  }else if(pass){
+    passHtml = '<div class="verdict pass">🎉 恭喜通过本小节！</div>'+
+      '<div class="report-sub">正确率 ≥ 80%，已解锁下一章节「2 时间的单位换算」</div>'+
+      '<div class="btnRow"><button class="btn btn-primary btn-lg" id="btnNext">🚀 进入下一小节</button>'+
+      '<button class="btn btn-ghost btn-lg" id="btnBackHome">🏠 返回主页</button></div>';
+  }else{
+    const total = wrong*60;
+    const tipTxt = Math.floor(total/60)+' 分 '+(total%60)+' 秒';
+    passHtml = '<div class="verdict fail">😥 正确率未达 80%（错 '+wrong+' 题）</div>'+
+      '<div class="report-sub">将自动返回视频重新学习，完整观看后自动进入<b>新一轮</b>5 道练习题，直至达标</div>'+
+      '<div class="btnRow"><button class="btn btn-primary btn-lg" id="btnGoVideo">📺 立即返回视频（<b id="autoSec">'+tipTxt+'</b>后自动跳转）</button></div>';
+  }
+
+  vReport.innerHTML =
+    '<div class="report-hero">'+
+      '<div class="ring"><svg width="120" height="120">'+
+        '<circle cx="60" cy="60" r="'+ringR+'" fill="none" stroke="#eef3f8" stroke-width="11"/>'+
+        '<circle cx="60" cy="60" r="'+ringR+'" fill="none" stroke="url(#g)" stroke-width="11" stroke-linecap="round" stroke-dasharray="'+dash+' '+C.toFixed(1)+'"/>'+
+        '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#35d29a"/><stop offset="1" stop-color="#2f9df0"/></linearGradient></defs></svg>'+
+        '<div class="val"><b>'+pct+'%</b><span>正确率</span></div></div>'+
+      '<div>'+passHtml+'</div>'+
+      '<div class="report-stats">'+
+        '<div class="stat"><b>'+correct+' / '+NUM_QUIZ+'</b><span>答对题数</span></div>'+
+        '<div class="stat"><b>'+timeTxt+'</b><span>练习用时</span></div>'+
+        '<div class="stat"><b>第 '+st.attempts+' 轮</b><span>练习次数</span></div>'+
+      '</div></div>'+
+    '<div style="font-size:15px;font-weight:800;color:#1a2b3d;margin:16px 0 2px">📋 逐题分析</div>'+
+    rev;
+
+  if(pass){
+    if(correct === NUM_QUIZ){
+      // 满分：10 秒后自动跳转下一章节
+      let c2=10;
+      autoTimer = setInterval(()=>{
+        c2--;
+        const el=$('autoNext'); if(el) el.textContent=c2;
+        if(c2<=0){ clearInterval(autoTimer); location.href = NEXT_URL; }
+      },1000);
+      $('btnNext').addEventListener('click', ()=>{ clearInterval(autoTimer); location.href = NEXT_URL; });
+    }else{
+      $('btnNext').addEventListener('click', ()=> toast('🚀 下一章节资源即将上线，敬请期待！'));
+    }
+    $('btnBackHome').addEventListener('click', goHome);
+  }else{
+    // 未达标：自动跳转时间 = 错题数 × 1 分钟，之后转向视频（强制模式）
+    let c = wrong*60;
+    autoTimer = setInterval(()=>{
+      c--;
+      const el=$('autoSec');
+      if(el) el.textContent = Math.floor(c/60)+' 分 '+(c%60)+' 秒';
+      if(c<=0){ clearInterval(autoTimer); openVideo(true); }
+    },1000);
+    $('btnGoVideo').addEventListener('click', ()=>{ clearInterval(autoTimer); openVideo(true); });
+  }
+}
+
+/* ---------- 视频弹窗 ---------- */
+function openVideo(isForced){
+  forced = !!isForced;
+  player.pause();
+  player.currentTime = 0;
+  player.src = '../../resources/tutoring/video/3a-unit1-1.mp4';
+  modal.classList.add('show');
+  if(forced){
+    videoClose.disabled = true;
+    $('watchTip').className = 'watch-tip';
+    $('watchTip').innerHTML = '🔒 <b>强制学习模式</b>：请完整观看本节视频，播完后自动进入新一轮 5 道练习题';
+  }else{
+    videoClose.disabled = false;
+    $('watchTip').className = 'watch-tip';
+    $('watchTip').innerHTML = '👆 点击视频下方播放键开始观看，可随时关闭窗口';
+  }
+}
+function closeVideo(){
+  if(forced && !player.ended){ toast('⏳ 请先完整观看本节视频'); return; }
+  modal.classList.remove('show');
+  player.pause();
+  if(forced){
+    forced=false;
+    // 视频重播结束 → 自动进行新一轮 5 道练习题
+    startNewQuiz();
+  }
+}
+videoClose.addEventListener('click', closeVideo);
+player.addEventListener('ended', ()=>{
+  if(forced){
+    videoClose.disabled = false;
+    $('watchTip').className = 'watch-tip ok';
+    $('watchTip').innerHTML = '✅ 视频已完整观看，即将自动进入<b>新一轮</b>练习…';
+    setTimeout(()=>{ if(modal.classList.contains('show')) closeVideo(); }, 1200);
+  }
+});
+
+/* ---------- 新一轮练习 ---------- */
+function startNewQuiz(){
+  curQuiz = pickQuestions();
+  answers = {};
+  vReport.classList.add('hidden'); vHome.classList.add('hidden');
+  vQuiz.classList.remove('hidden');
+  renderQuiz();
+  startTimer();
+  renderProgress();
+}
+
+/* ---------- 返回主页 ---------- */
+function goHome(){
+  clearInterval(autoTimer);
+  vQuiz.classList.add('hidden'); vReport.classList.add('hidden');
+  modal.classList.remove('show'); player.pause();
+  vHome.classList.remove('hidden');
+  renderProgress();
+}
+
+/* ---------- 主页进度渲染 ---------- */
+function renderProgress(){
+  const pill = $('statusPill');
+  if(st.passed){ pill.className='status-pill st-done'; pill.textContent='✅ 已通过本小节'; }
+  else if(st.attempts>0){ pill.className='status-pill st-doing'; pill.textContent='📖 学习中'; }
+  else { pill.className='status-pill st-todo'; pill.textContent='未开始'; }
+  const prog = st.passed ? 100 : Math.min(40, st.attempts*15 + (st.usedQ.length? 30:0));
+  $('progressBar').style.width = prog+'%';
+  renderSubs();
+}
+
+/* ---------- 本章小节：按顺序解锁学习 ---------- */
+const SUBS = [
+  {name:'1-认识秒', url:'3a-unit1.html'},
+  {name:'2-时间的单位换算', url:'3a-unit1-2.html'},
+  {name:'3-比较时间大小', url:'3a-unit1-3.html'},
+  {name:'4-时间的计算', url:'3a-unit1-4.html'},
+  {name:'5-时间的问题问题', url:'3a-unit1-5.html'},
+  {name:'6-有关间隔的时间问题', url:'3a-unit1-6.html'}
+];
+const SKEY_SUB = 'rsm_subs_progress_v1';
+function loadSubs(){ try{ const o=JSON.parse(localStorage.getItem(SKEY_SUB)||'{}'); return Array.isArray(o.done)?o.done:[]; }catch(e){ return []; } }
+function saveSubs(d){ localStorage.setItem(SKEY_SUB, JSON.stringify({done:d})); }
+let subDone = loadSubs();
+function subName(i){ return SUBS[i].name; }
+function renderSubs(){
+  const ul = $('subList'); if(!ul) return;
+  ul.innerHTML = SUBS.map((s,i)=>{
+    const done = subDone.includes(i);
+    const locked = i>0 && !subDone.includes(i-1);
+    let play, cls, st;
+    if(done){ play='✓'; cls='done'; st='→已完成'; }
+    else if(locked){ play='🔒'; cls='lock'; st='→未解锁'; }
+    else { play='▶'; cls='open'; st='→学习中'; }
+    return '<li class="sub-item '+cls+'" data-i="'+i+'">'+
+      '<span class="play '+cls+'">'+play+'</span>'+
+      '<span class="name">'+s.name+'</span>'+
+      '<span class="state">'+st+'</span>'+
+    '</li>';
+  }).join('');
+  // 点击小节：已完成→复习提示；锁定→先完成上一节；解锁→弹出完成确认
+  ul.querySelectorAll('.sub-item').forEach(li=>{
+    li.addEventListener('click', ()=>{
+      const i = Number(li.dataset.i);
+      if(subDone.includes(i)){ toast('✅ 「'+subName(i)+'」已完成，可随时复习'); return; }
+      if(i>0 && !subDone.includes(i-1)){ toast('🔒 请先完成「'+subName(i-1)+'」再解锁本节'); return; }
+      pendingSub = i;
+      $('confirmText').innerHTML = '「<b>'+subName(i)+'</b>」<br>进入学习页学习，或直接标记完成解锁下一节';
+      $('confirmMask').classList.add('open');
+    });
+  });
+}
+
+let pendingSub = null;
+$('confirmLearn').addEventListener('click', ()=>{
+  const i = pendingSub;
+  $('confirmMask').classList.remove('open');
+  pendingSub = null;
+  if(i===null) return;
+  location.href = SUBS[i].url;   // 进入小节学习页
+});
+$('confirmYes').addEventListener('click', ()=>{
+  const i = pendingSub;
+  $('confirmMask').classList.remove('open');
+  pendingSub = null;
+  if(i===null) return;
+  if(!subDone.includes(i)) subDone.push(i);
+  saveSubs(subDone);
+  if(i < SUBS.length-1) toast('✅ 完成「'+subName(i)+'」，已解锁下一小节');
+  else toast('🏆 本章 '+SUBS.length+' 个小节已全部学完！');
+  renderSubs();
+});
+$('confirmNo').addEventListener('click', ()=>{ $('confirmMask').classList.remove('open'); pendingSub = null; });
+$('confirmMask').addEventListener('click', (e)=>{ if(e.target === $('confirmMask')){ $('confirmMask').classList.remove('open'); pendingSub = null; } });
+
+/* ---------- Toast ---------- */
+let toastTimer=null;
+function toast(msg){
+  const t=$('toast'); t.innerHTML=msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+/* ---------- 按钮：打开中… 反馈 ---------- */
+function btnLoading(btn, fn, delay){
+  btn.classList.add('loading');
+  setTimeout(()=>{ btn.classList.remove('loading'); fn(); }, delay||450);
+}
+
+/* ---------- 事件 ---------- */
+$('btnVideo').addEventListener('click', e=>btnLoading(e.currentTarget, ()=>openVideo(false)));
+$('btnQuiz').addEventListener('click', e=>btnLoading(e.currentTarget, ()=>{
+  curQuiz = pickQuestions();
+  answers = {};
+  vHome.classList.add('hidden'); vReport.classList.add('hidden');
+  vQuiz.classList.remove('hidden');
+  renderQuiz(); startTimer(); renderProgress();
+}, 500));
+
+$('btnSubmit').addEventListener('click', ()=>{
+  const missing = curQuiz.filter(q => answers[q.id]===undefined || String(answers[q.id]).trim()==='');
+  if(missing.length){
+    toast('⚠️ 还有 '+missing.length+' 题未作答，提交后按错误计分');
+  }
+  submitQuiz();
+});
+
+/* ---------- 初始化 ---------- */
+renderProgress();
+
+/* ---------- 豆神答疑（参照 learn-maths/index.html） ---------- */
+(function(){
+  var frame = document.getElementById('askFrame');
+  var overlay = document.getElementById('askOverlay');
+  var ASK_URL = '../../dd-teacher/index.html';   // tutoring/3a-unit1.html → ../../dd-teacher/index.html
+  document.getElementById('askBtn').addEventListener('click', function(){
+    if (!frame.getAttribute('src')) frame.src = ASK_URL;
+    overlay.classList.add('open');
+  });
+  document.getElementById('askClose').addEventListener('click', function(){
+    overlay.classList.remove('open');
+  });
+  overlay.addEventListener('click', function(e){
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+})();
+</script>
+</body>
+</html>

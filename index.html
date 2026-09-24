@@ -234,8 +234,13 @@ body {
   </div>
 
   <div class="grid">
+    <a href="thinking/index.html" class="thoughts">
+      <div class="card-icon">💡</div>
+      <div class="card-title">十大思想</div>
+      <div class="card-desc">分类讨论·数形结合···</div>
+    </a>
     <a href="knowledge/index.html" class="determine">
-      <div class="card-icon">🎯</div>
+      <div class="card-icon">🔢</div>
       <div class="card-title">三定一性</div>
       <div class="card-desc">定义·定理·定律·性质</div>
     </a>
@@ -244,41 +249,36 @@ body {
       <div class="card-title">计算专项</div>
       <div class="card-desc">九阶分阶训练 · 填空作答</div>
     </a>
-    <a href="thinking/index.html" class="thoughts">
-      <div class="card-icon">💡</div>
-      <div class="card-title">十大思想</div>
-      <div class="card-desc">分类讨论·数形结合·方程函数</div>
-    </a>
     <a href="model/index.html" class="model">
       <div class="card-icon">🧩</div>
       <div class="card-title">模型思维</div>
-      <div class="card-desc">几何模型·代数结构·解题套路</div>
-    </a>
-    <a href="classic/index.html" class="classic">
-      <div class="card-icon">📐</div>
-      <div class="card-title">经典题库</div>
-      <div class="card-desc">真题精选·高频考点·一题多解</div>
+      <div class="card-desc">几何模型·解题套路</div>
     </a>
     <a href="test/index.html" class="diagnose">
       <div class="card-icon">📊</div>
       <div class="card-title">学期诊断</div>
       <div class="card-desc">知识点扫雷·薄弱项定位</div>
     </a>
-    <a href="https://phet.colorado.edu/zh_CN/simulations/filter?subjects=math-and-statistics&type=html" class="sim" target="_blank">
+    <a href="simulation/index.html" class="sim">
       <div class="card-icon">🔬</div>
       <div class="card-title">模拟教材</div>
       <div class="card-desc">PhET 数学模拟实验</div>
     </a>
-   <a href="concentration/index.html" class="schulte">
-      <div class="card-icon">🔢</div>
-      <div class="card-title">舒尔特方格</div>
-      <div class="card-desc">专注力训练</div>
+    <a href="homework/index.html" class="classic">
+      <div class="card-icon">📝</div>
+      <div class="card-title">作业中心</div>
+      <div class="card-desc">作业布置批改·学情分析</div>
+    </a>
+   <a href="tutoring/index.html" class="schulte">
+      <div class="card-icon">🎯</div>
+      <div class="card-title">预习补习</div>
+      <div class="card-desc">知识讲解·专题练习</div>
     </a>
 
   </div>
 </div>
 
-<footer class="site-footer">&copy; <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span> &nbsp;·&nbsp; <a href="readme.html" style="color:#8aa09a">📖 系统说明</a></footer>
+<footer class="site-footer">&copy; <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span> &nbsp;·&nbsp; <a href="readme.html" style="color:#8aa09a">📖 本站说明</a></footer>
 
 <div class="askbar">
   <button class="ask-btn" id="askBtn">🧙 豆神答疑</button>
@@ -352,7 +352,9 @@ body {
     // 兜底哈希列表：fetch 失败（如本地 file:// 打开）时使用，仅存哈希不存明文
     var FALLBACK_HASHES = [
       '413b7b3d5700ad8a6b296c9d0e7107dbd7280a985c1c695db8646c278e510224',
-      'df225757a3ffcac2bd9643323af99631a53300b439da8ff4a8a41f889ce39704'
+      '679d49b6e57d426b2af961461512559700b9e4c01aa723f0b71682c5f07b31c3',
+      'df225757a3ffcac2bd9643323af99631a53300b439da8ff4a8a41f889ce39704',
+      'f33f356f0975feb01468d154687a812a113ffa87ac5091ecc99637a552f033e9',
     ];
 
     function check(phoneHash, hashes){

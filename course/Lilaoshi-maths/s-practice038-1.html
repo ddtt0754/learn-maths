@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2ebd85">
+<title>枚举法 · 二阶思维练习</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
+    background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);
+    color:#33434b;min-height:100vh;display:flex;justify-content:center;align-items:flex-start;
+    padding:24px 16px calc(60px + env(safe-area-inset-bottom));
+  }
+  .app{width:100%;max-width:560px;display:flex;flex-direction:column;align-items:center;padding-bottom:80px}
+  .hero{
+    position:relative;width:100%;
+    background:linear-gradient(135deg,#35d29a 0%,#2f9df0 100%);
+    border-radius:22px;padding:26px 20px 22px;text-align:center;color:#fff;
+    overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);
+  }
+  .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+  .hero::before{width:110px;height:110px;top:-36px;right:-28px}
+  .hero::after{width:64px;height:64px;bottom:-22px;left:-14px}
+  .hero .tag{position:relative;display:inline-block;background:rgba(255,255,255,.22);border-radius:20px;padding:3px 14px;font-size:12px;letter-spacing:2px;backdrop-filter:blur(4px)}
+  .hero h1{position:relative;font-size:22px;letter-spacing:1px;font-weight:800;margin-top:10px;text-shadow:0 2px 6px rgba(0,0,0,.12)}
+  .hero .sub{position:relative;margin-top:6px;font-size:11.5px;letter-spacing:3px;opacity:.92}
+  /* 工具条：进度 + 计时 + 错题本 */
+  .toolbar{width:100%;margin-top:14px;display:flex;gap:8px;align-items:center}
+  .prog{flex:1;background:#fff;border-radius:12px;padding:9px 12px;display:flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(47,157,240,.08)}
+  .prog .bar{flex:1;height:7px;border-radius:7px;background:#eef3f8;overflow:hidden}
+  .prog .bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#35d29a,#2f9df0);border-radius:7px;transition:width .3s}
+  .prog .txt{font-size:11px;color:#1fa873;font-weight:700;white-space:nowrap}
+  .timer{background:#fff;border-radius:12px;padding:9px 12px;display:flex;align-items:center;gap:5px;box-shadow:0 4px 12px rgba(47,157,240,.08);font-size:13px;font-weight:800;color:#1f2d3d;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .timer .ico{font-size:14px}
+  .wrong-btn{border:none;cursor:pointer;background:#fff;border-radius:12px;padding:9px 12px;font-size:12.5px;font-weight:700;color:#b45309;font-family:inherit;box-shadow:0 4px 12px rgba(47,157,240,.08);white-space:nowrap;display:flex;align-items:center;gap:5px;transition:transform .12s}
+  .wrong-btn:active{transform:scale(.95)}
+  .wrong-btn .cnt{background:#f59e0b;color:#fff;border-radius:10px;padding:1px 7px;font-size:11px}
+  .q-card{width:100%;background:#fff;border-radius:16px;padding:16px;margin-top:14px;box-shadow:0 4px 14px rgba(47,157,240,.09)}
+  .q-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .q-tag{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;font-size:12px;font-weight:700;border-radius:10px;padding:3px 12px;letter-spacing:1px}
+  .q-type{font-size:12px;color:#8aa09a;font-weight:600}
+  .q-stem{font-size:15px;font-weight:600;color:#1f2d3d;line-height:1.8}
+  .answer-row{display:flex;align-items:center;gap:8px;margin-top:12px}
+  .answer-row input{flex:1;border:2px solid #d7e3ef;border-radius:12px;padding:11px 14px;font-size:17px;font-weight:700;color:#1f2d3d;text-align:center;outline:none;background:#f8fbfe;min-width:0}
+  .answer-row input:focus{border-color:#2f9df0;background:#fff}
+  .answer-row .check{border:none;cursor:pointer;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;font-size:14px;font-weight:700;padding:12px 18px;border-radius:12px;font-family:inherit;flex-shrink:0;transition:transform .12s}
+  .answer-row .check:active{transform:scale(.95)}
+  .fb{display:none;margin-top:10px;padding:11px 13px;border-radius:12px;font-size:13.5px;line-height:1.8}
+  .fb.ok{display:block;background:#e9f9f0;color:#0f9d58;border:1px solid #b7e6cd}
+  .fb.no{display:block;background:#fef2f2;color:#dc2626;border:1px solid #fecaca}
+  .fb .ans{font-weight:800}
+  .fb .ex{display:block;margin-top:6px;color:#4a6076;font-size:12.5px}
+  .btn-row{display:flex;gap:10px;margin-top:20px;width:100%}
+  .link-btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 10px;background:#fff;color:#1fa873;border:1.5px solid #2ebd85;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 4px 12px rgba(46,158,107,.12);transition:transform .15s;touch-action:manipulation}
+  .link-btn:active{transform:scale(.95)}
+  footer{width:100%;margin-top:18px;text-align:center;font-size:12px;color:#a8bcb4;letter-spacing:1px}
+  .coach-tip{position:relative;display:inline-block;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .coach-tip .tip{visibility:hidden;opacity:0;position:absolute;bottom:145%;left:50%;transform:translateX(-50%) translateY(4px);background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;padding:7px 14px;border-radius:10px;font-size:12.5px;font-weight:700;white-space:nowrap;letter-spacing:.5px;z-index:99;pointer-events:none;box-shadow:0 6px 18px rgba(47,157,240,.35);transition:opacity .2s ease,transform .2s ease,visibility .2s}
+  .coach-tip .tip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#2f9df0}
+  .coach-tip:hover .tip,.coach-tip:active .tip,.coach-tip:focus .tip{visibility:visible;opacity:1;transform:translateX(-50%) translateY(0)}
+  /* 错题本弹窗 */
+  .wrong-mask{position:fixed;inset:0;z-index:9990;background:rgba(15,28,42,.6);display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px)}
+  .wrong-mask.open{display:flex}
+  .wrong-box{width:100%;max-width:520px;max-height:92vh;background:#fff;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:pop .2s ease}
+  @keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+  .wrong-head{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:linear-gradient(120deg,#f59e0b,#ef7c3a);color:#fff;font-size:15px;font-weight:800}
+  .wrong-close{border:none;cursor:pointer;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.22);color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center}
+  .wrong-body{flex:1;overflow-y:auto;padding:14px 16px}
+  .w-item{border:1.5px solid #fecaca;background:#fff8f8;border-radius:12px;padding:12px;margin-top:10px}
+  .w-item:first-child{margin-top:0}
+  .w-no{display:inline-block;background:#f04438;color:#fff;font-size:11px;font-weight:700;border-radius:8px;padding:2px 9px;margin-bottom:6px}
+  .w-stem{font-size:13.5px;font-weight:600;color:#1f2d3d;line-height:1.7}
+  .w-line{font-size:12.5px;margin-top:6px;line-height:1.7}
+  .w-line b{font-weight:800}
+  .w-ua{color:#dc2626}
+  .w-ans{color:#0f9d58}
+  .w-ex{background:#f1f5f9;border-radius:8px;padding:7px 9px;font-size:12px;color:#4a6076;margin-top:8px;line-height:1.6}
+  .wrong-empty{text-align:center;color:#8aa09a;font-size:14px;padding:40px 0;line-height:2}
+  .wrong-actions{display:flex;gap:10px;padding:12px 16px;border-top:1px solid #eef1f5}
+  .act-btn{flex:1;border:none;border-radius:999px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:transform .12s}
+  .act-btn:active{transform:scale(.95)}
+  .act-print{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff}
+  .act-clear{background:#f1f5f9;color:#7a8ba0}
+  /* 打印容器（A4 专用） */
+  #printHost{display:none}
+  @media print{
+    @page{size:A4 portrait;margin:12mm}
+    body > .app, body > .wrong-mask{display:none !important}
+    #printHost{display:block !important;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#000}
+    .print-head{text-align:center;border-bottom:2.5px solid #000;padding-bottom:8px;margin-bottom:14px}
+    .print-head h2{font-size:20px;margin:0 0 4px;letter-spacing:1px}
+    .print-head p{font-size:11.5px;color:#333;margin:2px 0;line-height:1.6}
+    .print-item{border:1.2px solid #999;border-radius:6px;padding:10px 12px;margin-bottom:10px;page-break-inside:avoid;line-height:1.6}
+    .print-no{font-size:12px;font-weight:800;margin-bottom:4px}
+    .print-stem{font-size:13px;margin-bottom:4px}
+    .print-line{font-size:12px;margin-top:3px}
+    .print-ex{font-size:11.5px;color:#444;margin-top:6px;border-top:1px dashed #bbb;padding-top:5px}
+    .print-blank{font-size:13px;margin-top:10px;padding:4px 0;font-weight:700}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <span class="tag">二阶数学思维课 · 枚举法</span>
+    <h1>枚举法 · 练习</h1>
+    <div class="sub">填空题 5 题 · 即时判分</div>
+  </header>
+
+  <div class="toolbar">
+    <div class="prog"><div class="bar"><i id="progBar"></i></div><div class="txt" id="progTxt">0 / 20</div></div>
+    <div class="timer"><span class="ico">⏱</span><span id="timerNum">00:00</span></div>
+    <button class="wrong-btn" id="wrongBtn">📕 错题本 <span class="cnt" id="wrongCnt">0</span></button>
+  </div>
+
+      <div class="q-card" data-a="6" data-ex="3×2×1=6 种。">
+      <div class="q-head"><span class="q-tag">第 1 题</span><span class="q-type">✏️ 填空题</span></div>
+      <div class="q-stem">小明决定去香山、颐和园、圆明园这三个景点旅游。要走遍这三个景点，他一共有多少种不同的游览顺序？</div>
+      <div class="answer-row"><input type="text" inputmode="numeric" placeholder="填入答案（数字）" autocomplete="off"><button class="check">确认</button></div>
+      <div class="fb"></div>
+    </div>
+    <div class="q-card" data-a="6" data-ex="4×3÷2=6 种。">
+      <div class="q-head"><span class="q-tag">第 2 题</span><span class="q-type">✏️ 填空题</span></div>
+      <div class="q-stem">小王准备从青岛、三亚、桂林、杭州这 4 个地方中选 2 个去旅游，有多少种不同的选择方式？</div>
+      <div class="answer-row"><input type="text" inputmode="numeric" placeholder="填入答案（数字）" autocomplete="off"><button class="check">确认</button></div>
+      <div class="fb"></div>
+    </div>
+    <div class="q-card" data-a="4" data-ex="选 3 个 = 去掉 1 个，共 4 种。">
+      <div class="q-head"><span class="q-tag">第 3 题</span><span class="q-type">✏️ 填空题</span></div>
+      <div class="q-stem">小王如果想去这 4 个地方中的 3 个，又有多少种选择方式？</div>
+      <div class="answer-row"><input type="text" inputmode="numeric" placeholder="填入答案（数字）" autocomplete="off"><button class="check">确认</button></div>
+      <div class="fb"></div>
+    </div>
+    <div class="q-card" data-a="4" data-ex="0.5x+2y=6，即 x+4y=12：y=0,1,2,3 → x=12,8,4,0，共 4 种。">
+      <div class="q-head"><span class="q-tag">第 4 题</span><span class="q-type">✏️ 填空题</span></div>
+      <div class="q-stem">小烧饼每个 5 角钱，大烧饼每个 2 元钱。冬冬一共有 6 元钱，全部用来买烧饼，一共有多少种不同的买法？</div>
+      <div class="answer-row"><input type="text" inputmode="numeric" placeholder="填入答案（数字）" autocomplete="off"><button class="check">确认</button></div>
+      <div class="fb"></div>
+    </div>
+    <div class="q-card" data-a="9" data-ex="小悦 1~9 分对应冬冬 9~1 分，共 9 种。">
+      <div class="q-head"><span class="q-tag">第 5 题</span><span class="q-type">✏️ 填空题</span></div>
+      <div class="q-stem">小悦和冬冬一共答对 10 道题，每人都有答对。小悦和冬冬分别可能得多少分？共有多少种可能？</div>
+      <div class="answer-row"><input type="text" inputmode="numeric" placeholder="填入答案（数字）" autocomplete="off"><button class="check">确认</button></div>
+      <div class="fb"></div>
+    </div>
+  <div class="btn-row">
+    <a class="link-btn" href="index.html">🎬 返回课程</a>
+  </div>
+  <footer>© 2026 <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span></footer>
+</div>
+
+<!-- 错题本弹窗 -->
+<div class="wrong-mask" id="wrongMask">
+  <div class="wrong-box">
+    <div class="wrong-head"><span>📕 错题本</span><button class="wrong-close" id="wrongClose">✕</button></div>
+    <div class="wrong-body" id="wrongBody">
+      <div id="printArea"><div id="wrongList"></div></div>
+    </div>
+    <div class="wrong-actions">
+      <button class="act-btn act-print" id="btnPrint">🖨️ 打印错题</button>
+      <button class="act-btn act-clear" id="btnClear">🗑 清空错题</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var CARDS = document.querySelectorAll('.q-card');
+var done = 0, wrongs = [];
+var sec = 0, timerId = null;
+
+/* 计时（正计时） */
+function tick(){ sec++; document.getElementById('timerNum').textContent = fmt(sec); }
+function fmt(s){ return String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0'); }
+
+function refresh(){
+  document.getElementById('progTxt').textContent = done + ' / ' + CARDS.length;
+  document.getElementById('progBar').style.width = (done / CARDS.length * 100) + '%';
+  document.getElementById('wrongCnt').textContent = wrongs.length;
+}
+
+/* 错题本渲染 */
+function renderWrong(){
+  var el = document.getElementById('wrongList');
+  if(wrongs.length === 0){
+    el.innerHTML = '<div class="wrong-empty">🎉 暂无错题<br>继续保持！</div>';
+    return;
+  }
+  el.innerHTML = '<div style="font-size:13px;font-weight:700;color:#b45309;margin-bottom:4px">共 ' + wrongs.length + ' 道错题</div>' +
+    wrongs.map(function(w){
+      return '<div class="w-item">'+
+        '<span class="w-no">第 ' + w.no + ' 题</span>'+
+        '<div class="w-stem">' + w.stem + '</div>'+
+        '<div class="w-line"><b>我的答案：</b><span class="w-ua">' + (w.ua||'未作答') + '</span></div>'+
+        '<div class="w-line"><b>正确答案：</b><span class="w-ans">' + w.ans + '</span></div>'+
+        '<div class="w-ex">💡 ' + w.ex + '</div>'+
+      '</div>';
+    }).join('');
+}
+
+CARDS.forEach(function(card){
+  var input = card.querySelector('input');
+  var btn = card.querySelector('.check');
+  var fb = card.querySelector('.fb');
+  btn.addEventListener('click', function(){
+    if (card.dataset.done) { input.focus(); return; }
+    var ua = input.value.trim();
+    if (ua === '') { fb.className = 'fb no'; fb.innerHTML = '⚠️ 请先填入答案再确认'; return; }
+    var ok = (String(parseInt(ua,10)) === card.dataset.a) || (ua === card.dataset.a) || (card.dataset.a.split('|').indexOf(ua) >= 0);
+    card.dataset.done = '1';
+    input.disabled = true;
+    btn.textContent = ok ? '✓ 正确' : '已判定';
+    btn.style.opacity = .6;
+    fb.className = ok ? 'fb ok' : 'fb no';
+    if(ok){
+      fb.innerHTML = '🎉 回答正确！<span class="ex">💡 ' + card.dataset.ex + '</span>';
+    }else{
+      fb.innerHTML = '❌ 回答错误，正确答案是 <span class="ans">' + card.dataset.a + '</span><span class="ex">💡 ' + card.dataset.ex + '</span>';
+      wrongs.push({ no: Array.prototype.indexOf.call(CARDS, card) + 1, stem: card.querySelector('.q-stem').textContent, ua: ua, ans: card.dataset.a, ex: card.dataset.ex });
+      renderWrong();
+    }
+    done++;
+    if(!timerId) timerId = setInterval(tick, 1000);
+    refresh();
+  });
+  input.addEventListener('keydown', function(e){ if (e.key === 'Enter') btn.click(); });
+});
+
+/* 错题本交互 */
+var mask = document.getElementById('wrongMask');
+document.getElementById('wrongBtn').addEventListener('click', function(){ renderWrong(); mask.classList.add('open'); });
+document.getElementById('wrongClose').addEventListener('click', function(){ mask.classList.remove('open'); });
+mask.addEventListener('click', function(e){ if(e.target === mask) mask.classList.remove('open'); });
+document.getElementById('btnPrint').addEventListener('click', function(){
+  if(wrongs.length === 0){ alert('暂无错题可打印'); return; }
+  var d = new Date();
+  var timeTxt = document.getElementById('timerNum').textContent;
+  var head = '<div class="print-head"><h2>枚举法 · 错题本</h2>' +
+    '<p>共 ' + wrongs.length + ' 道错题（重做练习版）　·　练习用时 ' + timeTxt + '</p>' +
+    '<p>打印时间：' + d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0') +
+    ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0') + '</p></div>';
+  var items = wrongs.map(function(w){
+    return '<div class="print-item">' +
+      '<div class="print-no">第 ' + w.no + ' 题</div>' +
+      '<div class="print-stem">' + w.stem + '</div>' +
+      '<div class="print-blank">答案：</div>' +
+    '</div>';
+  }).join('');
+  document.getElementById('printHost').innerHTML = head + items;
+  window.print();
+});
+document.getElementById('btnClear').addEventListener('click', function(){
+  if(wrongs.length === 0) return;
+  if(confirm('确定清空错题本吗？')){ wrongs = []; renderWrong(); refresh(); }
+});
+
+refresh();
+</script>
+<div id="printHost"></div>
+</body>
+</html>

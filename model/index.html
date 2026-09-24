@@ -115,15 +115,6 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .page-btn.done{background:#d1fae5;border-color:var(--green);color:#065f46}
 .page-btn.q-label{font-size:.7rem;color:var(--text2);width:auto;padding:0 6px;border:none;background:transparent;cursor:default}
 
-/* 底部工具栏 */
-.toolbar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);
-  display:flex;justify-content:space-around;align-items:center;padding:10px 8px calc(10px + env(safe-area-inset-bottom));
-  z-index:100;box-shadow:0 -2px 8px rgba(0,0,0,.04)}
-.toolbar button{background:none;border:none;font-size:.7rem;color:var(--text2);cursor:pointer;padding:6px 10px;border-radius:8px;display:flex;flex-direction:column;align-items:center;gap:3px;transition:all .15s}
-.toolbar button:hover{color:var(--text);background:var(--bg)}
-.toolbar .icon{font-size:1.2rem}
-.toolbar .timer{font-size:.75rem;font-weight:700;color:var(--text);min-width:44px;text-align:center}
-
 /* report panel */
 .report-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;display:none;align-items:flex-end;justify-content:center}
 .report-overlay.show{display:flex}
@@ -147,6 +138,21 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 @media(min-width:520px){
   .section-cards{grid-template-columns:repeat(3,1fr)}
 }
+
+/* 教练微信号提示框 */
+.coach-tip{position:relative;display:inline-block;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.coach-tip .tip{visibility:hidden;opacity:0;position:absolute;bottom:145%;left:50%;transform:translateX(-50%) translateY(4px);background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;padding:7px 14px;border-radius:10px;font-size:12.5px;font-weight:700;white-space:nowrap;letter-spacing:.5px;z-index:99;pointer-events:none;box-shadow:0 6px 18px rgba(47,157,240,.35);transition:opacity .2s ease,transform .2s ease,visibility .2s}
+.coach-tip .tip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#2f9df0}
+.coach-tip:hover .tip,.coach-tip:active .tip,.coach-tip:focus .tip{visibility:visible;opacity:1;transform:translateX(-50%) translateY(0)}
+.coach-footer{text-align:center;padding:14px 0 18px;color:var(--text2,#7f8c8d);font-size:.75rem}
+
+
+  .more-link{display:flex;align-items:center;justify-content:center;gap:6px;
+    margin:18px auto 0;width:fit-content;background:#fff;color:#1fa873;border:1.5px solid #2ebd85;
+    padding:12px 28px;border-radius:999px;font-size:14px;font-weight:800;text-decoration:none;
+    box-shadow:0 4px 12px rgba(46,158,107,.14);transition:transform .15s;touch-action:manipulation}
+  .more-link:active{transform:scale(.95)}
+
 </style>
 </head>
 <body>
@@ -195,14 +201,61 @@ function renderHome(){
       '<div class="ds">即将上线</div>'+
       '<span class="num">敬请期待</span></div>';
   }).join('');
+  // 第 6 个板块：视频课程（外部链接）
+  var vHtml = '<a class="section-card" href="../course/Lilaoshi-maths/index.html">'+
+    '<div class="ic">📺</div>'+
+    '<div class="nm">视频课程</div>'+
+    '<div class="ds">小学数学思维课 · 1-4 阶<br>视频精讲 · 随点随播</div>'+
+    '<span class="num">106 节视频 →</span></a>';
+  // 初中模型 · 经典题库导航（横条卡片）
+  var cHtml = '<a href="algebra/7a-topic3.html" style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:#fff;border:1.5px solid #bfdbfe;border-radius:14px;box-shadow:0 4px 12px rgba(47,157,240,.10);text-decoration:none;color:inherit;grid-column:1/-1;margin-bottom:10px">'+
+    '<div style="font-size:36px;line-height:1">🔢</div>'+
+    '<div style="flex:1">'+
+      '<div style="font-size:16px;font-weight:700;color:#0e7490">数列求值专题</div>'+
+      '<div style="font-size:12px;color:#64748b;margin-top:4px">七年级上册 · 数列求值 · 经典题库训练</div>'+
+    '</div>'+
+    '<span style="background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600;flex-shrink:0">进入练习 →</span>'+
+  '</a>'+
+  '<a href="algebra/7a-topic4.html" style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:#fff;border:1.5px solid #bfdbfe;border-radius:14px;box-shadow:0 4px 12px rgba(47,157,240,.10);text-decoration:none;color:inherit;grid-column:1/-1;margin-bottom:10px">'+
+    '<div style="font-size:36px;line-height:1">🔢</div>'+
+    '<div style="flex:1">'+
+      '<div style="font-size:16px;font-weight:700;color:#0e7490">绝对值最值专题</div>'+
+      '<div style="font-size:12px;color:#64748b;margin-top:4px">七年级上册 · 绝对值最值 · 经典题库训练</div>'+
+    '</div>'+
+    '<span style="background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600;flex-shrink:0">进入练习 →</span>'+
+  '</a>'+
+  '<a href="algebra/7a-topic1.html" style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:#fff;border:1.5px solid #bfdbfe;border-radius:14px;box-shadow:0 4px 12px rgba(47,157,240,.10);text-decoration:none;color:inherit;grid-column:1/-1;margin-bottom:10px">'+
+    '<div style="font-size:36px;line-height:1">🔢</div>'+
+    '<div style="flex:1">'+
+      '<div style="font-size:16px;font-weight:700;color:#0e7490">相反数、绝对值专题</div>'+
+      '<div style="font-size:12px;color:#64748b;margin-top:4px">七年级上册 · 相反数与绝对值 · 经典题库训练</div>'+
+    '</div>'+
+    '<span style="background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600;flex-shrink:0">进入练习 →</span>'+
+  '</a>'+
+  '<a href="algebra/7a-topic2.html" style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:#fff;border:1.5px solid #bfdbfe;border-radius:14px;box-shadow:0 4px 12px rgba(47,157,240,.10);text-decoration:none;color:inherit;grid-column:1/-1;margin-bottom:10px">'+
+    '<div style="font-size:36px;line-height:1">🔢</div>'+
+    '<div style="flex:1">'+
+      '<div style="font-size:16px;font-weight:700;color:#0e7490">数轴动点专题</div>'+
+      '<div style="font-size:12px;color:#64748b;margin-top:4px">七年级上册 · 数轴动点 · 经典题库训练</div>'+
+    '</div>'+
+    '<span style="background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600;flex-shrink:0">进入练习 →</span>'+
+  '</a>'+
+  '<a href="algebra/7a-topic5.html" style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:#fff;border:1.5px solid #bfdbfe;border-radius:14px;box-shadow:0 4px 12px rgba(47,157,240,.10);text-decoration:none;color:inherit;grid-column:1/-1;margin-bottom:10px">'+
+    '<div style="font-size:36px;line-height:1">🔢</div>'+
+    '<div style="flex:1">'+
+      '<div style="font-size:16px;font-weight:700;color:#0e7490">进制转化专题</div>'+
+      '<div style="font-size:12px;color:#64748b;margin-top:4px">七年级上册 · 二进制·八进制·十进制互转 · 经典题库训练</div>'+
+    '</div>'+
+    '<span style="background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600;flex-shrink:0">进入练习 →</span>'+
+  '</a>';
 
   return ''+
     '<div class="hdr"><h1>🎯 模型思维</h1><p class="sub">小学 · 初中数学模型系统化训练</p></div>'+
     '<div class="section-label">小学模型 <span class="badge">5 大专题</span></div>'+
-    '<div class="section-cards">'+pHtml+'</div>'+
-    '<div class="section-label">初中模型 </div>'+
-   // '<div class="section-cards">'+mHtml+'</div>'+
-    '<a href="models60.html" style="display:block;margin-top:18px;padding:14px 18px;background:linear-gradient(135deg,#f0f9ff,#fff);border-radius:var(--radius);box-shadow:var(--shadow);border:1.5px solid #bfdbfe;cursor:pointer;text-decoration:none;color:inherit">'+
+    '<div class="section-cards">'+pHtml+vHtml+'</div>'+
+    '<div class="section-label">初中模型 <span class="badge">15 大专题</span></div>'+
+    '<div class="section-cards">'+cHtml+'</div>'+
+    '<a href="geometry/models60.html" style="display:block;margin-top:18px;padding:14px 18px;background:linear-gradient(135deg,#f0f9ff,#fff);border-radius:var(--radius);box-shadow:var(--shadow);border:1.5px solid #bfdbfe;cursor:pointer;text-decoration:none;color:inherit">'+
       '<div style="display:flex;align-items:center;gap:14px">'+
         '<div style="font-size:38px;line-height:1">&#x1f4d0;</div>'+
         '<div style="flex:1">'+
@@ -211,7 +264,20 @@ function renderHome(){
         '</div>'+
         '<span style="background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;padding:4px 12px;border-radius:999px;font-size:.72rem;font-weight:600">查看 →</span>'+
       '</div>'+
-    '</a>';
+    '</a>'+
+
+    '<a href="../course/yishu-maths/index.html" style="display:block;margin-top:18px;padding:14px 18px;background:linear-gradient(135deg,#f0f9ff,#fff);border-radius:var(--radius);box-shadow:var(--shadow);border:1.5px solid #bfdbfe;cursor:pointer;text-decoration:none;color:inherit">'+
+      '<div style="display:flex;align-items:center;gap:14px">'+
+        '<div style="font-size:38px;line-height:1">📺</div>'+
+        '<div style="flex:1">'+
+          '<div style="font-size:1.05rem;font-weight:700;color:#0e7490">一数初中数学复习课</div>'+
+          '<div style="font-size:.78rem;color:var(--text2);margin-top:4px">5 大板块 · 38节课</div>'+
+        '</div>'+
+        '<span style="background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;padding:4px 12px;border-radius:999px;font-size:.72rem;font-weight:600">查看 →</span>'+
+      '</div>'+
+    '</a>'+
+
+    '<a class="more-link" href="https://www.jyeoo.com/math/ques/search?f=4" target="_blank" rel="noopener">🧩 更多解题模型</a>';
 }
 
 /* ============ 专题详情（知识点列表） ============ */
@@ -394,18 +460,6 @@ function retryPoint(){
   state.qIdx = 0;
   resetTimer(); render();
 }
-
-/* ============ 工具栏 ============ */
-function renderToolbar(){
-  var tb = document.createElement('div');tb.className='toolbar';tb.id='toolbar';
-  tb.innerHTML =
-    '<button onclick="goBack(\'home\')">🏠<span>主页</span></button>'+
-    '<button onclick="location.reload()">🔄<span>刷新</span></button>'+
-    '<span class="timer" id="timer">0:00</span>'+
-    '<button onclick="showReport()">📊<span>报告</span></button>'+
-    '<button onclick="nextQ()">▶<span>下一题</span></button>';
-  document.body.appendChild(tb);
-}
 function nextQ(){
   if(state.view!=='point') return;
   var t = TOPICS[state.topicId], p;
@@ -415,9 +469,8 @@ function nextQ(){
 }
 
 /* ============ 初始化 ============ */
-renderToolbar();
 render();
 </script>
-<div style="text-align:center;margin-top:18px"><a class="bt-home" href="../index.html">🏠 返回首页</a><br/><br/><div style="padding:6px 0 16px;color:var(--text2);font-size:.72rem">&copy; 两英豆豆教练</div></div>
+<div style="text-align:center;margin-top:18px"><a class="bt-home" href="../index.html">🏠 返回首页</a><br/><br/><div style="padding:6px 0 16px;color:var(--text2);font-size:.72rem">&copy; <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span></div></div>
 </body>
 </html>

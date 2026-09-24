@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2ebd85">
+<title>作业中心 · 在线作业布置与批改</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);color:#33434b;
+    padding:20px 14px 50px;min-height:100vh;display:flex;justify-content:center;font-size:15px}
+  .wrap{width:100%;max-width:960px}
+  /* 头部（参照 simulation/knowledge 样式） */
+  .hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+    border-radius:22px;padding:30px 18px 26px;text-align:center;color:#fff;
+    overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:16px}
+  .hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+  .hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+  .hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+  .hdr h1{position:relative;font-size:24px;letter-spacing:2px;font-weight:800;text-shadow:0 2px 6px rgba(0,0,0,.12)}
+  .hdr .sub{position:relative;margin-top:10px;font-size:13px;letter-spacing:3px;opacity:.95}
+  .tips{background:#fff;border-radius:12px;padding:11px 14px;font-size:13px;color:#5b6b7c;
+    line-height:1.8;margin-bottom:14px;box-shadow:0 4px 12px rgba(47,157,240,.08)}
+  .tips b{color:#0f9d58}
+  /* 作业中心容器 */
+  .hw-box{width:100%;background:#fff;border-radius:16px;overflow:hidden;
+    box-shadow:0 8px 22px rgba(47,157,240,.12);border:1px solid #e2ecf5}
+  .hw-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:12px 16px;background:linear-gradient(120deg,#35d29a,#2f9df0);color:#fff;font-size:14px;font-weight:700}
+  .hw-bar .ico{font-size:16px}
+  .hw-bar a{color:#fff;font-size:12px;font-weight:600;text-decoration:none;
+    background:rgba(255,255,255,.22);padding:6px 14px;border-radius:999px;white-space:nowrap}
+  .hw-frame{position:relative;width:100%;height:76vh;min-height:500px;background:#f8fafc}
+  .hw-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:none;display:block}
+  .hw-tip{text-align:center;font-size:12px;color:#8aa09a;margin-top:10px;line-height:1.8}
+  /* 底部按钮 */
+  .home-row{display:flex;justify-content:center;margin-top:20px}
+  .home-btn{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#1fa873;
+    border:1.5px solid #2ebd85;padding:12px 28px;border-radius:999px;font-size:14px;font-weight:800;
+    text-decoration:none;box-shadow:0 4px 12px rgba(46,158,107,.14);
+    transition:transform .15s;touch-action:manipulation}
+  .home-btn:active{transform:scale(.95)}
+  footer{width:100%;margin-top:18px;text-align:center;font-size:12px;color:#a8bcb4;letter-spacing:1px}
+  .coach-tip{position:relative;display:inline-block;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .coach-tip .tip{visibility:hidden;opacity:0;position:absolute;bottom:145%;left:50%;transform:translateX(-50%) translateY(4px);
+    background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;padding:7px 14px;border-radius:10px;font-size:12.5px;
+    font-weight:700;white-space:nowrap;letter-spacing:.5px;z-index:99;pointer-events:none;box-shadow:0 6px 18px rgba(47,157,240,.35);
+    transition:opacity .2s ease,transform .2s ease,visibility .2s}
+  .coach-tip .tip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+    border:6px solid transparent;border-top-color:#2f9df0}
+  .coach-tip:hover .tip,.coach-tip:active .tip,.coach-tip:focus .tip{visibility:visible;opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hdr">
+    <h1>📝 作业中心</h1>
+    <p class="sub">在线作业布置 · 批改 · 学情分析</p>
+  </header>
+
+  <div class="tips"><b>📌 使用提示：</b>① 支持在线布置/批改作业、查看学情分析；<br>② 首次使用请先<b>登录菁优网账号</b>（右上角登录），登录后自动进入作业中心；<br>③ 建议使用电脑或平板体验最佳。</div>
+
+  <div class="hw-box">
+    <div class="hw-bar">
+      <span><span class="ico">📝</span> 菁优网作业中心 · jyeoo.com</span>
+      <a href="https://www.jyeoo.com/math/homework" target="_blank" rel="noopener">新窗口打开 ↗</a>
+    </div>
+    <div class="hw-frame">
+      <iframe id="hwFrame" src="https://www.jyeoo.com/math/homework"
+        title="菁优网作业中心" loading="lazy" allowfullscreen></iframe>
+    </div>
+  </div>
+  <p class="hw-tip">若页面未加载，请点击右上角「新窗口打开 ↗」直接访问</p>
+
+  <div class="home-row"><a class="home-btn" href="../index.html">🏠 返回首页</a></div>
+  <footer>© 2026 <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span></footer>
+</div>
+</body>
+</html>

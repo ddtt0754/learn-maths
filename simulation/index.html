@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2ebd85">
+<title>数学模拟 · 数学模拟实验</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:linear-gradient(180deg,#eefaf4 0%,#eef4fb 100%);color:#33434b;
+    padding:20px 14px 50px;min-height:100vh;display:flex;justify-content:center;font-size:15px}
+  .wrap{width:100%;max-width:860px}
+  /* 头部（参照 knowledge/index.html 样式） */
+  .hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+    border-radius:22px;padding:30px 18px 26px;text-align:center;color:#fff;
+    overflow:hidden;box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:16px}
+  .hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+  .hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+  .hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+  .hdr h1{position:relative;font-size:24px;letter-spacing:2px;font-weight:800;text-shadow:0 2px 6px rgba(0,0,0,.12)}
+  .hdr .sub{position:relative;margin-top:10px;font-size:13px;letter-spacing:3px;opacity:.95}
+  .tips{background:#fff;border-radius:12px;padding:11px 14px;font-size:13px;color:#5b6b7c;
+    line-height:1.8;margin-bottom:14px;box-shadow:0 4px 12px rgba(47,157,240,.08)}
+  .tips b{color:#0f9d58}
+  /* 模拟卡片网格 */
+  .sim-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .sim-card{display:flex;align-items:center;gap:12px;padding:13px 14px;background:#fff;
+    border:1.5px solid #d8ebe3;border-radius:14px;text-decoration:none;color:inherit;
+    box-shadow:0 4px 12px rgba(47,157,240,.08);transition:transform .12s,border-color .2s;touch-action:manipulation}
+  .sim-card:active{transform:scale(.97)}
+  .sim-card:hover{border-color:#35d29a}
+  .sim-card .ic{flex:0 0 40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+    font-size:20px;background:linear-gradient(135deg,rgba(53,210,154,.14),rgba(47,157,240,.14))}
+  .sim-card .tx{flex:1;min-width:0}
+  .sim-card .nm{font-size:14px;font-weight:800;color:#1f2d3d}
+  .sim-card .ds{font-size:11.5px;color:#8aa09a;margin-top:3px;line-height:1.5}
+  .sim-card .go{flex:0 0 auto;font-size:11px;font-weight:700;color:#1fa873;background:#e9f9f0;
+    padding:4px 10px;border-radius:999px;white-space:nowrap}
+  .sim-note{text-align:center;font-size:12px;color:#8aa09a;margin-top:12px;line-height:1.8}
+  /* 底部按钮 */
+  .home-row{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+  .home-btn{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#1fa873;
+    border:1.5px solid #2ebd85;padding:12px 24px;border-radius:999px;font-size:14px;font-weight:800;
+    text-decoration:none;box-shadow:0 4px 12px rgba(46,158,107,.14);
+    transition:transform .15s;touch-action:manipulation}
+  .home-btn.primary{background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none}
+  .home-btn:active{transform:scale(.95)}
+  footer{width:100%;margin-top:18px;text-align:center;font-size:12px;color:#a8bcb4;letter-spacing:1px}
+  .coach-tip{position:relative;display:inline-block;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .coach-tip .tip{visibility:hidden;opacity:0;position:absolute;bottom:145%;left:50%;transform:translateX(-50%) translateY(4px);
+    background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;padding:7px 14px;border-radius:10px;font-size:12.5px;
+    font-weight:700;white-space:nowrap;letter-spacing:.5px;z-index:99;pointer-events:none;box-shadow:0 6px 18px rgba(47,157,240,.35);
+    transition:opacity .2s ease,transform .2s ease,visibility .2s}
+  .coach-tip .tip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+    border:6px solid transparent;border-top-color:#2f9df0}
+  .coach-tip:hover .tip,.coach-tip:active .tip,.coach-tip:focus .tip{visibility:visible;opacity:1;transform:translateX(-50%) translateY(0)}
+  @media (max-width:520px){.sim-grid{grid-template-columns:1fr}}
+
+  .btn-glass{background:rgba(255,255,255,.22);color:#fff;border:1px solid rgba(255,255,255,.35);
+    padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600;text-decoration:none;
+    transition:background .2s,transform .15s;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+    display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+  .btn-glass:hover{background:rgba(255,255,255,.38);transform:translateY(-1px)}
+  .btn-glass:active{transform:scale(.95)}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hdr">
+    <div style="position:absolute;top:14px;right:14px;z-index:1;display:flex;gap:6px">
+      <a class="btn-glass" href="https://www.geogebra.org/calculator" target="_blank" rel="noopener">📐 在线几何绘图</a>
+    </div>
+    <h1>🧪 数学模拟</h1>
+    <p class="sub">PhET 交互式数学模拟实验</p>
+  </header>
+
+  <div class="tips"><b>📌 使用说明：</b>实验支持参数调节与实时反馈，右上角可切换中文 / English。</div>
+
+  <div class="sim-grid" id="simGrid"></div>
+  <p class="sim-note">共 11 个经典数学模拟 · 由 PhET（科罗拉多大学）提供</p>
+
+  <div class="home-row">
+    <a class="home-btn primary" href="https://phet.colorado.edu/zh_CN/simulations/filter?subjects=math-and-statistics&type=html" target="_blank" rel="noopener">🚀 打开全部模拟专区 ↗</a>
+    <a class="home-btn" href="../index.html">🏠 返回首页</a>
+  </div>
+  <footer>© 2026 <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span></footer>
+</div>
+
+<script>
+var SIMS = [
+  {ic:"🔢", nm:"分数入门", ds:"认识分数 · 等分 · 比较", id:"fractions-intro"},
+  {ic:"🧩", nm:"分数配对", ds:"图形分数匹配游戏", id:"fraction-matcher"},
+  {ic:"⚖️", nm:"分数等式", ds:"分数等值与运算", id:"fractions-equality"},
+  {ic:"🧪", nm:"等式探索", ds:"天平模型 · 等式变形", id:"equality-explorer"},
+  {ic:"🟩", nm:"面积模型乘法", ds:"乘法可视化 · 面积模型", id:"area-model-multiplication"},
+  {ic:"📏", nm:"数轴距离", ds:"数轴 · 距离 · 绝对值", id:"number-line-distance"},
+  {ic:"🔁", nm:"表达式交换", ds:"代数表达式等价", id:"expression-exchange"},
+  {ic:"📈", nm:"函数生成器", ds:"函数映射 · 输入输出", id:"function-builder"},
+  {ic:"🎲", nm:"普林科概率", ds:"概率分布 · 随机实验", id:"plinko-probability"},
+  {ic:"📉", nm:"曲线拟合", ds:"数据点 · 拟合曲线", id:"curve-fitting"},
+  {ic:"🚗", nm:"单位比率", ds:"单位换算 · 比率速度", id:"unit-rates"}
+];
+document.getElementById("simGrid").innerHTML = SIMS.map(function(s){
+  return '<a class="sim-card" href="https://phet.colorado.edu/zh_CN/simulations/' + s.id + '" target="_blank" rel="noopener">' +
+    '<span class="ic">' + s.ic + '</span>' +
+    '<span class="tx"><span class="nm">' + s.nm + '</span><span class="ds">' + s.ds + '</span></span>' +
+    '<span class="go">打开 ↗</span></a>';
+}).join("");
+</script>
+</body>
+</html>
