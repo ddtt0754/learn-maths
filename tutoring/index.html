@@ -132,6 +132,53 @@
     transition:transform .15s;touch-action:manipulation}
   .home-btn:active{transform:scale(.95)}
 
+  /* ===== 豆神答疑 · 右下角悬浮按钮 ===== */
+  .ask-fab{
+    position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:60;
+    display:inline-flex;align-items:center;gap:7px;
+    border:none;cursor:pointer;font-family:inherit;
+    background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;
+    font-size:14px;font-weight:700;letter-spacing:.5px;
+    padding:12px 18px;border-radius:999px;
+    box-shadow:0 10px 24px rgba(47,157,240,.38),0 2px 6px rgba(46,189,133,.25);
+    transition:transform .15s,box-shadow .2s;touch-action:manipulation;
+    -webkit-user-select:none;user-select:none
+  }
+  .ask-fab:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(47,157,240,.45)}
+  .ask-fab:active{transform:scale(.95)}
+  .ask-fab .fab-ico{font-size:17px;line-height:1}
+
+  /* ===== 豆神答疑 · 弹窗 ===== */
+  .ask-modal{position:fixed;inset:0;z-index:9990;background:rgba(15,28,42,.55);
+    display:none;align-items:center;justify-content:center;padding:14px}
+  .ask-modal.open{display:flex}
+  .ask-panel{width:100%;height:100%;max-width:960px;max-height:900px;
+    background:#fff;border-radius:18px;overflow:hidden;
+    display:flex;flex-direction:column;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);animation:askPop .2s ease}
+  @keyframes askPop{from{opacity:0;transform:scale(.96) translateY(10px)}to{opacity:1;transform:none}}
+  .ask-head{flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:11px 14px;
+    background:linear-gradient(120deg,#35d29a,#2f9df0);color:#fff}
+  .ask-head .ask-title{flex:1;font-size:15px;font-weight:700;letter-spacing:.5px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ask-head a,.ask-head button{border:none;cursor:pointer;text-decoration:none;
+    height:30px;min-width:30px;padding:0 11px;border-radius:999px;
+    background:rgba(255,255,255,.22);color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}
+  .ask-head a{font-size:12.5px;font-weight:600}
+  .ask-head button{font-size:18px;line-height:1}
+  .ask-head a:active,.ask-head button:active{background:rgba(255,255,255,.38)}
+  .ask-body{flex:1 1 auto;min-height:0;position:relative;background:#fff}
+  .ask-body iframe{width:100%;height:100%;border:none;display:block}
+  @media (max-width:420px){
+    .ask-fab{right:12px;padding:11px 15px;font-size:13px}
+    .ask-modal{padding:0}
+    .ask-panel{border-radius:0;max-height:none}
+  }
+  /* 窄屏避让：给悬浮按钮留出空间，避免压住页脚 */
+  @media (max-width:640px){
+    body{padding-bottom:calc(104px + env(safe-area-inset-bottom))}
+  }
 </style>
 </head>
 <body>
@@ -857,6 +904,27 @@
   <footer>&copy; <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span><br/><br/></footer>
 </div>
 
+<!-- 豆神答疑 · 右下角悬浮按钮 -->
+<button class="ask-fab" id="askFab" type="button" aria-label="打开豆神答疑">
+  <span class="fab-ico">🧙</span>豆神答疑
+</button>
+
+<!-- 豆神答疑 · 弹窗 -->
+<div class="ask-modal" id="askModal" role="dialog" aria-modal="true" aria-label="豆神答疑">
+  <div class="ask-panel">
+    <div class="ask-head">
+      <span class="ask-title">🧙 豆神答疑</span>
+      <a href="../../learn/dd-teacher/index.html" target="_blank" rel="noopener" title="在新窗口打开">新窗口 ↗</a>
+      <button type="button" id="askClose" title="关闭" aria-label="关闭">×</button>
+    </div>
+    <div class="ask-body">
+      <iframe id="askFrame" title="豆神答疑" src="../../learn/dd-teacher/index.html"
+        allow="clipboard-read; clipboard-write; encrypted-media; microphone; camera; autoplay; fullscreen"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   const GRADES = {2:"二年级",3:"三年级",4:"四年级",5:"五年级",6:"六年级",7:"七年级",8:"八年级",9:"九年级"};
@@ -930,6 +998,34 @@
   });
 
   updateUI();
+})();
+</script>
+
+<script>
+/* ===== 豆神答疑弹窗控制（独立 IIFE，缺失元素时静默退出） ===== */
+(function(){
+  var fab = document.getElementById('askFab');
+  var modal = document.getElementById('askModal');
+  var frame = document.getElementById('askFrame');
+  var closeBtn = document.getElementById('askClose');
+  var de = document.documentElement;
+  if (!fab || !modal || !frame) return;   /* 防呆：元素缺失不抛错 */
+
+  function openModal(){
+    modal.classList.add('open');
+    de.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    de.style.overflow = '';
+  }
+
+  fab.addEventListener('click', openModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
 })();
 </script>
 </body>
