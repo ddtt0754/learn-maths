@@ -136,7 +136,7 @@
   <div class="tips"><b>📌 使用说明：</b>实验支持参数调节与实时反馈，右上角可切换中文 / English。</div>
 
   <div class="sim-grid" id="simGrid"></div>
-  <p class="sim-note">共 11 个经典数学模拟 · 由 PhET（科罗拉多大学）提供</p>
+  <p class="sim-note">共 12 个交互式工具 · 其中 11 个由 PhET（科罗拉多大学）提供</p>
 
   <div class="home-row">
     <a class="home-btn primary" href="https://phet.colorado.edu/zh_CN/simulations/filter?subjects=math-and-statistics&type=html" target="_blank" rel="noopener">🚀 打开全部模拟专区 ↗</a>
@@ -147,6 +147,7 @@
 
 <script>
 var SIMS = [
+  {ic:"🧰", nm:"综合交互式工具", ds:"全科互动工具 · 小初高数学专区", url:"qkhd.html"},
   {ic:"🔢", nm:"分数入门", ds:"认识分数 · 等分 · 比较", id:"fractions-intro"},
   {ic:"🧩", nm:"分数配对", ds:"图形分数匹配游戏", id:"fraction-matcher"},
   {ic:"⚖️", nm:"分数等式", ds:"分数等值与运算", id:"fractions-equality"},
@@ -160,10 +161,11 @@ var SIMS = [
   {ic:"🚗", nm:"单位比率", ds:"单位换算 · 比率速度", id:"unit-rates"}
 ];
 document.getElementById("simGrid").innerHTML = SIMS.map(function(s){
-  return '<a class="sim-card" href="https://phet.colorado.edu/zh_CN/simulations/' + s.id + '" target="_blank" rel="noopener">' +
+  var href = s.url || ('https://phet.colorado.edu/zh_CN/simulations/' + s.id);
+  return '<a class="sim-card" href="' + href + '" target="_blank" rel="noopener">' +
     '<span class="ic">' + s.ic + '</span>' +
     '<span class="tx"><span class="nm">' + s.nm + '</span><span class="ds">' + s.ds + '</span></span>' +
-    '<span class="go">打开 ↗</span></a>';
+    '<span class="go">' + (s.url ? '本站' : '打开 ↗') + '</span></a>';
 }).join("");
 </script>
 <script>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<title>全科互动工具箱 · 豆豆智学系统</title>
+<style>
+:root{
+  --bg:#f5f7fa;
+  --text:#1e293b;
+  --text2:#64748b;
+  --line:#e6ebf2;
+  /* 品牌渐变（亮版，仅作装饰色带） */
+  --grad:linear-gradient(135deg,#35d29a,#2f9df0);
+  /* 承载白字的加深版（白字对比度 ≈5.3:1） */
+  --grad-deep:linear-gradient(135deg,#0f766e,#1f6fb2);
+  --accent:#1fa873;
+  --accent2:#0f766e;
+  --bar-h:56px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+  background:var(--bg);color:var(--text);
+  display:flex;flex-direction:column;
+  height:100vh;height:100dvh;overflow:hidden;
+  -webkit-text-size-adjust:100%;
+}
+
+/* ==================== 顶栏 ==================== */
+.topbar{
+  position:relative;flex:0 0 auto;
+  background:var(--grad-deep);
+  padding:0 14px;
+  padding-top:env(safe-area-inset-top,0px);
+  overflow:hidden;
+  box-shadow:0 2px 12px rgba(15,23,42,.14);
+  z-index:5;
+}
+/* 底边品牌亮色细线 */
+.topbar::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:3px;
+  background:var(--grad);opacity:.95;
+}
+/* 双圆装饰 */
+.topbar .deco{position:absolute;border-radius:50%;background:rgba(255,255,255,.10);pointer-events:none;}
+.topbar .deco.a{width:122px;height:122px;right:-34px;top:-58px;}
+.topbar .deco.b{width:66px;height:66px;right:58px;bottom:-40px;background:rgba(255,255,255,.07);}
+.bar-inner{
+  position:relative;z-index:1;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  min-height:var(--bar-h);
+}
+.bar-title{
+  flex:1 1 auto;min-width:0;
+  font-size:clamp(12.5px,3.4vw,17px);
+  font-weight:800;letter-spacing:.02em;color:#fff;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  text-shadow:0 1px 2px rgba(15,23,42,.18);
+}
+.btn-home{
+  flex:0 0 auto;text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;
+  background:#fff;color:var(--accent2);
+  font-size:13px;font-weight:800;letter-spacing:.02em;
+  padding:8px 14px;border-radius:999px;
+  box-shadow:0 3px 10px rgba(15,23,42,.18);
+  transition:transform .15s ease,box-shadow .2s ease,background .2s ease;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;white-space:nowrap;
+}
+.btn-home:hover{background:#f0fffa;box-shadow:0 5px 16px rgba(15,23,42,.24);}
+.btn-home:active{transform:scale(.95);}
+
+/* ==================== 内嵌区 ==================== */
+.stage{position:relative;flex:1 1 auto;min-height:0;background:#fff;}
+.stage iframe{display:block;width:100%;height:100%;border:0;background:#fff;}
+
+/* 载入态 */
+.loader{
+  position:absolute;inset:0;z-index:2;background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  transition:opacity .45s ease,visibility .45s ease;
+}
+.loader.hide{opacity:0;visibility:hidden;}
+.spin{
+  width:44px;height:44px;border-radius:50%;
+  border:4px solid #e2e8f0;border-top-color:var(--accent);border-right-color:#2f9df0;
+  animation:spin .85s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loader .lt{font-size:12.5px;color:var(--text2);letter-spacing:.06em;font-weight:600;}
+.loader .lh{
+  margin-top:4px;padding:0 24px;text-align:center;
+  font-size:11.5px;line-height:1.75;color:var(--text2);
+  opacity:0;transition:opacity .4s ease;
+}
+.loader.slow .lh{opacity:1;}
+.loader .lh a{color:var(--accent2);font-weight:700;text-decoration:none;border-bottom:1px dashed var(--accent2);}
+
+/* ==================== 页脚 ==================== */
+.site-footer{
+  flex:0 0 auto;text-align:center;
+  padding:7px 14px calc(7px + env(safe-area-inset-bottom,0px));
+  font-size:11.5px;line-height:1.6;color:var(--text2);
+  background:#fff;border-top:1px solid var(--line);
+}
+.site-footer a{color:var(--accent2);font-weight:700;text-decoration:none;}
+.site-footer a:active{opacity:.7;}
+
+/* 署名气泡 */
+.coach-tip{position:relative;display:inline-block;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.coach-tip .tip{visibility:hidden;opacity:0;position:absolute;bottom:145%;left:50%;
+  transform:translateX(-50%) translateY(4px);background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;padding:7px 14px;border-radius:10px;font-size:12.5px;font-weight:700;white-space:nowrap;
+  letter-spacing:.5px;z-index:99;pointer-events:none;box-shadow:0 6px 18px rgba(47,157,240,.35);
+  transition:opacity .2s ease,transform .2s ease,visibility .2s}
+.coach-tip .tip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:6px solid transparent;border-top-color:#2f9df0}
+.coach-tip:hover .tip,.coach-tip:active .tip,.coach-tip:focus .tip{
+  visibility:visible;opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media (max-width:340px){
+  .bar-title{font-size:13px;}
+  .btn-home{font-size:12px;padding:7px 11px;}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <span class="deco a"></span><span class="deco b"></span>
+  <div class="bar-inner">
+    <h1 class="bar-title">豆豆智学系统--全科互动工具箱</h1>
+    <a class="btn-home" href="../../index.html">🏠 返回首页</a>
+  </div>
+</header>
+
+<main class="stage">
+  <div class="loader" id="loader">
+    <div class="spin"></div>
+    <div class="lt">正在载入互动工具箱…</div>
+    <div class="lh">若长时间空白，可能是网络较慢或该站限制了内嵌，<br>请点击页脚 <a href="https://www.8858598.com/index.php?c=category&amp;id=28" target="_blank" rel="noopener">🔗 新窗口打开</a></div>
+  </div>
+  <iframe id="toolFrame"
+          src="https://www.8858598.com/index.php?c=category&amp;id=28"
+          title="全科互动工具箱"
+          allow="fullscreen; clipboard-read; clipboard-write"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+</main>
+
+<footer class="site-footer">
+  &copy; 2026 <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span>&nbsp;·&nbsp;<a href="https://www.8858598.com/index.php?c=category&amp;id=28" target="_blank" rel="noopener">🔗 新窗口打开</a>
+</footer>
+
+<script>
+(function(){
+  var frame  = document.getElementById('toolFrame');
+  var loader = document.getElementById('loader');
+  var done   = false;
+
+  function hide(){
+    if (done) return;
+    done = true;
+    loader.classList.add('hide');
+    setTimeout(function(){ loader.style.display = 'none'; }, 500);
+  }
+
+  if (frame) frame.addEventListener('load', hide);
+
+  /* 跨域页读不到内部状态：超时未 load 则给出「新窗口打开」兜底提示 */
+  setTimeout(function(){ if (!done) loader.classList.add('slow'); }, 9000);
+  setTimeout(hide, 20000);
+})();
+</script>
+</body>
+</html>
