@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<meta name="description" content="学期诊断 · 百万题库智能测评 · 自动生成学情报告 —— 内嵌菁优网官方站点">
+<title>学科测评 · 豆豆智学系统</title>
+<link rel="preconnect" href="https://www.jyeoo.com" crossorigin>
+<style>
+:root{
+  --bg:#f5f7fa;
+  --text:#1e293b;
+  --text2:#64748b;
+  --line:#e6ebf2;
+  /* 品牌渐变（亮版，仅作装饰色带） */
+  --grad:linear-gradient(135deg,#35d29a,#2f9df0);
+  /* 承载白字的加深版（白字对比度 ≈5.3:1） */
+  --grad-deep:linear-gradient(135deg,#0f766e,#1f6fb2);
+  --accent:#1fa873;
+  --accent2:#0f766e;
+  --bar-h:56px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+  background:var(--bg);color:var(--text);
+  display:flex;flex-direction:column;
+  height:100vh;height:100dvh;overflow:hidden;
+  -webkit-text-size-adjust:100%;
+}
+
+/* ==================== 顶栏（勿动） ==================== */
+.topbar{
+  position:relative;flex:0 0 auto;
+  background:var(--grad-deep);
+  padding:0 14px;
+  padding-top:env(safe-area-inset-top,0px);
+  overflow:hidden;
+  box-shadow:0 2px 12px rgba(15,23,42,.14);
+  z-index:5;
+  animation:dropIn .5s cubic-bezier(.22,.9,.3,1) both;
+}
+/* 底边品牌亮色细线 */
+.topbar::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:3px;
+  background:var(--grad);opacity:.95;
+}
+/* 细线上掠过的微光 */
+.topbar::before{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:3px;z-index:2;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);
+  transform:translateX(-100%);
+  animation:sweep 4.8s ease-in-out 1.4s infinite;
+}
+@keyframes sweep{0%{transform:translateX(-100%)}55%,100%{transform:translateX(100%)}}
+/* 双圆装饰 */
+.topbar .deco{position:absolute;border-radius:50%;background:rgba(255,255,255,.10);pointer-events:none;}
+.topbar .deco.a{width:122px;height:122px;right:-34px;top:-58px;}
+.topbar .deco.b{width:66px;height:66px;right:58px;bottom:-40px;background:rgba(255,255,255,.07);}
+.bar-inner{
+  position:relative;z-index:1;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  min-height:var(--bar-h);
+}
+.bar-title{
+  flex:1 1 auto;min-width:0;
+  font-size:clamp(12.5px,3.4vw,17px);
+  font-weight:800;letter-spacing:.02em;color:#fff;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  text-shadow:0 1px 2px rgba(15,23,42,.18);
+}
+.btn-home{
+  flex:0 0 auto;text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;
+  background:#fff;color:var(--accent2);
+  font-size:13px;font-weight:800;letter-spacing:.02em;
+  padding:8px 14px;border-radius:999px;
+  box-shadow:0 3px 10px rgba(15,23,42,.18);
+  transition:transform .15s ease,box-shadow .2s ease,background .2s ease;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;white-space:nowrap;
+}
+.btn-home:hover{background:#f0fffa;box-shadow:0 5px 16px rgba(15,23,42,.24);}
+.btn-home:active{transform:scale(.95);}
+
+/* ==================== 内嵌区 ==================== */
+.stage{
+  position:relative;flex:1 1 auto;min-height:0;background:#fff;
+  animation:fadeIn .55s ease .1s both;
+}
+.stage iframe{display:block;width:100%;height:100%;border:0;background:#fff;}
+
+/* 载入态 */
+.loader{
+  position:absolute;inset:0;z-index:2;background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  overflow:hidden;
+  transition:opacity .5s ease,visibility .5s ease;
+}
+.loader.hide{opacity:0;visibility:hidden;}
+
+/* 超大幽灵字——主题底纹。尺寸必须够大，否则会整块躲在卡片背后 */
+.ghost{
+  position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  font-family:"Songti SC","STSong","SimSun","Noto Serif SC",serif;
+  font-size:clamp(200px,46vw,420px);line-height:1;font-weight:900;
+  color:rgba(31,168,115,.075);letter-spacing:-.02em;
+  pointer-events:none;user-select:none;
+}
+
+/* 主视觉：能力雷达卡（测评类）
+   —— 五维雷达自绘 + 数据面填充 + 顶点依次点亮 + 学科标签轮亮 + 扫描线 */
+.page{
+  position:relative;width:200px;height:138px;overflow:hidden;
+  border-radius:14px;background:#fff;border:1px solid var(--line);
+  padding:14px 14px 0;
+  box-shadow:0 14px 34px -12px rgba(15,23,42,.20),0 2px 6px rgba(15,23,42,.05);
+}
+.page .fig{display:block;width:100%;height:94px;position:relative;z-index:1;}
+/* 雷达网格（三层五边形）与轴线 */
+.page .grid{fill:none;stroke:#cfdbe9;stroke-width:1.1;stroke-linejoin:round;}
+.page .axis{fill:none;stroke:#e4ecf5;stroke-width:1;}
+/* 数据面：品牌渐变填充，随报告生成淡入 */
+.page .area{fill:url(#rdg);opacity:0;animation:areaFill 3.6s ease-in-out infinite;}
+/* 数据面轮廓：自绘 */
+.page .area-out{
+  fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round;
+  stroke-dasharray:145;stroke-dashoffset:145;
+  animation:areaDraw 3.6s cubic-bezier(.5,0,.4,1) infinite;
+}
+/* 五个顶点：依次点亮 */
+.page .vtx{fill:#2f9df0;opacity:0;animation:vtxPop 3.6s ease-in-out infinite;}
+.page .vts circle:nth-child(2){animation-delay:.22s}
+.page .vts circle:nth-child(3){animation-delay:.44s}
+.page .vts circle:nth-child(4){animation-delay:.66s}
+.page .vts circle:nth-child(5){animation-delay:.88s}
+@keyframes areaDraw{
+  0%{stroke-dashoffset:145;opacity:0}
+  8%{opacity:1}
+  42%,86%{stroke-dashoffset:0;opacity:1}
+  96%,100%{stroke-dashoffset:0;opacity:0}
+}
+@keyframes areaFill{
+  0%,26%{opacity:0}
+  52%,82%{opacity:.30}
+  94%,100%{opacity:0}
+}
+@keyframes vtxPop{
+  0%{opacity:0}
+  7%,74%{opacity:1}
+  90%,100%{opacity:0}
+}
+/* 学科标签：依次轮亮 */
+.page .tags{display:flex;gap:6px;justify-content:center;margin-top:5px;position:relative;z-index:1;}
+.page .tags span{
+  font-size:9.5px;font-weight:700;letter-spacing:.02em;white-space:nowrap;
+  padding:3px 8px;border-radius:999px;
+  background:#f1f5f9;color:#94a3b8;border:1px solid var(--line);
+  animation:chip 3.6s ease-in-out infinite;
+}
+.page .tags span:nth-child(2){animation-delay:1.2s}
+.page .tags span:nth-child(3){animation-delay:2.4s}
+@keyframes chip{
+  0%,30%{background:#e8f7f0;color:#1fa873;border-color:#a7e6c9}
+  44%,100%{background:#f1f5f9;color:#94a3b8;border-color:var(--line)}
+}
+/* 扫描线 */
+.page .scan{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(47,157,240,.15) 45%,rgba(53,210,154,.15) 55%,transparent);
+  transform:translateX(-100%);
+  animation:scan 3.6s ease-in-out infinite;
+}
+@keyframes scan{0%{transform:translateX(-100%)}70%,100%{transform:translateX(100%)}}
+
+/* 文案行 + 声波条 */
+.lt{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:12.5px;color:var(--text2);letter-spacing:.06em;font-weight:600;
+}
+.eq{display:inline-flex;align-items:flex-end;gap:3px;height:13px;}
+.eq b{width:3px;height:13px;border-radius:2px;background:var(--accent);
+  transform-origin:bottom;animation:eq .92s ease-in-out infinite alternate;}
+.eq b:nth-child(2){background:#2f9df0;animation-delay:.16s}
+.eq b:nth-child(3){background:#35d29a;animation-delay:.32s}
+.eq b:nth-child(4){background:#2f9df0;animation-delay:.48s}
+@keyframes eq{from{transform:scaleY(.28)}to{transform:scaleY(1)}}
+
+.lh{
+  margin-top:4px;padding:0 24px;text-align:center;
+  font-size:11.5px;line-height:1.75;color:var(--text2);
+  opacity:0;transition:opacity .4s ease;
+}
+.loader.slow .lh{opacity:1;}
+.loader .lh a{color:var(--accent2);font-weight:700;text-decoration:none;border-bottom:1px dashed var(--accent2);}
+
+/* ==================== 页脚（勿动：署名 + 微信号必须保留） ==================== */
+.site-footer{
+  flex:0 0 auto;text-align:center;
+  padding:7px 14px calc(7px + env(safe-area-inset-bottom,0px));
+  font-size:11.5px;line-height:1.6;color:var(--text2);
+  background:#fff;border-top:1px solid var(--line);
+  animation:riseIn .5s cubic-bezier(.22,.9,.3,1) .18s both;
+}
+.site-footer a{color:var(--accent2);font-weight:700;text-decoration:none;}
+.site-footer a:active{opacity:.7;}
+
+/* 署名气泡 */
+.coach-tip{position:relative;display:inline-block;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.coach-tip .tip{visibility:hidden;opacity:0;position:absolute;bottom:145%;left:50%;
+  transform:translateX(-50%) translateY(4px);background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;padding:7px 14px;border-radius:10px;font-size:12.5px;font-weight:700;white-space:nowrap;
+  letter-spacing:.5px;z-index:99;pointer-events:none;box-shadow:0 6px 18px rgba(47,157,240,.35);
+  transition:opacity .2s ease,transform .2s ease,visibility .2s}
+.coach-tip .tip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:6px solid transparent;border-top-color:#2f9df0}
+.coach-tip:hover .tip,.coach-tip:active .tip,.coach-tip:focus .tip{
+  visibility:visible;opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ==================== 动效 ==================== */
+@keyframes dropIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@keyframes riseIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+@media (max-width:340px){
+  .bar-title{font-size:13px;}
+  .btn-home{font-size:12px;padding:7px 11px;}
+  .page{width:176px;height:124px;padding:11px 12px 0;}
+  .page .fig{height:80px;}
+  .page .tags{gap:5px;margin-top:5px;}
+  .page .tags span{font-size:8.5px;padding:2px 6px;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .topbar,.stage,.site-footer{animation:none;}
+  .topbar::before{display:none;}
+  .page .area{animation:none;opacity:.30;}
+  .page .area-out{animation:none;stroke-dashoffset:0;opacity:1;}
+  .page .vtx{animation:none;opacity:1;}
+  .page .tags span{animation:none;}
+  .page .tags span:first-child{background:#e8f7f0;color:#1fa873;border-color:#a7e6c9;}
+  .page .scan{display:none;}
+  .eq b{animation:none;}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <span class="deco a"></span><span class="deco b"></span>
+  <div class="bar-inner">
+    <h1 class="bar-title">豆豆智学系统--学科测评</h1>
+    <a class="btn-home" href="../index.html">🏠 返回首页</a>
+  </div>
+</header>
+
+<main class="stage">
+  <div class="loader" id="loader">
+    <span class="ghost" aria-hidden="true">测</span>
+    <div class="page" aria-hidden="true">
+      <svg class="fig" viewBox="0 0 140 80">
+        <defs>
+          <linearGradient id="rdg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#35d29a"/>
+            <stop offset="1" stop-color="#2f9df0"/>
+          </linearGradient>
+        </defs>
+        <path class="grid" d="M70 8 L101.39 30.8 L89.4 67.7 L50.6 67.7 L38.61 30.8 Z M70 19 L90.92 34.2 L82.93 58.8 L57.07 58.8 L49.08 34.2 Z M70 30 L80.46 37.6 L76.47 49.9 L63.53 49.9 L59.54 37.6 Z"/>
+        <path class="axis" d="M70 41 L70 8 M70 41 L101.39 30.8 M70 41 L89.4 67.7 M70 41 L50.6 67.7 M70 41 L38.61 30.8"/>
+        <path class="area" d="M70 12 L87.12 35.44 L87.63 65.27 L61.77 52.33 L47.17 33.58 Z"/>
+        <path class="area-out" d="M70 12 L87.12 35.44 L87.63 65.27 L61.77 52.33 L47.17 33.58 Z"/>
+        <g class="vts">
+          <circle class="vtx" cx="70" cy="12" r="2.6"/>
+          <circle class="vtx" cx="87.12" cy="35.44" r="2.6"/>
+          <circle class="vtx" cx="87.63" cy="65.27" r="2.6"/>
+          <circle class="vtx" cx="61.77" cy="52.33" r="2.6"/>
+          <circle class="vtx" cx="47.17" cy="33.58" r="2.6"/>
+        </g>
+      </svg>
+      <div class="tags"><span>代数</span><span>几何</span><span>统计</span></div>
+      <span class="scan"></span>
+    </div>
+    <div class="lt"><span class="eq" aria-hidden="true"><b></b><b></b><b></b><b></b></span>正在载入学科测评…</div>
+    <div class="lh">若长时间空白，可能是网络较慢或该站限制了内嵌，<br>请点击页脚 <a href="https://www.jyeoo.com/eval" target="_blank" rel="noopener">🔗 新窗口打开</a></div>
+  </div>
+  <iframe id="evFrame"
+          src="https://www.jyeoo.com/"
+          title="学科测评"
+          allow="fullscreen; clipboard-read; clipboard-write; autoplay"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+</main>
+
+<footer class="site-footer">
+  &copy; 2026 <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span>&nbsp;·&nbsp;<a href="https://www.jyeoo.com/eval" target="_blank" rel="noopener">🔗 新窗口打开</a>
+</footer>
+
+<script>
+(function(){
+  var frame  = document.getElementById('evFrame');
+  var loader = document.getElementById('loader');
+  var done   = false;
+
+  function hide(){
+    if (done) return;
+    done = true;
+    loader.classList.add('hide');
+    setTimeout(function(){ loader.style.display = 'none'; }, 550);
+  }
+
+  if (frame) frame.addEventListener('load', hide);
+
+  /* 跨域页读不到内部状态：超时未 load 则给出「新窗口打开」兜底提示 */
+  setTimeout(function(){ if (!done) loader.classList.add('slow'); }, 9000);
+  setTimeout(hide, 20000);
+})();
+</script>
+</body>
+</html>
