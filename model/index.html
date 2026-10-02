@@ -155,10 +155,16 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 
 
 /* ========== 手机号验证锁屏 ========== */
+html{-webkit-text-size-adjust:100%;}
 .lock-overlay {
-  position: fixed; inset: 0; z-index: 9999;
-  background: rgba(15,23,42,.78); backdrop-filter: blur(10px);
+  position: fixed; z-index: 9999;
+  top: 0; left: 0; right: 0; bottom: 0;   /* 兼容老内核（等价 inset:0） */
+  width: 100%;
+  height: 100dvh;                          /* 动态视口；不支持时自动忽略 */
+  background: rgba(15,23,42,.78);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   display: flex; align-items: center; justify-content: center;
+  touch-action: none; overscroll-behavior: none;   /* 挡住底层滚动与捏合 */
   font-family: -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
 }
 .lock-overlay.hidden { display: none; }
@@ -204,7 +210,7 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
     <h2>请输入手机号验证</h2>
     <div class="lock-desc">首次访问需验证手机号<br>验证通过后可 7 天内免登录</div>
     <div class="lock-input-row">
-      <input type="tel" id="phoneInput" placeholder="输入 11 位手机号" maxlength="11" inputmode="numeric" autofocus>
+      <input type="tel" id="phoneInput" placeholder="输入 11 位手机号" maxlength="11" inputmode="numeric">
       <button id="verifyBtn" onclick="verifyPhone()">验证</button>
     </div>
     <div class="lock-loading" id="lockLoading">⏳ 正在验证…</div>
@@ -560,7 +566,10 @@ render();
 
   // Show overlay
   if (overlay) overlay.classList.remove('hidden');
-  if (phoneInput) phoneInput.focus();
+  if (phoneInput) setTimeout(function(){
+    try { phoneInput.focus({ preventScroll: true }); } catch(e) { phoneInput.focus(); }
+  }, 350);
+  pinOverlay();
 
   // SHA-256 hash phone, fetch hash list, compare
   function sha256(str){
@@ -628,7 +637,7 @@ render();
     if (overlay) {
       overlay.style.opacity = '0';
       overlay.style.transition = 'opacity .4s';
-      setTimeout(function(){ overlay.classList.add('hidden'); overlay.style.opacity = '1'; }, 400);
+      setTimeout(function(){ overlay.classList.add('hidden'); overlay.style.opacity = '1'; clearPin(); }, 400);
     }
     scheduleRelock(expires);
   }
@@ -643,7 +652,8 @@ render();
     overlay.classList.remove('hidden');
     overlay.style.opacity = '1';
     overlay.style.transition = 'none';
-    if (phoneInput) phoneInput.focus();
+    pinOverlay();
+    if (phoneInput) { try { phoneInput.focus({ preventScroll: true }); } catch(e) { phoneInput.focus(); } }
   }
 
   function scheduleRelock(expires){
@@ -662,6 +672,37 @@ render();
   function shake(){
     phoneInput.classList.add('error');
     setTimeout(function(){ phoneInput.classList.remove('error'); }, 400);
+  }
+
+  /* ==================================================================
+   * ★ 钉住「视觉视口」——修复手机 Chrome 锁屏只盖住一部分屏幕
+   *   根因：.lock-overlay 用 position:fixed，其盒子只认「布局视口」
+   *        (layout viewport)；而手机 Chrome 会忽略 user-scalable=no，
+   *        用户一旦缩放，视觉视口就小于布局视口，遮罩四周便露出底页。
+   *   做法：用 visualViewport 把遮罩的宽高与偏移钉到实际可见区。
+   *        不支持 visualViewport 的内核由 CSS 的 100dvh 兜底，JS 静默跳过。
+   * ================================================================== */
+  function pinOverlay(){
+    if (!overlay || !window.visualViewport) return;
+    var vv = window.visualViewport;
+    overlay.style.width     = vv.width  + 'px';
+    overlay.style.height    = vv.height + 'px';
+    overlay.style.transform = 'translate(' + vv.offsetLeft + 'px,' + vv.offsetTop + 'px)';
+  }
+  function clearPin(){
+    if (!overlay) return;
+    overlay.style.width = '';
+    overlay.style.height = '';
+    overlay.style.transform = '';
+  }
+  function isLocked(){
+    return !!(overlay && !overlay.classList.contains('hidden'));
+  }
+  if (window.visualViewport) {
+    var onViewportChange = function(){ if (isLocked()) pinOverlay(); };
+    window.visualViewport.addEventListener('resize', onViewportChange);
+    window.visualViewport.addEventListener('scroll', onViewportChange);
+    window.addEventListener('orientationchange', function(){ setTimeout(onViewportChange, 250); });
   }
 })();
 </script>
