@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <meta name="theme-color" content="#0f766e">
-<meta name="description" content="中小学全学科题库检索 · 在线组卷 · 试卷下载 · 拍照解题 —— 内嵌菁优网官方站点">
+<meta name="description" content="中小学全学科题库检索 · 在线组卷 · 试卷下载 · 拍照解题 —— 菁优网官方题库入口">
 <title>菁优题库 · 豆豆智学系统</title>
 <link rel="preconnect" href="https://www.jyeoo.com" crossorigin>
 <style>
@@ -85,23 +85,15 @@ body{
 .btn-home:hover{background:#f0fffa;box-shadow:0 5px 16px rgba(15,23,42,.24);}
 .btn-home:active{transform:scale(.95);}
 
-/* ==================== 内嵌区 ==================== */
+/* ==================== 引导区 ==================== */
 .stage{
-  position:relative;flex:1 1 auto;min-height:0;background:#fff;
+  position:relative;flex:1 1 auto;min-height:0;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px 18px;
+  overflow:auto;
   animation:fadeIn .55s ease .1s both;
 }
-.stage iframe{display:block;width:100%;height:100%;border:0;background:#fff;}
-
-/* 载入态 */
-.loader{
-  position:absolute;inset:0;z-index:2;background:var(--bg);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
-  overflow:hidden;
-  transition:opacity .5s ease,visibility .5s ease;
-}
-.loader.hide{opacity:0;visibility:hidden;}
-
-/* 超大幽灵字——主题底纹。尺寸必须够大，否则会整块躲在卡片背后 */
+/* 超大幽灵字——主题底纹 */
 .ghost{
   position:absolute;left:50%;top:50%;
   transform:translate(-50%,-50%);
@@ -110,76 +102,51 @@ body{
   color:rgba(31,168,115,.075);letter-spacing:-.02em;
   pointer-events:none;user-select:none;
 }
-
-/* 主视觉：答题卡（题库类）—— 题干行 + 四选一气泡依次落笔 + 底部组卷进度线 */
-.page{
-  position:relative;width:186px;height:124px;overflow:hidden;
-  border-radius:14px;background:#fff;border:1px solid var(--line);
-  padding:17px 18px 0;
-  box-shadow:0 14px 34px -12px rgba(15,23,42,.20),0 2px 6px rgba(15,23,42,.05);
+.gcard{
+  position:relative;z-index:1;
+  width:100%;max-width:420px;
+  background:#fff;border:1px solid var(--line);border-radius:16px;
+  padding:28px 22px 24px;text-align:center;
+  box-shadow:0 14px 34px -12px rgba(15,23,42,.18),0 2px 6px rgba(15,23,42,.05);
+  animation:riseIn .5s cubic-bezier(.22,.9,.3,1) .12s both;
 }
-.page .q{display:block;height:9px;border-radius:5px;
-  background:linear-gradient(90deg,#e9eff7,#dee8f4);margin-bottom:11px;}
-.page .q1{width:74%}
-.page .q2{width:96%}
-.page .q3{width:56%;margin-bottom:0}
-/* 四选一气泡：错拍落笔 */
-.opts{display:flex;gap:9px;margin-top:13px;}
-.opts i{
-  position:relative;display:block;width:19px;height:19px;border-radius:50%;
-  border:2px solid #dbe4ee;background:#fff;
-  animation:pick 2.6s ease-in-out infinite;
-}
-.opts i::after{
-  content:"";position:absolute;inset:3.5px;border-radius:50%;
+.gcard .gi{
+  width:64px;height:64px;margin:0 auto 14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:32px;border-radius:18px;
   background:var(--grad);
-  animation:pickDot 2.6s ease-in-out infinite;
+  box-shadow:0 8px 20px -6px rgba(47,157,240,.45);
 }
-.opts i:nth-child(2),.opts i:nth-child(2)::after{animation-delay:.34s}
-.opts i:nth-child(3),.opts i:nth-child(3)::after{animation-delay:.68s}
-.opts i:nth-child(4),.opts i:nth-child(4)::after{animation-delay:1.02s}
-@keyframes pick{
-  0%,18%{border-color:#dbe4ee;box-shadow:0 0 0 0 rgba(47,157,240,0)}
-  30%,58%{border-color:#2f9df0;box-shadow:0 0 0 3px rgba(47,157,240,.13)}
-  72%,100%{border-color:#dbe4ee;box-shadow:0 0 0 0 rgba(47,157,240,0)}
+.gcard h2{
+  font-size:19px;font-weight:800;letter-spacing:.02em;color:var(--text);
+  margin-bottom:8px;
 }
-@keyframes pickDot{
-  0%,18%{opacity:0;transform:scale(.35)}
-  32%,58%{opacity:1;transform:scale(1)}
-  72%,100%{opacity:0;transform:scale(.35)}
+.gcard .gd{
+  font-size:13px;line-height:1.8;color:var(--text2);
+  margin-bottom:16px;
 }
-/* 底部组卷进度线 */
-.page .bar{
-  position:absolute;left:0;right:0;bottom:0;height:3px;
-  background:#eef2f7;overflow:hidden;
+.gcard .gnote{
+  font-size:12px;line-height:1.8;color:var(--text2);
+  background:#f0f7f4;border:1px solid #dcebe4;border-radius:10px;
+  padding:10px 12px;margin-bottom:20px;text-align:left;
 }
-.page .bar::after{
-  content:"";position:absolute;inset:0;transform-origin:left center;
-  background:var(--grad);
-  animation:fill 2.6s cubic-bezier(.45,0,.55,1) infinite;
+.gcard .gnote b{color:var(--accent2);}
+.gbtn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-width:210px;
+  background:var(--accent);color:#fff;text-decoration:none;
+  font-size:15px;font-weight:800;letter-spacing:.04em;
+  padding:13px 30px;border-radius:999px;
+  box-shadow:0 8px 20px -6px rgba(31,168,115,.55);
+  transition:transform .15s ease,box-shadow .2s ease,background .2s ease;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;white-space:nowrap;
 }
-@keyframes fill{0%{transform:scaleX(0)}64%{transform:scaleX(1)}100%{transform:scaleX(1)}}
-
-/* 文案行 + 声波条 */
-.lt{
-  display:inline-flex;align-items:center;gap:9px;
-  font-size:12.5px;color:var(--text2);letter-spacing:.06em;font-weight:600;
+.gbtn:hover{background:#189a67;box-shadow:0 10px 24px -6px rgba(31,168,115,.62);}
+.gbtn:active{transform:scale(.95);}
+.gsub{
+  margin-top:12px;font-size:11.5px;color:var(--text2);letter-spacing:.03em;
 }
-.eq{display:inline-flex;align-items:flex-end;gap:3px;height:13px;}
-.eq b{width:3px;height:13px;border-radius:2px;background:var(--accent);
-  transform-origin:bottom;animation:eq .92s ease-in-out infinite alternate;}
-.eq b:nth-child(2){background:#2f9df0;animation-delay:.16s}
-.eq b:nth-child(3){background:#35d29a;animation-delay:.32s}
-.eq b:nth-child(4){background:#2f9df0;animation-delay:.48s}
-@keyframes eq{from{transform:scaleY(.28)}to{transform:scaleY(1)}}
-
-.lh{
-  margin-top:4px;padding:0 24px;text-align:center;
-  font-size:11.5px;line-height:1.75;color:var(--text2);
-  opacity:0;transition:opacity .4s ease;
-}
-.loader.slow .lh{opacity:1;}
-.loader .lh a{color:var(--accent2);font-weight:700;text-decoration:none;border-bottom:1px dashed var(--accent2);}
 
 /* ==================== 页脚（勿动：署名 + 微信号必须保留） ==================== */
 .site-footer{
@@ -212,19 +179,15 @@ body{
 @media (max-width:340px){
   .bar-title{font-size:13px;}
   .btn-home{font-size:12px;padding:7px 11px;}
-  .page{width:160px;height:110px;padding:15px 15px 0;}
-  .page .q{height:8px;margin-bottom:9px;}
-  .opts{gap:7px;margin-top:10px;}
-  .opts i{width:17px;height:17px;}
+  .stage{padding:14px 12px;}
+  .gcard{padding:22px 16px 20px;}
+  .gcard h2{font-size:17px;}
+  .gbtn{min-width:180px;font-size:14px;padding:12px 24px;}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .topbar,.stage,.site-footer{animation:none;}
+  .topbar,.stage,.site-footer,.gcard{animation:none;}
   .topbar::before{display:none;}
-  .opts i{animation:none;border-color:#2f9df0;}
-  .opts i::after{animation:none;opacity:1;transform:scale(1);}
-  .page .bar::after{animation:none;transform:scaleX(1);}
-  .eq b{animation:none;}
 }
 </style>
 </head>
@@ -233,53 +196,26 @@ body{
 <header class="topbar">
   <span class="deco a"></span><span class="deco b"></span>
   <div class="bar-inner">
-    <h1 class="bar-title">豆豆智学系统--菁优题库</h1>
+    <h1 class="bar-title">豆豆智学系统--菁优题库训练</h1>
     <a class="btn-home" href="../index.html">🏠 返回首页</a>
   </div>
 </header>
 
 <main class="stage">
-  <div class="loader" id="loader">
-    <span class="ghost" aria-hidden="true">题</span>
-    <div class="page" aria-hidden="true">
-      <i class="q q1"></i><i class="q q2"></i><i class="q q3"></i>
-      <div class="opts"><i></i><i></i><i></i><i></i></div>
-      <span class="bar"></span>
-    </div>
-    <div class="lt"><span class="eq" aria-hidden="true"><b></b><b></b><b></b><b></b></span>正在载入菁优题库…</div>
-    <div class="lh">若长时间空白，可能是网络较慢或该站限制了内嵌，<br>请点击页脚 <a href="https://www.jyeoo.com/" target="_blank" rel="noopener">🔗 新窗口打开</a></div>
-  </div>
-  <iframe id="jyFrame"
-          src="https://www.jyeoo.com/"
-          title="菁优题库"
-          allow="fullscreen; clipboard-read; clipboard-write; autoplay"
-          allowfullscreen
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <span class="ghost" aria-hidden="true">题</span>
+  <section class="gcard">
+    <div class="gi" aria-hidden="true">🧮</div>
+    <h2>菁优题库 · 在线题库训练</h2>
+    <p class="gd">中小学全学科题库检索 · 在线组卷<br>试卷下载 · 拍照解题</p>
+    <p class="gnote"><b>温馨提示：</b>菁优题库需要登录后使用，请点击下方按钮在新窗口打开。登录一次后，浏览器会记住您的登录状态。</p>
+    <a class="gbtn" href="https://www.jyeoo.com/training/all" target="_blank" rel="noopener">🔗 打开菁优题库</a>
+    <p class="gsub">无需安装 · 手机 / 电脑浏览器均可使用</p>
+  </section>
 </main>
 
 <footer class="site-footer">
-  &copy; 2026 <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span>&nbsp;·&nbsp;<a href="https://www.jyeoo.com/" target="_blank" rel="noopener">🔗 新窗口打开</a>
+  &copy; 2026 <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span>&nbsp;·&nbsp;<a href="https://www.jyeoo.com/training/all" target="_blank" rel="noopener">🔗 新窗口打开</a>
 </footer>
 
-<script>
-(function(){
-  var frame  = document.getElementById('jyFrame');
-  var loader = document.getElementById('loader');
-  var done   = false;
-
-  function hide(){
-    if (done) return;
-    done = true;
-    loader.classList.add('hide');
-    setTimeout(function(){ loader.style.display = 'none'; }, 550);
-  }
-
-  if (frame) frame.addEventListener('load', hide);
-
-  /* 跨域页读不到内部状态：超时未 load 则给出「新窗口打开」兜底提示 */
-  setTimeout(function(){ if (!done) loader.classList.add('slow'); }, 9000);
-  setTimeout(hide, 20000);
-})();
-</script>
 </body>
 </html>
