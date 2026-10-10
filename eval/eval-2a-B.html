@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2025秋 二年级上册数学期末测试｜DD 分层试卷</title>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<style>
+*{box-sizing:border-box;font-family:"Microsoft YaHei",sans-serif}
+body{background:#f7f9fb;padding:16px;max-width:1000px;margin:0 auto;color:#222}
+header{position:sticky;top:0;background:#ffffff;padding:14px 18px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);z-index:10;margin-bottom:18px}
+.header-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.timer-box{font-size:19px;font-weight:bold;color:#d62828}
+.progress{margin-top:10px;height:11px;background:#e2e8f0;border-radius:6px;overflow:hidden}
+.progress-bar{height:100%;background:#3b82f6;width:0%;transition:0.35s}
+h1{text-align:center;font-size:23px;margin:10px 0}
+.info{background:#eff6ff;padding:12px;border-radius:9px;margin-bottom:18px}
+.question{background:#fff;border:1px solid #dee2e6;border-radius:9px;padding:15px;margin-bottom:13px}
+.level-tag{display:inline-block;padding:3px 7px;border-radius:5px;font-size:12px;margin-right:7px;color:#fff;font-weight:bold}
+.L1{background:#22c55e}
+.L2{background:#f97316}
+.L3{background:#ef4444}
+input[type="text"]{width:170px;padding:7px;border:1px solid #adb5bd;border-radius:5px;font-size:16px}
+input:focus{transform:scale(1.02);outline:#2563eb solid 2px}
+button{padding:11px 20px;border:none;border-radius:7px;font-size:16px;cursor:pointer;margin:7px 5px}
+#startBtn{background:#2563eb;color:#fff}
+#submitBtn{background:#16a34a;color:#fff}
+#resetBtn{background:#6b7280;color:#fff}
+#saveImgBtn{background:#7c3aed;color:#fff}
+.report{margin-top:22px;background:#fff;border:2px solid #2563eb;border-radius:10px;padding:18px;display:none}
+.correct{color:#15803d;font-weight:500}
+.wrong{color:#dc2626;font-weight:500}
+.ans-block{margin-top:18px;background:#fefefe;border:1px solid #aaa;padding:16px;border-radius:9px;display:none}
+</style>
+</head>
+<body>
+<div id="pageWrap">
+<header>
+<div class="header-row">
+<div>学习者：DD｜2025秋二年级上册数学期末分层卷</div>
+<div class="timer-box">剩余时间：<span id="timeText">45:00</span></div>
+</div>
+<div class="progress">
+<div class="progress-bar" id="progressBar"></div>
+</div>
+<div style="margin-top:6px">答题进度：<span id="progressText">0/50</span></div>
+</header>
+
+<div class="info">
+题量配置：L1低难度15题｜L2中难度20题｜L3高难度5题，全部填空作答。
+<br>答题说明：选择题填写选项字母（A/B/C）；多空小题每个输入框独立判分。
+</div>
+
+<div id="paper">
+<!-- L1 低难度 1~15｜1步运算，直接套用定义，无陷阱 -->
+<div class="question">
+<span class="level-tag L1">L1</span>1. 口算：8×4＝<input type="text" data-ans="32" data-score="1" data-know="表内乘法口诀" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>2. 口算：66＋7＝<input type="text" data-ans="73" data-score="1" data-know="两位数加一位数" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>3. 口算：51－8＝<input type="text" data-ans="43" data-score="1" data-know="两位数减一位数退位减法" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>4. 一个角有（）条直直的边。<input type="text" data-ans="2" data-score="1" data-know="角的各部分名称" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>5. 判断：直线有两个端点（填对/错）<input type="text" data-ans="错" data-score="1" data-know="线段与直线区分" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>6. 口算：9×3＝<input type="text" data-ans="27" data-score="1" data-know="表内乘法口诀" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>7. 100厘米＝（）米 <input type="text" data-ans="1" data-score="1" data-know="长度单位换算" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>8. 口算：4×8＝<input type="text" data-ans="32" data-score="1" data-know="表内乘法口诀" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>9. 比直角小的角叫做（）角。<input type="text" data-ans="锐" data-score="1" data-know="锐角、直角、钝角定义" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>10. 口算：38＋40＝<input type="text" data-ans="78" data-score="1" data-know="两位数加整十数" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>11. 乘数是7，乘数是2，积是（）<input type="text" data-ans="14" data-score="1" data-know="乘法算式各部分名称" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>12. 钟面上，时针走1大格代表（）小时 <input type="text" data-ans="1" data-score="1" data-know="认识钟面时间" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>13. 口算：85－50＝<input type="text" data-ans="35" data-score="1" data-know="两位数减整十数" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>14. 5×4 读作（）<input type="text" data-ans="5乘4" data-score="1" data-know="乘法算式读法" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>15. 教室门高大约2（填单位：厘米/米）<input type="text" data-ans="米" data-score="1" data-know="长度单位生活估测" data-reason-type="概念">
+</div>
+
+<!-- L2 中档题 16~35｜2~3步运算，单个易错点 -->
+<div class="question">
+<span class="level-tag L2">L2</span>16. 比45多23的数是（）<input type="text" data-ans="68" data-score="2" data-know="求比一个数多几的数" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>17. 比62少17的数是（）<input type="text" data-ans="45" data-score="2" data-know="求比一个数少几的数" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>18. 6个7相加，写成乘法算式是（）<input type="text" data-ans="6×7" data-score="2" data-know="乘法的意义" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>19. 一根木条长18厘米，锯掉6厘米，剩余（）厘米 <input type="text" data-ans="12" data-score="2" data-know="长度减法计算" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>20. 一个笔记本8元，买5本一共（）元 <input type="text" data-ans="40" data-score="2" data-know="乘法简单应用题" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>21. 28＋36＝（）<input type="text" data-ans="64" data-score="2" data-know="两位数进位加法" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>22. 80－45＝（）<input type="text" data-ans="35" data-score="2" data-know="两位数退位减法" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>23. 4×5＋6＝（）<input type="text" data-ans="26" data-score="2" data-know="乘加混合运算" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>24. 6×8－10＝（）<input type="text" data-ans="38" data-score="2" data-know="乘减混合运算" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>25. 时针在7和8之间，分针指向9，这个时刻是（）<input type="text" data-ans="7:45" data-score="2" data-know="读取钟面时间" data-reason-type="审题">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>26. 有4组同学，每组6人，总共有（）人 <input type="text" data-ans="24" data-score="2" data-know="乘法应用题" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>27. 彩带长1米，剪去45厘米，剩下（）厘米 <input type="text" data-ans="55" data-score="2" data-know="单位换算+减法" data-reason-type="审题">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>28. 一把三角板上，锐角有（）个 <input type="text" data-ans="2" data-score="2" data-know="三角板角的组成" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>29. 两个乘数都是8，积是（）<input type="text" data-ans="64" data-score="2" data-know="乘法各部分含义" data-reason-type="审题">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>30. （）加上34等于59 <input type="text" data-ans="25" data-score="2" data-know="逆向求加数" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>31. 选择：下面（）是直角。A.三角板最大角 B.打开的剪刀小角 C.折扇钝角 填字母<input type="text" data-ans="A" data-score="2" data-know="直角识别" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>32. 课桌高大约70（填单位：厘米/米）<input type="text" data-ans="厘米" data-score="2" data-know="长度估测" data-reason-type="审题">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>33. 7+7+7+5，改写成乘加算式是（）<input type="text" data-ans="3×7+5" data-score="2" data-know="连加改写乘加" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>34. 二1班有31人，二2班比二1班多6人，二2班（）人 <input type="text" data-ans="37" data-score="2" data-know="比多应用题" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>35. 72减去28，再加19，结果是（）<input type="text" data-ans="63" data-score="2" data-know="加减混合运算" data-reason-type="计算">
+</div>
+
+<!-- L3 高难度 36~40｜≥4步，逆向/多条件，多重陷阱 -->
+<div class="question">
+<span class="level-tag L3">L3</span>36. 笔记本每本7元，买4本，付50元，应找回（）元 <input type="text" data-ans="22" data-score="4" data-know="乘减综合应用题" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L3">L3</span>37. 一根绳子对折两次后长6厘米，绳子原来长（）厘米 <input type="text" data-ans="24" data-score="4" data-know="对折问题" data-reason-type="审题">
+</div>
+<div class="question">
+<span class="level-tag L3">L3</span>38. 甲筐有30个橘子，拿7个放到乙筐后两筐一样多，乙筐原来（）个橘子 <input type="text" data-ans="16" data-score="4" data-know="移多补少问题" data-reason-type="审题">
+</div>
+<div class="question">
+<span class="level-tag L3">L3</span>39. 花园里每行种6棵月季，种5行，死掉3棵，存活月季一共（）棵 <input type="text" data-ans="27" data-score="4" data-know="乘法+减法综合" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L3">L3</span>40. 一张长方形纸片剪掉一个角，最多剩下（）个角 <input type="text" data-ans="5" data-score="4" data-know="图形裁剪变化" data-reason-type="概念">
+</div>
+</div>
+
+<div>
+<button id="startBtn">开始答题（启动45分钟倒计时）</button>
+<button id="submitBtn" disabled>交卷并生成分析报告</button>
+<button id="resetBtn">清空全部答题，重置试卷</button>
+<button id="saveImgBtn">一键页面另存为图片PNG</button>
+</div>
+
+<div class="report" id="report">
+<h3>📊 DD · 答题分析报告</h3>
+<div id="reportBody"></div>
+</div>
+
+<div class="ans-block" id="ansBlock">
+<h3>📖 参考答案+逐题简析</h3>
+<pre id="ansText"></pre>
+</div>
+</div>
+
+<div style="text-align:center;margin:28px 0 6px"><a href="index.html" style="display:inline-block;padding:12px 32px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border-radius:999px;font-size:15px;font-weight:700;letter-spacing:1px;text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22)">🏠 返回主页</a></div>
+
+<script>
+let timer = null;
+let remainSeconds = 45 * 60;
+let startTime = null;
+let isLocked = false;
+const inputs = Array.from(document.querySelectorAll('input[data-ans]'));
+const totalBlank = inputs.length;
+const timeText = document.getElementById('timeText');
+const progressBar = document.getElementById('progressBar');
+const progressText = document.getElementById('progressText');
+const startBtn = document.getElementById('startBtn');
+const submitBtn = document.getElementById('submitBtn');
+const resetBtn = document.getElementById('resetBtn');
+const saveImgBtn = document.getElementById('saveImgBtn');
+const report = document.getElementById('report');
+const reportBody = document.getElementById('reportBody');
+const ansBlock = document.getElementById('ansBlock');
+const ansText = document.getElementById('ansText');
+
+function updateProgress(){
+  const filled = inputs.filter(i=>i.value.trim() !== '').length;
+  progressText.textContent = `${filled}/${totalBlank}`;
+  progressBar.style.width = `${filled/totalBlank*100}%`;
+}
+inputs.forEach(i=>i.addEventListener('input', updateProgress));
+
+function fmtTime(s){
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  return String(m).padStart(2,'0') + ":" + String(sec).padStart(2,'0');
+}
+
+startBtn.onclick = ()=>{
+  if(timer) return;
+  startTime = Date.now();
+  startBtn.disabled = true;
+  submitBtn.disabled = false;
+  timer = setInterval(()=>{
+    remainSeconds--;
+    timeText.textContent = fmtTime(remainSeconds);
+    if(remainSeconds <= 0){
+      clearInterval(timer);
+      lockAll();
+      alert('计时结束！自动收卷。');
+      submitPaper();
+    }
+  },1000);
+}
+
+function lockAll(){
+  isLocked = true;
+  inputs.forEach(i=>i.disabled=true);
+}
+
+function submitPaper(){
+  if(isLocked === false) lockAll();
+  clearInterval(timer);
+  let totalScore = 0, getScore = 0;
+  let reasonCount = {概念:0,方法:0,计算:0,审题:0,习惯:0};
+  let knowSet = new Set();
+  let htmlReport = "";
+  let ansStr = "";
+
+  inputs.forEach(inp=>{
+    const stdAns = inp.dataset.ans.trim();
+    const score = Number(inp.dataset.score);
+    const know = inp.dataset.know;
+    const rType = inp.dataset.reason_type;
+    totalScore += score;
+    const userVal = inp.value.trim();
+    const qEl = inp.closest('.question');
+    const level = qEl.querySelector('.level-tag').textContent;
+    const qText = qEl.textContent.replace(level,"").trim();
+    ansStr += `【${level}】${qText}｜标准答案：${stdAns}｜简析：${getBrief(know)}\n`;
+    if(userVal === stdAns){
+      getScore += score;
+      htmlReport += `<p class="correct">✅【${level}】${qText} 你的答案：${userVal}</p>`;
+    }else{
+      reasonCount[rType]++;
+      knowSet.add(know);
+      htmlReport += `<p class="wrong">❌【${level}】${qText} 你的答案：${userVal||"空"}｜标准答案：${stdAns}｜错因归类：${rType}</p>`;
+    }
+  })
+  const usedMs = Math.floor((Date.now() - startTime)/1000);
+  const usedMin = Math.floor(usedMs / 60);
+  const usedSec = usedMs % 60;
+  const rate = (getScore / totalScore * 100).toFixed(1);
+  const uniqueKnow = Array.from(knowSet);
+
+  htmlReport = `
+  <p>实际答题用时：${usedMin}分${usedSec}秒</p>
+  <p>本次得分：${getScore}/${totalScore}，全卷正确率：${rate}%</p>
+  <p>错题错因统计：概念${reasonCount.概念}题｜方法${reasonCount.方法}题｜计算${reasonCount.计算}题｜审题${reasonCount.审题}题｜习惯${reasonCount.习惯}题</p>
+  <p>知识点漏洞数量：${uniqueKnow.length}个</p>
+  <p>漏洞知识点清单：${uniqueKnow.join("、")}</p>
+  <h4>逐题对错详情：</h4>` + htmlReport;
+
+  reportBody.innerHTML = htmlReport;
+  ansText.innerText = ansStr;
+  report.style.display="block";
+  ansBlock.style.display="block";
+  report.scrollIntoView({behavior:'smooth'});
+}
+submitBtn.onclick = submitPaper;
+
+function getBrief(knowName){
+  const briefMap = {
+    "表内乘法口诀":"熟练背诵乘法口诀，快速口算结果",
+    "两位数加一位数":"个位相加，注意是否进位",
+    "两位数减一位数退位减法":"个位不够减，向十位借1当10",
+    "角的各部分名称":"角由1个顶点，2条直的边组成",
+    "线段与直线区分":"线段有两个端点；直线没有端点",
+    "长度单位换算":"1米 = 100厘米，单位统一再计算",
+    "锐角、直角、钝角定义":"锐角小于直角，钝角大于直角",
+    "两位数加整十数":"十位和十位相加，个位不变",
+    "乘法算式各部分名称":"乘数 × 乘数 = 积",
+    "认识钟面时间":"时针看小时，分针每大格代表5分钟",
+    "两位数减整十数":"十位相减，个位数字保持不变",
+    "乘法算式读法":"按顺序读作几乘几",
+    "长度单位生活估测":"结合生活实物选择米或厘米",
+    "求比一个数多几的数":"求大数使用加法运算",
+    "求比一个数少几的数":"求小数使用减法运算",
+    "乘法的意义":"几个相同加数相加，可以写成乘法算式",
+    "长度减法计算":"同单位可以直接相减",
+    "乘法简单应用题":"求几个几是多少，用乘法",
+    "两位数进位加法":"个位满十，向十位进一",
+    "两位数退位减法":"个位不够减，十位退1",
+    "乘加混合运算":"运算顺序：先乘，后加",
+    "乘减混合运算":"运算顺序：先乘，后减",
+    "读取钟面时间":"先看时针确定小时，再看分针算分钟",
+    "单位换算+减法":"先统一长度单位再计算",
+    "三角板角的组成":"一个三角板包含1个直角，2个锐角",
+    "乘法各部分含义":"两个乘数相同，注意审题",
+    "逆向求加数":"和减去已知加数得到未知加数",
+    "直角识别":"三角板上最大的角是标准直角",
+    "长度估测":"结合生活经验判断合适单位",
+    "连加改写乘加":"相同加数部分改写乘法，剩余单独相加",
+    "比多应用题":"较大数 = 较小数 + 多出数量",
+    "加减混合运算":"从左往右依次计算",
+    "乘减综合应用题":"先算出商品总价，再求找回钱数",
+    "对折问题":"对折两次，原长=4倍对折后长度",
+    "移多补少问题":"相差数量=拿出数量×2",
+    "乘法+减法综合":"先算总数，减去损耗数量",
+    "图形裁剪变化":"长方形剪角，沿对角线剪剩3个，剪小角最多剩5个"
+  };
+  return briefMap[knowName] || "巩固对应知识点基础";
+}
+
+resetBtn.onclick = ()=>{
+  clearInterval(timer);
+  timer=null;
+  remainSeconds = 45*60;
+  timeText.textContent = fmtTime(remainSeconds);
+  startTime=null;
+  isLocked=false;
+  inputs.forEach(i=>{i.value="";i.disabled=false;});
+  startBtn.disabled=false;
+  submitBtn.disabled=true;
+  report.style.display="none";
+  ansBlock.style.display="none";
+  updateProgress();
+}
+
+saveImgBtn.onclick = async ()=>{
+  try{
+    const wrapDom = document.getElementById('pageWrap');
+    const canvas = await html2canvas(wrapDom,{scale:2});
+    const link = document.createElement('a');
+    link.download="DD_二上期末卷_答题报告.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  }catch(e){
+    alert("图片生成失败，请使用系统截图（Win:Win+Shift+S / Mac:Cmd+Shift+4）");
+  }
+}
+updateProgress();
+</script>
+</body>
+</html>
+<!-- （注：内容由AI生成） -->

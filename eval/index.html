@@ -153,7 +153,7 @@ html{-webkit-text-size-adjust:100%;}
   <h1>&#x1fa7a; 学期诊断</h1>
   <p class="sub">智能测评 · 精准定位薄弱环节</p>
   <div class="top-btns">
-    <a class="top-btn" href="eval.html">&#x1f4da; 菁优测评</a>
+    <a class="top-btn" href="jycp.html">&#x1f4da; 菁优测评</a>
   </div>
 </header>
 
@@ -168,19 +168,19 @@ html{-webkit-text-size-adjust:100%;}
   <div class="ab-row">
     <div class="ab-card a sel" id="cardA">
       <div class="ic">&#x1f4d6;</div>
-      <div class="nm">中等A卷</div>
+      <div class="nm">A卷</div>
       <div class="ds">基础达标 · 课内巩固<br>适合大多数同学</div>
     </div>
     <div class="ab-card b" id="cardB">
       <div class="ic">&#x1f4d7;</div>
-      <div class="nm">偏高B卷</div>
+      <div class="nm">B卷</div>
       <div class="ds">拔高强化 · 思维拓展<br>适合学有余力的同学</div>
     </div>
   </div>
 </div>
 
 <div class="info" id="examInfo">
-  💡 <b id="infoLine">三年级上册 · 中等A卷</b>
+  💡 <b id="infoLine">三年级上册 · A卷</b>
 </div>
 
 <button class="start-btn" id="btnStart">&#x25b6; 开始测试</button>
@@ -194,6 +194,12 @@ html{-webkit-text-size-adjust:100%;}
 <script>
 var grade=3, sem='a', difficulty='a';
 var NAMES = {2:'二',3:'三',4:'四',5:'五',6:'六',7:'七',8:'八',9:'九'};
+/* 已上线的测评卷：键 = 年级+学期；值 = {a:'A卷', b:'B卷'}。未列出的组合视为暂未开放 */
+var EXAMS = {
+  '2a': {a:'eval-2a-A.html', b:'eval-2a-B.html'},
+  '2b': {a:'eval-2b-A.html', b:'eval-2b-B.html'},
+  '3a': {a:'eval-3a-A.html', b:'eval-3a-B.html'}
+};
 
 function renderGradeGrid(){
   var h='';
@@ -211,7 +217,7 @@ function renderSemRow(){
 
 function updateInfo(){
   var sn = NAMES[grade]+'年级'+(sem==='a'?'上册':'下册');
-  var dn = difficulty==='a'?'中等A卷':'偏高B卷';
+  var dn = difficulty==='a'?'A卷':'B卷';
   document.getElementById('infoLine').textContent = sn+' · '+dn;
 }
 
@@ -253,18 +259,12 @@ document.addEventListener('click', function(e){
 // Start button
 document.getElementById('btnStart').addEventListener('click', function(){
   var code = grade + sem;
-  // Route: A卷 (difficulty='a') → exam-{semester}.html, B卷 → exam-{semester}-b.html
-  // Currently only 三年级上册 (3a) has real content
-  if(code !== '3a'){
-    alert('当前仅三年级上册已完善，为您跳转至三年级上册'+ (difficulty==='a'?'A卷':'B卷') +'。');
-    code = '3a';
+  var paper = EXAMS[code];
+  if (paper && paper[difficulty]) {
+    window.location.href = paper[difficulty];
+  } else {
+    alert(NAMES[grade]+'年级'+(sem==='a'?'上':'下')+'册'+(difficulty==='a'?'A卷':'B卷')+'暂未开放，敬请期待。\n当前已开放：二年级上/下册、三年级上册（A/B 卷）。');
   }
-  var file = 'exam-' + code + (difficulty==='b' ? '-b' : '') + '.html';
-  // For now, B卷 file is exam-3b.html (same as sem-independent name)
-  if(difficulty==='b'){
-    file = 'exam-3b.html';
-  }
-  window.location.href = file;
 });
 
 // Init

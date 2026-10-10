@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2025秋 二年级下册数学期末测试｜小虎 分层试卷</title>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<style>
+*{box-sizing:border-box;font-family:"Microsoft YaHei",sans-serif}
+body{background:#f7f9fb;padding:16px;max-width:1000px;margin:0 auto;color:#222}
+header{position:sticky;top:0;background:#ffffff;padding:14px 18px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);z-index:10;margin-bottom:18px}
+.header-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.timer-box{font-size:19px;font-weight:bold;color:#d62828}
+.progress{margin-top:10px;height:11px;background:#e2e8f0;border-radius:6px;overflow:hidden}
+.progress-bar{height:100%;background:#3b82f6;width:0%;transition:0.35s}
+h1{text-align:center;font-size:23px;margin:10px 0}
+.info{background:#eff6ff;padding:12px;border-radius:9px;margin-bottom:18px}
+.question{background:#fff;border:1px solid #dee2e6;border-radius:9px;padding:15px;margin-bottom:13px}
+.level-tag{display:inline-block;padding:3px 7px;border-radius:5px;font-size:12px;margin-right:7px;color:#fff;font-weight:bold}
+.L1{background:#22c55e}
+.L2{background:#f97316}
+.L3{background:#ef4444}
+input[type="text"]{width:170px;padding:7px;border:1px solid #adb5bd;border-radius:5px;font-size:16px}
+input:focus{transform:scale(1.02);outline:#2563eb solid 2px}
+button{padding:11px 20px;border:none;border-radius:7px;font-size:16px;cursor:pointer;margin:7px 5px}
+#startBtn{background:#2563eb;color:#fff}
+#submitBtn{background:#16a34a;color:#fff}
+#resetBtn{background:#6b7280;color:#fff}
+#saveImgBtn{background:#7c3aed;color:#fff}
+.report{margin-top:22px;background:#fff;border:2px solid #2563eb;border-radius:10px;padding:18px;display:none}
+.correct{color:#15803d;font-weight:500}
+.wrong{color:#dc2626;font-weight:500}
+.ans-block{margin-top:18px;background:#fefefe;border:1px solid #aaa;padding:16px;border-radius:9px;display:none}
+</style>
+</head>
+<body>
+<div id="pageWrap">
+<header>
+<div class="header-row">
+<div>学习者：小虎｜2025秋二年级下册数学期末分层卷</div>
+<div class="timer-box">剩余时间：<span id="timeText">45:00</span></div>
+</div>
+<div class="progress">
+<div class="progress-bar" id="progressBar"></div>
+</div>
+<div style="margin-top:6px">答题进度：<span id="progressText">0/50</span></div>
+</header>
+
+<div class="info">
+题量配置：L1低难度15题｜L2中难度20题｜L3高难度5题，全部填空作答。
+<br>答题说明：选择题填写选项字母（A/B/C）；多空小题每个输入框独立判分。
+</div>
+
+<div id="paper">
+<!-- L1 低难度 1~15｜1步运算，直接套用定义，无陷阱 -->
+<div class="question">
+<span class="level-tag L1">L1</span>1. 口算：42÷6＝<input type="text" data-ans="7" data-score="1" data-know="表内除法" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>2. 口算：7×8＝<input type="text" data-ans="56" data-score="1" data-know="表内乘法" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>3. 被除数是24，除数是3，商是（）<input type="text" data-ans="8" data-score="1" data-know="除法各部分名称" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>4. 一个四位数，最高位是（）位。<input type="text" data-ans="千" data-score="1" data-know="万以内数的数位" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>5. 1千克＝（）克<input type="text" data-ans="1000" data-score="1" data-know="质量单位换算" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>6. 口算：36÷4＝<input type="text" data-ans="9" data-score="1" data-know="表内除法" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>7. 推拉窗户属于（）现象（平移/旋转）<input type="text" data-ans="平移" data-score="1" data-know="平移与旋转" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>8. 508读作（）<input type="text" data-ans="五百零八" data-score="1" data-know="万以内数读法" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>9. 在有余数除法里，余数必须比（）小<input type="text" data-ans="除数" data-score="1" data-know="有余数除法规则" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>10. 口算：54＋30＝<input type="text" data-ans="84" data-score="1" data-know="两位数加整十数" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>11. 口算：91－40＝<input type="text" data-ans="51" data-score="1" data-know="两位数减整十数" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>12. 钟面上指针转动属于（）现象（平移/旋转）<input type="text" data-ans="旋转" data-score="1" data-know="平移与旋转" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>13. 由3个百、2个十组成的数是（）<input type="text" data-ans="320" data-score="1" data-know="数的组成" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>14. 口算：9×6＝<input type="text" data-ans="54" data-score="1" data-know="表内乘法" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L1">L1</span>15. 一个鸡蛋大约重50（填单位：克/千克）<input type="text" data-ans="克" data-score="1" data-know="质量单位估测" data-reason-type="概念">
+</div>
+
+<!-- L2 中档题 16~35｜2~3步运算，单个易错点 -->
+<div class="question">
+<span class="level-tag L2">L2</span>16. 把40平均分成5份，每份是（）<input type="text" data-ans="8" data-score="2" data-know="平均分除法" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>17. 38里面最多有（）个7<input type="text" data-ans="5" data-score="2" data-know="有余数除法" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>18. 45减去18，再加26，结果是（）<input type="text" data-ans="53" data-score="2" data-know="加减混合运算" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>19. 商店有36支笔，每6支装一盒，可以装（）盒<input type="text" data-ans="6" data-score="2" data-know="除法简单应用题" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>20. 计算：56－4×7＝（）<input type="text" data-ans="28" data-score="2" data-know="乘减混合运算" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>21. 一个数由2个千、6个一组成，这个数是（）<input type="text" data-ans="2006" data-score="2" data-know="万以内数的组成" data-reason-type="审题">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>22. 4千克＝（）克<input type="text" data-ans="4000" data-score="2" data-know="质量单位换算" data-reason-type="审题">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>23. 有29块糖，平均分给4个小朋友，每人分（）块，还剩1块<input type="text" data-ans="7" data-score="2" data-know="有余数除法应用题" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>24. 计算：(22＋10)÷4＝（）<input type="text" data-ans="8" data-score="2" data-know="带小括号混合运算" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>25. 与599相邻的两个数，较大的那个数是（）<input type="text" data-ans="600" data-score="2" data-know="相邻数" data-reason-type="审题">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>26. 一本书7元，买8本，带50元还差（）元<input type="text" data-ans="6" data-score="2" data-know="乘减简单应用题" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>27. 7000克＝（）千克<input type="text" data-ans="7" data-score="2" data-know="质量单位换算" data-reason-type="审题">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>28. 选择题：下面（）是旋转。A.拉抽屉 B.风扇转动 C.电梯升降 填字母<input type="text" data-ans="B" data-score="2" data-know="平移旋转区分" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>29. 32个桃子，每盘放5个，可以放（）盘，剩2个<input type="text" data-ans="6" data-score="2" data-know="有余数除法" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>30. 计算：3×9＋14＝（）<input type="text" data-ans="41" data-score="2" data-know="乘加混合运算" data-reason-type="计算">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>31. 一台洗衣机售价3985元，大约是（）元<input type="text" data-ans="4000" data-score="2" data-know="近似数估算" data-reason-type="概念">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>32. 有4组同学，每组6人，分成8人一队，可以分成（）队<input type="text" data-ans="3" data-score="2" data-know="乘除两步应用题" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>33. 把18＋14＝32，32÷4＝8合并成综合算式（）<input type="text" data-ans="(18+14)÷4" data-score="2" data-know="合并综合算式" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>34. 比320多150的数是（）<input type="text" data-ans="470" data-score="2" data-know="求比一个数多几的数" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L2">L2</span>35. 比610少240的数是（）<input type="text" data-ans="370" data-score="2" data-know="求比一个数少几的数" data-reason-type="方法">
+</div>
+
+<!-- L3 高难度 36~40｜≥4步，逆向/多条件，多重陷阱 -->
+<div class="question">
+<span class="level-tag L3">L3</span>36. 水果店运来4箱橙子，每箱9千克，卖出16千克，还剩（）千克橙子<input type="text" data-ans="20" data-score="4" data-know="乘减多步应用题" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L3">L3</span>37. 有一堆糖果，平均分给5人，每人分到4颗还剩下一些，这堆糖果最多（）颗<input type="text" data-ans="24" data-score="4" data-know="有余数除法最值问题" data-reason-type="审题">
+</div>
+<div class="question">
+<span class="level-tag L3">L3</span>38. 小明原有零花钱若干，花掉一半后，妈妈又给15元，现在有32元。小明原来有（）元<input type="text" data-ans="34" data-score="4" data-know="还原问题" data-reason-type="审题">
+</div>
+<div class="question">
+<span class="level-tag L3">L3</span>39. 老师准备奖品，买了5盒笔，每盒8支，奖励同学22支，剩下的分给3个小组，每个小组分到（）支<input type="text" data-ans="6" data-score="4" data-know="多步混合应用题" data-reason-type="方法">
+</div>
+<div class="question">
+<span class="level-tag L3">L3</span>40. 有一些故事书，数量在30～40之间，平均分给7个同学还剩2本，一共有（）本故事书<input type="text" data-ans="37" data-score="4" data-know="有余数除法范围推理" data-reason-type="概念">
+</div>
+</div>
+
+<div>
+<button id="startBtn">开始答题（启动45分钟倒计时）</button>
+<button id="submitBtn" disabled>交卷并生成分析报告</button>
+<button id="resetBtn">清空全部答题，重置试卷</button>
+<button id="saveImgBtn">一键页面另存为图片PNG</button>
+</div>
+
+<div class="report" id="report">
+<h3>📊 小虎 · 答题分析报告</h3>
+<div id="reportBody"></div>
+</div>
+
+<div class="ans-block" id="ansBlock">
+<h3>📖 参考答案+逐题简析</h3>
+<pre id="ansText"></pre>
+</div>
+</div>
+
+<div style="text-align:center;margin:28px 0 6px"><a href="index.html" style="display:inline-block;padding:12px 32px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border-radius:999px;font-size:15px;font-weight:700;letter-spacing:1px;text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22)">🏠 返回主页</a></div>
+
+<script>
+let timer = null;
+let remainSeconds = 45 * 60;
+let startTime = null;
+let isLocked = false;
+const inputs = Array.from(document.querySelectorAll('input[data-ans]'));
+const totalBlank = inputs.length;
+const timeText = document.getElementById('timeText');
+const progressBar = document.getElementById('progressBar');
+const progressText = document.getElementById('progressText');
+const startBtn = document.getElementById('startBtn');
+const submitBtn = document.getElementById('submitBtn');
+const resetBtn = document.getElementById('resetBtn');
+const saveImgBtn = document.getElementById('saveImgBtn');
+const report = document.getElementById('report');
+const reportBody = document.getElementById('reportBody');
+const ansBlock = document.getElementById('ansBlock');
+const ansText = document.getElementById('ansText');
+
+function updateProgress(){
+  const filled = inputs.filter(i=>i.value.trim() !== '').length;
+  progressText.textContent = `${filled}/${totalBlank}`;
+  progressBar.style.width = `${filled/totalBlank*100}%`;
+}
+inputs.forEach(i=>i.addEventListener('input', updateProgress));
+
+function fmtTime(s){
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  return String(m).padStart(2,'0') + ":" + String(sec).padStart(2,'0');
+}
+
+startBtn.onclick = ()=>{
+  if(timer) return;
+  startTime = Date.now();
+  startBtn.disabled = true;
+  submitBtn.disabled = false;
+  timer = setInterval(()=>{
+    remainSeconds--;
+    timeText.textContent = fmtTime(remainSeconds);
+    if(remainSeconds <= 0){
+      clearInterval(timer);
+      lockAll();
+      alert('计时结束！自动收卷。');
+      submitPaper();
+    }
+  },1000);
+}
+
+function lockAll(){
+  isLocked = true;
+  inputs.forEach(i=>i.disabled=true);
+}
+
+function submitPaper(){
+  if(isLocked === false) lockAll();
+  clearInterval(timer);
+  let totalScore = 0, getScore = 0;
+  let reasonCount = {概念:0,方法:0,计算:0,审题:0,习惯:0};
+  let knowSet = new Set();
+  let htmlReport = "";
+  let ansStr = "";
+
+  inputs.forEach(inp=>{
+    const stdAns = inp.dataset.ans.trim();
+    const score = Number(inp.dataset.score);
+    const know = inp.dataset.know;
+    const rType = inp.dataset.reason_type;
+    totalScore += score;
+    const userVal = inp.value.trim();
+    const qEl = inp.closest('.question');
+    const level = qEl.querySelector('.level-tag').textContent;
+    const qText = qEl.textContent.replace(level,"").trim();
+    ansStr += `【${level}】${qText}｜标准答案：${stdAns}｜简析：${getBrief(know)}\n`;
+    if(userVal === stdAns){
+      getScore += score;
+      htmlReport += `<p class="correct">✅【${level}】${qText} 你的答案：${userVal}</p>`;
+    }else{
+      reasonCount[rType]++;
+      knowSet.add(know);
+      htmlReport += `<p class="wrong">❌【${level}】${qText} 你的答案：${userVal||"空"}｜标准答案：${stdAns}｜错因归类：${rType}</p>`;
+    }
+  })
+  const usedMs = Math.floor((Date.now() - startTime)/1000);
+  const usedMin = Math.floor(usedMs / 60);
+  const usedSec = usedMs % 60;
+  const rate = (getScore / totalScore * 100).toFixed(1);
+  const uniqueKnow = Array.from(knowSet);
+
+  htmlReport = `
+  <p>实际答题用时：${usedMin}分${usedSec}秒</p>
+  <p>本次得分：${getScore}/${totalScore}，全卷正确率：${rate}%</p>
+  <p>错题错因统计：概念${reasonCount.概念}题｜方法${reasonCount.方法}题｜计算${reasonCount.计算}题｜审题${reasonCount.审题}题｜习惯${reasonCount.习惯}题</p>
+  <p>知识点漏洞数量：${uniqueKnow.length}个</p>
+  <p>漏洞知识点清单：${uniqueKnow.join("、")}</p>
+  <h4>逐题对错详情：</h4>` + htmlReport;
+
+  reportBody.innerHTML = htmlReport;
+  ansText.innerText = ansStr;
+  report.style.display="block";
+  ansBlock.style.display="block";
+  report.scrollIntoView({behavior:'smooth'});
+}
+submitBtn.onclick = submitPaper;
+
+function getBrief(knowName){
+  const briefMap = {
+    "表内除法":"熟练运用乘法口诀求商",
+    "表内乘法":"熟记乘法口诀快速口算",
+    "除法各部分名称":"被除数÷除数=商",
+    "万以内数的数位":"从右往左依次是个、十、百、千位",
+    "质量单位换算":"1千克=1000克",
+    "平移与旋转":"平移沿直线移动；旋转绕一个点转动",
+    "万以内数读法":"中间有0要读，末尾0不读",
+    "有余数除法规则":"余数一定小于除数",
+    "两位数加整十数":"十位相加，个位不变",
+    "两位数减整十数":"十位相减，个位不变",
+    "数的组成":"按数位上数字组合写出完整数",
+    "质量单位估测":"较轻物体用克，较重用千克",
+    "平均分除法":"平均分问题用除法计算",
+    "有余数除法":"求一个数里面包含几个另一个数",
+    "加减混合运算":"从左往右依次计算",
+    "除法简单应用题":"求可以分成几份用除法",
+    "乘减混合运算":"先算乘法，再算减法",
+    "有余数除法应用题":"平均分有余数，余数小于除数",
+    "带小括号混合运算":"有括号先算括号里面",
+    "相邻数":"一个数加1、减1得到相邻两个数",
+    "乘减简单应用题":"先算总价，再算差额",
+    "平移旋转区分":"旋转是绕定点转动",
+    "乘加混合运算":"先乘法，后加法",
+    "近似数估算":"四舍五入看成整千整百数",
+    "乘除两步应用题":"先求出总数再平均分",
+    "合并综合算式":"添加小括号保证运算顺序",
+    "求比一个数多几的数":"求大数用加法",
+    "求比一个数少几的数":"求小数用减法",
+    "乘减多步应用题":"先算出总数量，减去卖出部分",
+    "有余数除法最值问题":"余数最大为除数减1",
+    "还原问题":"从结果逆向推算原来数量",
+    "多步混合应用题":"先求总数，再平均分",
+    "有余数除法范围推理":"结合数字范围筛选符合条件的数"
+  };
+  return briefMap[knowName] || "巩固对应知识点基础";
+}
+
+resetBtn.onclick = ()=>{
+  clearInterval(timer);
+  timer=null;
+  remainSeconds = 45*60;
+  timeText.textContent = fmtTime(remainSeconds);
+  startTime=null;
+  isLocked=false;
+  inputs.forEach(i=>{i.value="";i.disabled=false;});
+  startBtn.disabled=false;
+  submitBtn.disabled=true;
+  report.style.display="none";
+  ansBlock.style.display="none";
+  updateProgress();
+}
+
+saveImgBtn.onclick = async ()=>{
+  try{
+    const wrapDom = document.getElementById('pageWrap');
+    const canvas = await html2canvas(wrapDom,{scale:2});
+    const link = document.createElement('a');
+    link.download="小虎_二下期末卷_答题报告.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  }catch(e){
+    alert("图片生成失败，请使用系统截图（Win:Win+Shift+S / Mac:Cmd+Shift+4）");
+  }
+}
+updateProgress();
+</script>
+</body>
+</html>
+<!-- （注：内容由AI生成） -->

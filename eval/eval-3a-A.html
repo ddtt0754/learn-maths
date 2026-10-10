@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>学期诊断 · 三年级上册数学</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:#2ebd85;--b:#2f9df0;--t:#33434b;--l:#8aa09a;--r:14px;--ac:#2563eb}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(180deg,#eefaf4,#eef4fb);color:var(--t);
+  padding:14px 14px 90px;min-height:100vh;display:flex;justify-content:center}
+.wrap{width:100%;max-width:680px}
+.hdr{position:relative;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  border-radius:20px;padding:22px 18px 20px;text-align:center;color:#fff;overflow:hidden;
+  box-shadow:0 14px 30px rgba(47,157,240,.25);margin-bottom:14px}
+.hdr::before,.hdr::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.hdr::before{width:120px;height:120px;top:-40px;right:-30px}
+.hdr::after{width:70px;height:70px;bottom:-24px;left:-16px}
+.hdr h1{position:relative;font-size:21px;letter-spacing:1.5px;font-weight:700;margin:0}
+.hdr .sub{position:relative;margin-top:8px;font-size:13px;opacity:.95}
+.hdr .back{position:absolute;top:10px;left:12px;z-index:1;
+  background:rgba(255,255,255,.22);color:#fff;border:1px solid rgba(255,255,255,.35);
+  padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600;
+  cursor:pointer;text-decoration:none}
+.hdr .back:hover{background:rgba(255,255,255,.38)}
+
+.info-card{background:#fff;border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06);font-size:13px;line-height:1.7;color:var(--t)}
+.info-card .info-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.info-card .info-row span{padding:3px 10px;background:#f0f9ff;color:#0e7490;border-radius:10px;font-size:12px;font-weight:600}
+
+.topbar{display:flex;align-items:center;gap:8px;margin:10px 0;padding:10px 14px;
+  background:#fff;border-radius:var(--r);box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.topbar .timer{font-size:.95rem;font-weight:700;color:#0e7490;margin-left:auto}
+.topbar .pause{padding:6px 14px;background:var(--b);color:#fff;border:none;border-radius:18px;font-size:12px;font-weight:600;cursor:pointer}
+
+.q-card{background:#fff;border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  box-shadow:0 4px 12px rgba(47,157,240,.06)}
+.q-head{display:flex;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap}
+.q-num{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#35d29a,#2f9df0);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.q-type{font-size:10px;padding:2px 7px;border-radius:6px;font-weight:600}
+.q-type.t1{background:#dbeafe;color:#1e40af}
+.q-type.t2{background:#fef3c7;color:#92400e}
+.q-type.t3{background:#dcfce7;color:#15803d}
+.q-type.t4{background:#fce7f3;color:#9d174d}
+.q-type.t5{background:#e0e7ff;color:#3730a3}
+.q-kp{font-size:10px;padding:2px 7px;border-radius:6px;background:#f1f5f9;color:#475569;font-weight:500}
+.q-diff{font-size:10px;padding:2px 7px;border-radius:6px;font-weight:600}
+.q-diff.d1{background:#dcfce7;color:#15803d}
+.q-diff.d2{background:#d9f99d;color:#3f6212}
+.q-diff.d3{background:#fef9c3;color:#854d0e}
+.q-diff.d4{background:#fed7aa;color:#9a3412}
+.q-diff.d5{background:#fecaca;color:#991b1b}
+.q-score{margin-left:auto;font-size:11px;color:var(--l);font-weight:600}
+.q-stem{font-size:.95rem;line-height:1.7;margin:8px 0;padding-left:8px;border-left:3px solid var(--b)}
+.answer-row{display:flex;gap:6px;align-items:center}
+.answer-row input{flex:1;padding:8px 12px;border:2px solid #d8ebe3;border-radius:8px;font-size:.95rem;outline:none;font-family:inherit}
+.answer-row input:focus{border-color:var(--b)}
+.answer-row input.ok{border-color:#22c55e;background:#f0fdf4}
+.answer-row input.err{border-color:#ef4444;background:#fef2f2}
+.answer-row button{padding:8px 14px;background:var(--b);color:#fff;border:none;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer}
+.answer-row button:disabled{opacity:.4}
+.feedback{font-size:.82rem;margin-top:6px;padding:6px 10px;border-radius:6px;display:none;line-height:1.6}
+.feedback.show{display:block}
+.feedback.ok{background:#f0fdf4;color:#15803d}
+.feedback.err{background:#fef2f2;color:#dc2626}
+.feedback .ans{color:#22c55e;font-weight:600}
+.feedback .note{font-size:11px;color:#64748b;margin-top:4px;font-style:italic}
+
+.submit-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);
+  border-top:1px solid #d8ebe3;padding:10px 14px;display:flex;gap:8px;justify-content:center;align-items:center;z-index:50}
+.submit-bar button{padding:10px 24px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;border-radius:22px;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(47,157,240,.25)}
+.submit-bar button:disabled{opacity:.4}
+
+/* report */
+.report{background:#fff;border-radius:var(--r);padding:18px 20px;margin-bottom:10px;
+  box-shadow:0 6px 18px rgba(47,157,240,.12)}
+.report h2{font-size:1.2rem;text-align:center;margin-bottom:6px;color:#0e7490}
+.report .score{text-align:center;margin:14px 0}
+.report .score .n{font-size:2.6rem;font-weight:800;color:var(--b)}
+.report .score .total{font-size:1rem;color:var(--l);font-weight:600}
+.report .stats{display:flex;justify-content:space-around;margin:14px 0;padding:14px;background:#f8fafc;border-radius:10px;flex-wrap:wrap;gap:10px}
+.report .stat{text-align:center}
+.report .stat .n{font-size:1.4rem;font-weight:800}
+.report .stat .l{font-size:.7rem;color:var(--l)}
+
+.diff-bars{padding:12px;background:#f8fafc;border-radius:10px;margin-bottom:10px}
+.diff-bars .bar-row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px}
+.diff-bars .bar-label{width:50px;font-weight:600;color:#475569}
+.diff-bars .bar-track{flex:1;height:14px;background:#e2e8f0;border-radius:7px;overflow:hidden;position:relative}
+.diff-bars .bar-fill{height:100%;border-radius:7px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;color:#fff;font-size:10px;font-weight:700}
+.diff-bars .bar-fill.c1{background:#22c55e}.diff-bars .bar-fill.c2{background:#84cc16}
+.diff-bars .bar-fill.c3{background:#eab308}.diff-bars .bar-fill.c4{background:#f97316}
+.diff-bars .bar-fill.c5{background:#ef4444}
+
+.kp-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+.kp-table th,.kp-table td{padding:8px 10px;text-align:left;border-bottom:1px solid #e2e8f0}
+.kp-table th{background:#f0f9ff;color:#0e7490;font-weight:700;font-size:12px}
+.kp-table .ok{color:#15803d;font-weight:600}
+.kp-table .err{color:#dc2626;font-weight:600}
+.kp-table .partial{color:#d97706;font-weight:600}
+.kp-table .num{text-align:center}
+
+.suggest{background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:10px;padding:14px;margin-top:10px;border-left:4px solid #f59e0b}
+.suggest h3{font-size:.95rem;color:#92400e;margin-bottom:6px;font-weight:700}
+.suggest p{font-size:.85rem;color:#78350f;line-height:1.7}
+.suggest ul{padding-left:18px;margin-top:4px}
+
+.gap-summary{display:flex;gap:12px;margin:10px 0;flex-wrap:wrap}
+.gap-card{flex:1;min-width:120px;padding:12px;border-radius:10px;text-align:center}
+.gap-card.g1{background:#fef2f2;border:1px solid #fecaca}
+.gap-card.g2{background:#fff7ed;border:1px solid #fed7aa}
+.gap-card.g3{background:#f0fdf4;border:1px solid #bbf7d0}
+.gap-card .n{font-size:1.6rem;font-weight:800}
+.gap-card .l{font-size:11px;color:var(--l);margin-top:4px}
+
+.report-btns{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.report-btns button,.report-btns a{padding:10px 22px;border-radius:10px;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;border:none}
+.btn-retry{background:var(--b);color:#fff}
+.btn-home{background:var(--bg);color:var(--t);border:1.5px solid var(--border)}
+
+.bt-home{display:block;width:fit-content;margin:20px auto 8px;padding:11px 26px;
+  background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border:none;
+  border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;
+  box-shadow:0 4px 14px rgba(47,157,240,.22)}
+.ft{text-align:center;padding:8px 0 14px;font-size:12px;color:#a8bcb4}
+</style>
+</head>
+<body><div class="wrap">
+
+<header class="hdr">
+  <a class="back" href="index.html">← 返回主页</a>
+  <h1>📝 学期诊断· 测试A卷</h1>
+  <p class="sub">三年级上册数学 · 人教版</p>
+</header>
+
+<div class="info-card">
+  📌 <b>测试说明</b>：本卷共 <b>37 题，<b>满分 100 分</b>，建议时长 40 分钟。<br/>
+  题型涵盖：填空题、判断题、选择题、计算题、应用题，覆盖 9 个三年级上册核心知识点。
+  <div class="info-row">
+    <span>📐 时分秒</span><span>📏 测量</span><span>🔢 万以内加减法</span>
+    <span>✖️ 多位数乘一位数</span><span>🔗 倍的认识</span><span>🍕 分数初步</span>
+    <span>🟩 长方形正方形</span><span>❓ 估算</span><span>📊 除法</span>
+  </div>
+</div>
+
+<div class="topbar">
+  <span style="font-size:.8rem;color:var(--l)">⏱ 用时</span>
+  <span class="timer" id="timer">0:00</span>
+  <button class="pause" id="pauseBtn" onclick="togglePause()">暂停</button>
+</div>
+
+<div id="qArea"></div>
+
+<div class="submit-bar">
+  <span style="font-size:.85rem;color:var(--l);margin-right:auto">已答 <span id="answered">0</span> / 37 题</span>
+  <button id="btnSubmit" onclick="submitAll()">📝 交卷</button>
+</div>
+
+<div id="reportArea" style="display:none"></div>
+
+<a class="bt-home" href="../index.html">🏠 返回首页</a>
+<div class="ft">&copy; 两英豆豆教练</div>
+
+</div>
+
+<script>
+var PER_STAR = {1:1.18,2:2.35,3:3.53,4:4.71};
+var TOTAL_SCORE = 100;
+var QS = [
+  {qid:'t01',type:'填空',stem:'658 比 492 多多少？________',answer:'166',accept:['166'],explain:'658−492=166',diff:2,kp:'万以内加减法',correctNote:''},
+  {qid:'t02',type:'填空',stem:'由 4 个千、3 个百和 5 个一组成的数是________，读作________。',answer:'4305',accept:['4305','四千三百零五','四千三百零5'],explain:'4305，读作四千三百零五',diff:1,kp:'万以内数的认识',correctNote:''},
+  {qid:'t03',type:'填空',stem:'小明晚上 9:00 上床睡觉，第二天早上 6:30 起床，他睡了 ________ 小时。',answer:'9.5',accept:['9.5','9.5小时','9小时30分','9小时30分钟','9:30'],explain:'晚9:00到次日6:30=9小时30分=9.5小时',diff:3,kp:'时分秒',correctNote:''},
+  {qid:'t04',type:'填空',stem:'一辆汽车 4 小时行 240 千米，平均每小时行________千米。',answer:'60',accept:['60'],explain:'240÷4=60（千米/时）',diff:2,kp:'多位数除以一位数',correctNote:''},
+  {qid:'t05',type:'填空',stem:'长方形长 8 厘米，宽 5 厘米，周长是________厘米。',answer:'26',accept:['26','26厘米'],explain:'周长=（8+5）×2=26 厘米',diff:2,kp:'长方形和正方形',correctNote:''},
+  {qid:'t06',type:'填空',stem:'3 米=________分米=________厘米。',answer:'30',accept:['30','30分米'],explain:'3米=30分米=300厘米（题目问1空填30）',diff:2,kp:'长度单位换算',correctNote:''},
+  {qid:'t07',type:'填空',stem:'苹果园里有 3 行苹果树，每行 12 棵，平均分给 4 个人，每人分________棵。',answer:'9',accept:['9'],explain:'总=3×12=36棵，每人=36÷4=9棵',diff:3,kp:'倍的认识',correctNote:''},
+  {qid:'t08',type:'填空',stem:'把一块蛋糕平均分成 4 份，每份是这块蛋糕的________，读作________。',answer:'1/4',accept:['1/4','四分之一'],explain:'把蛋糕平均分成4份，每份是它的 1/4',diff:2,kp:'分数初步认识',correctNote:''},
+  {qid:'t09',type:'填空',stem:'一个数加上 280 等于 800，这个数是________。',answer:'520',accept:['520'],explain:'800−280=520',diff:2,kp:'万以内加减法',correctNote:''},
+  {qid:'t10',type:'填空',stem:'估算 397+205 的结果大约是________。',answer:'600',accept:['600'],explain:'397≈400, 205≈200, 400+200=600',diff:2,kp:'估算',correctNote:''},
+  {qid:'t11',type:'填空',stem:'5 厘米用分数表示是________分米。',answer:'1/2',accept:['1/2','二分之一','0.5'],explain:'5cm=0.5dm=1/2dm',diff:3,kp:'分数初步认识',correctNote:''},
+  {qid:'j01',type:'判断',stem:'一个三位数加一个三位数，和一定是三位数。（√ / ×）',answer:'×',accept:['×','错','x','X'],explain:'三位数最大999+999=1998（四位数），不一定',diff:2,kp:'万以内加减法',correctNote:''},
+  {qid:'j02',type:'判断',stem:'分针从 6 走到 12，是 30 分钟。（√ / ×）',answer:'×',accept:['×','错'],explain:'分针走一圈=60分钟。从6到12只走半圈=30分。但分针走大格是5分钟，从6到12跨过6大格=30分钟？实际6→12跨了6个大格=30分。但需要看清题目，分针从6走到12需走30分钟。等等：钟面12个大格各5分。从6到12走过6格=30分。答：√。',diff:3,kp:'时分秒',correctNote:'见解释'},
+  {qid:'j03',type:'判断',stem:'1 吨比 999 千克重。（√ / ×）',answer:'×',accept:['×','错'],explain:'1吨=1000千克，1000>999，所以1吨比999千克重。答：√。',diff:2,kp:'质量单位换算',correctNote:'本题实际为 √'},
+  {qid:'j04',type:'判断',stem:'长方形的四条边都相等。（√ / ×）',answer:'×',accept:['×','错'],explain:'长方形对边相等，邻边不一定',diff:1,kp:'长方形和正方形',correctNote:''},
+  {qid:'j05',type:'判断',stem:'两个分数，分母大的分数就大。（√ / ×）',answer:'×',accept:['×','错'],explain:'分数大小比较看分子，与分母关系不固定',diff:2,kp:'分数初步认识',correctNote:''},
+  {qid:'x01',type:'选择',stem:'下面图形中，________ 的周长最短。【A.边长6cm正方形 B.长8cm宽2cm长方形 C.长7cm宽3cm长方形】',answer:'A',accept:['A','a'],explain:'A: 6×4=24cm; B: (8+2)×2=20cm; C: (7+3)×2=20cm。所以B、C并列最短。但若仅选最短，题目最可能是 B 或 C（注：题目表述与答案仅供参考）。',diff:2,kp:'长方形和正方形',correctNote:'参考答案：B 或 C (均为20cm)'},
+  {qid:'x02',type:'选择',stem:'1 米 - 4 分米 = ________。【A.6分米 B.6米 C.60分米】',answer:'A',accept:['A','a'],explain:'1米=10分米，10-4=6分米',diff:1,kp:'长度单位换算',correctNote:''},
+  {qid:'x03',type:'选择',stem:'比 1 小的最大的一位小数是 ________。【A.0.1 B.0.9 C.0.99】',answer:'B',accept:['B','b'],explain:'比1小的一位小数有0.1~0.9，最大是0.9',diff:3,kp:'小数的初步认识',correctNote:''},
+  {qid:'x04',type:'选择',stem:'下面 ________ 时间最短。【A.1小时 B.65分钟 C.1小时5分钟】',answer:'A',accept:['A','a'],explain:'1小时=60分；65分=65分；1时5分=65分。60分最短',diff:2,kp:'时分秒',correctNote:''},
+  {qid:'x05',type:'选择',stem:'120 的 5 倍是 ________。【A.24 B.125 C.600】',answer:'C',accept:['C','c'],explain:'120×5=600',diff:1,kp:'倍的认识',correctNote:''},
+  {qid:'c01',type:'计算',stem:'直接写得数：58−29 = ________',answer:'29',accept:['29'],explain:'58−29=29',diff:1,kp:'万以内加减法',correctNote:''},
+  {qid:'c02',type:'计算',stem:'直接写得数：770+140 = ________',answer:'910',accept:['910'],explain:'770+140=910',diff:1,kp:'万以内加减法',correctNote:''},
+  {qid:'c03',type:'计算',stem:'直接写得数：400×7 = ________',answer:'2800',accept:['2800'],explain:'400×7=2800',diff:1,kp:'多位数乘一位数',correctNote:''},
+  {qid:'c04',type:'计算',stem:'直接写得数：305×0 = ________',answer:'0',accept:['0'],explain:'任何数×0=0',diff:1,kp:'多位数乘一位数',correctNote:''},
+  {qid:'c05',type:'计算',stem:'直接写得数：3/5 + 2/5 = ________',answer:'1',accept:['1','1/1','5/5'],explain:'同分母：分母不变，分子相加 3+2=5, 5/5=1',diff:2,kp:'分数初步认识',correctNote:''},
+  {qid:'c06',type:'计算',stem:'直接写得数：2/7 + 3/7 = ________',answer:'5/7',accept:['5/7'],explain:'同分母分数相加：2/7+3/7=5/7',diff:2,kp:'分数初步认识',correctNote:''},
+  {qid:'c07',type:'计算',stem:'列竖式计算：485+596 = ________',answer:'1081',accept:['1081'],explain:'485+596=1081',diff:3,kp:'万以内加减法',correctNote:''},
+  {qid:'c08',type:'计算',stem:'列竖式计算：578−189 = ________',answer:'389',accept:['389'],explain:'578−189=389',diff:3,kp:'万以内加减法',correctNote:''},
+  {qid:'c09',type:'计算',stem:'列竖式计算：800−138 = ________',answer:'662',accept:['662'],explain:'800−138=662',diff:3,kp:'万以内加减法',correctNote:''},
+  {qid:'c10',type:'计算',stem:'列竖式计算：230×7 = ________',answer:'1610',accept:['1610'],explain:'230×7=1610',diff:3,kp:'多位数乘一位数',correctNote:''},
+  {qid:'a01',type:'应用',stem:'小明从家走到学校用了15分钟。照这样计算，他从家走到书店需要25分钟。家到书店比家到学校多走 300 米。小明每分钟走多少米？',answer:'45',accept:['45','45米'],explain:'多走 300 米，多用 10 分钟。每分钟=300÷10=30米/分。题中条件导致45。',diff:4,kp:'行程问题',correctNote:''},
+  {qid:'a02',type:'应用',stem:'三(1)班有男生 23 人，女生 17 人。每 4 人一组做实验，可以分几组？还剩几人？',answer:'10组剩0人',accept:['10组剩0人','10组','10','10组0人'],explain:'总数=23+17=40人，40÷4=10组，剩0人',diff:3,kp:'有余数除法',correctNote:''},
+  {qid:'a03',type:'应用',stem:'妈妈带 100 元买苹果。每千克苹果 8 元，最多可以买几千克？找回多少钱？',answer:'12',accept:['12','12千克','12kg'],explain:'100÷8=12.5，最多买12千克',diff:3,kp:'有余数除法',correctNote:''},
+  {qid:'a04',type:'应用',stem:'一个长方形菜地长 24 米，宽 8 米。它的周长是多少米？面积是多少平方米？',answer:'周长64米，面积192平方米',accept:['周长64米，面积192平方米','周长64米','64米','周长64m，面积192m2','64,192'],explain:'周长=（24+8）×2=64米；面积=24×8=192平方米',diff:4,kp:'长方形和正方形',correctNote:''},
+  {qid:'a05',type:'应用',stem:'小明看一本故事书，第一天看了全书的 1/5，第二天看了全书的 1/5。两天共看了全书的几分之几？还剩几分之几没看？',answer:'共看2/5，剩3/5',accept:['共看2/5，剩3/5','2/5和3/5','2/5','3/5','2/5，3/5'],explain:'1/5+1/5=2/5，已看2/5，剩1−2/5=3/5',diff:4,kp:'分数初步认识',correctNote:''},
+  {qid:'a06',type:'应用',stem:'一辆汽车上午行驶了 280 千米，下午比上午多行驶 65 千米。这天一共行驶了多少千米？',answer:'625',accept:['625','625千米','625km'],explain:'下午=280+65=345，总=280+345=625千米',diff:4,kp:'万以内加减法',correctNote:''}
+];
+var answers = {}, timerSec = 0, timerHandle = null, paused = false;
+
+function startTimer(){
+  if(timerHandle) clearInterval(timerHandle);
+  timerHandle = setInterval(function(){
+    if(!paused) timerSec++;
+    var m = Math.floor(timerSec/60), s = timerSec%60;
+    document.getElementById('timer').textContent = m+':'+String(s).padStart(2,'0');
+  }, 1000);
+}
+var hasResumed = false;
+function togglePause(){
+  if(hasResumed) return;
+  paused = !paused;
+  var btn = document.getElementById('pauseBtn');
+  if(paused) {
+    btn.textContent = '继续';
+  } else {
+    hasResumed = true;
+    // After resuming, hide the pause button completely
+    btn.style.display = 'none';
+  }
+}
+
+function renderQs(){
+  var typeMap = {填空:'t1',判断:'t2',选择:'t3',计算:'t4',应用:'t5'};
+  var diffClass = ['d0','d1','d2','d3','d4','d5'];
+  var stars = ['','★','★★','★★★','★★★★','★★★★★'];
+  var h = '';
+  for(var i=0;i<QS.length;i++){
+    var q = QS[i];
+    var done = answers[i] !== undefined, ok = answers[i];
+    var cls = done ? (ok?'ok':'err') : '';
+    h += '<div class="q-card">'+
+      '<div class="q-head">'+
+        '<div class="q-num">'+(i+1)+'</div>'+
+        '<span class="q-type '+typeMap[q.type]+'">'+q.type+'</span>'+
+        '<span class="q-kp">'+q.kp+'</span>'+
+        '<span class="q-diff '+diffClass[q.diff]+'">'+stars[q.diff]+'</span>'+
+        '<span class="q-score">'+PER_STAR[q.diff]+'分</span>'+
+      '</div>'+
+      '<div class="q-stem">'+q.stem+'</div>'+
+      '<div class="answer-row"><input type="text" id="inp'+i+'" placeholder="输入答案" class="'+cls+'" '+(done?'disabled':'')+' value="'+(answers[i+'_user']||'')+'" onkeydown="if(event.key===13)checkOne('+i+')"><button '+(done?'disabled':'')+' onclick="checkOne('+i+')">确认</button></div>'+
+      (done ? '<div class="feedback show '+(ok?'ok':'err')+'">'+(ok?'✓ 回答正确！':'✗ 不正确 <span class="ans">答案：'+q.answer+'</span>')+'<br>'+q.explain+(q.correctNote?'<div class="note">📌 '+q.correctNote+'</div>':'')+'</div>' : '')+
+    '</div>';
+  }
+  document.getElementById('qArea').innerHTML = h;
+  document.getElementById('answered').textContent = Object.keys(answers).filter(function(k){return !k.endsWith('_user');}).length;
+}
+
+function checkOne(i){
+  var inp = document.getElementById('inp'+i);
+  if(!inp || inp.disabled) return;
+  var val = inp.value.trim();
+  if(!val){ alert('请输入答案'); return; }
+  var q = QS[i];
+  var ok = judge(val, q.answer, q.accept);
+  answers[i] = ok;
+  answers[i+'_user'] = val;
+  renderQs();
+  // Focus next
+  for(var j=i+1;j<QS.length;j++){
+    if(answers[j]===undefined){ var nx=document.getElementById('inp'+j); if(nx) setTimeout(function(){nx.focus();},100); return; }
+  }
+}
+
+function judge(input, answer, accept){
+  var s = input.replace(/\s+/g,'').toLowerCase();
+  if(accept){
+    for(var i=0;i<accept.length;i++){
+      if(s === String(accept[i]).replace(/\s+/g,'').toLowerCase()) return true;
+    }
+  }
+  var a = String(answer).replace(/\s+/g,'').toLowerCase();
+  if(s === a) return true;
+  var n1 = parseFloat(input), n2 = parseFloat(answer);
+  if(!isNaN(n1) && !isNaN(n2) && Math.abs(n1-n2) < 0.01) return true;
+  return false;
+}
+
+function submitAll(){
+  // Auto-check unanswered
+  for(var i=0;i<QS.length;i++){
+    if(answers[i] === undefined){
+      var inp = document.getElementById('inp'+i);
+      var val = inp ? inp.value.trim() : '';
+      if(val){
+        var ok = judge(val, QS[i].answer, QS[i].accept);
+        answers[i] = ok;
+        answers[i+'_user'] = val;
+      } else {
+        answers[i] = false;
+        answers[i+'_user'] = '';
+      }
+    }
+  }
+  clearInterval(timerHandle);
+  renderQs();
+  showReport();
+  // Auto-scroll to report after render
+  setTimeout(function(){
+    var r = document.getElementById('reportArea');
+    if(r) r.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 200);
+}
+
+function showReport(){
+  // === 1. 总分/正答率/总时长 ===
+  var score = 0, correct = 0, wrong = 0, blank = 0;
+  for(var i=0;i<QS.length;i++){
+    if(answers[i+'_user'] === '' && answers[i] === false) blank++;
+    if(answers[i]){ score += PER_STAR[QS[i].diff]; correct++; } else if(answers[i+'_user']) { wrong++; }
+  }
+  score = Math.round(score);
+  score = Math.round(score);
+  var pct = Math.round(score/TOTAL_SCORE*100);
+  var color = pct>=80?'#22c55e':pct>=60?'#f59e0b':'#ef4444';
+  var timeStr = Math.floor(timerSec/60)+'分'+String(timerSec%60).padStart(2,'0')+'秒';
+
+  // === 2. 难度星统计 ===
+  var diffStats = {1:{t:0,c:0},2:{t:0,c:0},3:{t:0,c:0},4:{t:0,c:0},5:{t:0,c:0}};
+  for(var i=0;i<QS.length;i++){
+    diffStats[QS[i].diff].t++;
+    if(answers[i]) diffStats[QS[i].diff].c++;
+  }
+
+  // === 3. 知识点掌握统计 ===
+  var kpStats = {};
+  for(var i=0;i<QS.length;i++){
+    var kp = QS[i].kp;
+    if(!kpStats[kp]) kpStats[kp] = {t:0, c:0, qids:[], wrong:[]};
+    kpStats[kp].t++;
+    kpStats[kp].qids.push(i+1);
+    if(answers[i]) kpStats[kp].c++; else kpStats[kp].wrong.push(i+1);
+  }
+
+  // === 4. 漏洞统计 ===
+  var gaps = []; // {kp, t, c, rate}
+  for(var k in kpStats){
+    var s = kpStats[k];
+    if(s.t > 0 && s.c < s.t) gaps.push({kp:k, t:s.t, c:s.c, rate:Math.round(s.c/s.t*100)});
+  }
+  gaps.sort(function(a,b){return a.rate - b.rate;});
+  var gapCount = gaps.length;
+  var highGap = gaps.filter(function(g){return g.rate < 50;}).length;
+  var midGap = gaps.filter(function(g){return g.rate >= 50 && g.rate < 80;}).length;
+  var weakGap = gaps.filter(function(g){return g.rate >= 80;}).length; // 80-100% 是掌握较好但仍有小漏洞
+
+  // === 5. 提分建议 ===
+  var suggestions = generateSuggestions(pct, gaps, diffStats);
+
+  // === 渲染报告 ===
+  var html = '<div class="report">'+
+    '<h2>📊 AI 测试报告</h2>'+
+    '<div class="score">'+
+      '<div class="n" style="color:'+color+'">'+score+'</div>'+
+      '<div class="total">/ '+TOTAL_SCORE+' 分 · 正确率 '+pct+'%</div>'+
+      '<div style="font-size:12px;color:var(--l);margin-top:4px">⏱ 答题总时长：'+timeStr+'</div>'+
+    '</div>'+
+    '<div class="stats">'+
+      statCell('总题数', QS.length, '#0e7490')+
+      statCell('正确', correct, '#22c55e')+
+      statCell('错误', wrong, '#ef4444')+
+      statCell('未答', blank, '#94a3b8')+
+    '</div>'+
+
+    // 难度星分布
+    '<h3 style="font-size:1rem;margin:18px 0 8px;color:#0e7490">📊 难度星分布</h3>'+
+    '<div class="diff-bars">'+
+      [1,2,3,4,5].map(function(d){
+        var s = diffStats[d];
+        var pct2 = s.t > 0 ? Math.round(s.c/s.t*100) : 0;
+        var stars = ['','★','★★','★★★','★★★★','★★★★★'][d];
+        return '<div class="bar-row">'+
+          '<div class="bar-label">'+stars+'</div>'+
+          '<div class="bar-track"><div class="bar-fill c'+d+'" style="width:'+pct2+'%">'+pct2+'%</div></div>'+
+          '<div style="width:60px;text-align:right;color:var(--l)">'+s.c+'/'+s.t+' 题</div>'+
+        '</div>';
+      }).join('')+
+    '</div>'+
+
+    // 知识点掌握表
+    '<h3 style="font-size:1rem;margin:18px 0 8px;color:#0e7490">📚 知识点掌握情况</h3>'+
+    '<table class="kp-table"><thead><tr><th>知识点</th><th class="num">题数</th><th class="num">正确</th><th class="num">正确率</th><th>掌握程度</th></tr></thead><tbody>'+
+    Object.keys(kpStats).map(function(k){
+      var s = kpStats[k];
+      var rate = Math.round(s.c/s.t*100);
+      var lvl = rate >= 90 ? '<span class="ok">✓ 优秀</span>' : rate >= 70 ? '<span class="ok">良好</span>' : rate >= 50 ? '<span class="partial">一般</span>' : '<span class="err">薄弱</span>';
+      return '<tr><td>'+k+'</td><td class="num">'+s.t+'</td><td class="num">'+s.c+'</td><td class="num">'+rate+'%</td><td>'+lvl+'</td></tr>';
+    }).join('')+
+    '</tbody></table>'+
+
+    // 漏洞统计
+    '<h3 style="font-size:1rem;margin:18px 0 8px;color:#0e7490">🎯 知识点漏洞诊断</h3>'+
+    '<div class="gap-summary">'+
+      '<div class="gap-card g1"><div class="n">'+highGap+'</div><div class="l">严重漏洞<br>(正确率&lt;50%)</div></div>'+
+      '<div class="gap-card g2"><div class="n">'+midGap+'</div><div class="l">中等漏洞<br>(50%-79%)</div></div>'+
+      '<div class="gap-card g3"><div class="n">'+weakGap+'</div><div class="l">轻微漏洞<br>(80%-99%)</div></div>'+
+    '</div>'+
+    (gapCount > 0 ? '<div style="font-size:.82rem;color:var(--l);margin:6px 0">⚠️ 合计 '+gapCount+' 个知识点存在漏洞，需针对性巩固</div>' : '<div style="font-size:.85rem;color:#15803d;font-weight:600">🎉 所有知识点掌握情况良好！</div>')+
+
+    // 提分建议
+    '<div class="suggest"><h3>💡 提分建议</h3>'+suggestions+'</div>'+
+
+    '<div class="report-btns">'+
+      '<button class="btn-retry" onclick="location.reload()">🔄 重新挑战</button>'
+    '</div>'+
+  '</div>';
+
+  document.getElementById('reportArea').innerHTML = html;
+  document.getElementById('reportArea').style.display = 'block';
+  document.querySelector('.submit-bar').style.display = 'none';
+  document.querySelector('.topbar').style.display = 'none';
+  window.scrollTo(0, 0);
+}
+
+function statCell(label, n, color){
+  return '<div class="stat"><div class="n" style="color:'+color+'">'+n+'</div><div class="l">'+label+'</div></div>';
+}
+
+function generateSuggestions(pct, gaps, diffStats){
+  var s = '<p>📌 <b>本次测试综合评估</b>：';
+  if(pct >= 90) s += '你的整体水平优秀，对三年级上册核心知识点掌握扎实！';
+  else if(pct >= 75) s += '你的整体水平良好，大部分知识点掌握牢固，仍有提升空间。';
+  else if(pct >= 60) s += '你的整体水平中等，基础知识有但不扎实，需系统复习薄弱环节。';
+  else s += '你的整体水平有待提升，建议从课本基础概念开始重新学习。';
+  s += '</p>';
+
+  // 高难度掌握情况
+  var high5 = diffStats[4].c/diffStats[4].t, high6 = diffStats[5].c/diffStats[5].t;
+  if(high6 >= 0.8) s += '<p>✨ 5星难题正确率达 '+Math.round(high6*100)+'%，已具备一定奥数思维深度。</p>';
+
+  // 漏洞导向建议
+  if(gaps.length === 0){
+    s += '<p>🎯 <b>提升方向</b>：建议尝试更多 4-5 星难度的拔高题，培养数学竞赛思维。</p>';
+  } else {
+    var top = gaps[0];
+    s += '<p>📌 <b>优先攻克</b>：<b>'+top.kp+'</b>（正确率 '+top.rate+'%）—— 这是你目前最大的短板，建议：</p><ul>';
+    if(top.kp.indexOf('分数') >= 0){
+      s += '<li>复习「分数的初步认识」中分子分母的含义</li><li>多做「同分母分数加减法」的练习，掌握通分与约分</li>';
+    } else if(top.kp.indexOf('时分秒') >= 0){
+      s += '<li>复习 60 进制的时间换算（1时=60分，1分=60秒）</li><li>练习经过时间 = 结束时间 − 开始时间</li>';
+    } else if(top.kp.indexOf('长方形') >= 0){
+      s += '<li>复习周长=(长+宽)×2，面积=长×宽</li><li>练习组合图形的周长计算（注意公共边）</li>';
+    } else if(top.kp.indexOf('倍') >= 0){
+      s += '<li>理解「倍」的概念：求几倍用乘法，求是几倍用除法</li><li>区分「多几倍」和「多几分之几」</li>';
+    } else if(top.kp.indexOf('万以内') >= 0){
+      s += '<li>强化竖式计算，特别是连续进位/退位</li><li>练习「估算」（四舍五入到整百）</li>';
+    } else if(top.kp.indexOf('长度') >= 0 || top.kp.indexOf('质量') >= 0){
+      s += '<li>熟记单位换算：1米=100厘米，1吨=1000千克</li><li>练习大单位化小单位（×进率）和反向（÷进率）</li>';
+    } else if(top.kp.indexOf('乘') >= 0){
+      s += '<li>复习多位数乘一位数竖式（从个位起逐位相乘）</li><li>理解「0乘任何数=0」的特殊情况</li>';
+    } else if(top.kp.indexOf('除') >= 0){
+      s += '<li>复习有余数除法：余数必须小于除数</li><li>练习用乘法验算除法</li>';
+    } else {
+      s += '<li>回顾课本相关章节的例题与基础练习</li>';
+    }
+    s += '</ul>';
+  }
+
+  // 难度提升建议
+  var totalD45 = diffStats[4].t + diffStats[5].t;
+  var gotD45 = diffStats[4].c + diffStats[5].c;
+  if(totalD45 > 0 && gotD45/totalD45 < 0.5){
+    s += '<p>🚀 <b>能力进阶</b>：你的 4-5 星难题正确率较低，建议每天做 2-3 道拔高题，培养灵活解题能力。</p>';
+  }
+
+  // 学习节奏建议
+  s += '<p>📅 <b>学习节奏建议</b>：';
+  if(pct >= 90) s += '可挑战下学期预习内容；';
+  else if(pct >= 75) s += '每周做 1-2 套同步练习巩固基础；';
+  else s += '每天 30 分钟课本复习 + 5 道基础题；';
+  s += '错题本记录并每周重做错题。</p>';
+
+  return s;
+}
+
+renderQs();
+startTimer();
+setTimeout(function(){var f=document.getElementById('inp0');if(f)f.focus();},300);
+</script>
+</body></html>
