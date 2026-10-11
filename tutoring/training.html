@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <meta name="theme-color" content="#0f766e">
-<meta name="description" content="中小学全学科题库检索 · 在线组卷 · 试卷下载 · 拍照解题 —— 菁优网官方题库入口">
-<title>菁优题库 · 豆豆智学系统</title>
+<meta name="description" content="中小学全学科题库检索 · 在线组卷 · 试卷下载 · 拍照解题 —— 豆豆智学中心">
+<title>题库训练 · 豆豆智学系统</title>
 <link rel="preconnect" href="https://www.jyeoo.com" crossorigin>
 <style>
 :root{
@@ -88,10 +88,34 @@ body{
 /* ==================== 引导区 ==================== */
 .stage{
   position:relative;flex:1 1 auto;min-height:0;
-  display:flex;align-items:center;justify-content:center;
+  display:flex;
   padding:20px 18px;
   overflow:auto;
   animation:fadeIn .55s ease .1s both;
+}
+/* 卡片容器：窄屏纵向堆叠，宽屏左右并排（见下方 min-width:600px 媒体查询）。
+   ⚠️ 这里用 margin:auto 而非 .stage 的 align-items:center ——
+   滚动容器里 align-items:center 会把超高内容的顶部裁掉且滚不到，
+   而 auto 外边距在内容不超高时居中、超高时自动归零，两种情形都安全。 */
+.cards{
+  position:relative;z-index:1;
+  width:100%;max-width:880px;
+  margin:auto;
+  display:flex;flex-direction:column;gap:16px;
+}
+/* 第二块错拍入场，与第一块形成先后节奏 */
+.cards .gcard:nth-child(2){animation-delay:.24s;}
+
+/* 宽屏（≥600px）：两块左右并排 —— 等宽（flex:1 1 0）＋ 等高（align-items:stretch）；
+   卡内改纵向流式，由提示框吸收多余高度，使两张卡的主按钮底边对齐。 */
+@media (min-width:600px){
+  .cards{flex-direction:row;align-items:stretch;gap:18px;}
+  .cards .gcard{
+    flex:1 1 0;min-width:0;width:auto;max-width:none;
+    display:flex;flex-direction:column;align-items:center;
+  }
+  .cards .gnote{flex:1 1 auto;}
+  .cards .gcard h2{font-size:clamp(15px,2.4vw,19px);}
 }
 /* 超大幽灵字——主题底纹 */
 .ghost{
@@ -196,25 +220,38 @@ body{
 <header class="topbar">
   <span class="deco a"></span><span class="deco b"></span>
   <div class="bar-inner">
-    <h1 class="bar-title">豆豆智学系统--菁优题库训练</h1>
+    <h1 class="bar-title">豆豆智学系统--题库训练</h1>
     <a class="btn-home" href="../index.html">🏠 返回首页</a>
   </div>
 </header>
 
 <main class="stage">
   <span class="ghost" aria-hidden="true">题</span>
-  <section class="gcard">
-    <div class="gi" aria-hidden="true">🧮</div>
-    <h2>菁优题库 · 在线题库训练</h2>
-    <p class="gd">中小学全学科题库检索 · 在线组卷<br>试卷下载 · 拍照解题</p>
-    <p class="gnote"><b>温馨提示：</b>菁优题库需要登录后使用，请点击下方按钮在新窗口打开。登录一次后，浏览器会记住您的登录状态。</p>
-    <a class="gbtn" href="https://www.jyeoo.com/training/all" target="_blank" rel="noopener">🔗 打开菁优题库</a>
-    <p class="gsub">无需安装 · 手机 / 电脑浏览器均可使用</p>
-  </section>
+  <div class="cards">
+
+    <section class="gcard">
+      <div class="gi" aria-hidden="true">🧮</div>
+      <h2>菁优网 · 在线题库训练</h2>
+      <p class="gd">中小学全学科题库检索 · 在线组卷<br>试卷下载 · 拍照解题</p>
+      <p class="gnote"><b>温馨提示：</b>菁优题库需要登录后使用，请点击下方按钮在新窗口打开。登录一次后，浏览器会记住您的登录状态。</p>
+      <a class="gbtn" href="jyw.html" rel="noopener">🔗 进入菁优题库进行练习</a>
+      <p class="gsub">无需安装 · 手机 / 电脑浏览器均可使用</p>
+    </section>
+
+    <section class="gcard">
+      <div class="gi" aria-hidden="true">🖨️</div>
+      <h2>学科网 · 组卷打印</h2>
+      <p class="gd">名校试卷库 · 智能选题组卷<br>在线排版 · 打印下载</p>
+      <p class="gnote"><b>温馨提示：</b>学科网组卷需要登录后使用，部分名校试卷与下载会消耗积分，请点击下方按钮在新窗口打开。登录一次后，浏览器会记住您的登录状态。</p>
+      <a class="gbtn" href="xkw.html" rel="noopener">🔗 进入学科题库进行练习</a>
+      <p class="gsub">无需安装 · 手机 / 电脑浏览器均可使用</p>
+    </section>
+
+  </div>
 </main>
 
 <footer class="site-footer">
-  &copy; 2026 <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span>&nbsp;·&nbsp;<a href="https://www.jyeoo.com/training/all" target="_blank" rel="noopener">🔗 新窗口打开</a>
+  &copy; 2026 <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span>
 </footer>
 
 </body>
