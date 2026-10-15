@@ -1167,14 +1167,32 @@ html{-webkit-text-size-adjust:100%;}
       }
     }
 
-    // Hash the input, fetch hash list; fallback to embedded list if fetch fails
+    // 验号：请求云端（阿里云 FC）按「手机号哈希 + 当前页面」校验授权；
+    // 云端不可达、或网关层异常（非 2xx，如欠费 403 / 5xx）时，回落内嵌兜底名单。
+    var WORKER_URL = 'https://doudou-unlock-lkepopyncq.cn-hangzhou.fcapp.run';
+    var PAGE_PATH  = '/learn-maths/tutoring/index.html';
     sha256(phone).then(function(phoneHash){
-      fetch('../jiesuo.html').then(function(r){ return r.text(); }).then(function(text){
-        var hashes = text.trim().split(/[\n\r]+/).filter(function(h){ return h.trim(); });
-        check(phoneHash, hashes);
-      }).catch(function(){
-        check(phoneHash, FALLBACK_HASHES);
-      });
+      fetch(WORKER_URL + '?hash=' + phoneHash + '&page=' + encodeURIComponent(PAGE_PATH))
+        .then(function(r){
+          if (!r.ok) throw new Error('http_' + r.status);   // 非 2xx 视为服务不可用 → 走兜底
+          return r.json();
+        })
+        .then(function(data){
+          if (data && data.ok) { check(phoneHash, [phoneHash]); return; }
+          if (!data || (data.ok === undefined && data.reason === undefined)) {
+            check(phoneHash, FALLBACK_HASHES);   // 非预期响应体（网关错误页等）→ 走兜底
+            return;
+          }
+          var reason = data.reason;
+          var msg = '输入有误，请重新输入';
+          if (reason === 'no_page' || reason === 'no_module') { msg = '未授权无法访问，请联系老师开通'; }
+          else if (reason === 'expired') { msg = '您的授权已过期，请联系老师续期'; }
+          loadEl.classList.remove('show');
+          btnEl.disabled = false;
+          showErr(msg);
+          shake();
+        })
+        .catch(function(){ check(phoneHash, FALLBACK_HASHES); });
     }).catch(function(){
       loadEl.classList.remove('show');
       btnEl.disabled = false;
