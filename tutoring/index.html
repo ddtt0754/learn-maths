@@ -1185,8 +1185,9 @@ html{-webkit-text-size-adjust:100%;}
           }
           var reason = data.reason;
           var msg = '输入有误，请重新输入';
-          if (reason === 'no_page' || reason === 'no_module') { msg = '未授权无法访问，请联系老师开通'; }
-          else if (reason === 'expired') { msg = '您的授权已过期，请联系老师续期'; }
+          if (reason === 'not_found') { msg = '账号不存在，请重新输入或联系豆豆教练添加'; }
+          else if (reason === 'no_page' || reason === 'no_module') { msg = '学科未授权，请联系豆豆教练开通授权'; }
+          else if (reason === 'expired') { msg = '授权已到期，请联系豆豆教练续期'; }
           loadEl.classList.remove('show');
           btnEl.disabled = false;
           showErr(msg);
