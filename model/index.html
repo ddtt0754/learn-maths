@@ -615,8 +615,10 @@ render();
     // 云端不可达、或网关层异常（非 2xx，如欠费 403 / 5xx）时，回落内嵌兜底名单。
     var WORKER_URL = 'https://doudou-unlock-lkepopyncq.cn-hangzhou.fcapp.run';
     var PAGE_PATH  = '/learn-maths/model/index.html';
-    sha256(phone).then(function(phoneHash){
-      fetch(WORKER_URL + '?hash=' + phoneHash + '&page=' + encodeURIComponent(PAGE_PATH))
+    // 云端可能在改表 / 实例切换的瞬间读不到最新授权：对「查不到」类结论静默重试一次，
+    // 避免把瞬时的数据不一致误报成「学科未授权」。
+    function verifyOnce(phoneHash, retried){
+      fetch(WORKER_URL + '?hash=' + phoneHash + '&page=' + encodeURIComponent(PAGE_PATH), { cache: 'no-store' })
         .then(function(r){
           if (!r.ok) throw new Error('http_' + r.status);   // 非 2xx 视为服务不可用 → 走兜底
           return r.json();
@@ -628,16 +630,24 @@ render();
             return;
           }
           var reason = data.reason;
+          if (!retried && (reason === 'not_found' || reason === 'no_page' || reason === 'no_module' || reason === 'module_unknown')) {
+            setTimeout(function(){ verifyOnce(phoneHash, true); }, 800);
+            return;
+          }
           var msg = '输入有误，请重新输入';
           if (reason === 'not_found') { msg = '账号不存在，请重新输入或联系豆豆教练添加'; }
           else if (reason === 'no_page' || reason === 'no_module') { msg = '学科未授权，请联系豆豆教练开通授权'; }
           else if (reason === 'expired') { msg = '授权已到期，请联系豆豆教练续期'; }
+          else if (reason === 'module_unknown') { msg = '服务暂时不可用，请稍后再试'; }
           loadEl.classList.remove('show');
           btnEl.disabled = false;
           showErr(msg);
           shake();
         })
         .catch(function(){ check(phoneHash, FALLBACK_HASHES); });
+    }
+    sha256(phone).then(function(phoneHash){
+      verifyOnce(phoneHash, false);
     }).catch(function(){
       loadEl.classList.remove('show');
       btnEl.disabled = false;
