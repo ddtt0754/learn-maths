@@ -154,7 +154,7 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
   .more-link:active{transform:scale(.95)}
 
 
-/* ========== 手机号验证锁屏 ========== */
+/* ========== 手机号或学号验证锁屏 ========== */
 html{-webkit-text-size-adjust:100%;}
 .lock-overlay {
   position: fixed; z-index: 9999;
@@ -203,19 +203,19 @@ html{-webkit-text-size-adjust:100%;}
 </style>
 </head>
 <body>
-<!-- 手机号验证锁屏 -->
+<!-- 手机号或学号验证锁屏 -->
 <div class="lock-overlay" id="lockOverlay">
   <div class="lock-card">
     <div class="lock-icon">🔐</div>
-    <h2>请输入手机号验证</h2>
-    <div class="lock-desc">首次访问需验证手机号<br>验证通过后可 7 天内免登录</div>
+    <h2>请输入手机号或学号验证</h2>
+    <div class="lock-desc">首次访问需验证手机号或学号<br>验证通过后可 7 天内免登录</div>
     <div class="lock-input-row">
-      <input type="tel" id="phoneInput" placeholder="输入 11 位手机号" maxlength="11" inputmode="numeric">
+      <input type="text" id="phoneInput" placeholder="输入手机号或学号" maxlength="24" inputmode="text">
       <button id="verifyBtn" onclick="verifyPhone()">验证</button>
     </div>
     <div class="lock-loading" id="lockLoading">⏳ 正在验证…</div>
     <div class="lock-error" id="lockError"></div>
-    <div class="lock-hint">仅限已登记手机号访问<br>如有疑问请联系两英豆豆教练</div>
+    <div class="lock-hint">仅限已登记手机号或学号访问<br>如有疑问请联系两英豆豆教练</div>
   </div>
 </div>
 
@@ -583,8 +583,8 @@ render();
 
   function verifyPhone(){
     var phone = phoneInput.value.replace(/\s+/g, '');
-    if (!phone) { showErr('请输入手机号'); shake(); return; }
-    if (!/^1\d{10}$/.test(phone)) { showErr('请输入正确的 11 位手机号'); shake(); return; }
+    if (!phone) { showErr('请输入手机号或学号'); shake(); return; }
+    if (!/^[A-Za-z0-9]{4,24}$/.test(phone)) { showErr('请输入正确的手机号或学号'); shake(); return; }
 
     btnEl.disabled = true;
     loadEl.classList.add('show');
@@ -611,7 +611,7 @@ render();
       }
     }
 
-    // 验号：请求云端（阿里云 FC）按「手机号哈希 + 当前页面」校验授权；
+    // 验号：请求云端（阿里云 FC）按「手机号或学号哈希 + 当前页面」校验授权；
     // 云端不可达、或网关层异常（非 2xx，如欠费 403 / 5xx）时，回落内嵌兜底名单。
     var WORKER_URL = 'https://doudou-unlock-lkepopyncq.cn-hangzhou.fcapp.run';
     var PAGE_PATH  = '/learn-maths/model/index.html';
