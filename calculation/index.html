@@ -484,13 +484,12 @@ sup.math-sup {
     errEl.classList.remove('show');
     phoneInput.classList.remove('error');
 
-    // 兜底哈希列表：fetch 失败（如本地 file:// 打开）时使用，仅存哈希不存明文
+    // 兜底哈希列表：**仅本地 file:// 打开时生效**，线上（http/https）一律禁用；
+    // 防止「屏蔽验号域名 → fetch 失败 → 命中兜底」绕过云端授权校验。仅存哈希不存明文。
     var FALLBACK_HASHES = [
       '413b7b3d5700ad8a6b296c9d0e7107dbd7280a985c1c695db8646c278e510224',
-      '679d49b6e57d426b2af961461512559700b9e4c01aa723f0b71682c5f07b31c3',
-      'df225757a3ffcac2bd9643323af99631a53300b439da8ff4a8a41f889ce39704',
-      'f33f356f0975feb01468d154687a812a113ffa87ac5091ecc99637a552f033e9',
     ];
+    var IS_LOCAL_FILE = (location.protocol === 'file:');
 
     function check(phoneHash, hashes){
       var matched = hashes.some(function(h){ return h === phoneHash; });
@@ -504,8 +503,18 @@ sup.math-sup {
       }
     }
 
+    // 云端不可达 / 网关异常（非 2xx，如欠费 403 / 5xx）时的处置：
+    // **只有本地 file:// 打开才走兜底名单**；线上（http/https）一律拒绝并提示，绝不放行。
+    function fallbackOrFail(phoneHash){
+      if (IS_LOCAL_FILE) { check(phoneHash, FALLBACK_HASHES); return; }
+      loadEl.classList.remove('show');
+      btnEl.disabled = false;
+      showErr('服务暂时不可用，请稍后再试');
+      shake();
+    }
+
     // 验号：请求云端（阿里云 FC）按「手机号或学号哈希 + 当前页面」校验授权；
-    // 云端不可达、或网关层异常（非 2xx，如欠费 403 / 5xx）时，回落内嵌兜底名单。
+    // 云端不可达、或网关层异常（非 2xx）时，线上按「服务暂时不可用」拒绝（不再放行）。
     var WORKER_URL = 'https://doudou-unlock-lkepopyncq.cn-hangzhou.fcapp.run';
     var PAGE_PATH  = '/learn-maths/calculation/index.html';
     // 云端可能在改表 / 实例切换的瞬间读不到最新授权：对「查不到」类结论静默重试一次，
@@ -513,13 +522,13 @@ sup.math-sup {
     function verifyOnce(phoneHash, retried){
       fetch(WORKER_URL + '?hash=' + phoneHash + '&page=' + encodeURIComponent(PAGE_PATH), { cache: 'no-store' })
         .then(function(r){
-          if (!r.ok) throw new Error('http_' + r.status);   // 非 2xx 视为服务不可用 → 走兜底
+          if (!r.ok) throw new Error('http_' + r.status);   // 非 2xx 视为服务不可用
           return r.json();
         })
         .then(function(data){
           if (data && data.ok) { check(phoneHash, [phoneHash]); return; }
           if (!data || (data.ok === undefined && data.reason === undefined)) {
-            check(phoneHash, FALLBACK_HASHES);   // 非预期响应体（网关错误页等）→ 走兜底
+            fallbackOrFail(phoneHash);   // 非预期响应体（网关错误页等）
             return;
           }
           var reason = data.reason;
@@ -537,7 +546,7 @@ sup.math-sup {
           showErr(msg);
           shake();
         })
-        .catch(function(){ check(phoneHash, FALLBACK_HASHES); });
+        .catch(function(){ fallbackOrFail(phoneHash); });
     }
     sha256(phone).then(function(phoneHash){
       verifyOnce(phoneHash, false);
