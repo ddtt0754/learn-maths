@@ -81,6 +81,19 @@ body {
   color: var(--text2); font-size: .75rem;
   border-top: 1px solid #e2e8f0; margin-top: auto;
 }
+/* 返回首页按钮（置于版权行上方） */
+.back-home {
+  display: inline-flex; align-items: center;
+  margin-bottom: 14px; padding: 9px 22px;
+  border-radius: 999px; background: #2ebd85; color: #fff;
+  font-size: .86rem; font-weight: 700; letter-spacing: .02em;
+  text-decoration: none; box-shadow: 0 6px 16px rgba(46,189,133,.26);
+  transition: transform .15s, box-shadow .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.back-home:hover { transform: translateY(-1px); box-shadow: 0 9px 22px rgba(46,189,133,.32); }
+.back-home:active { transform: scale(.96); }
+
 
 /* 教练微信号提示框 */
 .coach-tip {
@@ -230,7 +243,10 @@ html{-webkit-text-size-adjust:100%;}
   </div>
 </div>
 
-<footer class="site-footer">&copy; <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span> &nbsp;·&nbsp; <a href="readme.html" style="color:#8aa09a">📖 本站说明</a></footer>
+<footer class="site-footer">
+  <a class="back-home" href="https://a.iddtt.com/">← 返回首页</a>
+  <div class="copyright">&copy; <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span> &nbsp;·&nbsp; <a href="readme.html" style="color:#8aa09a">📖 本站说明</a></div>
+</footer>
 
 <script>
 (function(){
