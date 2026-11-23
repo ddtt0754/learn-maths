@@ -2,363 +2,1057 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2025秋 二年级下册数学期末测试｜分层试卷 L1:10 L2:20 L3:6</title>
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#12b39a">
+<title>二年级下册数学 · 期末测试B卷（互动版）｜豆豆智学</title>
 <style>
-*{box-sizing:border-box;font-family:"Microsoft YaHei",sans-serif}
-body{background:#f7f9fb;padding:16px;max-width:1000px;margin:0 auto;color:#222}
-header{position:sticky;top:0;background:#ffffff;padding:14px 18px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);z-index:10;margin-bottom:18px}
-.header-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
-.timer-box{font-size:19px;font-weight:bold;color:#d62828}
-.progress{margin-top:10px;height:11px;background:#e2e8f0;border-radius:6px;overflow:hidden}
-.progress-bar{height:100%;background:#3b82f6;width:0%;transition:0.35s}
-.info{background:#eff6ff;padding:12px;border-radius:9px;margin-bottom:18px}
-.question{background:#fff;border:1px solid #dee2e6;border-radius:9px;padding:15px;margin-bottom:13px}
-.level-tag{display:inline-block;padding:3px 7px;border-radius:5px;font-size:12px;margin-right:7px;color:#fff;font-weight:bold}
-.L1{background:#22c55e}
-.L2{background:#f97316}
-.L3{background:#ef4444}
-input[type="text"]{width:170px;padding:7px;border:1px solid #adb5bd;border-radius:5px;font-size:16px}
-input:focus{transform:scale(1.02);outline:#2563eb solid 2px}
-button{padding:11px 20px;border:none;border-radius:7px;font-size:16px;cursor:pointer;margin:7px 5px}
-#startBtn{background:#2563eb;color:#fff}
-#submitBtn{background:#16a34a;color:#fff}
-#resetBtn{background:#6b7280;color:#fff}
-#saveImgBtn{background:#7c3aed;color:#fff}
-.report{margin-top:22px;background:#fff;border:2px solid #2563eb;border-radius:10px;padding:18px;display:none}
-.correct{color:#15803d;font-weight:500}
-.wrong{color:#dc2626;font-weight:500}
-.ans-block{margin-top:18px;background:#fefefe;border:1px solid #aaa;padding:16px;border-radius:9px;display:none}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  :root{
+    --bg:#eef7f5; --card:#ffffff; --text:#10312c; --text2:#5c7b75; --text3:#8aa5a0;
+    --primary:#12b39a; --primary-d:#0b947f; --primary-l:#e4f7f2; --primary-m:#a9e5d8;
+    --orange:#ff9f45; --orange-d:#e8862b; --orange-l:#fff4e6;
+    --line:#d9ebe6; --shadow:0 6px 20px rgba(18,179,154,.10);
+    --r:16px; --grad:linear-gradient(135deg,#38d7b8,#14a9b8);
+  }
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--text); font-size:15px; line-height:1.65;
+    font-family:"PingFang SC","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    -webkit-text-size-adjust:100%; overflow-x:hidden;
+  }
+  h1,h2,h3,p,ul,ol{margin:0}
+  ul,ol{padding-left:1.15em}
+
+  /* ---------- 顶部 ---------- */
+  .hero{background:var(--grad);color:#fff;padding:22px 0 26px;border-radius:0 0 24px 24px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-46px;top:-56px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.14)}
+  .hero::before{content:"";position:absolute;left:-40px;bottom:-70px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.10)}
+  .hero-in{max-width:760px;margin:0 auto;padding:0 16px;position:relative;z-index:1}
+  .kicker{display:inline-block;font-size:12px;letter-spacing:.06em;background:rgba(255,255,255,.20);border:1px solid rgba(255,255,255,.42);padding:3px 10px;border-radius:999px}
+  .hero h1{font-size:21px;line-height:1.4;margin:10px 0 6px;font-weight:800}
+  .hero .sub{font-size:13px;opacity:.94}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .chip{font-size:12px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.34);padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .chip b{font-weight:800}
+
+  /* ---------- 主体 ---------- */
+  .wrap{max-width:760px;margin:0 auto;padding:0 14px calc(var(--barh,190px) + 22px)}
+  .notice{background:#fff;border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:12px;padding:10px 12px;margin:14px 0 0;font-size:13px;color:var(--text2)}
+  .notice b{color:var(--orange-d)}
+
+  .group{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+  .ghead{display:flex;align-items:flex-start;gap:10px;padding:13px 14px;background:linear-gradient(135deg,#f2fbf8,#eaf7f4);border-bottom:1px solid var(--line)}
+  .gidx{flex:0 0 auto;width:26px;height:26px;border-radius:9px;background:var(--primary);color:#fff;font-size:12.5px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .gtitle{flex:1 1 auto;min-width:0}
+  .gtitle h2{font-size:15px;font-weight:800;line-height:1.45}
+  .gtitle p{font-size:12px;color:var(--text3);line-height:1.5;margin-top:1px}
+  .gcount{flex:0 0 auto;font-size:12px;color:var(--primary-d);background:#fff;border:1px solid var(--primary-m);padding:2px 8px;border-radius:999px;white-space:nowrap}
+
+  /* ---------- 题目 ---------- */
+  .qcard{padding:14px;border-top:1px dashed var(--line)}
+  .qcard:first-of-type{border-top:0}
+  .qtop{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .pick{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin:-10px 0 -10px -10px;cursor:pointer}
+  .pick input{position:absolute;opacity:0;width:1px;height:1px}
+  .pbox{width:20px;height:20px;border-radius:6px;border:2px solid #b9d8d2;background:#fff;display:inline-block;position:relative;transition:.15s}
+  .pick input:checked + .pbox{background:var(--orange);border-color:var(--orange)}
+  .pick input:checked + .pbox::after{content:"";position:absolute;left:5px;top:1px;width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(42deg)}
+  .pick input:focus-visible + .pbox{outline:2px solid var(--primary);outline-offset:2px}
+  .qno{font-size:13px;font-weight:800;color:#fff;background:var(--primary);border-radius:8px;padding:1px 8px;min-width:30px;text-align:center}
+  .tag{font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:999px;border:1px solid transparent;white-space:nowrap}
+  .tag.d1{color:#0b7a68;background:#e2f6f0;border-color:#b9e8dc}
+  .tag.d2{color:#0d7f96;background:#e3f4f9;border-color:#b6e2ee}
+  .tag.d3{color:#a15b12;background:var(--orange-l);border-color:#f7d4aa}
+  .stem{font-size:15.5px;line-height:1.75;word-break:break-word}
+  .stem .kw{font-weight:800;color:var(--primary-d)}
+  .stem .em{font-weight:800;color:var(--orange-d)}
+
+  .opts{display:grid;gap:8px;margin-top:10px}
+  .opt{display:flex;align-items:center;gap:9px;min-height:44px;padding:9px 11px;border:1.5px solid var(--line);border-radius:12px;background:#fcfefd;cursor:pointer;transition:.14s;word-break:break-word}
+  .opt input{position:absolute;opacity:0;width:1px;height:1px}
+  .odot{flex:0 0 auto;width:18px;height:18px;border-radius:50%;border:2px solid #b9d8d2;background:#fff;position:relative;transition:.14s}
+  .okey{flex:0 0 auto;font-size:12px;font-weight:800;color:var(--text3);width:14px}
+  .otext{flex:1 1 auto;min-width:0;font-size:14.5px;line-height:1.55}
+  .opt.sel{border-color:var(--primary);background:var(--primary-l)}
+  .opt.sel .odot{border-color:var(--primary);background:var(--primary);box-shadow:inset 0 0 0 3px #fff}
+  .opt.sel .okey{color:var(--primary-d)}
+  .opt.right{border-color:var(--primary);background:#e9faf4}
+  .opt.right::after{content:"✓ 正确";font-size:11.5px;font-weight:800;color:var(--primary-d);white-space:nowrap}
+  .opt.wrong{border-color:var(--orange);background:var(--orange-l)}
+  .opt.wrong::after{content:"✕ 你选的";font-size:11.5px;font-weight:800;color:var(--orange-d);white-space:nowrap}
+
+  .fillrow{margin-top:10px}
+  .fill{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:14.5px;color:var(--text2)}
+  .finput{width:104px;min-height:44px;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;font-size:16px;font-weight:700;color:var(--text);background:#fcfefd;font-family:inherit}
+  .finput:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(18,179,154,.15)}
+  .finput:disabled{background:#f4f8f7;color:var(--text2)}
+  .unit{font-size:14px;color:var(--text2)}
+
+  .fb{margin-top:10px;border-radius:12px;padding:10px 11px;font-size:13.5px;line-height:1.7;border:1px solid}
+  .fb.ok{background:#f0fbf7;border-color:#c6ecdf}
+  .fb.no{background:#fff8f0;border-color:#f6ddc0}
+  .fbrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:700}
+  .verdict{font-size:12.5px;padding:1px 9px;border-radius:999px;color:#fff}
+  .fb.ok .verdict{background:var(--primary)}
+  .fb.no .verdict{background:var(--orange)}
+  .you{color:var(--text2);font-weight:600}
+  .ansline{color:var(--primary-d)}
+  .ansline b{font-weight:800}
+  .explain{margin-top:5px;color:var(--text2)}
+  .explain b{color:var(--text)}
+  .cause{margin-top:5px;font-size:12.5px;color:var(--orange-d);background:#fff;border:1px dashed #f0cfaa;border-radius:9px;padding:4px 8px;display:inline-block}
+
+  /* ---------- 底部操作条 ---------- */
+  .actionbar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-top:1px solid var(--line);box-shadow:0 -6px 18px rgba(16,49,44,.08);padding:6px 12px calc(6px + env(safe-area-inset-bottom))}
+  .ab-in{max-width:760px;margin:0 auto}
+  .ab-stat{font-size:12px;color:var(--text2);margin-bottom:4px;display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+  .ab-stat b{color:var(--primary-d);font-size:13.5px}
+  .ab-stat .dot{color:var(--text3)}
+  .ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  #btnSubmit{grid-column:span 2}
+  #btnPrint{grid-column:span 2;font-size:14px}
+  .btn{min-height:44px;min-width:44px;padding:9px 14px;border-radius:999px;border:1.5px solid transparent;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:.15s;line-height:1.3}
+  .btn-main{background:var(--grad);color:#fff;box-shadow:0 4px 12px rgba(18,179,154,.28)}
+  .btn-line{background:#fff;color:var(--primary-d);border-color:var(--primary-m)}
+  .btn-ghost{background:var(--primary-l);color:var(--primary-d);border-color:#c9ece2}
+  .btn-warm{background:var(--orange);color:#fff;box-shadow:0 4px 12px rgba(255,159,69,.30)}
+  .btn:active{transform:translateY(1px)}
+  .btn:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
+  .btn:focus-visible{outline:2px solid var(--primary-d);outline-offset:2px}
+
+  /* ---------- 报告 ---------- */
+  .report{margin-top:20px}
+  .rhead{display:flex;align-items:center;gap:8px;margin:0 2px 10px}
+  .rhead h2{font-size:17px;font-weight:800}
+  .rhead .line{flex:1 1 auto;height:1px;background:var(--line)}
+  .rcards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .rcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;box-shadow:var(--shadow)}
+  .rcard.main{grid-column:span 3;background:var(--grad);color:#fff;border-color:transparent}
+  .rlabel{display:block;font-size:12px;color:var(--text3);letter-spacing:.04em}
+  .rcard.main .rlabel{color:rgba(255,255,255,.86)}
+  .rnum{display:block;font-size:21px;font-weight:800;line-height:1.25;margin-top:2px;white-space:nowrap}
+  .rcard.main .rnum{font-size:30px}
+  .rsub{display:block;font-size:12px;color:var(--text2);margin-top:2px}
+  .rcard.main .rsub{color:rgba(255,255,255,.9)}
+  .dbar{height:7px;border-radius:999px;background:#e9f2f0;overflow:hidden;margin-top:8px}
+  .dbar i{display:block;height:100%;border-radius:999px;background:var(--primary)}
+  .dbar i.warn{background:var(--orange)}
+
+  .rblock{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;margin-top:12px;box-shadow:var(--shadow)}
+  .rblock h3{font-size:15px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:7px}
+  .rblock h3 span.n{width:20px;height:20px;border-radius:7px;background:var(--primary-l);color:var(--primary-d);font-size:11.5px;display:flex;align-items:center;justify-content:center;font-weight:800}
+  .mrow{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-top:1px dashed var(--line);font-size:13.5px}
+  .mrow:first-of-type{border-top:0}
+  .mcode{flex:0 0 auto;font-weight:800;color:var(--orange-d);background:var(--orange-l);border:1px solid #f6ddc0;border-radius:7px;padding:0 7px;font-size:12.5px;line-height:22px;height:22px}
+  .mbody{flex:1 1 auto;min-width:0}
+  .mbody .mt{display:block;font-weight:700;line-height:1.45}
+  .mbody .ms{display:block;color:var(--text2);font-size:12.5px;line-height:1.55}
+  .mcount{flex:0 0 auto;font-size:12.5px;font-weight:800;color:var(--text2)}
+  .kwlist{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .kwbtn{min-height:36px;padding:6px 12px;border-radius:999px;border:1.5px solid var(--primary-m);background:#fff;color:var(--primary-d);font-size:13px;font-weight:700;font-family:inherit;cursor:pointer}
+
+  .grow{display:flex;align-items:center;gap:8px;padding:9px 0;border-top:1px dashed var(--line);font-size:13.5px}
+  .grow:first-of-type{border-top:0}
+  .gname{flex:1 1 auto;min-width:0;font-weight:700;word-break:break-word}
+  .gname em{display:block;font-style:normal;font-size:12px;color:var(--text3);font-weight:400}
+  .st{flex:0 0 auto;font-size:11.5px;font-weight:800;padding:1px 8px;border-radius:999px;white-space:nowrap}
+  .st.no{color:#a15b12;background:var(--orange-l);border:1px solid #f6ddc0}
+  .st.mid{color:#0d7f96;background:#e3f4f9;border:1px solid #b6e2ee}
+  .st.ok{color:#0b7a68;background:#e2f6f0;border:1px solid #b9e8dc}
+  .advice{font-size:13.5px;line-height:1.8;color:var(--text2)}
+  .advice li{margin-bottom:6px}
+  .advice b{color:var(--text)}
+  .foot{margin:16px 0 0;text-align:center;font-size:12px;color:var(--text3);line-height:1.7}
+  .coach-tip{display:inline-block;padding:4px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--text2);cursor:pointer;user-select:none;min-height:32px}
+  .coach-tip .wx{display:none;color:var(--primary-d);font-weight:800}
+  .coach-tip.show .wx{display:inline}
+
+  /* ---------- 提示 / 错误 ---------- */
+  #toast{position:fixed;left:50%;bottom:calc(var(--barh,190px) + 14px + env(safe-area-inset-bottom));transform:translate(-50%,10px);z-index:60;max-width:min(90vw,420px);background:#10312c;color:#fff;font-size:13.5px;line-height:1.5;padding:10px 14px;border-radius:12px;opacity:0;pointer-events:none;transition:.2s;text-align:center;box-shadow:0 8px 22px rgba(0,0,0,.24)}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+  #errBanner{position:fixed;left:8px;right:8px;top:8px;z-index:70;background:#4a2a10;color:#ffe9d2;font-size:13px;line-height:1.6;padding:10px 12px;border-radius:12px;box-shadow:0 8px 22px rgba(0,0,0,.25)}
+  #errBanner[hidden]{display:none}
+
+  /* ---------- 打印区（屏幕上隐藏） ---------- */
+  #printArea{display:none}
+
+  @media (max-width:380px){
+    .hero h1{font-size:19px}
+    .stem{font-size:15px}
+    .otext{font-size:14px}
+    .btn{font-size:14px;padding:9px 10px}
+    #btnPrint{font-size:13px}
+    .gtitle h2{font-size:14px}
+  }
+  @media (min-width:620px){
+    .ab-grid{grid-template-columns:auto auto auto 1fr}
+    #btnSubmit,#btnPrint{grid-column:auto}
+    #btnPrint{justify-self:end}
+    .rcards{grid-template-columns:repeat(4,1fr)}
+    .rcard.main{grid-column:span 1}
+    .rcard.main .rnum{font-size:32px}
+    .rnum{font-size:24px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important}
+  }
+
+  /* ---------- 打印样式：A4 单栏，题目不断页 ---------- */
+  @media print{
+    @page{size:A4;margin:13mm 11mm 14mm}
+    html,body{background:#fff!important;color:#000!important}
+    .hero,.wrap,.actionbar,#toast,#errBanner{display:none!important}
+    #printArea{display:block!important;max-width:none;margin:0;padding:0;color:#000;font-size:11.5pt;line-height:1.6;
+      font-family:"PingFang SC","Microsoft YaHei","Songti SC",serif}
+    .phead{text-align:center;border-bottom:2px solid #000;padding-bottom:6pt;margin-bottom:10pt}
+    .phead h1{font-size:15pt;font-weight:800;letter-spacing:.02em}
+    .psub{font-size:10.5pt;margin-top:2pt}
+    .pinfo{font-size:9.5pt;margin-top:5pt;display:flex;flex-wrap:wrap;gap:4pt 14pt;justify-content:center}
+    .pq{break-inside:avoid;page-break-inside:avoid;border:1px solid #999;border-radius:4pt;padding:7pt 9pt;margin:0 0 9pt}
+    .pqhead{font-size:9.5pt;color:#333;margin-bottom:3pt}
+    .pqstem{font-size:11.5pt;line-height:1.62;margin-bottom:4pt}
+    .pqline{font-size:10.5pt;line-height:1.6;margin-top:2pt}
+    .pqline .lb{font-weight:800}
+    .pqline .bad{font-weight:800;text-decoration:underline}
+    .pqline .good{font-weight:800;border-bottom:1px solid #000}
+    .pfoot{margin-top:8pt;font-size:9pt;text-align:center;color:#444;border-top:1px solid #bbb;padding-top:5pt}
+  }
 </style>
 </head>
 <body>
-<div id="pageWrap">
-<header>
-<div class="header-row">
-<div>2025秋二年级下册数学期末分层卷｜L1:10 L2:20 L3:6</div>
-<div class="timer-box">剩余时间：<span id="timeText">45:00</span></div>
-</div>
-<div class="progress">
-<div class="progress-bar" id="progressBar"></div>
-</div>
-<div style="margin-top:6px">答题进度：<span id="progressText">0/36</span></div>
+
+<header class="hero">
+  <div class="hero-in">
+    <span class="kicker">豆豆智学 · 数学分层测评</span>
+    <h1>二年级下册数学 · 期末测试 B 卷</h1>
+    <p class="sub">人教版新课标 · 学期知识点全覆盖 · 低中高难度混合测评</p>
+    <div class="chips">
+      <span class="chip">学习者：<b>测试学员</b></span>
+      <span class="chip">共 <b>30</b> 题</span>
+      <span class="chip">低 <b>3</b> · 中 <b>15</b> · 高 <b>12</b></span>
+      <span class="chip">提交后出报告</span>
+    </div>
+  </div>
 </header>
 
-<div class="info">
-题量配置：L1低难度10题｜L2中难度20题｜L3高难度6题，全部填空作答。
-<br>答题说明：选择题填写选项字母（A/B/C）；多空小题每个输入框独立判分。
+<div class="wrap">
+  <p class="notice">作答说明：共 <b>30</b> 题、<b>9</b> 个知识点分组。选择题点选一项，填空题填数字（单位已给出）。全部做完后点底部「<b>提交判分</b>」查看逐题对错与解析；答错或未作答的题可勾选后点「<b>打印选中错题（另存 PDF）</b>」。</p>
+  <main id="quizArea" aria-live="polite"></main>
+  <section id="reportArea" class="report" hidden></section>
+  <p class="foot">
+    <span class="coach-tip" id="coachTip" role="button" tabindex="0">© 两英豆豆教练</span>
+  </p>
 </div>
 
-<div id="paper">
-<!-- L1 低难度 1~10｜1步运算，直接套用定义，无陷阱 -->
-<div class="question">
-<span class="level-tag L1">L1</span>1. 口算：56÷7＝<input type="text" data-ans="8" data-score="1" data-know="表内除法" data-reason-type="计算">
-</div>
-<div class="question">
-<span class="level-tag L1">L1</span>2. 口算：9×4＝<input type="text" data-ans="36" data-score="1" data-know="表内乘法" data-reason-type="计算">
-</div>
-<div class="question">
-<span class="level-tag L1">L1</span>3. 1千克＝（）克<input type="text" data-ans="1000" data-score="1" data-know="质量单位换算" data-reason-type="概念">
-</div>
-<div class="question">
-<span class="level-tag L1">L1</span>4. 四位数的最高位是（）位。<input type="text" data-ans="千" data-score="1" data-know="万以内数的数位" data-reason-type="概念">
-</div>
-<div class="question">
-<span class="level-tag L1">L1</span>5. 拧瓶盖属于（）现象（平移/旋转）<input type="text" data-ans="旋转" data-score="1" data-know="平移与旋转" data-reason-type="概念">
-</div>
-<div class="question">
-<span class="level-tag L1">L1</span>6. 在有余数除法中，余数一定小于（）<input type="text" data-ans="除数" data-score="1" data-know="有余数除法规则" data-reason-type="概念">
-</div>
-<div class="question">
-<span class="level-tag L1">L1</span>7. 口算：72－30＝<input type="text" data-ans="42" data-score="1" data-know="两位数减整十数" data-reason-type="计算">
-</div>
-<div class="question">
-<span class="level-tag L1">L1</span>8. 由5个百、9个一组成的数是（）<input type="text" data-ans="509" data-score="1" data-know="数的组成" data-reason-type="概念">
-</div>
-<div class="question">
-<span class="level-tag L1">L1</span>9. 口算：28＋50＝<input type="text" data-ans="78" data-score="1" data-know="两位数加整十数" data-reason-type="计算">
-</div>
-<div class="question">
-<span class="level-tag L1">L1</span>10. 一个苹果大约重200（填单位：克/千克）<input type="text" data-ans="克" data-score="1" data-know="质量单位估测" data-reason-type="概念">
+<div class="actionbar" id="actionbar">
+  <div class="ab-in">
+    <div class="ab-stat"><span>已答 <b id="statAns">0</b>/30</span><span class="dot">·</span><span>已勾选 <b id="statPick">0</b></span><span class="dot">·</span><span id="statHint">未提交</span></div>
+    <div class="ab-grid">
+      <button type="button" class="btn btn-main" id="btnSubmit" data-act="submit">提交判分</button>
+      <button type="button" class="btn btn-line" id="btnReset" data-act="reset">重新作答</button>
+      <button type="button" class="btn btn-ghost" id="btnPick" data-act="pickwrong">勾选全部错题</button>
+      <button type="button" class="btn btn-warm" id="btnPrint" data-act="print">打印选中错题（另存 PDF）</button>
+    </div>
+  </div>
 </div>
 
-<!-- L2 中档题 11~30｜2~3步运算，单个易错点 -->
-<div class="question">
-<span class="level-tag L2">L2</span>11. 把30平均分成6份，每份是（）<input type="text" data-ans="5" data-score="2" data-know="平均分除法" data-reason-type="方法">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>12. 44里面最多有（）个8<input type="text" data-ans="5" data-score="2" data-know="有余数除法" data-reason-type="计算">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>13. 63减去27，再加19，结果是（）<input type="text" data-ans="55" data-score="2" data-know="加减混合运算" data-reason-type="计算">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>14. 有42本故事书，每7本扎成一捆，可以扎（）捆<input type="text" data-ans="6" data-score="2" data-know="除法简单应用题" data-reason-type="方法">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>15. 计算：70－6×8＝（）<input type="text" data-ans="22" data-score="2" data-know="乘减混合运算" data-reason-type="计算">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>16. 由3个千、5个十组成的数是（）<input type="text" data-ans="3050" data-score="2" data-know="万以内数的组成" data-reason-type="审题">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>17. 6千克＝（）克<input type="text" data-ans="6000" data-score="2" data-know="质量单位换算" data-reason-type="审题">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>18. 25块巧克力，平均分给6个小朋友，每人分（）块，剩1块<input type="text" data-ans="4" data-score="2" data-know="有余数除法应用题" data-reason-type="方法">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>19. 计算：(31＋17)÷6＝（）<input type="text" data-ans="8" data-score="2" data-know="带小括号混合运算" data-reason-type="计算">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>20. 和700相邻的两个数，较小的数是（）<input type="text" data-ans="699" data-score="2" data-know="相邻数" data-reason-type="审题">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>21. 文具盒每个9元，买4个，带40元，还剩（）元<input type="text" data-ans="4" data-score="2" data-know="乘减简单应用题" data-reason-type="方法">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>22. 9000克＝（）千克<input type="text" data-ans="9" data-score="2" data-know="质量单位换算" data-reason-type="审题">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>23. 选择：下面属于平移现象的是（）A.转动方向盘 B.升降电梯 C.转动陀螺 填字母<input type="text" data-ans="B" data-score="2" data-know="平移旋转区分" data-reason-type="概念">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>24. 43个橘子，每盘放6个，可以放（）盘，剩1个<input type="text" data-ans="7" data-score="2" data-know="有余数除法" data-reason-type="方法">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>25. 计算：5×7＋23＝（）<input type="text" data-ans="58" data-score="2" data-know="乘加混合运算" data-reason-type="计算">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>26. 一台电风扇售价2096元，大约是（）元<input type="text" data-ans="2000" data-score="2" data-know="近似数估算" data-reason-type="概念">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>27. 有3组同学，每组8人，分成4人一组，可以分成（）组<input type="text" data-ans="6" data-score="2" data-know="乘除两步应用题" data-reason-type="方法">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>28. 合并综合算式：24＋12＝36，36÷9＝4 （）<input type="text" data-ans="(24+12)÷9" data-score="2" data-know="合并综合算式" data-reason-type="方法">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>29. 比460多180的数是（）<input type="text" data-ans="640" data-score="2" data-know="求比一个数多几的数" data-reason-type="方法">
-</div>
-<div class="question">
-<span class="level-tag L2">L2</span>30. 比750少260的数是（）<input type="text" data-ans="490" data-score="2" data-know="求比一个数少几的数" data-reason-type="方法">
-</div>
-
-<!-- L3 高难度 31~36｜≥4步，逆向/多条件，多重陷阱 -->
-<div class="question">
-<span class="level-tag L3">L3</span>31. 超市运来5箱牛奶，每箱8盒，卖出21盒，还剩（）盒牛奶<input type="text" data-ans="19" data-score="4" data-know="乘减多步应用题" data-reason-type="方法">
-</div>
-<div class="question">
-<span class="level-tag L3">L3</span>32. 一堆饼干，平均分给6人，每人分得5颗还有剩余，这堆饼干最多（）颗<input type="text" data-ans="35" data-score="4" data-know="有余数除法最值问题" data-reason-type="审题">
-</div>
-<div class="question">
-<span class="level-tag L3">L3</span>33. 小宇有一些卡片，先送出一半，爸爸又给他20张，现在他有36张。小宇原来有（）张卡片<input type="text" data-ans="32" data-score="4" data-know="还原问题" data-reason-type="审题">
-</div>
-<div class="question">
-<span class="level-tag L3">L3</span>34. 老师买6盒彩笔，每盒7支，奖励学生24支，剩下的分给3个小组，每组分到（）支<input type="text" data-ans="6" data-score="4" data-know="多步混合应用题" data-reason-type="方法">
-</div>
-<div class="question">
-<span class="level-tag L3">L3</span>35. 有一些绘本，数量在40～50之间，平均分给9个同学还剩3本，绘本一共有（）本<input type="text" data-ans="48" data-score="4" data-know="有余数除法范围推理" data-reason-type="概念">
-</div>
-<div class="question">
-<span class="level-tag L3">L3</span>36. 有3篮桃子，每篮9个，拿出10个分给低年级，剩下的桃子每7个装一盘，可以装（）盘<input type="text" data-ans="2" data-score="4" data-know="多步综合应用题" data-reason-type="方法">
-</div>
-</div>
-
-<div>
-<button id="startBtn">开始答题（启动45分钟倒计时）</button>
-<button id="submitBtn" disabled>交卷并生成分析报告</button>
-<button id="resetBtn">清空全部答题，重置试卷</button>
-<button id="saveImgBtn">一键页面另存为图片PNG</button>
-</div>
-
-<div class="report" id="report">
-<h3>📊 答题分析报告</h3>
-<div id="reportBody"></div>
-</div>
-
-<div class="ans-block" id="ansBlock">
-<h3>📖 参考答案+逐题简析</h3>
-<pre id="ansText"></pre>
-</div>
-</div>
-
-<div style="text-align:center;margin:28px 0 6px"><a href="index.html" style="display:inline-block;padding:12px 32px;background:linear-gradient(135deg,#35d29a,#2f9df0);color:#fff;border-radius:999px;font-size:15px;font-weight:700;letter-spacing:1px;text-decoration:none;box-shadow:0 4px 14px rgba(47,157,240,.22)">🏠 返回主页</a></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<div id="errBanner" hidden role="alert"></div>
+<div id="printArea"></div>
 
 <script>
-let timer = null;
-let remainSeconds = 45 * 60;
-let startTime = null;
-let isLocked = false;
-const inputs = Array.from(document.querySelectorAll('input[data-ans]'));
-const totalBlank = inputs.length;
-const timeText = document.getElementById('timeText');
-const progressBar = document.getElementById('progressBar');
-const progressText = document.getElementById('progressText');
-const startBtn = document.getElementById('startBtn');
-const submitBtn = document.getElementById('submitBtn');
-const resetBtn = document.getElementById('resetBtn');
-const saveImgBtn = document.getElementById('saveImgBtn');
-const report = document.getElementById('report');
-const reportBody = document.getElementById('reportBody');
-const ansBlock = document.getElementById('ansBlock');
-const ansText = document.getElementById('ansText');
+(function(){
+  'use strict';
 
-function updateProgress(){
-  const filled = inputs.filter(i=>i.value.trim() !== '').length;
-  progressText.textContent = `${filled}/${totalBlank}`;
-  progressBar.style.width = `${filled/totalBlank*100}%`;
-}
-inputs.forEach(i=>i.addEventListener('input', updateProgress));
+  /* ============================================================
+     1. 基础数据
+     ============================================================ */
+  var TITLE = '二年级下册数学 · 期末测试 B 卷';
+  var STUDENT = '测试学员';
+  var TOTAL = 30;
 
-function fmtTime(s){
-  const m = Math.floor(s / 60);
-  const sec = s % 60;
-  return String(m).padStart(2,'0') + ":" + String(sec).padStart(2,'0');
-}
+  /* 答案与解析以 Base64 形式存放，页面源码中不出现明文答案；
+     提交时才解码（前端无法做真正的加密，仅避免肉眼直读源码泄露答案）。 */
+  var KEY_B64 = 'eyJxMSI6eyJhIjoiMTciLCJtIjoiTTQiLCJlIjoi55So5oC75Lq65pWw5YeP5Y675YmN5Lik5Liq5bCP57uE55qE5Lq65pWw77yaNTEgLSAxOCAtIDE2ID0gMTcg5Lq644CCIn0sInEyIjp7ImEiOiJBIiwibSI6Ik0yIiwiZSI6IuOAjOato+OAjeWtl+S6lOeslO+8muS4gOePrSAxMSDnpajjgIHkuoznj60gMTAg56Wo44CB5LiJ54+tIDE2IOelqOOAgjE2IC0gMTEgPSA177yM5LiJ54+t5q+U5LiA54+t5aSaIDUg56Wo77yb5LiA54+t5q+U5LqM54+t5aSaIDEg56Wo77yM5LiJ54+t5q+U5LqM54+t5aSaIDYg56Wo77yM5ZCI6K6hIDM3IOelqOOAgiIsInBtIjp7IkIiOiJNMiIsIkMiOiJNMiIsIkQiOiJNMiJ9fSwicTMiOnsiYSI6IjIiLCJtIjoiTTQiLCJlIjoi6aaZ6JWJIDE0IC0gNSA9IDkg5Lq677yM5qmY5a2QIDkgKyA4ID0gMTcg5Lq677yb5LiJ56eN5YWxIDE0ICsgOSArIDE3ID0gNDAg5Lq677ybNDUgLSAzID0gNDIg5Lq65YGa5LqG6YCJ5oup77ybNDIgLSA0MCA9IDIg5Lq644CCIn0sInE0Ijp7ImEiOiI1IiwibSI6Ik0yIiwiZSI6IuaDs+WPo+ivgOOAjOS4ieS6lOWNgeS6lOOAje+8jDE1IMO3IDMgPSA144CCIn0sInE1Ijp7ImEiOiI2IiwibSI6Ik0zIiwiZSI6IuaKiiAxOCDlubPlnYfliIbmiJAgMyDku73vvIzmsYLmr4/ku73mmK/lpJrlsJHvvJoxOCDDtyAzID0gNiDkuKrjgIIifSwicTYiOnsiYSI6IkQiLCJtIjoiTTMiLCJlIjoi5YmN5LiJ5Liq6YO95piv5oqKIDI0IOaMieavj+S7vSA0IOadpeW5s+Wdh+WIhuaIluaxgiAyNCDph4zmnInlh6DkuKogNO+8jOeUqCAyNCDDtyA077yb56ys5Zub5Liq5rGC44CM6L+Y5Ymp5Yeg5py144CN6KaB55So5YeP5rOVIDI0IC0gNOOAgiIsInBtIjp7IkEiOiJNMyIsIkIiOiJNMyIsIkMiOiJNMyJ9fSwicTciOnsiYSI6IjEwIiwibSI6Ik00IiwiZSI6IuWFiOaxguaAu+eTtuaVsO+8mjggw5cgNSA9IDQwIOeTtu+8m+WGjeW5s+Wdh+WIhue7mSA0IOS4quePre+8mjQwIMO3IDQgPSAxMCDnk7bjgIIifSwicTgiOnsiYSI6IkQiLCJtIjoiTTEiLCJlIjoi6ZW/5pa55b2i44CB5q2j5pa55b2i44CB5ZyG5a+55oqY5ZCO5Lik6L656YO96IO95a6M5YWo6YeN5ZCI77yb5bmz6KGM5Zub6L655b2i5a+55oqY5ZCO5Lik6L655LiN6IO96YeN5ZCI77yM5LiN5piv6L205a+556ew5Zu+5b2i44CCIiwicG0iOnsiQSI6Ik0xIiwiQiI6Ik0xIiwiQyI6Ik0xIn19LCJxOSI6eyJhIjoiQyIsIm0iOiJNMSIsImUiOiLpo47ovabnu5XkuK3lv4PovazliqjvvIzmmK/ml4vovazvvJvmi4nmir3lsYnjgIHnlLXmoq/kuIrljYfjgIHmjqjnrrHlrZDpg73mmK/msr/nm7Tnur/np7vliqjvvIzmmK/lubPnp7vjgIIiLCJwbSI6eyJBIjoiTTEiLCJCIjoiTTEiLCJEIjoiTTEifX0sInExMCI6eyJhIjoiMiIsIm0iOiJNMSIsImUiOiLlr7nmipjlkI7nurjmnInkuKTlsYLvvIzliarlh7rnmoTlm77lvaLlnKjkuKTlsYLkuIrlkITmnInkuIDkuKrvvIzlsZXlvIDlkI7lvpfliLAgMiDkuKrlrozlhajkuIDmoLfnmoTlm77lvaLjgIIifSwicTExIjp7ImEiOiI3IiwibSI6Ik0yIiwiZSI6IuaDs+WPo+ivgOOAjOS4g+S5neWFreWNgeS4ieOAje+8jDYzIMO3IDkgPSA344CCIn0sInExMiI6eyJhIjoiOSIsIm0iOiJNMyIsImUiOiLmsYIgNzIg6YeM6Z2i5pyJ5Yeg5LiqIDjvvJo3MiDDtyA4ID0gOSDlnZfjgIIifSwicTEzIjp7ImEiOiI5IiwibSI6Ik00IiwiZSI6IuS4gOWFsSA2IMOXIDkgPSA1NCDkuKrvvJvmr4/nj60gNTQgw7cgMyA9IDE4IOS4qu+8m+avj+S4quWwj+e7hCAxOCDDtyAyID0gOSDkuKrjgIIifSwicTE0Ijp7ImEiOiIyMiIsIm0iOiJNNCIsImUiOiLpppnolYkgNCDDlyA2ID0gMjQg5YWD77yM5Ymp5LiLIDkwIC0gMjQgPSA2NiDlhYPvvJs2NiDDtyAzID0gMjIg5YWD44CCIn0sInExNSI6eyJhIjoiNDAiLCJtIjoiTTIiLCJlIjoi5Y+q5pyJ5Yqg5YeP5rOV77yM5LuO5bem5b6A5Y+z566X77yaNDIgLSA4ID0gMzTvvIwzNCArIDYgPSA0MOOAgiJ9LCJxMTYiOnsiYSI6IjMwIiwibSI6Ik00IiwiZSI6IuacieWwj+aLrOWPt+WFiOeul+aLrOWPt+mHjOmdoueahO+8mjkgLSA0ID0gNe+8jDYgw5cgNSA9IDMw44CCIn0sInExNyI6eyJhIjoiMyIsIm0iOiJNNSIsImUiOiI1IOW8oCAxMCDlhYPmmK8gNTAg5YWD77yM6L+Y5beuIDY1IC0gNTAgPSAxNSDlhYPvvJsxNSDDtyA1ID0gMyDlvKDjgIIifSwicTE4Ijp7ImEiOiI1NCIsIm0iOiJNNCIsImUiOiLmlYXkuovkuaYgMTIgw5cgMyA9IDM2IOWFg++8jOeslCA1IMOXIDIgPSAxMCDlhYPvvIzlhbEgNDYg5YWD77ybMTAwIC0gNDYgPSA1NCDlhYPjgIIifSwicTE5Ijp7ImEiOiI2IiwibSI6Ik0xIiwiZSI6IuS9meaVsOS4gOWumuimgeavlOmZpOaVsOWwj++8jOmZpOaVsOaYryA377yM5L2Z5pWw5pyA5aSn5Y+q6IO95pivIDbjgIIifSwicTIwIjp7ImEiOiJDIiwibSI6Ik0yIiwiZSI6IjE1IMO3IDcg5ZWGIDIg5L2ZIDHvvIwyMSDDtyA1IOWVhiA0IOS9mSAx77yMMjQgw7cgNSDllYYgNCDkvZkgNO+8jDMwIMO3IDgg5ZWGIDMg5L2ZIDbvvJvlj6rmnIkgMjQgw7cgNSDnmoTllYblkozkvZnmlbDnm7jlkIzjgIIiLCJwbSI6eyJBIjoiTTIiLCJCIjoiTTIiLCJEIjoiTTIifX0sInEyMSI6eyJhIjoiNiIsIm0iOiJNNSIsImUiOiI1MCDDtyA4IOWVhiA2IOS9mSAy77yM6KOF5ruhIDYg55uS5ZCO6L+Y5YmpIDIg5Liq77yb5LiA55uS6KaBIDgg5Liq77yM6L+Y5beuIDggLSAyID0gNiDkuKrjgIIifSwicTIyIjp7ImEiOiI3IiwibSI6Ik0zIiwiZSI6IjM4IMO3IDYg5ZWGIDYg5L2ZIDLvvJo2IOadoeiIueWdkCAzNiDkurrvvIzliankuIsgMiDkurrkuZ/opoHkuIDmnaHoiLnvvIzmiYDku6Xoh7PlsJHopoEgNyDmnaHjgIIifSwicTIzIjp7ImEiOiI3MDUwIiwibSI6Ik0xIiwiZSI6Ijcg5Liq5Y2D5pivIDcwMDDvvIw1IOS4quWNgeaYryA1MO+8m+eZvuS9jeWSjOS4quS9jeS4iuS4gOS4quS5n+ayoeacieimgeWGmSAw77yM5ZCI6LW35p2l5pivIDcwNTDjgIIifSwicTI0Ijp7ImEiOiJCIiwibSI6Ik0xIiwiZSI6IjEwMDAg5YmN6Z2i55qE5LiA5Liq5pWw5pivIDk5Oe+8jOWQjumdoueahOS4gOS4quaVsOaYryAxMDAx77yM5omA5Lul5LiOIDEwMDAg55u46YK755qE5Lik5Liq5pWw5pivIDk5OSDlkowgMTAwMeOAgiIsInBtIjp7IkEiOiJNMSIsIkMiOiJNMSIsIkQiOiJNMSJ9fSwicTI1Ijp7ImEiOiI2NDYyIiwibSI6Ik0zIiwiZSI6IuacgOWkp+Wbm+S9jeaVsOaYryA4NTIw77yb5pyA5bCP5Zub5L2N5pWw55qE5Y2D5L2N5LiN6IO95pivIDDvvIzlj5YgMu+8jOWFtuS9meS7juWwj+WIsOWkp+aOkuW+lyAyMDU477ybODUyMCAtIDIwNTggPSA2NDYy44CCIn0sInEyNiI6eyJhIjoiMzUwMiIsIm0iOiJNNSIsImUiOiLnmb7kvY0gMyArIDIgPSA177yM5Y2B5L2N5pivIDDvvIzkuKrkvY0gNSAtIDMgPSAy77yM5omA5Lul6L+Z5Liq5pWw5pivIDM1MDLjgIIifSwicTI3Ijp7ImEiOiIzIiwibSI6Ik0xIiwiZSI6IjEwMDAg5YWLID0gMSDljYPlhYvvvIwzMDAwIOWFi+mHjOaciSAzIOS4qiAxMDAwIOWFi++8jOWwseaYryAzIOWNg+WFi+OAgiJ9LCJxMjgiOnsiYSI6IjI1MDAiLCJtIjoiTTMiLCJlIjoi5YWI57uf5LiA5Y2V5L2N77yaNSDljYPlhYsgPSA1MDAwIOWFi++8jDIg5Y2D5YWLIDUwMCDlhYsgPSAyNTAwIOWFi++8mzUwMDAgLSAyNTAwID0gMjUwMCDlhYvjgIIifSwicTI5Ijp7ImEiOiJCIiwibSI6Ik01IiwiZSI6IuS5meadpeiHquWMl+S6rO+8m+eUsuS4jeadpeiHquS4iua1t+OAgeS5n+S4jeadpeiHquWMl+S6rO+8jOWPquiDveadpeiHquW5v+W3nu+8m+WJqeS4i+S4iua1t+WwseaYr+S4meeahOOAgiIsInBtIjp7IkEiOiJNNSIsIkMiOiJNNSJ9fSwicTMwIjp7ImEiOiIzMCIsIm0iOiJNNSIsImUiOiLnm7jlt64gNSDlvKDnmoTlj6rmnIkgMjUg5ZKMIDMw77ya6Iul5LmZIDI144CB5LiZIDMw77yM55Sy5bCx5pivIDM177yM56ym5ZCI44CM55Sy5LiN5piv5pyA5bCR44CN77yb6Iul5LmZIDMw44CB5LiZIDM177yM55Sy5bCx5pivIDI177yM5oiQ5LqG5pyA5bCR77yM5LiN56ym5ZCI44CC5omA5Lul5LiZ5pyJIDMwIOW8oOOAgiJ9fQ==';
 
-startBtn.onclick = ()=>{
-  if(timer) return;
-  startTime = Date.now();
-  startBtn.disabled = true;
-  submitBtn.disabled = false;
-  timer = setInterval(()=>{
-    remainSeconds--;
-    timeText.textContent = fmtTime(remainSeconds);
-    if(remainSeconds <= 0){
-      clearInterval(timer);
-      lockAll();
-      alert('计时结束！自动收卷。');
-      submitPaper();
-    }
-  },1000);
-}
+  var GROUPS = [
+    { name:'数据收集整理', desc:'「正」字记录、统计表与数据比较' },
+    { name:'表内除法（一）', desc:'平均分、除法的意义、用 2~6 的口诀求商' },
+    { name:'图形的运动（一）', desc:'轴对称图形、平移与旋转' },
+    { name:'表内除法（二）', desc:'用 7、8、9 的口诀求商、连除与两步问题' },
+    { name:'混合运算', desc:'运算顺序、小括号、两步解决问题' },
+    { name:'有余数的除法', desc:'余数与除数的关系、进一法与余数应用' },
+    { name:'万以内数的认识', desc:'数的组成、相邻数、组数与比较' },
+    { name:'克和千克', desc:'质量单位与单位换算' },
+    { name:'数学广角——推理', desc:'排除法推理、条件唯一确定' }
+  ];
 
-function lockAll(){
-  isLocked = true;
-  inputs.forEach(i=>i.disabled=true);
-}
+  /* d: D1 低难度 / D2 中难度 / D3 高难度
+     t: choice 选择 / fill 填空
+     unit: 填空题单位（仅提示，不含答案） */
+  var QS = [
+    /* ---------- 1 数据收集整理 ---------- */
+    { id:'q1', g:0, d:'D2', t:'fill', unit:'人',
+      stem:'第一小组 18 人、第二小组 16 人，三个小组一共 51 人。第三小组有（　）人' },
+    { id:'q2', g:0, d:'D2', t:'choice', unit:'',
+      stem:'二（1）班毛笔字比赛得票用「正」字记录：一班 正正一，二班 正正，三班 正正正一。下面说法正确的是（　）',
+      opts:['三班比一班多 5 票', '一班比二班少 1 票', '三个班一共 36 票', '三班比二班多 5 票'] },
+    { id:'q3', g:0, d:'D3', t:'fill', unit:'人',
+      stem:'二（2）班有 45 人，调查最喜欢的水果：喜欢苹果的 14 人，喜欢香蕉的比苹果少 5 人，喜欢橘子的比香蕉多 8 人，每人只选一种，有 3 人三种都不喜欢。喜欢其他水果的有（　）人' },
+    /* ---------- 2 表内除法（一） ---------- */
+    { id:'q4', g:1, d:'D1', t:'fill', unit:'',
+      stem:'15 ÷ 3 = <span class="kw">（　）</span>' },
+    { id:'q5', g:1, d:'D2', t:'fill', unit:'个',
+      stem:'18 个桃子平均放在 3 个盘子里，每盘（　）个' },
+    { id:'q6', g:1, d:'D2', t:'choice', unit:'',
+      stem:'下面问题中，不能用 24 ÷ 4 解决的是（　）',
+      opts:['24 个苹果平均分给 4 人，每人分几个', '24 元买 4 元一支的笔，能买几支', '24 个桃子每 4 个装一盘，能装几盘', '24 朵花，每 4 朵扎一束，还剩几朵'] },
+    { id:'q7', g:1, d:'D3', t:'fill', unit:'瓶',
+      stem:'一箱饮料，每 8 瓶装一盒，正好装 5 盒。把这箱饮料平均分给 4 个班，每班（　）瓶' },
+    /* ---------- 3 图形的运动（一） ---------- */
+    { id:'q8', g:2, d:'D1', t:'choice', unit:'',
+      stem:'下面图形中，不是轴对称图形的是（　）',
+      opts:['长方形', '正方形', '圆', '平行四边形'] },
+    { id:'q9', g:2, d:'D2', t:'choice', unit:'',
+      stem:'下面现象中，属于旋转的是（　）',
+      opts:['拉抽屉', '电梯上升', '风车转动', '推箱子'] },
+    { id:'q10', g:2, d:'D2', t:'fill', unit:'个',
+      stem:'把一张长方形纸对折一次，在纸上剪下一个完整的小图形（不碰到折痕），展开后得到（　）个这样的图形' },
+    /* ---------- 4 表内除法（二） ---------- */
+    { id:'q11', g:3, d:'D2', t:'fill', unit:'',
+      stem:'63 ÷ 9 = <span class="kw">（　）</span>' },
+    { id:'q12', g:3, d:'D2', t:'fill', unit:'块',
+      stem:'有 72 块糖，平均分给 8 个小朋友，每人分（　）块' },
+    { id:'q13', g:3, d:'D3', t:'fill', unit:'个',
+      stem:'学校买来 6 盒羽毛球，每盒 9 个，平均分给 3 个班，每班再平均分给 2 个小组。每个小组分到（　）个' },
+    { id:'q14', g:3, d:'D3', t:'fill', unit:'元',
+      stem:'妈妈带 90 元，买了 4 千克香蕉，每千克 6 元；剩下的钱正好买 3 千克苹果。每千克苹果（　）元' },
+    /* ---------- 5 混合运算 ---------- */
+    { id:'q15', g:4, d:'D1', t:'fill', unit:'',
+      stem:'42 - 8 + 6 = <span class="kw">（　）</span>' },
+    { id:'q16', g:4, d:'D2', t:'fill', unit:'',
+      stem:'6 × (9 - 4) = <span class="kw">（　）</span>' },
+    { id:'q17', g:4, d:'D3', t:'fill', unit:'张',
+      stem:'小明有 5 张 10 元和一些 5 元，一共 65 元。5 元的有（　）张' },
+    { id:'q18', g:4, d:'D3', t:'fill', unit:'元',
+      stem:'一本故事书 12 元，一支笔 5 元。买 3 本书和 2 支笔，付 100 元，应找回（　）元' },
+    /* ---------- 6 有余数的除法 ---------- */
+    { id:'q19', g:5, d:'D2', t:'fill', unit:'',
+      stem:'一个数除以 7，余数最大是 <span class="kw">（　）</span>' },
+    { id:'q20', g:5, d:'D2', t:'choice', unit:'',
+      stem:'下面算式中，商和余数相同的是（　）',
+      opts:['15 ÷ 7', '21 ÷ 5', '24 ÷ 5', '30 ÷ 8'] },
+    { id:'q21', g:5, d:'D3', t:'fill', unit:'个',
+      stem:'有 50 个鸡蛋，每盒装 8 个，装满若干盒后，剩下的鸡蛋至少再添（　）个又能装满一盒' },
+    { id:'q22', g:5, d:'D3', t:'fill', unit:'条',
+      stem:'二（1）班 38 人去划船，每条船最多坐 6 人，至少要租（　）条船' },
+    /* ---------- 7 万以内数的认识 ---------- */
+    { id:'q23', g:6, d:'D2', t:'fill', unit:'',
+      stem:'由 7 个千和 5 个十组成的数是（　）' },
+    { id:'q24', g:6, d:'D2', t:'choice', unit:'',
+      stem:'与 1000 相邻的两个数是（　）',
+      opts:['998 和 999', '999 和 1001', '1001 和 1002', '999 和 1000'] },
+    { id:'q25', g:6, d:'D3', t:'fill', unit:'',
+      stem:'用 2、0、5、8 四张数字卡片组成的最大的四位数，比最小的四位数大（　）' },
+    { id:'q26', g:6, d:'D3', t:'fill', unit:'',
+      stem:'一个四位数，千位上是 3，百位上的数字比千位多 2，十位上是 0，个位上的数字比百位少 3，这个数是（　）' },
+    /* ---------- 8 克和千克 ---------- */
+    { id:'q27', g:7, d:'D2', t:'fill', unit:'千克',
+      stem:'3000 克 = <span class="kw">（　）</span> 千克' },
+    { id:'q28', g:7, d:'D3', t:'fill', unit:'克',
+      stem:'一袋大米重 5 千克，吃了 2 千克 500 克后，还剩（　）克' },
+    /* ---------- 9 数学广角——推理 ---------- */
+    { id:'q29', g:8, d:'D2', t:'choice', unit:'',
+      stem:'甲、乙、丙三人各来自北京、上海、广州中的一个。乙说：「我来自北京。」甲说：「我不来自上海。」丙来自（　）',
+      opts:['北京', '上海', '广州'] },
+    { id:'q30', g:8, d:'D3', t:'fill', unit:'张',
+      stem:'甲、乙、丙三人分别有 25、30、35 张卡片。甲说：「我的卡片不是最少的。」乙说：「我比丙少 5 张。」丙有（　）张' },
+  ];
 
-function submitPaper(){
-  if(isLocked === false) lockAll();
-  clearInterval(timer);
-  let totalScore = 0, getScore = 0;
-  let reasonCount = {概念:0,方法:0,计算:0,审题:0,习惯:0};
-  let knowSet = new Set();
-  let htmlReport = "";
-  let ansStr = "";
-
-  inputs.forEach(inp=>{
-    const stdAns = inp.dataset.ans.trim();
-    const score = Number(inp.dataset.score);
-    const know = inp.dataset.know;
-    const rType = inp.dataset.reason_type;
-    totalScore += score;
-    const userVal = inp.value.trim();
-    const qEl = inp.closest('.question');
-    const level = qEl.querySelector('.level-tag').textContent;
-    const qText = qEl.textContent.replace(level,"").trim();
-    ansStr += `【${level}】${qText}｜标准答案：${stdAns}｜简析：${getBrief(know)}\n`;
-    if(userVal === stdAns){
-      getScore += score;
-      htmlReport += `<p class="correct">✅【${level}】${qText} 你的答案：${userVal}</p>`;
-    }else{
-      reasonCount[rType]++;
-      knowSet.add(know);
-      htmlReport += `<p class="wrong">❌【${level}】${qText} 你的答案：${userVal||"空"}｜标准答案：${stdAns}｜错因归类：${rType}</p>`;
-    }
-  })
-  const usedMs = Math.floor((Date.now() - startTime)/1000);
-  const usedMin = Math.floor(usedMs / 60);
-  const usedSec = usedMs % 60;
-  const rate = (getScore / totalScore * 100).toFixed(1);
-  const uniqueKnow = Array.from(knowSet);
-
-  htmlReport = `
-  <p>实际答题用时：${usedMin}分${usedSec}秒</p>
-  <p>本次得分：${getScore}/${totalScore}，全卷正确率：${rate}%</p>
-  <p>错题错因统计：概念${reasonCount.概念}题｜方法${reasonCount.方法}题｜计算${reasonCount.计算}题｜审题${reasonCount.审题}题｜习惯${reasonCount.习惯}题</p>
-  <p>知识点漏洞数量：${uniqueKnow.length}个</p>
-  <p>漏洞知识点清单：${uniqueKnow.join("、")}</p>
-  <h4>逐题对错详情：</h4>` + htmlReport;
-
-  reportBody.innerHTML = htmlReport;
-  ansText.innerText = ansStr;
-  report.style.display="block";
-  ansBlock.style.display="block";
-  report.scrollIntoView({behavior:'smooth'});
-}
-submitBtn.onclick = submitPaper;
-
-function getBrief(knowName){
-  const briefMap = {
-    "表内除法":"熟练运用乘法口诀求商",
-    "表内乘法":"熟记乘法口诀快速口算",
-    "质量单位换算":"1千克=1000克",
-    "万以内数的数位":"从右往左依次是个、十、百、千位",
-    "平移与旋转":"平移沿直线移动；旋转绕一个点转动",
-    "有余数除法规则":"余数一定小于除数",
-    "两位数减整十数":"十位相减，个位不变",
-    "数的组成":"按数位上数字组合写出完整数",
-    "两位数加整十数":"十位相加，个位不变",
-    "质量单位估测":"较轻物体用克，较重用千克",
-    "平均分除法":"平均分问题用除法计算",
-    "有余数除法":"求一个数里面包含几个另一个数",
-    "加减混合运算":"从左往右依次计算",
-    "除法简单应用题":"求可以分成几份用除法",
-    "乘减混合运算":"先算乘法，再算减法",
-    "万以内数的组成":"数位上没有数字写0占位",
-    "有余数除法应用题":"平均分有余数，余数小于除数",
-    "带小括号混合运算":"有括号先算括号里面",
-    "相邻数":"一个数加1、减1得到相邻两个数",
-    "乘减简单应用题":"先算总价，再算剩余钱数",
-    "平移旋转区分":"平移物体方向不改变",
-    "乘加混合运算":"先乘法，后加法",
-    "近似数估算":"看成接近的整千整百数",
-    "乘除两步应用题":"先求出总数再平均分",
-    "合并综合算式":"添加小括号保证运算顺序",
-    "求比一个数多几的数":"求大数用加法",
-    "求比一个数少几的数":"求小数用减法",
-    "乘减多步应用题":"先算出总数量，减去卖出部分",
-    "有余数除法最值问题":"余数最大=除数−1",
-    "还原问题":"从结果逆向往前推算",
-    "多步混合应用题":"分步计算，理清先后顺序",
-    "有余数除法范围推理":"根据范围筛选符合条件的被除数",
-    "多步综合应用题":"多步计算，混合乘、减、除"
+  var MINFO = {
+    M1:{ name:'概念·定义混淆', tip:'记不清定义、口诀或单位进率，套用了错的公式。' },
+    M2:{ name:'计算失误',     tip:'进位、退位、口诀用错或口算失误。' },
+    M3:{ name:'审题失误',     tip:'漏看或看错条件，单位不统一，隐藏条件没用上。' },
+    M4:{ name:'步骤不完整',   tip:'多步问题只做了第一步，解题或运算顺序出错。' },
+    M5:{ name:'逆向推理不足', tip:'逆向求解想不到，枚举搭配有遗漏。' }
   };
-  return briefMap[knowName] || "巩固对应知识点基础";
-}
 
-resetBtn.onclick = ()=>{
-  clearInterval(timer);
-  timer=null;
-  remainSeconds = 45*60;
-  timeText.textContent = fmtTime(remainSeconds);
-  startTime=null;
-  isLocked=false;
-  inputs.forEach(i=>{i.value="";i.disabled=false;});
-  startBtn.disabled=false;
-  submitBtn.disabled=true;
-  report.style.display="none";
-  ansBlock.style.display="none";
-  updateProgress();
-}
+  var NO = {};
+  QS.forEach(function(q,i){ NO[q.id] = i + 1; });
 
-saveImgBtn.onclick = async ()=>{
-  try{
-    const wrapDom = document.getElementById('pageWrap');
-    const canvas = await html2canvas(wrapDom,{scale:2});
-    const link = document.createElement('a');
-    link.download="二下期末卷_答题报告.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
-  }catch(e){
-    alert("图片生成失败，请使用系统截图（Win:Win+Shift+S / Mac:Cmd+Shift+4）");
+  /* ============================================================
+     2. 状态与工具
+     ============================================================ */
+  var state = {
+    answers:{},          /* qid -> 'A' / '82' */
+    submitted:false,
+    results:null,
+    correct:0,
+    confirmSubmit:false,
+    confirmReset:false,
+    printing:false
+  };
+  var KEY_CACHE = null;
+  var els = {};
+  var timers = {};
+
+  function must(id){
+    var el = document.getElementById(id);
+    if(!el){ throw new Error('页面缺少必要元素 #' + id); }
+    return el;
   }
-}
-updateProgress();
+  function esc(s){
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+  function showError(msg){
+    if(!els.err) return;
+    els.err.hidden = false;
+    els.err.textContent = '页面提示：' + msg;
+    window.clearTimeout(timers.err);
+    timers.err = window.setTimeout(function(){ els.err.hidden = true; }, 7000);
+  }
+  function toast(msg){
+    if(!els.toast) return;
+    els.toast.textContent = msg;
+    els.toast.classList.add('show');
+    window.clearTimeout(timers.toast);
+    timers.toast = window.setTimeout(function(){ els.toast.classList.remove('show'); }, 2600);
+  }
+  function difName(d){ return d === 'D1' ? '低难度 D1' : d === 'D2' ? '中难度 D2' : '高难度 D3'; }
+  function tagClass(d){ return d === 'D1' ? 'd1' : d === 'D2' ? 'd2' : 'd3'; }
+  function letter(i){ return 'ABCD'.charAt(i); }
+  function fmtDate(){
+    var d = new Date();
+    var mm = ('0' + (d.getMonth() + 1)).slice(-2);
+    var dd = ('0' + d.getDate()).slice(-2);
+    return d.getFullYear() + '-' + mm + '-' + dd;
+  }
+
+  /* 答案归一化：全角转半角、去空格与单位/标点，便于判分 */
+  function normAns(s){
+    var t = String(s == null ? '' : s);
+    t = t.replace(/[\uFF01-\uFF5E]/g, function(ch){
+      return String.fromCharCode(ch.charCodeAt(0) - 0xFEE0);
+    });
+    t = t.replace(/\u3000/g, ' ');
+    t = t.replace(/\s+/g, '');
+    t = t.replace(/[，,。.、；;：:（）()【】「」"'"'？?！!]/g, '');
+    t = t.replace(/(厘米|分米|毫米|米|分钟|小时|个|元|角|分|页|人|本|张|只|条|时|盒|组|天)/g, '');
+    return t.toLowerCase();
+  }
+
+  function decodeKey(){
+    if(KEY_CACHE) return KEY_CACHE;
+    if(!KEY_B64 || KEY_B64.indexOf('__KEY') === 0){ throw new Error('答案数据未注入，无法判分'); }
+    var bin = atob(KEY_B64);
+    var bytes = new Uint8Array(bin.length);
+    for(var i = 0; i < bin.length; i++){ bytes[i] = bin.charCodeAt(i); }
+    var txt;
+    if(window.TextDecoder){
+      txt = new TextDecoder('utf-8').decode(bytes);
+    }else{
+      txt = decodeURIComponent(escape(bin));
+    }
+    KEY_CACHE = JSON.parse(txt);
+    return KEY_CACHE;
+  }
+
+  /* ============================================================
+     3. 渲染
+     ============================================================ */
+  function renderQ(q){
+    var no = NO[q.id];
+    var saved = state.answers[q.id] || '';
+    var html = '';
+    html += '<article class="qcard" id="card-' + q.id + '" data-qid="' + q.id + '">';
+    html += '<div class="qtop">';
+    html += '<label class="pick" title="勾选后可打印本题"><input type="checkbox" data-act="pick" data-qid="' + q.id + '" aria-label="勾选第 ' + no + ' 题用于打印"><span class="pbox"></span></label>';
+    html += '<span class="qno">' + no + '</span>';
+    html += '<span class="tag ' + tagClass(q.d) + '">' + difName(q.d) + '</span>';
+    html += '</div>';
+    html += '<div class="stem">' + q.stem + '</div>';
+
+    if(q.t === 'choice'){
+      html += '<div class="opts">';
+      for(var i = 0; i < q.opts.length; i++){
+        var L = letter(i);
+        var sel = (saved.toUpperCase() === L) ? ' sel' : '';
+        html += '<label class="opt' + sel + '" data-opt="' + L + '">';
+        html += '<input type="radio" name="' + q.id + '" value="' + L + '" data-act="opt" data-qid="' + q.id + '">';
+        html += '<span class="odot"></span><span class="okey">' + L + '</span>';
+        html += '<span class="otext">' + q.opts[i] + '</span>';
+        html += '</label>';
+      }
+      html += '</div>';
+    }else{
+      html += '<div class="fillrow"><label class="fill">答：';
+      html += '<input class="finput" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" ';
+      html += 'data-act="fill" data-qid="' + q.id + '" value="' + esc(saved) + '" aria-label="第 ' + no + ' 题作答">';
+      if(q.unit){ html += '<span class="unit">' + q.unit + '</span>'; }
+      html += '</label></div>';
+    }
+
+    html += '<div class="fb" id="fb-' + q.id + '" hidden></div>';
+    html += '</article>';
+    return html;
+  }
+
+  function renderQuiz(){
+    var html = '';
+    for(var gi = 0; gi < GROUPS.length; gi++){
+      var list = QS.filter(function(q){ return q.g === gi; });
+      if(!list.length) continue;
+      html += '<section class="group" id="grp-' + gi + '">';
+      html += '<div class="ghead">';
+      html += '<span class="gidx">' + (gi + 1 < 10 ? '0' + (gi + 1) : (gi + 1)) + '</span>';
+      html += '<div class="gtitle"><h2>' + GROUPS[gi].name + '</h2><p>' + GROUPS[gi].desc + '</p></div>';
+      html += '<span class="gcount">' + list.length + ' 题</span>';
+      html += '</div>';
+      for(var i = 0; i < list.length; i++){ html += renderQ(list[i]); }
+      html += '</section>';
+    }
+    els.quiz.innerHTML = html;
+  }
+
+  function updateCounts(){
+    var answered = 0, picked = 0;
+    QS.forEach(function(q){ if((state.answers[q.id] || '').trim() !== '') answered++; });
+    if(els.quiz){
+      var boxes = els.quiz.querySelectorAll('input[data-act="pick"]');
+      for(var i = 0; i < boxes.length; i++){ if(boxes[i].checked) picked++; }
+    }
+    if(els.statAns) els.statAns.textContent = String(answered);
+    if(els.statPick) els.statPick.textContent = String(picked);
+    if(els.statHint){
+      els.statHint.textContent = state.submitted
+        ? ('已判分 · 正确 ' + state.correct + '/' + TOTAL)
+        : '未提交';
+    }
+  }
+
+  /* ============================================================
+     4. 判分
+     ============================================================ */
+  function sameAns(q, stu, right){
+    if(q.t === 'choice'){ return stu.toUpperCase() === String(right).toUpperCase(); }
+    return normAns(stu) === normAns(right);
+  }
+
+  function grade(){
+    var KEY = decodeKey();
+    var res = {};
+    var correct = 0;
+    QS.forEach(function(q){
+      var k = KEY[q.id];
+      if(!k || !k.a){ throw new Error('题库缺少第 ' + NO[q.id] + ' 题的答案'); }
+      var stu = (state.answers[q.id] || '').trim();
+      var ok = stu !== '' && sameAns(q, stu, k.a);
+      var cause = null;
+      if(!ok){
+        cause = (q.t === 'choice' && k.pm && k.pm[stu.toUpperCase()]) ? k.pm[stu.toUpperCase()] : k.m;
+        if(!MINFO[cause]) cause = 'M1';
+      }
+      res[q.id] = { ok:ok, stu:stu, correct:k.a, exp:k.e, cause:cause, blank:(stu === '') };
+      if(ok) correct++;
+    });
+    state.results = res;
+    state.correct = correct;
+    return res;
+  }
+
+  function paintOne(q){
+    var r = state.results[q.id];
+    var card = document.getElementById('card-' + q.id);
+    if(!card) return;
+    if(r.ok){ card.classList.add('is-ok'); } else { card.classList.add('is-no'); }
+
+    if(q.t === 'choice'){
+      var opts = card.querySelectorAll('.opt');
+      for(var i = 0; i < opts.length; i++){
+        var L = opts[i].getAttribute('data-opt');
+        var input = opts[i].querySelector('input');
+        if(input){ input.disabled = true; }
+        if(L === String(r.correct).toUpperCase()){ opts[i].classList.add('right'); }
+        if(L === r.stu.toUpperCase() && !r.ok){ opts[i].classList.add('wrong'); }
+      }
+    }else{
+      var fi = card.querySelector('.finput');
+      if(fi){ fi.disabled = true; }
+    }
+
+    var fb = document.getElementById('fb-' + q.id);
+    if(!fb) return;
+    var youText;
+    if(r.blank){
+      youText = '未作答';
+    }else if(q.t === 'choice'){
+      var idx = 'ABCD'.indexOf(r.stu.toUpperCase());
+      youText = r.stu.toUpperCase() + '. ' + (idx >= 0 && q.opts[idx] ? q.opts[idx] : '');
+    }else{
+      youText = r.stu + (q.unit ? ' ' + q.unit : '');
+    }
+    var ansText;
+    if(q.t === 'choice'){
+      var ai = 'ABCD'.indexOf(String(r.correct).toUpperCase());
+      ansText = String(r.correct).toUpperCase() + '. ' + (ai >= 0 && q.opts[ai] ? q.opts[ai] : '');
+    }else{
+      ansText = r.correct + (q.unit ? ' ' + q.unit : '');
+    }
+
+    var h = '';
+    h += '<div class="fbrow">';
+    h += '<span class="verdict">' + (r.ok ? '✔ 正确' : '✘ 错误') + '</span>';
+    h += '<span class="you">你的作答：' + esc(youText) + '</span>';
+    h += '<span class="ansline">正确答案：<b>' + esc(ansText) + '</b></span>';
+    h += '</div>';
+    h += '<p class="explain"><b>简析：</b>' + esc(r.exp) + '</p>';
+    if(!r.ok){
+      h += '<p class="cause">错因归类：' + r.cause + ' ' + MINFO[r.cause].name + (r.blank ? '（本题未作答，按该题典型错因归档）' : '') + '</p>';
+    }
+    fb.className = 'fb ' + (r.ok ? 'ok' : 'no');
+    fb.innerHTML = h;
+    fb.hidden = false;
+  }
+
+  /* ============================================================
+     5. 分析报告
+     ============================================================ */
+  function buildReport(){
+    var res = state.results;
+    var total = QS.length;
+    var correct = state.correct;
+    var rate = Math.round(correct / total * 100);
+
+    var dstat = { D1:{t:0,c:0}, D2:{t:0,c:0}, D3:{t:0,c:0} };
+    var M = { M1:0, M2:0, M3:0, M4:0, M5:0 };
+    var mq = { M1:[], M2:[], M3:[], M4:[], M5:[] };
+    var wrongNos = [];
+    var blankNos = [];
+
+    QS.forEach(function(q){
+      var r = res[q.id];
+      dstat[q.d].t++;
+      if(r.ok){ dstat[q.d].c++; }
+      else{
+        wrongNos.push(NO[q.id]);
+        if(r.blank) blankNos.push(NO[q.id]);
+        M[r.cause] = (M[r.cause] || 0) + 1;
+        if(mq[r.cause]) mq[r.cause].push(NO[q.id]);
+      }
+    });
+
+    var gstat = [];
+    for(var gi = 0; gi < GROUPS.length; gi++){
+      var list = QS.filter(function(q){ return q.g === gi; });
+      if(!list.length) continue;
+      var wrong = list.filter(function(q){ return !res[q.id].ok; });
+      gstat.push({
+        name:GROUPS[gi].name, desc:GROUPS[gi].desc,
+        total:list.length, wrong:wrong.length,
+        ratio:wrong.length / list.length,
+        wrongNos:wrong.map(function(q){ return NO[q.id]; })
+      });
+    }
+
+    var h = '';
+    h += '<div class="rhead"><h2>分析报告</h2><span class="line"></span><span class="gcount">' + STUDENT + '</span></div>';
+
+    /* 总览 */
+    h += '<div class="rcards">';
+    h += '<div class="rcard main"><span class="rlabel">本卷正确率</span><span class="rnum">' + rate + '%</span>';
+    h += '<span class="rsub">答对 ' + correct + ' 题 / 共 ' + total + ' 题' + (wrongNos.length ? '，错 ' + wrongNos.length + ' 题' : '，全对') + '</span></div>';
+    ['D1','D2','D3'].forEach(function(d){
+      var s = dstat[d];
+      var p = s.t ? Math.round(s.c / s.t * 100) : 0;
+      h += '<div class="rcard"><span class="rlabel">' + difName(d) + '</span>';
+      h += '<span class="rnum">' + s.c + '/' + s.t + '</span>';
+      h += '<span class="rsub">正确率 ' + p + '%</span>';
+      h += '<div class="dbar"><i class="' + (p < 60 ? 'warn' : '') + '" style="width:' + p + '%"></i></div></div>';
+    });
+    h += '</div>';
+
+    /* 一、错因归类 */
+    h += '<div class="rblock"><h3><span class="n">1</span>逐题错因归类（M1–M5）</h3>';
+    if(!wrongNos.length){
+      h += '<p class="advice">全卷无错题，没有错因需要归类。建议直接进入下一层次的综合题或变式题训练。</p>';
+    }else{
+      var codes = ['M1','M2','M3','M4','M5'].filter(function(k){ return M[k] > 0; });
+      codes.sort(function(a,b){ return M[b] - M[a]; });
+      codes.forEach(function(k){
+        h += '<div class="mrow"><span class="mcode">' + k + '</span>';
+        h += '<span class="mbody"><span class="mt">' + MINFO[k].name + '</span>';
+        h += '<span class="ms">' + MINFO[k].tip + ' 涉及第 ' + mq[k].join('、') + ' 题。</span></span>';
+        h += '<span class="mcount">' + M[k] + ' 题</span></div>';
+      });
+      if(blankNos.length){
+        h += '<div class="mrow"><span class="mcode">未答</span><span class="mbody"><span class="mt">共 ' + blankNos.length + ' 题未作答</span>';
+        h += '<span class="ms">第 ' + blankNos.join('、') + ' 题空白，已按该题典型错因归类，建议单独限时重做。</span></span>';
+        h += '<span class="mcount">' + blankNos.length + ' 题</span></div>';
+      }
+      h += '<div class="kwlist">';
+      h += '<button type="button" class="kwbtn" data-act="pickwrong">勾选全部错题</button>';
+      h += '<button type="button" class="kwbtn" data-act="print">打印错题稿（另存 PDF）</button>';
+      h += '</div>';
+    }
+    h += '</div>';
+
+    /* 二、未掌握知识点 */
+    h += '<div class="rblock"><h3><span class="n">2</span>未掌握知识点清单（将进入「学」环节）</h3>';
+    var needLearn = gstat.filter(function(g){ return g.wrong > 0; });
+    if(!needLearn.length){
+      h += '<p class="advice">本卷所有知识点均已掌握，无需进入「学」环节补漏。</p>';
+    }else{
+      needLearn.sort(function(a,b){ return (b.ratio - a.ratio) || (b.wrong - a.wrong); });
+      needLearn.forEach(function(g){
+        var st = (g.wrong >= 2 || g.ratio >= 0.5) ? 'no' : 'mid';
+        var stTxt = st === 'no' ? '未掌握' : '待巩固';
+        h += '<div class="grow"><span class="gname">' + g.name + '<em>错 ' + g.wrong + ' / 共 ' + g.total + ' 题 · 第 ' + g.wrongNos.join('、') + ' 题</em></span>';
+        h += '<span class="st ' + st + '">' + stTxt + '</span></div>';
+      });
+      h += '<p class="advice" style="margin-top:8px">以上 «未掌握 / 待巩固» 知识点将进入「学」环节：先看知识点微课 → 再做同类基础题 5 道 → 最后回到错题重做。</p>';
+    }
+    h += '</div>';
+
+    /* 三、再练建议 */
+    h += '<div class="rblock"><h3><span class="n">3</span>再练建议</h3>';
+    h += '<ol class="advice">';
+    if(!wrongNos.length){
+      h += '<li><b>保持手感：</b>本卷全对，建议 3 天后做 10 道 D3 高难度变式题，重点练逆向求解与多条件问题。</li>';
+      h += '<li><b>提速训练：</b>用 25 分钟限时重做本卷，检验稳定性。</li>';
+      h += '<li><b>迁移拓展：</b>把本卷的搭配题换成 3 张数字卡片与加减法两步题结合，自编 2 道题并解答。</li>';
+    }else{
+      var topM = ['M1','M2','M3','M4','M5'].filter(function(k){ return M[k] > 0; })
+        .sort(function(a,b){ return M[b] - M[a]; })[0];
+      var weakNames = needLearn.slice(0, 2).map(function(g){ return '《' + g.name + '》'; }).join('、');
+      h += '<li><b>优先补漏：</b>先回到 ' + (weakNames || '错题所在知识点') + '，把课本例题重读一遍，再做同类型基础题 5 道。</li>';
+      var mAdvice = {
+        M1:'每天用 5 分钟背一遍乘法口诀，并把「1 米 = 100 厘米」「角的分类」做成小卡片各读 3 遍。',
+        M2:'每天 10 分钟口算专项：20 以内进位加、退位减、表内乘法各 10 题，要求 3 分钟内全对。',
+        M3:'读题时先圈关键词（多、少、一共、还剩、每个），检查单位是否统一；遇到「一个星期」「一盒」这类词先写出它等于多少。',
+        M4:'多步应用题按「先求什么、再求什么」写小标题再列式，做完回读一遍是否答完题目所问。',
+        M5:'练 5 道逆向题（看错的数、找回的钱、求原来多少）+ 2 道搭配枚举题，枚举时按「固定十位」的顺序写，做到不重不漏。'
+      };
+      h += '<li><b>错因专项：</b>本次主要错因是 <b>' + topM + ' ' + MINFO[topM].name + '</b>。' + mAdvice[topM] + '</li>';
+      h += '<li><b>错题复测：</b>勾选全部错题后点「打印选中错题（另存 PDF）」，3 天后重做这 ' + wrongNos.length + ' 题，做对为止。</li>';
+      h += '<li><b>同类迁移：</b>7 天后做 10 道同知识点变式题（难度提高一档），检验是否真正掌握。</li>';
+    }
+    h += '</ol></div>';
+
+    return h;
+  }
+
+  function renderReport(){
+    var h = buildReport();
+    els.report.innerHTML = h;
+    els.report.hidden = false;
+    syncBarHeight();
+    try{
+      els.report.scrollIntoView({ behavior:'smooth', block:'start' });
+    }catch(e){
+      window.scrollTo(0, els.report.offsetTop - 8);
+    }
+  }
+
+  /* ============================================================
+     6. 打印
+     ============================================================ */
+  function buildPrint(ids){
+    var res = state.results;
+    var KEY = decodeKey();
+    var rate = Math.round(state.correct / QS.length * 100);
+    var h = '';
+    h += '<div class="phead"><h1>' + TITLE + ' · 错题打印稿</h1>';
+    h += '<div class="psub">共 ' + ids.length + ' 道错题（题干 / 学生作答 / 正确答案 / 解析逐题完整呈现）</div>';
+    h += '<div class="pinfo"><span>学习者：' + STUDENT + '</span>';
+    h += '<span>打印日期：' + fmtDate() + '</span>';
+    h += '<span>本卷正确率：' + rate + '%（' + state.correct + '/' + QS.length + '）</span></div></div>';
+
+    ids.forEach(function(qid){
+      var q = null;
+      for(var i = 0; i < QS.length; i++){ if(QS[i].id === qid){ q = QS[i]; break; } }
+      if(!q) return;
+      var r = res[qid];
+      var k = KEY[qid];
+      var no = NO[qid];
+      var stuTxt, ansTxt;
+      if(r.blank){
+        stuTxt = '未作答';
+      }else if(q.t === 'choice'){
+        var i1 = 'ABCD'.indexOf(r.stu.toUpperCase());
+        stuTxt = r.stu.toUpperCase() + '. ' + (i1 >= 0 && q.opts[i1] ? q.opts[i1] : '');
+      }else{
+        stuTxt = r.stu + (q.unit ? ' ' + q.unit : '');
+      }
+      if(q.t === 'choice'){
+        var i2 = 'ABCD'.indexOf(String(k.a).toUpperCase());
+        ansTxt = String(k.a).toUpperCase() + '. ' + (i2 >= 0 && q.opts[i2] ? q.opts[i2] : '');
+      }else{
+        ansTxt = k.a + (q.unit ? ' ' + q.unit : '');
+      }
+
+      h += '<div class="pq">';
+      h += '<div class="pqhead"><b>第 ' + no + ' 题</b> · ' + difName(q.d) + ' · ' + GROUPS[q.g].name + '</div>';
+      h += '<div class="pqstem">' + q.stem + '</div>';
+      h += '<div class="pqline"><span class="lb">学生作答：</span><span class="bad">' + esc(stuTxt) + '</span></div>';
+      h += '<div class="pqline"><span class="lb">正确答案：</span><span class="good">' + esc(ansTxt) + '</span></div>';
+      h += '<div class="pqline"><span class="lb">解析：</span>' + esc(k.e) + '</div>';
+      h += '<div class="pqline"><span class="lb">错因：</span>' + r.cause + ' ' + MINFO[r.cause].name + '</div>';
+      h += '</div>';
+    });
+    h += '<div class="pfoot">© 两英豆豆教练 · 豆豆智学 · 微信 ddtt0754</div>';
+    els.printArea.innerHTML = h;
+  }
+
+  /* ============================================================
+     7. 动作
+     ============================================================ */
+  function onSubmit(btn){
+    if(state.submitted){ toast('本卷已判分，如需重做请点「重新作答」'); return; }
+    var answered = 0;
+    QS.forEach(function(q){ if((state.answers[q.id] || '').trim() !== '') answered++; });
+    var blank = QS.length - answered;
+    if(blank > 0 && !state.confirmSubmit){
+      state.confirmSubmit = true;
+      toast('还有 ' + blank + ' 题未作答，再点一次「提交判分」将按未作答判分');
+      window.clearTimeout(timers.submit);
+      timers.submit = window.setTimeout(function(){ state.confirmSubmit = false; }, 5000);
+      return;
+    }
+    state.confirmSubmit = false;
+    btn.disabled = true;
+    btn.textContent = '判分中';
+    window.setTimeout(function(){
+      try{
+        grade();
+        state.submitted = true;
+        QS.forEach(paintOne);
+        btn.textContent = '已提交';
+        btn.disabled = true;
+        renderReport();
+        updateCounts();
+        toast('判分完成：答对 ' + state.correct + '/' + QS.length + '，下拉查看分析报告');
+      }catch(err){
+        btn.disabled = false;
+        btn.textContent = '提交判分';
+        showError('判分失败：' + (err && err.message ? err.message : err));
+      }
+    }, 40);
+  }
+
+  function onReset(btn){
+    if(!state.confirmReset){
+      state.confirmReset = true;
+      btn.textContent = '再点一次确认重置';
+      toast('重置会清空全部作答与报告');
+      window.clearTimeout(timers.reset);
+      timers.reset = window.setTimeout(function(){
+        state.confirmReset = false;
+        btn.textContent = '重新作答';
+      }, 4000);
+      return;
+    }
+    state.confirmReset = false;
+    btn.textContent = '重新作答';
+    state.answers = {};
+    state.submitted = false;
+    state.results = null;
+    state.correct = 0;
+    state.confirmSubmit = false;
+    state.printing = false;
+    els.report.hidden = true;
+    els.report.innerHTML = '';
+    els.printArea.innerHTML = '';
+    if(els.btnSubmit){
+      els.btnSubmit.disabled = false;
+      els.btnSubmit.textContent = '提交判分';
+    }
+    renderQuiz();
+    updateCounts();
+    try{ window.scrollTo({ top:0, behavior:'smooth' }); }catch(e){ window.scrollTo(0, 0); }
+    toast('已重置，可以重新作答');
+  }
+
+  function onPickWrong(){
+    if(!state.submitted){ toast('请先提交判分，再勾选错题'); return; }
+    var boxes = els.quiz.querySelectorAll('input[data-act="pick"]');
+    var n = 0;
+    for(var i = 0; i < boxes.length; i++){
+      var r = state.results[boxes[i].getAttribute('data-qid')];
+      var bad = !!(r && !r.ok);
+      boxes[i].checked = bad;
+      if(bad) n++;
+    }
+    updateCounts();
+    toast(n ? ('已勾选 ' + n + ' 道错题，可点「打印选中错题」') : '本卷没有错题，全部答对了');
+  }
+
+  function onPrint(btn){
+    if(state.printing){ return; }
+    if(!state.submitted){ toast('请先点「提交判分」，再勾选错题打印'); return; }
+    var boxes = els.quiz.querySelectorAll('input[data-act="pick"]');
+    var checkedTotal = 0;
+    var ids = [];
+    for(var i = 0; i < boxes.length; i++){
+      if(!boxes[i].checked) continue;
+      checkedTotal++;
+      var qid = boxes[i].getAttribute('data-qid');
+      var r = state.results[qid];
+      if(r && !r.ok){ ids.push(qid); }
+    }
+    if(checkedTotal === 0){ toast('请先勾选要打印的错题'); return; }
+    if(ids.length === 0){ toast('勾选的题目都答对了，没有错题可打印'); return; }
+
+    state.printing = true;
+    btn.disabled = true;
+    var old = btn.textContent;
+    btn.textContent = '正在准备打印';
+    try{
+      buildPrint(ids);
+      window.setTimeout(function(){
+        try{
+          window.print();
+        }catch(e1){
+          showError('无法唤起打印对话框，请用浏览器菜单「打印」');
+        }
+        btn.disabled = false;
+        btn.textContent = old;
+        state.printing = false;
+      }, 80);
+    }catch(err){
+      btn.disabled = false;
+      btn.textContent = old;
+      state.printing = false;
+      showError('打印准备失败：' + (err && err.message ? err.message : err));
+    }
+  }
+
+  /* ============================================================
+     8. 事件绑定（全部事件委托）
+     ============================================================ */
+  function bind(){
+    /* 题目区：改写答案 / 勾选 */
+    els.quiz.addEventListener('change', function(e){
+      var t = e.target;
+      if(!t || !t.getAttribute) return;
+      var act = t.getAttribute('data-act');
+      if(act === 'opt'){
+        var qid = t.getAttribute('data-qid');
+        state.answers[qid] = t.value;
+        var labels = els.quiz.querySelectorAll('.opt');
+        for(var i = 0; i < labels.length; i++){ labels[i].classList.remove('sel'); }
+        var box = t.parentNode;
+        if(box && box.classList){ box.classList.add('sel'); }
+        if(state.submitted) return;
+        state.confirmSubmit = false;
+        updateCounts();
+      }else if(act === 'pick'){
+        updateCounts();
+      }
+    });
+
+    /* 题目区：填空输入 */
+    els.quiz.addEventListener('input', function(e){
+      var t = e.target;
+      if(!t || !t.getAttribute) return;
+      if(t.getAttribute('data-act') !== 'fill') return;
+      var qid = t.getAttribute('data-qid');
+      var v = String(t.value || '').trim();
+      if(v === ''){ delete state.answers[qid]; } else { state.answers[qid] = v; }
+      state.confirmSubmit = false;
+      updateCounts();
+    });
+
+    /* 底部操作条 */
+    els.bar.addEventListener('click', function(e){
+      var btn = e.target.closest ? e.target.closest('[data-act]') : null;
+      if(!btn) return;
+      var act = btn.getAttribute('data-act');
+      try{
+        if(act === 'submit'){ onSubmit(btn); }
+        else if(act === 'reset'){ onReset(btn); }
+        else if(act === 'print'){ onPrint(btn); }
+        else if(act === 'pickwrong'){ onPickWrong(); }
+      }catch(err){
+        showError('操作失败：' + (err && err.message ? err.message : err));
+      }
+    });
+
+    /* 报告区内的复用按钮（事件委托，报告重渲染后依然有效） */
+    els.report.addEventListener('click', function(e){
+      var btn = e.target.closest ? e.target.closest('[data-act]') : null;
+      if(!btn) return;
+      var act = btn.getAttribute('data-act');
+      try{
+        if(act === 'pickwrong'){ onPickWrong(); }
+        else if(act === 'print'){ onPrint(els.btnPrint); }
+      }catch(err){
+        showError('操作失败：' + (err && err.message ? err.message : err));
+      }
+    });
+
+    /* 联系与信息 */
+    if(els.coach){
+      var flip = function(){ els.coach.classList.toggle('show'); };
+      els.coach.addEventListener('click', flip);
+      els.coach.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); flip(); }
+      });
+    }
+  }
+
+  /* ============================================================
+     8.5 底栏高度同步（保证正文不被固定栏遮挡、提示条不压按钮）
+     ============================================================ */
+  function syncBarHeight(){
+    if(!els.bar) return;
+    var h = els.bar.offsetHeight || 0;
+    if(h > 0){ document.documentElement.style.setProperty('--barh', h + 'px'); }
+  }
+
+  /* ============================================================
+     9. 启动
+     ============================================================ */
+  function boot(){
+    try{
+      els.toast = must('toast');
+      els.err = must('errBanner');
+      els.quiz = must('quizArea');
+      els.report = must('reportArea');
+      els.printArea = must('printArea');
+      els.bar = must('actionbar');
+      els.btnSubmit = must('btnSubmit');
+      els.btnPrint = must('btnPrint');
+      els.statAns = must('statAns');
+      els.statPick = must('statPick');
+      els.statHint = must('statHint');
+      els.coach = document.getElementById('coachTip');
+
+      if(QS.length !== TOTAL){
+        throw new Error('题库数量异常：应为 ' + TOTAL + ' 题，实际 ' + QS.length + ' 题');
+      }
+      renderQuiz();
+      bind();
+      updateCounts();
+      syncBarHeight();
+      window.addEventListener('resize', syncBarHeight);
+      window.addEventListener('orientationchange', function(){ window.setTimeout(syncBarHeight, 120); });
+    }catch(err){
+      var box = document.getElementById('errBanner');
+      if(box){
+        box.hidden = false;
+        box.textContent = '页面初始化失败：' + (err && err.message ? err.message : err);
+      }
+    }
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', boot);
+  }else{
+    boot();
+  }
+})();
 </script>
 </body>
 </html>
-<!-- （注：内容由AI生成） -->

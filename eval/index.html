@@ -152,9 +152,6 @@ html{-webkit-text-size-adjust:100%;}
 <header class="hdr">
   <h1>&#x1fa7a; 学期诊断</h1>
   <p class="sub">智能测评 · 精准定位薄弱环节</p>
-  <div class="top-btns">
-    <a class="top-btn" href="jycp.html">&#x1f4da; 菁优测评</a>
-  </div>
 </header>
 
 <div class="card">
@@ -186,7 +183,7 @@ html{-webkit-text-size-adjust:100%;}
 <button class="start-btn" id="btnStart">&#x25b6; 开始测试</button>
 <p style="text-align:center;font-size:12px;color:var(--l);margin-bottom:4px">满分 100 分 · 测试完成出具 AI 诊断报告</p>
 
-<a class="bt-home" href="../index.html">&#x1f3e0; 返回首页</a>
+<a class="bt-home" href="../index.html">&#x1f3e0; 返回主页</a>
 <div class="ft">&copy; <span class="coach-tip" tabindex="0">两英豆豆教练<span class="tip">微信号 ddtt0754</span></span></div>
 
 </div>
@@ -198,7 +195,20 @@ var NAMES = {2:'二',3:'三',4:'四',5:'五',6:'六',7:'七',8:'八',9:'九'};
 var EXAMS = {
   '2a': {a:'eval-2a-A.html', b:'eval-2a-B.html'},
   '2b': {a:'eval-2b-A.html', b:'eval-2b-B.html'},
-  '3a': {a:'eval-3a-A.html', b:'eval-3a-B.html'}
+  '3a': {a:'eval-3a-A.html', b:'eval-3a-B.html'},
+  '3b': {a:'eval-3b-A.html', b:'eval-3b-B.html'},
+  '4a': {a:'eval-4a-A.html', b:'eval-4a-B.html'},
+  '4b': {a:'eval-4b-A.html', b:'eval-4b-B.html'},
+  '5a': {a:'eval-5a-A.html', b:'eval-5a-B.html'},
+  '5b': {a:'eval-5b-A.html', b:'eval-5b-B.html'},
+  '6a': {a:'eval-6a-A.html', b:'eval-6a-B.html'},
+  '6b': {a:'eval-6b-A.html', b:'eval-6b-B.html'},
+  '7a': {a:'eval-7a-A.html', b:'eval-7a-B.html'},
+  '7b': {a:'eval-7b-A.html', b:'eval-7b-B.html'},
+  '8a': {a:'eval-8a-A.html', b:'eval-8a-B.html'},
+  '8b': {a:'eval-8b-A.html', b:'eval-8b-B.html'},
+  '9a': {a:'eval-9a-A.html', b:'eval-9a-B.html'},
+  '9b': {a:'eval-9b-A.html', b:'eval-9b-B.html'}
 };
 
 function renderGradeGrid(){
@@ -263,7 +273,7 @@ document.getElementById('btnStart').addEventListener('click', function(){
   if (paper && paper[difficulty]) {
     window.location.href = paper[difficulty];
   } else {
-    alert(NAMES[grade]+'年级'+(sem==='a'?'上':'下')+'册'+(difficulty==='a'?'A卷':'B卷')+'暂未开放，敬请期待。\n当前已开放：二年级上/下册、三年级上册（A/B 卷）。');
+    alert(NAMES[grade]+'年级'+(sem==='a'?'上':'下')+'册'+(difficulty==='a'?'A卷':'B卷')+'暂未开放，敬请期待。\n当前已开放：二至九年级上/下册（A/B 卷）。');
   }
 });
 
