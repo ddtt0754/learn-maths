@@ -142,7 +142,7 @@ html{-webkit-text-size-adjust:100%;}
       <input type="text" id="phoneInput" placeholder="输入手机号或学号" maxlength="24" inputmode="text">
       <button id="verifyBtn" onclick="verifyPhone()">验证</button>
     </div>
-    <div class="lock-loading" id="lockLoading">⏳ 正在验证…</div>
+    <div class="lock-loading" id="lockLoading">⏳ 正在验证，约需 5 秒…</div>
     <div class="lock-error" id="lockError"></div>
     <div class="lock-hint">仅限已登记手机号或学号访问<br>如有疑问请联系两英豆豆教练</div>
   </div>
@@ -308,25 +308,117 @@ updateInfo();
   }, 350);
   pinOverlay();
 
-  // SHA-256 hash phone, fetch hash list, compare
+  /* ---- 纯 JS SHA-256（兜底，仅在 crypto.subtle 不可用时启用） ----
+   * 手机常用 http://192.168.x.x 访问：那不属于「安全上下文」，
+   * crypto.subtle 为 undefined。原实现在这里同步抛 TypeError，
+   * 而调用处只挂了 .catch，接不住同步异常 →
+   * 表现就是点「验证」毫无反应、⏳ 一直转、锁屏永不关闭。
+   * 这里改为「能用原生就用，否则降级纯 JS」，两者结果完全一致（SHA-256 十六进制）。
+   * 已与 Node crypto 对照验证。
+   */
+  var SHA256_K = [
+    0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
+    0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+    0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
+    0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+    0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
+    0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+    0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
+    0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2
+  ];
+  function sha256Rotr(x, n){ return (x >>> n) | (x << (32 - n)); }
+  function sha256Hex(str){
+    var bytes = [];
+    for (var i = 0; i < str.length; i++) {
+      var c = str.charCodeAt(i);
+      if (c < 0x80) bytes.push(c);
+      else if (c < 0x800) { bytes.push(0xc0 | (c >> 6), 0x80 | (c & 63)); }
+      else { bytes.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63)); }
+    }
+    var bitLen = bytes.length * 8;
+    bytes.push(0x80);
+    while (bytes.length % 64 !== 56) bytes.push(0);
+    bytes.push(0, 0, 0, 0, (bitLen >>> 24) & 255, (bitLen >>> 16) & 255, (bitLen >>> 8) & 255, bitLen & 255);
+
+    var H = [0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+    var W = new Array(64);
+    for (var off = 0; off < bytes.length; off += 64) {
+      for (var t = 0; t < 16; t++) {
+        W[t] = (bytes[off + t * 4] << 24) | (bytes[off + t * 4 + 1] << 16)
+             | (bytes[off + t * 4 + 2] << 8) | bytes[off + t * 4 + 3];
+      }
+      for (t = 16; t < 64; t++) {
+        var s0 = sha256Rotr(W[t-15], 7) ^ sha256Rotr(W[t-15], 18) ^ (W[t-15] >>> 3);
+        var s1 = sha256Rotr(W[t-2], 17) ^ sha256Rotr(W[t-2], 19) ^ (W[t-2] >>> 10);
+        W[t] = (W[t-16] + s0 + W[t-7] + s1) | 0;
+      }
+      var a = H[0], b = H[1], c2 = H[2], d = H[3], e = H[4], f = H[5], g = H[6], h = H[7];
+      for (t = 0; t < 64; t++) {
+        var S1 = sha256Rotr(e, 6) ^ sha256Rotr(e, 11) ^ sha256Rotr(e, 25);
+        var ch = (e & f) ^ (~e & g);
+        var t1 = (h + S1 + ch + SHA256_K[t] + W[t]) | 0;
+        var S0 = sha256Rotr(a, 2) ^ sha256Rotr(a, 13) ^ sha256Rotr(a, 22);
+        var maj = (a & b) ^ (a & c2) ^ (b & c2);
+        var t2 = (S0 + maj) | 0;
+        h = g; g = f; f = e; e = (d + t1) | 0; d = c2; c2 = b; b = a; a = (t1 + t2) | 0;
+      }
+      H[0] = (H[0] + a) | 0; H[1] = (H[1] + b) | 0; H[2] = (H[2] + c2) | 0; H[3] = (H[3] + d) | 0;
+      H[4] = (H[4] + e) | 0; H[5] = (H[5] + f) | 0; H[6] = (H[6] + g) | 0; H[7] = (H[7] + h) | 0;
+    }
+    var hex = '';
+    for (i = 0; i < 8; i++) hex += ('00000000' + (H[i] >>> 0).toString(16)).slice(-8);
+    return hex;
+  }
+
   function sha256(str){
-    var encoder = new TextEncoder();
-    return crypto.subtle.digest('SHA-256', encoder.encode(str))
-      .then(function(buf){
-        return Array.from(new Uint8Array(buf))
-          .map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
-      });
+    try {
+      if (window.crypto && window.crypto.subtle && window.TextEncoder) {
+        return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str))
+          .then(function(buf){
+            return Array.from(new Uint8Array(buf))
+              .map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+          });
+      }
+    } catch (e) { /* 落到纯 JS 兜底 */ }
+    return Promise.resolve(sha256Hex(str));
+  }
+
+  /* --------------------------------------------------------------
+   * 验号（L1 + L2）
+   *  · 纯 JS SHA-256 兜底，非安全上下文也能算哈希
+   *  · 8 秒「网络较慢」提示、20 秒硬超时 —— 绝不允许永久卡在「正在验证」
+   *  · 失败一律给具体原因（账号不存在 / 学科未授权 / 到期 / 服务异常），并恢复按钮
+   * -------------------------------------------------------------- */
+  var slowTimer = null, hardTimer = null;
+  function clearVerifyTimers(){
+    if (slowTimer) { clearTimeout(slowTimer); slowTimer = null; }
+    if (hardTimer) { clearTimeout(hardTimer); hardTimer = null; }
+  }
+  function finishVerify(msg){
+    clearVerifyTimers();
+    if (loadEl) loadEl.classList.remove('show');
+    if (btnEl) btnEl.disabled = false;
+    if (msg) { showErr(msg); shake(); }
   }
 
   function verifyPhone(){
-    var phone = phoneInput.value.replace(/\s+/g, '');
+    var phone = (phoneInput && phoneInput.value ? phoneInput.value : '').replace(/\s+/g, '');
     if (!phone) { showErr('请输入手机号或学号'); shake(); return; }
     if (!/^[A-Za-z0-9]{4,24}$/.test(phone)) { showErr('请输入正确的手机号或学号'); shake(); return; }
 
     btnEl.disabled = true;
+    loadEl.textContent = '⏳ 正在验证，约需 5 秒…';
     loadEl.classList.add('show');
     errEl.classList.remove('show');
     phoneInput.classList.remove('error');
+
+    clearVerifyTimers();
+    slowTimer = setTimeout(function(){
+      if (btnEl.disabled) loadEl.textContent = '⏳ 网络较慢，仍在验证…';
+    }, 8000);
+    hardTimer = setTimeout(function(){
+      if (btnEl.disabled) finishVerify('网络较慢，请检查网络后重试');
+    }, 20000);
 
     // 兜底哈希列表：**仅本地 file:// 打开时生效**，线上（http/https）一律禁用；
     // 防止「屏蔽验号域名 → fetch 失败 → 命中兜底」绕过云端授权校验。仅存哈希不存明文。
@@ -337,42 +429,31 @@ updateInfo();
 
     function check(phoneHash, hashes){
       var matched = hashes.some(function(h){ return h === phoneHash; });
-      loadEl.classList.remove('show');
-      btnEl.disabled = false;
-      if (matched) {
-        unlock(phone);
-      } else {
-        showErr('输入有误，请重新输入');
-        shake();
-      }
+      if (matched) { unlock(phone); return; }
+      finishVerify('输入有误，请重新输入');
     }
 
     // 云端不可达 / 网关异常（非 2xx，如欠费 403 / 5xx）时的处置：
-    // **只有本地 file:// 打开才走兜底名单**；线上（http/https）一律拒绝并提示，绝不放行。
+    // **只有本地 file:// 打开才走兜底名单**；线上（http/https）一律拒绝并提示。
     function fallbackOrFail(phoneHash){
       if (IS_LOCAL_FILE) { check(phoneHash, FALLBACK_HASHES); return; }
-      loadEl.classList.remove('show');
-      btnEl.disabled = false;
-      showErr('服务暂时不可用，请稍后再试');
-      shake();
+      finishVerify('验证服务暂时不可用，请检查网络后重试');
     }
 
-    // 验号：请求云端（阿里云 FC）按「手机号或学号哈希 + 当前页面」校验授权；
-    // 云端不可达、或网关层异常（非 2xx）时，线上按「服务暂时不可用」拒绝（不再放行）。
     var WORKER_URL = 'https://doudou-unlock-lkepopyncq.cn-hangzhou.fcapp.run';
     var PAGE_PATH  = '/learn-maths/eval/index.html';
-    // 云端可能在改表 / 实例切换的瞬间读不到最新授权：对「查不到」类结论静默重试一次，
+    // 云端改表 / 实例切换的瞬间可能读不到最新授权：对「查不到」类结论静默重试一次，
     // 避免把瞬时的数据不一致误报成「学科未授权」。
     function verifyOnce(phoneHash, retried){
       fetch(WORKER_URL + '?hash=' + phoneHash + '&page=' + encodeURIComponent(PAGE_PATH), { cache: 'no-store' })
         .then(function(r){
-          if (!r.ok) throw new Error('http_' + r.status);   // 非 2xx 视为服务不可用
+          if (!r.ok) throw new Error('http_' + r.status);
           return r.json();
         })
         .then(function(data){
           if (data && data.ok) { check(phoneHash, [phoneHash]); return; }
           if (!data || (data.ok === undefined && data.reason === undefined)) {
-            fallbackOrFail(phoneHash);   // 非预期响应体（网关错误页等）
+            fallbackOrFail(phoneHash);
             return;
           }
           var reason = data.reason;
@@ -385,30 +466,32 @@ updateInfo();
           else if (reason === 'no_page' || reason === 'no_module') { msg = '学科未授权，请联系豆豆教练开通授权'; }
           else if (reason === 'expired') { msg = '授权已到期，请联系豆豆教练续期'; }
           else if (reason === 'module_unknown') { msg = '服务暂时不可用，请稍后再试'; }
-          loadEl.classList.remove('show');
-          btnEl.disabled = false;
-          showErr(msg);
-          shake();
+          finishVerify(msg);
         })
         .catch(function(){ fallbackOrFail(phoneHash); });
     }
-    sha256(phone).then(function(phoneHash){
-      verifyOnce(phoneHash, false);
-    }).catch(function(){
-      loadEl.classList.remove('show');
-      btnEl.disabled = false;
-      showErr('设备不支持，请更换浏览器');
-    });
-  };
+
+    try {
+      sha256(phone).then(function(phoneHash){
+        verifyOnce(phoneHash, false);
+      }).catch(function(){ finishVerify('验证失败，请重试'); });
+    } catch (e) {
+      // 兜底：绝不让按钮卡在「正在验证」，否则用户会一直停在锁屏
+      finishVerify('验证失败，请重试');
+    }
+  }
 
   function unlock(phone){
+    clearVerifyTimers();
     var now = Date.now();
     var expires = now + VALID_MS;
-    localStorage.setItem('phone_session', JSON.stringify({
-      phone: phone,
-      loginAt: now,
-      expires: expires
-    }));
+    try {
+      localStorage.setItem('phone_session', JSON.stringify({
+        phone: phone,
+        loginAt: now,
+        expires: expires
+      }));
+    } catch (e) { /* 跨域 iframe / 隐私模式下存储被禁：本次照常放行，只是下次仍需验证 */ }
     if (overlay) {
       overlay.style.opacity = '0';
       overlay.style.transition = 'opacity .4s';
