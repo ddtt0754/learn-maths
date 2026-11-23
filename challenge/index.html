@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>豆豆智学 · 数学闯关练</title>
+<style>
+:root{
+  --bg:#f5f7fa; --text:#1e293b; --muted:#64748b; --line:#e2e8f0;
+  --grad:linear-gradient(135deg,#35d29a,#2f9df0);
+  --primary:#2ebd85; --card:#ffffff; --wrong:#6366f1; --star:#2f9df0;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:"PingFang SC","HarmonyOS Sans SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.wrap{width:100%;max-width:760px;margin:0 auto;padding:0 14px 24px}
+
+/* ===== 矩形顶栏 ===== */
+.topbar{
+  background:var(--grad);color:#fff;
+  padding:16px 20px;border-radius:0;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.topbar h1{font-size:19px;font-weight:800;letter-spacing:1px}
+.topbar .sub{font-size:12px;opacity:.92;margin-top:4px}
+.conn{display:flex;align-items:center;gap:6px;font-size:11.5px;background:rgba(255,255,255,.18);border-radius:999px;padding:5px 12px;flex-shrink:0;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.dot{width:8px;height:8px;border-radius:50%;background:#e2e8f0}
+.dot.on{background:#a7f3d0;box-shadow:0 0 6px rgba(167,243,208,.9)}
+.dot.wait{background:#93c5fd;box-shadow:0 0 6px rgba(147,197,253,.9)}
+
+.card{background:var(--card);border-radius:16px;padding:16px;margin-top:14px;box-shadow:0 2px 10px rgba(30,41,59,.06)}
+.sec-title{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+.sec-title::before{content:"";width:4px;height:16px;border-radius:2px;background:var(--grad)}
+/* 可折叠区块（规则与豆豆币）：默认收起，单击标题展开 */
+.fold-head{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;border-radius:8px;transition:opacity .12s}
+.fold-head:active{opacity:.7}
+.fold-head .fold-arrow{flex:none;color:var(--muted);transition:transform .22s ease}
+.fold-head.open .fold-arrow{transform:rotate(180deg)}
+.fold-body{display:none}
+.fold-body.open{display:block;animation:fadein .25s}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--primary);color:#fff;border:none;cursor:pointer;
+  border-radius:999px;font-size:14px;font-weight:600;padding:10px 20px;
+  font-family:inherit;transition:transform .12s ease,opacity .12s ease;
+}
+.btn:active{transform:scale(.95)}
+.btn.plain{background:#eef4f8;color:var(--text)}
+.btn.small{padding:7px 14px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* ===== 加入 / 我的面板 ===== */
+.add-row{display:flex;gap:10px;margin-top:12px}
+.add-row input{
+  flex:1;border:1.5px solid var(--line);border-radius:999px;padding:10px 16px;
+  font-size:14px;outline:none;background:#f8fafc;color:var(--text);
+}
+.add-row input:focus{border-color:var(--primary)}
+.my-stats{display:flex;gap:10px;margin-top:12px}
+.stat-box{flex:1;background:#f8fafc;border-radius:12px;padding:10px;text-align:center}
+.stat-box .v{font-size:19px;font-weight:800;color:var(--primary)}
+.stat-box .k{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ===== 地图选择 ===== */
+.map-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.map-btn{
+  border:1.5px solid var(--line);background:#f8fafc;border-radius:12px;
+  padding:10px 4px 8px;font-family:inherit;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:2px;transition:all .15s;
+}
+.map-btn .mn{font-size:13px;font-weight:700;color:var(--text)}
+.map-btn .mb{font-size:10px;color:var(--muted)}
+.map-btn.active{border-color:var(--primary);background:#e9f9f2}
+.map-btn.active .mn{color:var(--primary)}
+.map-btn.nop .mb{color:#f0a5a5}
+.map-tip{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.7}
+
+/* ===== 通关榜（战力值） ===== */
+.rank-head,.rank-row{
+  display:grid;grid-template-columns:26px 1fr 42px 1.4fr 46px 54px;
+  align-items:center;gap:5px;
+}
+.rank-head{font-size:11px;color:var(--muted);margin-top:12px;padding:0 10px}
+.rank-row{background:#f8fafc;border-radius:12px;padding:9px 10px;margin-top:8px;font-size:13px}
+.rank-row .no{
+  width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;background:#e2e8f0;
+}
+.rank-row.r1 .no{background:var(--grad);color:#fff}
+.rank-row.r2 .no{background:#7dd3c8;color:#fff}
+.rank-row.r3 .no{background:#93c5fd;color:#fff}
+.rank-row .nm{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rank-row .mp{font-size:11px;color:var(--muted);text-align:center}
+.rank-row .lv{font-size:11.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rank-row .sc{font-weight:600;text-align:right}
+.rank-row .kda{font-weight:800;color:var(--primary);text-align:right}
+.rank-row.me{outline:2px solid rgba(46,189,133,.45)}
+.empty-tip{text-align:center;color:var(--muted);font-size:13px;padding:14px 0}
+
+/* ===== 关卡列表 ===== */
+.level-list{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+.level-item{
+  display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);
+  border-radius:14px;padding:12px 14px;
+}
+.level-item.locked{opacity:.55}
+.level-item .level-info{flex:1;min-width:0}
+.level-item .btn{flex-shrink:0}
+.level-no{
+  width:40px;height:40px;border-radius:50%;flex-shrink:0;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;
+  background:#cbd5e1;
+}
+.level-no.done{background:var(--grad)}
+.level-no.open{background:var(--primary)}
+.level-name{font-size:14.5px;font-weight:700}
+.level-meta{font-size:11.5px;color:var(--muted);margin-top:3px}
+.level-meta .kdav{color:var(--primary);font-weight:700}
+.level-meta .stars{color:var(--star);letter-spacing:1px}
+.level-meta .lv-stats{display:inline-flex;flex-wrap:wrap;column-gap:6px;vertical-align:top}
+.level-meta .lv-stats .it{white-space:nowrap}
+.level-meta .lv-stats .it+.it::before{content:"· "}
+.level-meta .lv-stats .it:first-child::before{content:"· "}
+@media(max-width:520px){.level-meta .lv-stats{display:flex;margin-top:3px;column-gap:10px}
+  .level-meta .lv-stats .it:first-child::before,.level-meta .lv-stats .it+.it::before{content:""}}
+
+/* ===== 答题 ===== */
+.quiz-top{display:flex;align-items:center;justify-content:space-between;margin-top:16px;gap:8px;flex-wrap:wrap}
+.chip{background:var(--card);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;box-shadow:0 2px 6px rgba(30,41,59,.06)}
+.chip.diff-d3{color:#4338ca}
+.q-card{background:var(--card);border-radius:16px;padding:20px 18px;margin-top:12px;box-shadow:0 2px 10px rgba(30,41,59,.06)}
+.q-tags{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--grad);border-radius:999px;padding:2px 10px}
+.tag.boss{background:#6366f1}
+.tag.src{background:#94a3b8;font-weight:500}
+.q-text{font-size:16.5px;font-weight:700;line-height:1.8;margin-top:10px}
+.ans-row{display:flex;gap:10px;margin-top:16px}
+.ans-row input{
+  flex:1;border:1.5px solid var(--line);border-radius:999px;padding:12px 18px;
+  font-size:15px;outline:none;background:#f8fafc;color:var(--text);min-width:0;
+}
+.ans-row input:focus{border-color:var(--primary)}
+.feedback{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:13.5px;line-height:1.75;display:none}
+.feedback.show{display:block;animation:fadein .3s}
+.feedback.ok{background:#e9f9f2;color:#0d7a56}
+.feedback.no{background:#eef0fe;color:#4338ca}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.quiz-actions{display:flex;gap:10px;margin-top:14px}
+.quiz-actions .btn{flex:1}
+
+/* ===== 结算 ===== */
+.result-card{text-align:center;padding:26px 18px}
+.result-title{font-size:20px;font-weight:800}
+.result-stars{font-size:40px;letter-spacing:8px;color:#cbd5e1;margin:12px 0 4px}
+.result-stars .on{color:var(--star);animation:pop .5s ease}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.3)}100%{transform:scale(1)}}
+.kda-big{
+  display:inline-block;margin-top:10px;font-size:15px;font-weight:800;color:#fff;
+  background:var(--grad);border-radius:999px;padding:8px 26px;
+}
+.result-sub{font-size:13px;color:var(--muted);margin-top:12px;line-height:1.9}
+.result-actions{display:flex;gap:10px;margin-top:20px}
+.result-actions .btn{flex:1}
+.kda-line{display:grid;grid-template-columns:repeat(auto-fit,minmax(116px,1fr));gap:8px;margin-top:12px;font-size:13px;color:var(--muted)}
+.kda-line span{background:#f8fafc;border-radius:12px;padding:8px 6px;text-align:center}
+.kda-line b{color:var(--text);font-size:15px;margin-left:2px}
+.kda-note{font-size:11.5px;color:var(--muted);margin-top:8px}
+
+.footer{text-align:center;padding:12px 0 22px;color:var(--muted);font-size:.72rem;line-height:2;border-top:1px solid var(--line);margin-top:6px;width:100%}
+.footer .wx{display:inline-block;cursor:pointer;user-select:none}.footer .wx.show{border-bottom:1px dashed var(--line);padding-bottom:1px}
+#coach-name{cursor:pointer;user-select:none;border-bottom:1px dashed var(--line);padding-bottom:1px}
+.back-row{display:flex;align-items:center;margin-top:16px}
+.back-btn{background:var(--card);border:none;border-radius:999px;padding:9px 18px;font-size:13px;font-weight:600;color:var(--text);cursor:pointer;font-family:inherit;box-shadow:0 2px 8px rgba(30,41,59,.06)}
+.toast{position:fixed;left:50%;bottom:64px;transform:translateX(-50%) translateY(20px);background:rgba(30,41,59,.88);color:#fff;font-size:13px;border-radius:999px;padding:9px 22px;opacity:0;pointer-events:none;transition:all .3s ease;z-index:99}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.screen{display:none}
+.screen.active{display:block;animation:fadein .3s}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <h1>豆豆智学 · 数学闯关练</h1>
+    <div class="sub">单机畅玩 · 可联机对战 · KDA 战力榜</div>
+  </div>
+  <div class="conn" id="conn-chip" onclick="toggleOnline()" title="点击切换 联机/单机 模式"><span class="dot" id="conn-dot"></span><span id="conn-text">单机模式</span></div>
+</div>
+
+<div class="wrap">
+
+  <!-- ===== 大厅 ===== -->
+  <section id="scr-lobby" class="screen active">
+    <div class="card" id="join-card">
+      <div class="sec-title">加入战局</div>
+      <div class="add-row">
+        <input id="inp-name" maxlength="8" placeholder="输入你的名字">
+        <button class="btn" onclick="joinGame()">加入</button>
+      </div>
+    </div>
+
+    <div class="card" id="my-card" style="display:none">
+      <div class="sec-title">我的战绩</div>
+      <div class="my-stats">
+        <div class="stat-box"><div class="v" id="my-kda">0</div><div class="k">平均战力值</div></div>
+        <div class="stat-box"><div class="v" id="my-score">0</div><div class="k">累计豆豆币</div></div>
+        <div class="stat-box"><div class="v" id="my-done">0/0</div><div class="k">通关进度</div></div>
+      </div>
+      <div style="margin-top:10px;text-align:right"><button class="btn plain" style="font-size:11px;padding:5px 14px;opacity:.7" onclick="resetProgress()">重置进度</button></div>
+    </div>
+
+    <div class="card" id="board-card" style="display:none">
+      <div class="sec-title">通关榜 · 战力值排行</div>
+      <div class="rank-head"><span>#</span><span>玩家</span><span style="text-align:center">地图</span><span>当前关卡</span><span style="text-align:right">豆豆币</span><span style="text-align:right">战力值</span></div>
+      <div id="rank-list"></div>
+    </div>
+
+    <div class="card">
+      <div class="sec-title">选择地图（2-9 年级上下册 · 全部开放）</div>
+      <div class="map-grid" id="map-grid"></div>
+      <div class="map-tip" id="map-tip"></div>
+    </div>
+
+    <div class="card">
+      <div class="sec-title" id="level-title">关卡选择</div>
+      <div class="level-list" id="level-list"></div>
+    </div>
+
+    <div class="card">
+      <div class="fold-head" id="rule-head" onclick="toggleRules()" title="点击展开 / 收起">
+        <div class="sec-title">规则与豆豆币</div>
+        <svg class="fold-arrow" viewBox="0 0 12 12" width="13" height="13" aria-hidden="true"><path d="M2 4.2l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="fold-body" id="rule-body" style="font-size:13px;line-height:1.9;color:#334155;margin-top:8px">
+        题目为<b>填空题</b>，输入答案提交，答错不扣分可继续。<br>
+        难度与豆豆币（D1-D5 对应菁优 1-5 星）：D1（1星）=1枚 · D2（2星）=2枚 · D3（3星）=4枚 · D4（4星）=6枚 · D5（5星·BOSS）=8枚。<br>
+        标准用时（每题）：D1=0.5 分钟 · D2=1 分钟 · D3=1.5 分钟 · D4=3 分钟 · D5=5 分钟；<b>总难度（Z）/ 标准用时（VT）/ 豆豆币（DA）均按本局实际抽到的题目逐题累加</b>。<br>
+        <b>四项属性</b>：<b>总难度</b>＝本局全部题目分值之和；<b>敏捷</b>＝标准用时 ÷ 实际用时（越大越敏捷，保留一位小数，最高 9.9 封顶）；<b>豆豆币</b>＝答对题目的分值之和；<b>力量</b>＝正确率 × 100（整数，仅作参考；<b>星数改按答对题数分档</b>）。<br>
+        <b>计时方式</b>：答题页为<b>正计时</b>（从 00:00 起累加），<b>不限时、不会自动结算</b>，做多久都可以；用时只参与战力值计算，<b>超过标准用时只会让战力值变低，不影响你答完这一关</b>。<br>
+        <b>智能出题</b>：每关 30 题，<b>前 29 题只在 D1-D4 中出题</b>（<b>第 1 题即从 D1 起</b>，每档随机抽题、同关不重复）；连对 3 题<b>升一档</b>（D1→D2→D3→D4），连错 2 题<b>降一档</b>（最低 D1），所出题目难度与「当前难度」标签始终一致；<b>第 30 题固定为 D5（5星）BOSS 压轴</b>；同关 30 道题<b>随机抽取、不重复</b>。<br>
+        通关后按 KDA 公式计算<b>本关战力值</b>（满分 10），通关榜取各关最佳战力值之和、从高到低排序。<br>
+        战力值 = 答对豆豆币 ÷（实际用时 ÷ 标准用时 × 权重），<b>又快又对</b>才能拿高分；<br>
+        <b>通关线</b>：<b>答对 24 题及以上</b>方可通关（每关 30 题）。<b>星评按答对题数</b>：0-2 题＝0 星 · 3-9 题＝1 星 · 10-16 题＝2 星 · 17-23 题＝3 星 · 24-28 题＝4 星（<b>通关</b>）· 29-30 题＝5 星（<b>完美通关</b>）。<br>
+        <span style="color:var(--muted);font-size:12px">题目来源：菁优网·期末高频·改编（人教版 2-9 年级）· 各册题库分批上新中<br>
+        本页<b>单机直接可玩</b>（战绩存本机，经豆豆资源站入口进入即可，无需启动任何服务器）；同一局域网内启动闯关服务器后自动联机、可多人排行；<b>点击右上角状态胶囊</b>可手动切换联机模式。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 答题 ===== -->
+  <section id="scr-quiz" class="screen">
+    <div class="back-row"><button class="back-btn" onclick="quitRun()">退出本关</button></div>
+    <div class="quiz-top">
+      <span class="chip" id="quiz-player"></span>
+      <span class="chip" id="quiz-count"></span>
+      <span class="chip" id="quiz-timer">00:00</span>
+      <span class="chip" id="quiz-live">0 枚豆豆币</span>
+    </div>
+    <div class="q-card">
+      <div class="q-tags" id="quiz-tags"></div>
+      <div class="q-text" id="quiz-text"></div>
+      <div class="ans-row">
+        <input id="ans-in" autocomplete="off" autocapitalize="off" inputmode="text" placeholder="输入答案">
+        <button class="btn" id="submit-btn" onclick="submitAns()">提交</button>
+      </div>
+      <div class="feedback" id="quiz-fb"></div>
+      <div class="quiz-actions">
+        <button class="btn" id="next-btn" style="display:none" onclick="nextQuestion()">下一题</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 结算 ===== -->
+  <section id="scr-result" class="screen">
+    <div class="back-row"><button class="back-btn" onclick="gotoLobby()">返回大厅</button></div>
+    <div class="card result-card" style="margin-top:12px">
+      <div class="result-title" id="res-title"></div>
+      <div class="result-stars" id="res-stars"></div>
+      <div class="kda-big" id="res-kda"></div>
+      <div class="kda-line" id="res-kda-line"></div>
+      <div class="kda-note" id="res-kda-note"></div>
+      <div class="result-sub" id="res-sub"></div>
+      <div class="result-actions">
+        <button class="btn plain" onclick="gotoLobby()">返回大厅</button>
+        <button class="btn" id="res-next" onclick="nextLevel()">挑战下一关</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div>豆豆智学 · 数学闯关练 · 2-9 年级上下册（人教版）· 单机可玩 · 可联机对战</div>
+    <div>© <span id="coach-name" ontouchstart="showWx()" onclick="showWx()">两英豆豆教练</span><span class="wx" id="wx-tag"></span></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="kda-rule.js"></script>
+<script>
+"use strict";
+/* ================= 地图（2-9 年级上下册 · 16 张，人教版 2024 新课标） ================= */
+var MAPS=[
+ {id:"2a",short:"二上",name:"二年级上册",levels:[
+   {no:"第1单元",name:"分类与整理"},{no:"第2单元",name:"1~6的表内乘法"},{no:"第3单元",name:"1～6的表内除法"},
+   {no:"第4单元",name:"厘米和米"},{no:"第5单元",name:"7～9的表内乘、除法"},{no:"第6单元",name:"复习与关联"}]},
+ {id:"2b",short:"二下",name:"二年级下册",levels:[
+   {no:"第1单元",name:"有余数的除法"},{no:"第2单元",name:"数量间的乘除关系"},{no:"第3单元",name:"万以内数的认识"},
+   {no:"第4单元",name:"万以内的加法和减法"},{no:"第5单元",name:"复习与关联"}]},
+ {id:"3a",short:"三上",name:"三年级上册",levels:[
+   {no:"第1单元",name:"观察物体"},{no:"第2单元",name:"混合运算"},{no:"第3单元",name:"毫米、分米和千米"},
+   {no:"第4单元",name:"多位数乘一位数"},{no:"第5单元",name:"线和角"},{no:"第6单元",name:"分数的初步认识"},
+   {no:"第7单元",name:"复习与关联"}]},
+ {id:"3b",short:"三下",name:"三年级下册",levels:[
+   {no:"第1单元",name:"生活中的运动现象"},{no:"第2单元",name:"除数是一位数的除法"},{no:"第3单元",name:"长方形和正方形"},
+   {no:"第4单元",name:"图形的面积"},{no:"第5单元",name:"数据的收集与整理"},{no:"第6单元",name:"小数的初步认识"},
+   {no:"第7单元",name:"复习与关联"}]},
+ {id:"4a",short:"四上",name:"四年级上册",levels:[
+   {no:"第1单元",name:"万以上数的认识"},{no:"第2单元",name:"角的度量"},{no:"第3单元",name:"多位数乘两位数"},
+   {no:"第4单元",name:"加法模型和乘法模型"},{no:"第5单元",name:"平行四边形和梯形"},{no:"第6单元",name:"条形统计图"},
+   {no:"第7单元",name:"复习与关联"}]},
+ {id:"4b",short:"四下",name:"四年级下册",levels:[
+   {no:"第1单元",name:"四则运算"},{no:"第2单元",name:"观察物体（二）"},{no:"第3单元",name:"运算律"},
+   {no:"第4单元",name:"小数的意义和性质"},{no:"第5单元",name:"三角形"},{no:"第6单元",name:"小数的加法和减法"},
+   {no:"第7单元",name:"图形的运动（二）"},{no:"第8单元",name:"平均数与条形统计图"},{no:"第9单元",name:"数学广角——鸡兔同笼"},
+   {no:"第10单元",name:"总复习"}]},
+ {id:"5a",short:"五上",name:"五年级上册",levels:[
+   {no:"第1单元",name:"观察简单组合体"},{no:"第2单元",name:"小数乘法"},{no:"第3单元",name:"小数除法"},
+   {no:"第4单元",name:"图形的运动"},{no:"第5单元",name:"用字母表示数和数量关系"},{no:"第6单元",name:"多边形的面积"},
+   {no:"第7单元",name:"可能性"},{no:"第8单元",name:"复习与关联"}]},
+ {id:"5b",short:"五下",name:"五年级下册",levels:[
+   {no:"第1单元",name:"观察物体（三）"},{no:"第2单元",name:"因数与倍数"},{no:"第3单元",name:"长方体和正方体"},
+   {no:"第4单元",name:"分数的意义和性质"},{no:"第5单元",name:"图形的运动（三）"},{no:"第6单元",name:"分数的加法和减法"},
+   {no:"第7单元",name:"折线统计图"},{no:"第8单元",name:"数学广角——找次品"},{no:"第9单元",name:"总复习"}]},
+ {id:"6a",short:"六上",name:"六年级上册",levels:[
+   {no:"第1单元",name:"确定位置"},{no:"第2单元",name:"分数乘法"},{no:"第3单元",name:"分数除法"},
+   {no:"第4单元",name:"圆"},{no:"第5单元",name:"百分数"},{no:"第6单元",name:"复习与关联"}]},
+ {id:"6b",short:"六下",name:"六年级下册",levels:[
+   {no:"第1单元",name:"负数"},{no:"第2单元",name:"百分数（二）"},{no:"第3单元",name:"圆柱与圆锥"},
+   {no:"第4单元",name:"比例"},{no:"第5单元",name:"数学广角——鸽巢问题"},{no:"第6单元",name:"整理与复习"}]},
+ {id:"7a",short:"七上",name:"七年级上册",levels:[
+   {no:"第1单元",name:"有理数"},{no:"第2单元",name:"有理数的运算"},{no:"第3单元",name:"代数式"},
+   {no:"第4单元",name:"整式的加减"},{no:"第5单元",name:"一元一次方程"},{no:"第6单元",name:"几何图形初步"}]},
+ {id:"7b",short:"七下",name:"七年级下册",levels:[
+   {no:"第1单元",name:"相交线与平行线"},{no:"第2单元",name:"实数"},{no:"第3单元",name:"平面直角坐标系"},
+   {no:"第4单元",name:"二元一次方程组"},{no:"第5单元",name:"不等式与不等式组"},{no:"第6单元",name:"数据的收集、整理与描述"}]},
+ {id:"8a",short:"八上",name:"八年级上册",levels:[
+   {no:"第1单元",name:"三角形"},{no:"第2单元",name:"全等三角形"},{no:"第3单元",name:"轴对称"},
+   {no:"第4单元",name:"整式的乘法"},{no:"第5单元",name:"因式分解"},{no:"第6单元",name:"分式"}]},
+ {id:"8b",short:"八下",name:"八年级下册",levels:[
+   {no:"第1单元",name:"二次根式"},{no:"第2单元",name:"勾股定理"},{no:"第3单元",name:"四边形"},
+   {no:"第4单元",name:"函数"},{no:"第5单元",name:"一次函数"},{no:"第6单元",name:"数据的分析"}]},
+ {id:"9a",short:"九上",name:"九年级上册",levels:[
+   {no:"第1单元",name:"一元二次方程"},{no:"第2单元",name:"二次函数"},{no:"第3单元",name:"反比例函数"},
+   {no:"第4单元",name:"旋转"},{no:"第5单元",name:"圆"},{no:"第6单元",name:"直线与圆的位置关系"}]},
+ {id:"9b",short:"九下",name:"九年级下册",levels:[
+   {no:"第1单元",name:"相似"},{no:"第2单元",name:"锐角三角函数"},{no:"第3单元",name:"投影与视图"},
+   {no:"第4单元",name:"随机事件的概率"}]}
+];
+var SRC="菁优网·期末高频·改编";
+var SCORE=KDA_RULE.SCORE, VT_COEF=KDA_RULE.VT_COEF;   /* 分值/标准用时统一由 kda-rule.js 提供（唯一事实源） */
+var QCOUNT=30;                          /* 每关题量 30（前 29 道 D1-D4 + 第 30 道 D5 BOSS） */
+var DTIER_MAX=4;                        /* 普通题难度档上限：D1-D4（对应菁优 1-4 星）；D5 只作每关第 30 题 BOSS，不进题池、不参与升档 */
+var TIER_START=1;                       /* 每关第 1 题的起始难度档：固定 D1（1 星），此后由连对/连错动态升降 */
+var AGI_CAP=9.9;                        /* 敏捷显示上限：VT÷AT 超过 9.9 一律按 9.9 封顶 */
+/* 计时：正计时（count-up），不限时、不自动结算；用时只进 KDA 的 AT（÷ 标准用时），慢只会拉低战力值，不会中断答题 */
+var STAR_NAME={1:"1星 · D1",2:"2星 · D2",3:"3星 · D3",4:"4星 · D4",5:"5星 · D5"};
+MAPS.forEach(function(m,i){ m.mapIdx=i; });  /* 补挂 mapIdx：isUnlocked/renderLevelList 依赖，缺失会导致大厅初始化崩溃 */
+
+/* ================= 题库（填空题，a 为可接受答案数组） ================= */
+/* 方案B：题库按册拆分至 qb/qb-<册id>.js，选图时惰性加载；qbMissing 记住缺册避免重复请求。
+ * 上新新册只需在 qb/ 目录新增文件，主页面零改动。 */
+var QBANK={};
+var qbMissing={};
+function ensureQB(mapId,cb){
+  if(QBANK[mapId+"-1"]){cb(true);return;}
+  if(qbMissing[mapId]){cb(false);return;}
+  var s=document.createElement("script");
+  s.src="qb/qb-"+mapId+".js?v=20261029";   /* 带版本号：题库更新后浏览器不会继续用旧缓存 */
+  s.onload=function(){cb(!!QBANK[mapId+"-1"]);};
+  s.onerror=function(){qbMissing[mapId]=true;cb(false);};
+  document.head.appendChild(s);
+}
+function refreshQB(){
+  ensureQB(curMap,function(ok){
+    if(!ok){ qbMissing[curMap]=true; if(QB_READY[curMap]) delete QB_READY[curMap]; }   /* 题库加载失败：该册自动降级为「建设中」 */
+    renderMapGrid();renderLevelList();
+  });
+}
+
+/* ================= 状态 ================= */
+var $=function(id){return document.getElementById(id);};
+var uid=localStorage.getItem("ddzg4a_uid");
+if(!uid){ uid="u"+Date.now().toString(36)+Math.random().toString(36).slice(2,8); localStorage.setItem("ddzg4a_uid",uid); }
+var REC_KEY="ddmath_best_v3";
+var best=JSON.parse(localStorage.getItem(REC_KEY)||"null");
+if(!best){
+  best={};
+  var oldBest=JSON.parse(localStorage.getItem("ddzg4a_best_v2")||"{}"); /* 旧四上版战绩迁移 */
+  for(var k=1;k<=6;k++){ if(oldBest["u"+k]) best["4a-"+k]=oldBest["u"+k]; }
+  localStorage.setItem(REC_KEY,JSON.stringify(best));
+}
+/* 星评口径变更（2026-10-29 改为按答对题数分档）：旧存档只存了 stars，用同批写入的 pw（力量）反推答对题数后重算 */
+(function(){
+  var changed=false, base=KDA_RULE.STAR_BASE_TOTAL;
+  for(var k in best){
+    var b=best[k];
+    if(!b||b.pw==null||b.stars==null) continue;
+    var c=Math.round(b.pw*base/100), s2=starsByCorrect(c,base);
+    if(s2!==b.stars){ b.stars=s2; changed=true; }
+  }
+  if(changed) localStorage.setItem(REC_KEY,JSON.stringify(best));
+})();
+var myName=localStorage.getItem("ddmath_name")||localStorage.getItem("ddzg4a_name")||"";
+var curMap=localStorage.getItem("ddmath_map")||"4a";
+var run=null, timerId=null, boardPlayers=[];
+var lastLvl=localStorage.getItem("ddmath_lastlvl")||"";   /* 最近挑战的关卡：退出答题后仍用它显示「地图 / 当前关卡」 */
+
+/* ================= 工具 ================= */
+function shuffle(arr){for(var i=arr.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=arr[i];arr[i]=arr[j];arr[j]=t;}return arr;}
+function toast(m){var t=$("toast");t.textContent=m;t.classList.add("show");setTimeout(function(){t.classList.remove("show");},1600);}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function norm(s){
+  return String(s).replace(/[０-９]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-65296);})
+    .replace(/＜/g,"<").replace(/＞/g,">").replace(/＝/g,"=")
+    .replace(/[\s　,，。]/g,"").toLowerCase();
+}
+function isCorrect(q,ans){
+  var n=norm(ans);
+  if(!n) return false;
+  for(var i=0;i<q.a.length;i++){ if(norm(q.a[i])===n) return true; }
+  return false;
+}
+function fmt(sec){var m=Math.floor(sec/60),s=sec%60;return (m<10?"0":"")+m+":"+(s<10?"0":"")+s;}
+function starText(n){var s="";for(var i=0;i<5;i++)s+=i<n?"★":"☆";return s;}
+function mapById(id){for(var i=0;i<MAPS.length;i++){if(MAPS[i].id===id)return MAPS[i];}return null;}
+function findLevel(id){
+  var p=String(id).split("-");
+  for(var i=0;i<MAPS.length;i++){
+    if(MAPS[i].id===p[0]){
+      var n=parseInt(p[1],10)-1;
+      if(n>=0&&n<MAPS[i].levels.length) return {map:MAPS[i],mapIdx:i,lvl:MAPS[i].levels[n],lvlIdx:n};
+      return null;
+    }
+  }
+  return null;
+}
+function lvlKey(mapId,lIdx){return mapId+"-"+(lIdx+1);}
+function isUnlocked(mi,li){return li===0||!!best[lvlKey(MAPS[mi].id,li-1)];}
+/* 已上新题库的册（qb/qb-<id>.js 已存在）：地图卡片据此判「可玩」，题库文件本身仍按册惰性加载。
+ * 上新新册：qb/ 放好文件后把册 id 加进这里即可；若加载失败会自动降级为「建设中」。 */
+var QB_READY={"2a":1,"2b":1,"3a":1,"3b":1,"4a":1,"4b":1,"5a":1,"5b":1,"6a":1,"6b":1,"7a":1,"7b":1,"8a":1,"8b":1,"9a":1,"9b":1};
+function mapPlayable(m){return !!QB_READY[m.id];}
+function kdaSum(){var s=0;for(var k in best)s+=best[k].kda;return Math.round(s*10)/10;}
+/* 平均战力值（我的战绩专用）：只算【当前地图】已通关各关的战力均值 = 已通关各关 kda 之和 ÷ 已通关关数；无通关关记 0 */
+function kdaAvg(){
+  var cm=mapById(curMap),s=0,n=0;
+  if(!cm) return 0;
+  cm.levels.forEach(function(l,i){ var b=best[lvlKey(cm.id,i)]; if(b){ s+=b.kda; n++; } });
+  return n?Math.round(s/n*10)/10:0;
+}
+/* 无「最近挑战」记录时（老存档）退回最靠后的已通关关卡，保证通关榜不留空 */
+function progressLvl(){
+  for(var i=MAPS.length-1;i>=0;i--){
+    for(var j=MAPS[i].levels.length-1;j>=0;j--){ if(best[lvlKey(MAPS[i].id,j)]) return lvlKey(MAPS[i].id,j); }
+  }
+  return "";
+}
+function scoreSum(){var s=0;for(var k in best)s+=best[k].score;return s;}
+/* 累计豆豆币（我的战绩专用）：只累加【当前地图】各关最佳局的豆豆币，换地图即从 0 起算 */
+function scoreSumMap(){
+  var cm=mapById(curMap),s=0;
+  if(!cm) return 0;
+  cm.levels.forEach(function(l,i){ var b=best[lvlKey(cm.id,i)]; if(b) s+=b.score; });
+  return s;
+}
+function doneCount(){var n=0;for(var k in best)n++;return n;}
+/* 我的战绩三格统一按【当前地图】统计：平均战力值 / 累计豆豆币 / 通关进度，切地图立即重算 */
+function renderMyStats(){
+  var cm=mapById(curMap),dn=0;
+  if(!cm){ $("my-kda").textContent="0"; $("my-score").textContent="0"; $("my-done").textContent="0/0"; return; }
+  cm.levels.forEach(function(l,i){ if(best[lvlKey(cm.id,i)])dn++; });
+  $("my-kda").textContent=kdaAvg();
+  $("my-score").textContent=scoreSumMap();
+  $("my-done").textContent=dn+"/"+cm.levels.length;
+}
+
+/* ---- 音效 ---- */
+var AC=null;
+function beep(f,d,dl,type){try{if(!AC)AC=new (window.AudioContext||window.webkitAudioContext)();var t0=AC.currentTime+(dl||0);var o=AC.createOscillator(),g=AC.createGain();o.type=type||"sine";o.frequency.value=f;g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(0.18,t0+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(AC.destination);o.start(t0);o.stop(t0+d+0.05);}catch(e){}}
+function sndOk(){beep(523,0.12,0);beep(784,0.16,0.1);}
+function sndNo(){beep(196,0.22,0,"triangle");}
+function sndKda(){beep(523,0.1,0);beep(659,0.1,0.1);beep(784,0.1,0.2);beep(1047,0.24,0.3);}
+
+/* ================= 屏幕切换 ================= */
+function showScreen(id){var a=document.querySelectorAll(".screen");for(var i=0;i<a.length;i++)a[i].classList.remove("active");$(id).classList.add("active");window.scrollTo(0,0);}
+
+/* ================= 联机连接（可选增强） =================
+ * 单机模式：无需任何服务器，静态托管/本地直开即完整可玩，战绩存本机。
+ * 联机增强：同一局域网启动 server.js 后自动连上，通关榜多人实时排行。
+ * 连接失败自动退避重连（前 5 次 3 秒，之后 30 秒），起服后无需刷新页面。 */
+var ws=null,online=false,retryN=0,manualOnline=false;
+function connect(){
+  if(!location.host) return; /* 本地直开无从寻址，重试无意义 */
+  if(ws){ try{ws.onclose=null;ws.close();}catch(e){} ws=null; }
+  try{
+    ws=new WebSocket((location.protocol==="https:"?"wss://":"ws://")+location.host+"/ws");
+  }catch(e){ setConn(false); return; }
+  ws.onopen=function(){ retryN=0; setConn(true); sendP(); };
+  ws.onmessage=function(ev){
+    try{
+      var m=JSON.parse(ev.data);
+      if(m.t==="state"){ boardPlayers=m.players||[]; renderBoard(); }
+    }catch(e){}
+  };
+  ws.onclose=function(){ setConn(false); retryN++; setTimeout(connect, retryN<=5?3000:30000); };
+  ws.onerror=function(){ setConn(false); };
+}
+function setConn(on){
+  online=on;
+  $("conn-dot").className="dot"+(on?" on":(manualOnline?" wait":""));
+  $("conn-text").textContent=on?"已联机":(manualOnline?"联机模式":"单机模式");
+  applyLobbyCards();
+}
+/* 手动切换联机/单机：开→显示联机 UI 并尝试连接服务器；关→回到纯单机 */
+function toggleOnline(){
+  manualOnline=!manualOnline;
+  if(manualOnline&&!ws) connect();
+  setConn(online);
+}
+/* 单机模式：隐藏「加入战局」与「通关榜」（纯本地玩法无需排行）；联机后恢复显示 */
+function applyLobbyCards(){
+  var show=online||manualOnline;
+  $("join-card").style.display=(show&&!myName)?"":"none";
+  $("board-card").style.display=show?"":"none";
+}
+/* 重置进度：清空全部通关战绩并重新锁定所有关卡（保留昵称与地图选择），不可恢复 */
+function resetProgress(){
+  if(!confirm("确定重置全部进度？\n\n将清空所有通关战绩（战力值 / 豆豆币 / 星级），全部关卡重新锁定，需从第 1 关重新挑战。此操作不可恢复。")) return;
+  best={};
+  localStorage.removeItem(REC_KEY);
+  localStorage.removeItem("ddzg4a_best_v2");   /* 旧版战绩迁移源一并清掉，防止下次打开被重新迁回 */
+  renderLobby();
+  toast("进度已重置，从第 1 关重新出发！");
+  sendP();
+}
+function sendP(){
+  if(!ws||ws.readyState!==1||!myName) return;
+  ws.send(JSON.stringify({t:"p",id:uid,name:myName,
+    level:(run?run.lvlId:(lastLvl||"-")),
+    score:run?run.gained:scoreSum(),best:best}));
+}
+setInterval(function(){ if(ws&&ws.readyState===1) ws.send(JSON.stringify({t:"ping",id:uid})); sendP(); },4000);
+
+/* ================= 大厅 ================= */
+function joinGame(){
+  var n=($("inp-name").value||"").trim();
+  if(!n){toast("先输入名字");return;}
+  myName=n; localStorage.setItem("ddmath_name",n);
+  renderLobby();
+  if(ws&&ws.readyState===1) ws.send(JSON.stringify({t:"join",id:uid,name:n}));
+  sendP();
+}
+function gotoLobby(){ if(timerId){clearInterval(timerId);timerId=null;} run=null; renderLobby(); showScreen("scr-lobby"); sendP(); }
+
+function renderLobby(){
+  var joined=!!myName;
+  applyLobbyCards();
+  $("my-card").style.display=joined?"":"none";
+  if(joined){ renderMyStats(); }
+  renderMapGrid();
+  renderLevelList();
+  renderBoard();
+}
+function renderMapGrid(){
+  var html="";
+  MAPS.forEach(function(m){
+    var playable=mapPlayable(m);
+    var doneN=0;
+    m.levels.forEach(function(l,i){ if(best[lvlKey(m.id,i)])doneN++; });
+    html+='<button class="map-btn'+(m.id===curMap?" active":"")+(playable?"":" nop")+'" onclick="pickMap(\''+m.id+'\')">'
+      +'<span class="mn">'+m.short+'</span>'
+      +'<span class="mb">'+(playable?(doneN?doneN+"/"+m.levels.length+"关":"可玩"):"建设中")+'</span></button>';
+  });
+  $("map-grid").innerHTML=html;
+  var cm=mapById(curMap);
+  $("map-tip").textContent=cm?("当前地图："+cm.name+" · 共 "+cm.levels.length+" 关 · 每关 30 题 · 正计时不限时"):"";
+}
+function pickMap(id){curMap=id;localStorage.setItem("ddmath_map",id);renderMapGrid();renderLevelList();renderMyStats();refreshQB();}
+function renderLevelList(){
+  var m=mapById(curMap);
+  if(!m) return;
+  $("level-title").textContent="关卡选择 · "+m.name;
+  var playable=mapPlayable(m);
+  var html="";
+  if(!playable){
+    html='<div class="empty-tip">本册题库建设中，敬请期待</div>';
+  }
+  m.levels.forEach(function(l,i){
+    var key=lvlKey(m.id,i), b=best[key], unlocked=isUnlocked(m.mapIdx,i)&&playable;
+    var cls=b?"done":(unlocked?"open":"");
+    html+='<div class="level-item'+(unlocked?"":" locked")+'">'
+      +'<div class="level-no '+cls+'">'+(i+1)+'</div>'
+      +'<div class="level-info"><div class="level-name">'+esc(l.name)+'</div>'
+      +'<div class="level-meta">'+esc(l.no)+' · 30 题 · 不限时'
+      +(b?('<span class="lv-stats">'
+        +(b.z!=null?('<span class="it">总难度 '+b.z+'</span>'):'')
+        +(b.agv===2&&b.agi!=null?('<span class="it">敏捷 '+Number(b.agi).toFixed(1)+'</span>'):'')
+        +'<span class="it">力量 <span class="stars">'+starText(b.stars)+'</span></span>'
+        +'<span class="it">战力值 <span class="kdav">'+(b.kda>=10?"满10":b.kda.toFixed(1))+'</span></span>'
+        +'</span>'):(playable?'':' · 题库建设中'))
+      +'</div></div>'
+      +(unlocked?'<button class="btn small" style="margin-left:auto" onclick="startRun(\''+key+'\')">'+(b?"再刷一次":"进入")+'</button>':'')
+      +'</div>';
+  });
+  $("level-list").innerHTML=html;
+}
+function renderBoard(){
+  var rows=[];
+  if(online){
+    boardPlayers.forEach(function(p){ rows.push({name:p.name,level:p.level,score:p.score,kdaSum:p.kdaSum,me:p.id===uid}); });
+  }else{
+    rows=[{name:myName||"(未加入)",level:(lastLvl||"-"),score:scoreSum(),kdaSum:kdaSum(),me:true}];
+  }
+  rows.sort(function(a,b){return b.kdaSum-a.kdaSum||b.score-a.score;});
+  var html="";
+  if(rows.length===0){ html='<div class="empty-tip">暂无玩家</div>'; }
+  rows.forEach(function(r,i){
+    /* 关卡号取自玩家最近挑战的关卡（退出答题 / 未开局时也不留空）；仅限自己，别人的空值不借用本机记录 */
+    var lid=(r.level&&r.level!=="-")?r.level:(r.me?(lastLvl||progressLvl()):"");
+    var L=lid?findLevel(lid):null;
+    var mapS=L?L.map.short:"—";
+    var lvS=L?((L.lvlIdx+1)+"·"+L.lvl.name):"—";
+    html+='<div class="rank-row'+(i===0?" r1":(i===1?" r2":(i===2?" r3":"")))+(r.me?" me":"")+'">'
+      +'<div class="no">'+(i+1)+'</div>'
+      +'<div class="nm">'+esc(r.name)+(r.me?' <span style="font-size:10px;color:var(--primary)">我</span>':'')+'</div>'
+      +'<div class="mp">'+esc(mapS)+'</div>'
+      +'<div class="lv">'+esc(lvS)+'</div>'
+      +'<div class="sc">'+r.score+'</div>'
+      +'<div class="kda">'+r.kdaSum+'</div></div>';
+  });
+  $("rank-list").innerHTML=html;
+}
+
+/* ================= 答题（DDA 智能出题） ================= */
+function startRun(lvlId){
+  if(!myName){toast("先加入战局");return;}
+  var L=findLevel(lvlId);
+  if(!L){toast("关卡不存在");return;}
+  if(!QBANK[lvlId]){                      /* 刚切册、题库脚本未到位：先拉取再重试，避免误报「建设中」 */
+    if(!qbMissing[L.map.id]){
+      ensureQB(L.map.id,function(ok){ if(ok){ startRun(lvlId); } else { toast("本关题库建设中，敬请期待"); } });
+      return;
+    }
+    toast("本关题库建设中，敬请期待");return;
+  }
+  if(!isUnlocked(L.mapIdx,L.lvlIdx)){toast("先通关前面的关卡");return;}
+  var tiers={1:[],2:[],3:[],4:[]};   /* 题池只放 D1-D4；D5 只作每关第 30 题压轴，由 bossPool 随机取一道 */
+  QBANK[lvlId].forEach(function(q){
+    if(!q.boss){ var d=Math.min(DTIER_MAX,Math.max(1,q.st|0)); tiers[d].push(q); }   /* 星级即难度档：1星=D1 … 4星=D4（5星 D5 只作 BOSS，不进题池） */
+  });
+  Object.keys(tiers).forEach(function(k){shuffle(tiers[k]);});
+  var bossPool=[];                         /* 5星 BOSS 题池：备多道时每局随机取一道，重玩不总是同一题 */
+  QBANK[lvlId].forEach(function(q){ if(q.boss) bossPool.push(q); });
+  run={lvlId:lvlId,lvl:L.lvl,map:L.map,tiers:tiers,bias:0,bossPool:bossPool,bossQ:bossPool[0]||null,qs:[],tier:TIER_START,
+       okStreak:0,noStreak:0,idx:0,correct:0,gained:0,ansLog:[],startTs:Date.now(),elapsed:0,done:false};
+  lastLvl=lvlId;
+  try{localStorage.setItem("ddmath_lastlvl",lvlId);}catch(e){}
+  drawQuestion();
+  $("quiz-player").textContent=myName+" · "+L.map.short+"·"+L.lvl.name;
+  showQuestion();
+  showScreen("scr-quiz");
+  $("quiz-timer").textContent=fmt(0);
+  $("quiz-timer").className="chip";
+  if(timerId)clearInterval(timerId);
+  timerId=setInterval(function(){                 /* 正计时：只往上涨，到点也不结算，答题不会被时间打断 */
+    if(!run||run.done) return;
+    run.elapsed=Math.floor((Date.now()-run.startTs)/1000);   /* 取墙钟而非自增：切后台/锁屏回来也不会少算，与结算 AT 同源 */
+    $("quiz-timer").textContent=fmt(run.elapsed);
+  },1000);
+  sendP();
+}
+/* 题池重洗：题量增至 40 后题池（现 19 题/关）不够，抽空即重洗复用（后续题库扩容到 39+1 后不再触发） */
+function refillPools(){
+  QBANK[run.lvlId].forEach(function(q){
+    if(!q.boss){ var d=Math.min(DTIER_MAX,Math.max(1,q.st|0)); run.tiers[d].push(q); }
+  });
+  Object.keys(run.tiers).forEach(function(k){shuffle(run.tiers[k]);});
+}
+/* 该档是否还有存题（题库扩容后常态为真，只在题池见底时就近换档） */
+function bandHas(b){ return b>=1&&b<=DTIER_MAX&&!!(run.tiers[b]&&run.tiers[b].length); }
+/* 预演下一题实际档位（不改变任何状态）：连对 3 题→升一档，连错 2 题→降一档；该档已抽空则就近换档 */
+function nextBand(){
+  if(!run) return 5;
+  if(run.idx+1>=QCOUNT-1) return 5;                 /* 下一题就是 BOSS */
+  var band=Math.max(1,Math.min(DTIER_MAX,run.tier+(run.bias||0)));
+  if(bandHas(band)) return band;
+  for(var d=1;d<DTIER_MAX;d++){
+    if(bandHas(band-d)) return band-d;
+    if(bandHas(band+d)) return band+d;
+  }
+  return run.tier;
+}
+/* 抽题：档位＝当前档 + 升降档偏置（连对升 / 连错降）；题目＝该档题池随机 pop（不放回，同关绝不重复） */
+function drawQuestion(){
+  if(run.idx>=QCOUNT-1){                            /* BOSS（D5 压轴）仅出现在每关最后一题（第 30 题） */
+    var bp=run.bossPool;
+    run.curQ=(bp&&bp.length)?bp[Math.floor(Math.random()*bp.length)]:run.bossQ;   /* 多道 5 星时随机取一道 */
+    run.tier=5;
+    if(run.curQ) run.qs.push(run.curQ);
+    return !!run.curQ;
+  }
+  var bias=run.bias||0; run.bias=0;
+  var band=Math.max(1,Math.min(DTIER_MAX,run.tier+bias));
+  var q=null;
+  if(bandHas(band)) q=run.tiers[band].pop();
+  if(!q){                                           /* 该档已抽空：就近换档（题库扩容后不会触发） */
+    for(var d=1;d<DTIER_MAX&&!q;d++){
+      var cand=[band-d,band+d];
+      for(var j=0;j<2;j++){
+        var cb=cand[j];
+        if(cb>=1&&cb<=DTIER_MAX&&run.tiers[cb]&&run.tiers[cb].length){ band=cb; q=run.tiers[band].pop(); break; }
+      }
+    }
+    if(!q){ refillPools(); if(bandHas(run.tier)){ band=run.tier; q=run.tiers[band].pop(); } }
+  }
+  run.curQ=q; run.tier=band;
+  if(q) run.qs.push(q);
+  return !!q;
+}
+function showQuestion(){
+  var q=run.curQ;
+  run.answered=false;
+  $("quiz-count").textContent="第 "+(run.idx+1)+" / "+QCOUNT+" 题";
+  $("quiz-live").textContent=run.gained+" 枚豆豆币";
+  $("quiz-tags").innerHTML=
+    '<span class="tag'+(q.boss?" boss":"")+'">'+STAR_NAME[q.st]+'</span>'
+    +'<span class="tag" style="background:var(--primary)">'+SCORE[q.st]+' 枚豆豆币</span>'
+    +'<span class="tag src">'+SRC+'</span>';
+  $("quiz-text").textContent=q.q;
+  var inp=$("ans-in");
+  inp.value=""; inp.disabled=false;
+  setTimeout(function(){inp.focus();},50);
+  $("submit-btn").disabled=false;
+  $("submit-btn").style.display="";
+  var fb=$("quiz-fb"); fb.className="feedback"; fb.innerHTML="";
+  $("next-btn").style.display="none";
+  $("next-btn").textContent=(run.idx===QCOUNT-1)?"查看战报":"下一题";
+}
+function submitAns(){
+  if(!run||run.answered) return;
+  var val=($("ans-in").value||"").trim();
+  if(!val){toast("请输入答案");return;}
+  run.answered=true;
+  var q=run.curQ, ok=isCorrect(q,val);
+  var fb=$("quiz-fb");
+  $("ans-in").disabled=true; $("submit-btn").disabled=true;
+  if(ok){
+    run.correct++; var pts=SCORE[q.st]; run.gained+=pts;
+    run.ansLog.push(1);
+    if(!q.boss){
+      run.okStreak++; run.noStreak=0;
+      if(run.okStreak>=3){ if(run.tier<DTIER_MAX)run.bias=1; run.okStreak=0; }   /* 连对 3 题升一级：下一题换更高档（D1→D2→D3→D4） */
+    }
+    fb.className="feedback show ok";
+    fb.innerHTML="<b>回答正确，+"+pts+" 枚豆豆币！</b>"+esc(q.e);
+    sndOk();
+  }else{
+    run.ansLog.push(0);
+    if(!q.boss){
+      run.noStreak++; run.okStreak=0;
+      if(run.noStreak>=2){ if(run.tier>1)run.bias=-1; run.noStreak=0; }   /* 连错 2 题降一级：下一题回退更低档 */
+    }
+    fb.className="feedback show no";
+    fb.innerHTML="<b>没关系，做错不扣分。</b>正确答案："+esc(q.a[0])+"。"+esc(q.e);
+    sndNo();
+  }
+  var nb=nextBand();   /* 只提示「真的会出的」档位，杜绝说了升 D2 却出 D1 题 */
+  if(nb!==run.tier){
+    fb.innerHTML+=' <b>【难度调整：下一题 D'+nb+"】</b>";
+  }
+  $("quiz-live").textContent=run.gained+" 枚豆豆币";
+  $("next-btn").style.display="";
+  sendP();
+}
+function nextQuestion(){
+  if(!run) return;
+  run.idx++;
+  if(run.idx>=QCOUNT||!drawQuestion()){ finishRun(); return; }
+  showQuestion();
+}
+function quitRun(){
+  if(confirm("确定退出本关吗？本关进度与战力值将不保存。")){
+    if(timerId){clearInterval(timerId);timerId=null;}
+    run=null; gotoLobby();
+  }
+}
+
+/* ================= KDA 结算 ================= */
+function finishRun(){
+  if(!run||run.done) return;
+  run.done=true;
+  if(timerId){clearInterval(timerId);timerId=null;}
+  var lvlId=run.lvlId, L=findLevel(lvlId)||run;   /* findLevel 提供 mapIdx/lvlIdx（run 对象上没有，缺失会令下一关计算与解锁判断失效） */
+  var r=calcKDA({qs:run.qs,correct:run.correct,gained:run.gained,atMs:Date.now()-run.startTs});
+  var Z=r.Z,W=r.W,VT=r.VT,AT=r.AT,K=r.K,DA=r.DA,kda=r.kda;
+  var acc=r.acc,pass=r.pass,stars=r.stars,perfect=r.perfect;   /* 正确率 A / 通关 / 星级 / 完美 统一由 kda-rule.js 判定（星级按答对题数分档） */
+  var agi=AT>0?VT/AT:0;                             /* 敏捷 = 标准用时 VT ÷ 实际用时 AT（越大越敏捷） */
+  agi=Math.min(AGI_CAP,Math.round(agi*10)/10);      /* 只保留一位小数，超过 9.9 封顶 */
+  var pw=Math.round(acc*100);                       /* 力量 = 正确率 A × 100（整数） */
+
+  var prev=best[lvlId];
+  var newBest=false, newPw=false;                   /* newBest=战力值刷新；newPw=力量（星级）刷新 */
+  if(pass){                                         /* 仅通关（答对≥24 题 / 4 星）才记战绩，未通关不解锁下一关 */
+    var kdaBetter=!prev||kda>prev.kda;              /* 战力值组：取历史最高战力那一局（整体替换，不跨局拼接） */
+    var pwBetter=!prev||stars>(prev.stars||0);      /* 力量组：星级/力量取历史最好 */
+    if(kdaBetter||pwBetter){
+      var keepAgi=kdaBetter?Math.round(agi*10)/10:(prev.agv===2&&prev.agi!=null?prev.agi:null);
+      best[lvlId]={
+        kda:kdaBetter?kda:prev.kda,
+        score:kdaBetter?run.gained:prev.score,
+        z:kdaBetter?Z:prev.z,
+        agi:keepAgi,
+        agv:keepAgi==null?null:2,
+        stars:Math.max(stars,prev&&prev.stars?prev.stars:0),
+        pw:Math.max(pw,prev&&prev.pw!=null?prev.pw:pw)
+      };
+      localStorage.setItem(REC_KEY,JSON.stringify(best));
+      newBest=kdaBetter; newPw=pwBetter;
+    }
+  }
+
+  $("res-title").textContent=pass?(perfect?"完美通关！":"通关成功！"):"挑战完成";
+  var sh=""; for(var i=0;i<5;i++){sh+='<span class="'+(i<stars?"on":"")+'">★</span>';}
+  $("res-stars").innerHTML=sh;
+  $("res-kda").textContent="本关战力值 "+kda.toFixed(1)+(newBest&&prev?"（新纪录）":(newPw&&prev?"（力量新高）":""));
+  $("res-kda-line").innerHTML=
+    '<span>总难度 <b>'+Z+'</b></span><span>敏捷 <b>'+agi.toFixed(1)+'</b></span>'
+    +'<span>豆豆币 <b>'+DA+'</b></span><span>力量 <b>'+pw+'</b></span>';
+  $("res-kda-note").textContent="标准用时 VT "+VT.toFixed(1)+" 分 · 实际用时 AT "+AT.toFixed(1)+" 分 · 权重 W "+W.toFixed(1);
+  var mapDone=true;
+  L.map.levels.forEach(function(l,i){ if(!best[lvlKey(L.map.id,i)])mapDone=false; });
+  var nextKey=null,nextName=null,nextIdx=-1;
+  for(var i=L.lvlIdx===undefined?0:L.lvlIdx+1;i<L.map.levels.length;i++){
+    if(QBANK[lvlKey(L.map.id,i)]){ nextKey=lvlKey(L.map.id,i); nextName=L.map.levels[i].name; nextIdx=i; break; }
+  }
+  var sub="答对 "+run.correct+" / "+run.qs.length+" 题（正确率 "+Math.round(acc*100)+"%）· 用时 "+AT.toFixed(1)+" 分钟"
+    +(pass?"":"<br><b>答对不足 24 题（正确率需 A≥80%），本次未能通关，再接再励！</b>"+(nextKey?"<br>通关本关后才能解锁「"+esc(nextName)+"」。":""))
+    +(prev&&newBest?"<br>刷新纪录（原战力 "+prev.kda.toFixed(1)+"）":"")
+    +(!newBest&&newPw&&prev?"<br>力量新高（"+starText(prev.stars||0)+" → "+starText(stars)+"）":"")
+    +(mapDone?"<br><b>「"+esc(L.map.name)+"」全部通关！你就是这张地图的战力之王！</b>":"");
+  $("res-sub").innerHTML=sub;
+  if(nextKey&&(pass||isUnlocked(L.mapIdx,nextIdx))){$("res-next").style.display="";$("res-next").textContent="挑战「"+nextName+"」";}   /* 通关解锁下一关；已通关重刷失败不收回已解锁的下一关 */
+  else{$("res-next").style.display="none";}
+  if(pass)sndKda();else sndOk();
+  sendP();
+  showScreen("scr-result");
+}
+function nextLevel(){
+  if(!run){ gotoLobby(); return; }
+  var L=findLevel(run.lvlId);
+  if(L){
+    for(var i=L.lvlIdx+1;i<L.map.levels.length;i++){
+      var key=lvlKey(L.map.id,i);
+      if(QBANK[key]&&isUnlocked(L.mapIdx,i)){ startRun(key); return; }
+    }
+  }
+  gotoLobby();
+}
+
+/* ================= 规则折叠（默认收起，单击标题展开） ================= */
+function toggleRules(){
+  var h=$("rule-head"), b=$("rule-body");
+  if(!h||!b) return;
+  var open=!b.classList.contains("open");
+  b.classList.toggle("open",open);
+  h.classList.toggle("open",open);
+}
+
+/* ================= 微信号 ================= */
+var wxShown=false;
+function showWx(){var el=$("wx-tag");wxShown=!wxShown;el.textContent=wxShown?"微信号：ddtt0754":"";el.classList.toggle("show",wxShown);}
+
+/* ================= 初始化 ================= */
+if(!mapById(curMap)) curMap="4a";
+if(myName){ $("inp-name").value=myName; joinGame(); }
+renderLobby();
+refreshQB();
+showScreen("scr-lobby");
+if(location.host){ connect(); } else { setConn(false); $("conn-text").textContent="单机模式"; }
+</script>
+</body>
+</html>
